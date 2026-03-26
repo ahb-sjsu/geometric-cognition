@@ -1,0 +1,48 @@
+name: Deploy to Geometric Series Website
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'chapters/**'
+      - '*.md'
+      - '.build/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout book repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install markdown
+
+      - name: Build HTML from Markdown
+        run: python .build/build.py --repo-root . --output-dir output
+
+      - name: List built files
+        run: ls -la output/
+
+      - name: Push to erisml-lib website repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.ERISML_DEPLOY_KEY }}
+        with:
+          source-directory: 'output'
+          destination-github-username: 'ahb-sjsu'
+          destination-repository-name: 'erisml-lib'
+          target-directory: 'docs/geometric-cognition'
+          target-branch: 'main'
+          commit-message: 'Deploy geometric-cognition chapters from ${{ github.sha }}'
+          user-name: 'github-actions[bot]'
+          user-email: 'github-actions[bot]@users.noreply.github.com'

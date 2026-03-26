@@ -15,3 +15,6 @@ venv/
 Thumbs.db
 nul
 bash.exe.stackdump
+
+# Build output
+output/
