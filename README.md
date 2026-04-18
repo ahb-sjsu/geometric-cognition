@@ -16,7 +16,7 @@ It inherits the heuristic field formalism, geodesic deviation measure, failure t
 
 ## Status
 
-Outline stage. See `OUTLINE.md` for the chapter plan.
+Outline stage. See `BOOK_PLAN.md` for the chapter plan.
 
 ## The Geometric Series
 
