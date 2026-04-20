@@ -18,6 +18,44 @@ It inherits the heuristic field formalism, geodesic deviation measure, failure t
 
 Outline stage. See `BOOK_PLAN.md` for the chapter plan.
 
+## Series map
+
+```mermaid
+flowchart TB
+    subgraph ROOT[Parent framework]
+      METH[Geometric Methods<br/>in Computational Modeling]
+      REAS[Geometric Reasoning<br/>from Search to Manifolds]
+    end
+
+    subgraph DOMAIN[Domain instantiations]
+      ETH[Geometric Ethics]
+      ECO[Geometric Economics]
+      LAW[Geometric Law]
+      COG[Geometric Cognition]
+      COM[Geometric Communication]
+      MED[Geometric Medicine]
+      EDU[Geometric Education]
+      POL[Geometric Politics]
+      AI[Geometric AI]
+      GAS[Geometric Gastronomy]
+    end
+
+    COMMON[Shared toolkit<br/>heuristic field formalism<br/>geodesic deviation<br/>failure taxonomy<br/>gauge invariance diagnostics]
+
+    METH --> COMMON
+    REAS --> COMMON
+    COMMON --> ETH
+    COMMON --> ECO
+    COMMON --> LAW
+    COMMON --> COG
+    COMMON --> COM
+    COMMON --> MED
+    COMMON --> EDU
+    COMMON --> POL
+    COMMON --> AI
+    COMMON --> GAS
+```
+
 ## The Geometric Series
 
 | Book | Status |
