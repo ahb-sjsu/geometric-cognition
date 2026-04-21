@@ -38,6 +38,7 @@ flowchart TB
       POL[Geometric Politics]
       AI[Geometric AI]
       GAS[Geometric Gastronomy]
+      AES[Geometric Aesthetics]
     end
 
     COMMON[Shared toolkit<br/>heuristic field formalism<br/>geodesic deviation<br/>failure taxonomy<br/>gauge invariance diagnostics]
@@ -54,6 +55,7 @@ flowchart TB
     COMMON --> POL
     COMMON --> AI
     COMMON --> GAS
+    COMMON --> AES
 ```
 
 ## The Geometric Series
@@ -68,6 +70,7 @@ flowchart TB
 | [Geometric Cognition](https://github.com/ahb-sjsu/geometric-cognition) | Outline |
 | [Geometric Communication](https://github.com/ahb-sjsu/geometric-communication) | Outline |
 | [Geometric Medicine](https://github.com/ahb-sjsu/geometric-medicine) | Outline |
+| [Geometric Aesthetics](https://github.com/ahb-sjsu/geometric-aesthetics) | Paper complete, book drafting |
 
 ## License
 
