@@ -62,15 +62,19 @@ flowchart TB
 
 | Book | Status |
 |------|--------|
-| [Geometric Methods](https://github.com/ahb-sjsu/agi-hpc) | Published |
-| [Geometric Reasoning](https://github.com/ahb-sjsu/geometric-reasoning) | Draft complete |
-| [Geometric Ethics](https://github.com/ahb-sjsu/geometric-ethics) | Published (v1.23) |
+| [Geometric Methods: Computational Modeling](https://github.com/ahb-sjsu/geometric-methods) | Published |
+| [Geometric Ethics: The Mathematical Structure of Moral Reasoning](https://github.com/ahb-sjsu/geometric-ethics) | Published (v1.23) |
+| [Geometric Reasoning: From Search to Manifolds](https://github.com/ahb-sjsu/geometric-reasoning) | Draft complete |
+| [Geometric Economics: Decision Manifolds, the Bond Geodesic Equilibrium, and the Irrecoverable Geometry of Markets](https://github.com/ahb-sjsu/geometric-economics) | Draft |
+| [Geometric Law: Symmetry, Invariance, and the Structure of Legal Reasoning](https://github.com/ahb-sjsu/geometric-law) | Draft |
 | **Geometric Cognition: The Mathematical Structure of Human and Artificial Thought** | **Draft** |
-| [Geometric Law](https://github.com/ahb-sjsu/geometric-law) | Draft |
-| [Geometric Cognition](https://github.com/ahb-sjsu/geometric-cognition) | Draft |
-| [Geometric Communication](https://github.com/ahb-sjsu/geometric-communication) | Draft |
-| [Geometric Medicine](https://github.com/ahb-sjsu/geometric-medicine) | Draft |
-| [Geometric Aesthetics](https://github.com/ahb-sjsu/geometric-aesthetics) | Paper complete, book drafting |
+| [Geometric Communication: Signal, Symmetry, and the Geometry of Meaning](https://github.com/ahb-sjsu/geometric-communication) | Draft |
+| [Geometric Medicine: Clinical Reasoning, Allocation, and the Mathematics of Moral Injury](https://github.com/ahb-sjsu/geometric-medicine) | Draft |
+| [Geometric Education: Learning, Assessment, and the Topology of Understanding](https://github.com/ahb-sjsu/geometric-education) | Draft |
+| [Geometric Politics: Representation, Polarization, and the Topology of Democratic Choice](https://github.com/ahb-sjsu/geometric-politics) | Draft |
+| [Geometric AI: Alignment, Safety, and the Manifold Structure of Machine Values](https://github.com/ahb-sjsu/geometric-ai) | Draft |
+| [Geometric Gastronomy: The Mathematical Structure of Flavor, Pairing, Cooking, and Culinary Navigation](https://github.com/ahb-sjsu/geometric-gastronomy) | Draft |
+| [Geometric Aesthetics: The Mathematical Structure of Judgment](https://github.com/ahb-sjsu/geometric-aesthetics) | Draft |
 
 ## License
 
