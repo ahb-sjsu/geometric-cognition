@@ -3,6 +3,16 @@
 **Andrew H. Bond**
 Senior Member, IEEE | San Jose State University
 
+> **Epistemic status (2026-07-14): posited framework — speculative theory awaiting an instrument.**
+> The Geometric Series distinguishes *posited* structure from *measured* structure; this volume is
+> posited. Admission-filter status ([xbse](https://github.com/ahb-sjsu/xbse)): **CogBSE ruled
+> inadmissible** — no external structure label independent of the embedding itself (circularity),
+> so no instrument for this domain currently passes the gate. Claims here should be read as theory
+> at licensed strength, not validated measurement. The gates that keep the program falsifiable
+> live in the instrument repos: [xbse](https://github.com/ahb-sjsu/xbse) (admission filter;
+> frozen-null cross-dataset validation) and the
+> [Moral Spectrum Analyzer](https://github.com/ahb-sjsu/moral-spectrum-analyzer).
+
 ---
 
 ## Part of the Geometric Series
