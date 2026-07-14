@@ -213,7 +213,7 @@ This explains the A4 divided attention split in architectural terms. If Flash 3 
 The architectural explanation is speculative---we do not have access to the internal attention patterns of these models during the A4 benchmark. But it is consistent with the known architectural differences and with the broader cognitive signature: Claude's narrow channel (high resolution, low bandwidth) versus Flash 3's wide aperture (moderate resolution, high bandwidth).
 
 
-## 4.8 How the Metric Shapes Cognition
+## 4.9 How the Metric Shapes Cognition
 
 The attention metric does not merely measure cognition. It *shapes* cognition. The metric determines the geodesics, and the geodesics are the optimal reasoning paths. Change the metric, and you change what counts as optimal reasoning.
 
@@ -226,7 +226,7 @@ The attention metric does not merely measure cognition. It *shapes* cognition. T
 These three consequences---different geodesics, different curvature, different effort---mean that the attention metric is the fundamental parameter that distinguishes cognitive architectures. Two models with the same heuristic field but different metrics will reason differently. Two models with the same metric but different heuristic fields will also reason differently, but in a different way. The metric and the heuristic are independent sources of variation in cognition.
 
 
-## 4.9 Selective Attention as Metric Compression: The Distractor Problem
+## 4.10 Selective Attention as Metric Compression: The Distractor Problem
 
 The A1 subtask (distractor resistance) provides direct evidence for the metric interpretation of attention. The task presents the model with a reasoning problem that includes irrelevant information---distractors---that should not affect the answer. The model's accuracy is measured with and without distractors. The displacement between the two accuracy values measures the degree to which distractors corrupt the reasoning trajectory.
 
@@ -247,7 +247,7 @@ The 4.6 sigma effect tells us that the metric perturbation caused by distractors
 The dose-response structure of the distractor effect (explored in detail in Chapter 10) provides additional geometric information. If the metric perturbation scales linearly with distractor salience, the geodesic shift should also scale approximately linearly. If the perturbation scales non-linearly (e.g., quadratically), the shift should show acceleration. The observed dose-response curve constrains the functional form of the metric's sensitivity to irrelevant inputs.
 
 
-## 4.10 The Attention-Metric Connection to Fisher Information
+## 4.11 The Attention-Metric Connection to Fisher Information
 
 The attention metric has a deep connection to information geometry through the Fisher information metric.
 
@@ -266,7 +266,7 @@ $$g_{\mu\nu}^{\text{attention}}(x) = \mathbb{E}_{p(y|x)}\left[\frac{\partial \lo
 This Fisher-metric interpretation explains why the SNR values are so similar across models (Section 4.6). The Fisher metric depends on the conditional distribution $p(y|x)$, which is determined by the model's architecture and training. If all models have been trained on similar data distributions and have converged to similar conditional distributions (at least along the signal/noise dimension), their Fisher metrics will also converge, producing similar SNR values. The universality of the weak SNR is a consequence of the universality of the learned conditional distribution, not of any architectural constraint.
 
 
-## 4.11 Implications for Model Comparison
+## 4.12 Implications for Model Comparison
 
 The attention metric framework transforms how we compare cognitive systems.
 
@@ -283,7 +283,7 @@ Under the metric paradigm, model comparison becomes fully geometric. Two models 
 This geometric perspective on model comparison is the foundation for Chapter 16 (The Five Geometric Signatures), where we will characterize each model's cognitive fingerprint as a combination of manifold position, metric structure, heuristic field quality, and control layer properties. The metric is one of several geometric objects that jointly determine the cognitive architecture. But it is a particularly important one, because it shapes every other geometric property of the system's cognition.
 
 
-## 4.12 Worked Example: Computing the Attention Metric from Benchmark Data
+## 4.13 Worked Example: Computing the Attention Metric from Benchmark Data
 
 Let us work through a concrete example that shows how the benchmark data constrain the attention metric.
 
@@ -319,7 +319,7 @@ These ratios characterize the metric. Claude has an eccentricity of approximatel
 **Interpretation.** This worked example demonstrates that the benchmark data are not merely "scores." They are measurements of the metric tensor. The A1 score constrains the metric's stability under perturbation. The A4 score constrains the metric's distribution across dimensions. Together, they characterize the shape of the metric ellipse---the geometric object that determines how the model navigates the cognitive manifold.
 
 
-## 4.13 The Metric and Cognitive Flexibility
+## 4.14 The Metric and Cognitive Flexibility
 
 The attention metric has a dynamic aspect that connects to Chapter 6's treatment of executive functions. The metric is not fixed; it changes as the system shifts attention. The *ability* to change the metric---to redirect attention from one set of dimensions to another---is cognitive flexibility.
 

@@ -122,7 +122,7 @@ The geometric interpretation of governance elasticity connects directly to the m
 
 The 6.8 sigma Fisher combined significance for emotional anchoring means that the probability of observing this degree of verdict displacement under the null hypothesis (no emotional effect) is approximately $10^{-12}$. This is an extremely strong rejection of emotional neutrality.
 
-In the geometric framework of Chapter 7, the emotional anchor is a corruption of the heuristic field. The corruption tensor $C_{\mu\nu}$ (Definition 7.X) quantifies the displacement of the heuristic gradient caused by an irrelevant influence. For emotional anchoring, the corruption tensor has its largest components along the emotional dimension of the judgment space, rotating the heuristic gradient away from the moral-content direction and toward the emotional-salience direction.
+In the geometric framework introduced in Chapter 7, the emotional anchor is a corruption of the heuristic field. The corruption tensor $C_{\mu\nu}$ (Appendix A, Definition A.13) quantifies the displacement of the heuristic gradient caused by an irrelevant influence. For emotional anchoring, the corruption tensor has its largest components along the emotional dimension of the judgment space, rotating the heuristic gradient away from the moral-content direction and toward the emotional-salience direction.
 
 **Definition 11.4** (Emotional Corruption Tensor). *Let $h(x)$ be the heuristic field on the cognitive manifold and let $h_{\text{emo}}(x) = h(x) + \delta h_{\text{emo}}(x)$ be the corrupted heuristic field under emotional anchoring. The emotional corruption tensor is:*
 

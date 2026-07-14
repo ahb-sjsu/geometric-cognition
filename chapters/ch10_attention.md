@@ -288,7 +288,7 @@ The attention results interact with the other cognitive dimensions in specific, 
 
 **Step 2: Assess metric signal quality.** The SNR of 1.30 indicates weak signal-noise discrimination, consistent with the universal band of 1.22--1.38. The metric provides approximately 30% more resolution along signal dimensions than noise dimensions.
 
-**Step 3: Compute metric eccentricity from A4.** The A4 score of 0.650 indicates significant interference under divided attention. Following the worked example from Chapter 4 (Section 4.12), we model the metric as a diagonal matrix with attention weights $a_1$ (primary stream) and $a_2$ (secondary stream), subject to $a_1 + a_2 = A$.
+**Step 3: Compute metric eccentricity from A4.** The A4 score of 0.650 indicates significant interference under divided attention. Following the worked example from Chapter 4 (Section 4.13), we model the metric as a diagonal matrix with attention weights $a_1$ (primary stream) and $a_2$ (secondary stream), subject to $a_1 + a_2 = A$.
 
 The A4 score of 0.650 corresponds to a metric where the secondary stream receives significantly less resolution than the primary stream. Using the harmonic-mean model from Chapter 4:
 
