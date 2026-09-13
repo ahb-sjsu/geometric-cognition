@@ -1155,6 +1155,76 @@ short of the point where position preference takes over. Each needs to pass the
 instrument gate at every level of the manipulation before any of it is graded,
 and that gating is the registered precondition rather than a courtesy.
 
+### 10.17 C1-C: distractor load, which the instrument survives and the budget does not appear in
+
+10.16 left the manipulation problem open. Removing deliberation was too blunt,
+so this loads the evaluator instead and leaves deliberation on. Record
+`distractor.json`, one budget, `k` = 1, seed 20260921.
+
+**The design.** Extra attributes are appended to every option, drawn per pair and
+**identical across the two options of that pair**. The quantity deciding the
+comparison is `sum_i w_i [(a_i - t_i)^2 - (b_i - t_i)^2]`, and every distractor
+coordinate has `a_i = b_i`, so its term is exactly zero. The correct answer is
+invariant by cancellation, at any load and any values, and this is asserted in
+code over all 128 pairs rather than assumed. The ideal carries its own distractor
+coordinates, drawn once per cell and different from the options', so the block
+is not trivially ignorable: at load 16 it adds about 34,000 to both distances
+while the difference between them stays at 1.7000 exactly.
+
+| load | `q_W` | `q_T` | gap | T graded of 64 | W graded of 64 | reasoning, T |
+|---|---|---|---|---|---|---|
+| 0 | 1.0000 | 0.8571 | +0.1429 | 63 | 64 | 411 |
+| 4 | 1.0000 | 0.8393 | +0.1607 | 56 | 59 | 707 |
+| 8 | 0.9831 | 0.8889 | +0.0942 | 45 | 59 | 706 |
+| 16 | 1.0000 | 0.9302 | +0.0698 | 43 | 54 | 963 |
+
+**The instrument survived, which is the first success in three attempts at a
+manipulation.** Every level passed the admissibility gate, first-position rates
+stayed between 0.391 and 0.525 throughout, and the ladder never had to stop. The
+load also demonstrably landed: reasoning on trading pairs rose from 411 tokens
+to 963.
+
+**The load-zero level reproduces C1-B's baseline**, at `q_W` 1.0000 against
+0.9844 and `q_T` 0.8571 against 0.8906, so the ladder is measuring load rather
+than drift. It also reproduces the structural difficulty gap, and adds an
+independent confirmation of it: the evaluator spends 411 reasoning tokens on
+trading pairs against 340 on within-subspace pairs at zero load. Two unrelated
+measurements now agree that trading pairs are harder, which the margin match
+does not remove.
+
+**Within-subspace accuracy is untouched by load.** 1.0000, 1.0000, 0.9831,
+1.0000 across the ladder. Whatever sixteen distractors do, they do not make the
+evaluator generally sloppy.
+
+**The budget prediction is rejected, and the opposite pattern is an artifact.**
+The prediction was that trading accuracy would fall toward and below one half
+while within-subspace accuracy held. Trading accuracy instead rose, from 0.8571
+to 0.9302, with a correlation against load of +0.909, and the class gap closed
+from 0.1429 to 0.0698. It is not evidence that load improves judgement. Trading
+survival fell from 63 to 43 pairs, and the lost pairs were disproportionately
+ones the evaluator had been getting wrong. Under random attrition, 9 wrong of 63
+would leave about 6.14 wrong among 43 survivors; 3 were observed, and the
+hypergeometric probability of that or fewer under random loss is 0.0234. Random
+attrition is rejected. Accuracy on survivors rose mechanically because the hard
+pairs stopped being gradeable.
+
+**What load actually does to this evaluator.** It degrades swap consistency
+before it degrades accuracy. Trading survival falls monotonically with load at a
+correlation of -0.916 while accuracy on the pairs that remain does not fall at
+all. That is the same failure mode as 10.16's, arriving gently rather than all at
+once: the manipulation pushes verdicts toward depending on presentation order,
+not toward a coarser geometry. Three manipulations have now been tried and none
+has produced a resolution effect; two produced instrument degradation and this
+one produced it slowly enough to be watched.
+
+**No claim is graded and the registration does not move.** What this adds is a
+negative with a mechanism attached, and a warning for any successor design: a
+swap-consistency filter interacts with a difficulty manipulation, because the
+pairs it drops are not missing at random. Any future ladder must report accuracy
+over a fixed pair set, or carry the attrition test above beside every level, or
+both. Reporting a rate over survivors alone will show the effect backwards, as
+this ladder did before the test was run.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.

@@ -1,0 +1,25 @@
+[distractor] k=1  W 64  T 64  margins 1.748 / 1.574
+[distractor] invariance check W: 0 of 64 pairs differ in their distractor block (must be 0)
+[distractor] invariance check T: 0 of 64 pairs differ in their distractor block (must be 0)
+[thermal] controller up, 20 threads, target 78.0 C
+[distractor] pin verified, qwen3 created 1760022469
+[distractor] load  0 W: q 1.0000 [0.943, 1.000]  n 64/64  first-pos 0.484  reasoning 340
+[distractor] load  0 T: q 0.8571 [0.750, 0.923]  n 63/64  first-pos 0.391  reasoning 411
+[distractor] load  0 gap +0.1429  T below half: False
+[distractor] load  4 W: q 1.0000 [0.939, 1.000]  n 59/64  first-pos 0.484  reasoning 627
+[distractor] load  4 T: q 0.8393 [0.722, 0.913]  n 56/64  first-pos 0.417  reasoning 707
+[distractor] load  4 gap +0.1607  T below half: False
+[distractor] load  8 W: q 0.9831 [0.910, 0.997]  n 59/64  first-pos 0.525  reasoning 558
+[distractor] load  8 T: q 0.8889 [0.765, 0.952]  n 45/64  first-pos 0.397  reasoning 706
+[distractor] load  8 gap +0.0942  T below half: False
+[distractor] load 16 W: q 1.0000 [0.934, 1.000]  n 54/64  first-pos 0.500  reasoning 780
+[distractor] load 16 T: q 0.9302 [0.814, 0.976]  n 43/64  first-pos 0.444  reasoning 963
+[distractor] load 16 gap +0.0698  T below half: False
+[thermal] controller stopped
+
+[distractor] ladder
+  load  0  q_W 1.0000  q_T 0.8571  gap +0.1429  T<0.5 False
+  load  4  q_W 1.0000  q_T 0.8393  gap +0.1607  T<0.5 False
+  load  8  q_W 0.9831  q_T 0.8889  gap +0.0942  T<0.5 False
+  load 16  q_W 1.0000  q_T 0.9302  gap +0.0698  T<0.5 False
+distractor written to distractor.json
