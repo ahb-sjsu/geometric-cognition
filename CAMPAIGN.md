@@ -38,7 +38,7 @@ the tolerances.
 |---|---|---|---|
 | Self-test | Atlas, 2026-09-13T04:24:18Z | **PASS** | [`experiments/C1/selftest.json`](experiments/C1/selftest.json) |
 | Probe | Atlas, 2026-09-13 | **MISS**, calibration does not recover at `r2` 0.0946 | [`experiments/C1/probe.json`](experiments/C1/probe.json) |
-| Prompt sweep | Atlas, 2026-09-13 | running | |
+| Prompt sweep | Atlas, 2026-09-13 | **gate NOT MET**, best eligible framing `r2` 0.4944, formula control 0.1547 | [`experiments/C1/sweep.json`](experiments/C1/sweep.json) |
 | Pilot | not run | | |
 
 The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
@@ -64,10 +64,26 @@ an evaluator with no metric cannot exhibit a metric's budget effect. The
 calibration gate is an instrument gate precisely so that this voids the run
 instead of grading `GC-34`, and it did.
 
-A prompt sweep is running to find whether any framing elicits a reliable distance
-from this evaluator. It selects on calibration `r2` alone and cannot compute the
-reversal contrast, and it carries one ineligible control that states the formula
-outright, to tell a failure of elicitation apart from a failure of arithmetic.
+**The sweep settled it, and the control is the reason.** Six prompts over the
+same 300 options. Framing matters, lifting the fit from 0.0946 to 0.4944 for a
+straight-line-distance framing. Framing is not the limit. The control that states
+the formula outright scores 0.1547, worse than three of the five framings that do
+not, so telling this evaluator how to compute the distance makes it less
+consistent than asking it for one. The limit is arithmetic, not elicitation, and
+no seventh prompt is indicated.
+
+G3 sustained the same model family at three decimals on a scalar target, where
+the arithmetic is one subtraction. Three attributes need three subtractions,
+three squarings, a sum and a square root, and the reports stop tracking the
+geometry.
+
+**The instrument is being replaced rather than retuned.** GET Theorem 4
+identifies the metric from the order on an open set, so reported distances were
+never required by the theory, only by this harness, and GET's G5 demonstrated
+that recovery synthetically at 12 of 12 cells from a weak order on 64 points. An
+order-based calibration asks only which of two options is nearer. It carries G3's
+known hazard, that a pairwise chooser measures its position bias first, so the
+replacement must gate on a position-bias rate before it estimates anything.
 
 The registration also carries the programme's rate-limit rule, which requires the
 draft to be reread cold in a later session before it is sealed, and Section 10 of

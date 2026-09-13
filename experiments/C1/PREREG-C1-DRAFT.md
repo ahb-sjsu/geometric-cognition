@@ -257,12 +257,58 @@ what an absent metric produces. Reporting those numbers as evidence against the
 directional prediction would have been the error the instrument gate exists to
 prevent, and the gate prevented it.
 
-**What follows.** A prompt sweep, `c1_prompt_sweep.py`, tests whether any framing
-elicits a reliable distance from this evaluator, selecting on calibration `r2`
-alone and never on the reversal contrast. It carries one ineligible control that
-states the formula outright, to separate a failure of elicitation from a failure
-of arithmetic. If the control also fails then the limit is the substrate rather
-than the wording, and this gate needs a different evaluator.
+**Prompt sweep. Result: the calibration gate is NOT MET by any framing, and the
+control says why.** Atlas, 2026-09-13, `sweep.json`, the same 300 options under
+six prompts, one model load, selected on calibration `r2` alone.
+
+| variant | eligible | quadratic `r2` |
+|---|---|---|
+| `v5_straight_line` | yes | **0.4944** |
+| `v3_overall_gap` | yes | 0.2950 |
+| `v2_coordinates` | yes | 0.2562 |
+| `v6_formula_control` | **no** | 0.1547 |
+| `v1_baseline` | yes | 0.0946 |
+| `v4_squared_cost` | yes | 0.0595 |
+
+Framing matters. Asking for the straight-line distance between two points in
+three dimensions lifts the fit from 0.0946 to 0.4944, a fivefold gain in
+explained variance, with no unparsable report in any of the 1800 scores.
+
+Framing is not the limit. **The control that states the formula scores 0.1547,
+worse than three of the five framings that do not.** Telling this evaluator to
+compute the square root of the sum of the squared differences makes it less
+consistent than asking it for a straight-line distance. That separates the two
+hypotheses the control was carried to separate, and it selects the second. The
+limit is not elicitation. This evaluator cannot reliably execute the arithmetic
+that a three-dimensional quadratic distance requires.
+
+The contrast with G3 locates it. There the same model family sustained a
+threshold measurement at three decimals, on a consequence that was the distance
+from a scalar target, where the arithmetic is one subtraction and an absolute
+value. Three attributes require three subtractions, three squarings, a sum and a
+square root, and the reports stop tracking the geometry.
+
+**Consequence for the gate.** The reported-distance instrument is the wrong
+instrument for a multi-dimensional consequence space, and no seventh prompt is
+indicated. The registration's world in section 3 is revised before sealing rather
+than after a result, which is what section 9 step 1 is for.
+
+**The indicated replacement is identification from order rather than from
+reported distance.** GET Theorem 4 identifies the metric up to scale and the
+ideal up to the metric's kernel from the order on an open set, so reported
+distances were never required by the theory, only by this harness. GET's gate G5
+demonstrated that recovery at its synthetic stage, passing 12 of 12 cells and
+recovering the metric and the ideal's range component from a weak order on 64
+points. An order-based calibration asks the evaluator only which of two options
+is nearer, which is a comparison rather than a computation, and removes the
+arithmetic this sweep shows it cannot do.
+
+That change carries a known hazard which must be registered with it. G3 tried a
+pairwise chooser and discarded it, because with options on either side of the
+target it measured its own position bias before it measured anything else. A
+choice-based calibration here must show both orders of every pair and report the
+position-bias rate as an instrument gate of its own, before any metric is
+estimated from the choices.
 
 **Pilot.** Every cell on the pilot seed, used only to fix `MARG`, `CEIL` and
 `BIN`.
