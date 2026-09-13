@@ -72,7 +72,13 @@ has a spectral gap, and a design that places the ideal at the centre of its own
 consequence distribution has no gap and recovers a direction fixed by sampling
 noise. What survives is that identification is the step
 that fails in practice, since two of three candidate evaluators could not be
-calibrated at all. We restate the five predictions of the programme as
+calibrated at all. Identifying a budget is also not the same as changing one,
+and we report three attempts to change one in a language-model evaluator, none
+of which produced a resolution effect. A projected stimulus is not a reduced
+budget, removing the evaluator's deliberation removes the instrument rather than
+narrowing it, and a load the instrument does survive degrades the reliability of
+a verdict before it degrades the geometry behind it. We restate the five
+predictions of the programme as
 consequences of those conditions, restate the seven falsifiers as conditions on
 the record rather than on the author's judgment, and give a phased programme in
 which each phase retires exactly one degree of freedom. The theory's own
@@ -353,6 +359,107 @@ by position at $0.700$. Only the third compared by content. An evaluator can
 fail to be a quadratic evaluation object, and most of the ones we tried did, so
 the step that carries the content is the step that can fail.
 
+\section{Manipulating a budget, and three ways it failed}
+\label{sec:manip}
+
+Definition~\ref{def:gap} says when a rank budget is identified. It does not say
+how to change one, and the first phase of this programme spent three designs
+discovering that the difference matters. All three ran against the same pinned
+language-model evaluator. None produced a resolution effect. The failures are
+reported here because they are more informative than the designs would have been
+had they worked, and because two of the three failure modes are available to any
+experiment of this shape.
+
+\subsection*{A projected stimulus is not a reduced budget}
+
+The first design rendered each option's rank-$k$ projection and showed the
+evaluator those numbers. This looks like a budget manipulation and is not one.
+Theorem 5 of GET concerns \emph{fixed} actions evaluated under \emph{different}
+budgets; projecting the rendering holds the budget fixed and changes the actions.
+The evaluator was never resolution-limited. It read what it was handed, which is
+why its order agreed with the rank-$k$ order in four of six cells at a rate of
+exactly $1.000$.
+
+The consequence is the identity in \S3. With the class label read off the same
+fitted metric that generates the prediction, and the stimulus pre-projected so
+that agreement at the reduced budget is automatic, the graded contrast reduces to
+two agreement rates. Across six cells the marginals reproduced every observed
+reversal rate to a maximum error of $0.0074$, against an instrument
+reproducibility floor of $0.0070$ established by rerunning identical pairs. The
+design could not have failed and therefore could not have succeeded.
+
+\subsection*{Removing the evaluator's deliberation removes the instrument}
+
+The second design held the stimulus fixed at full precision and varied the
+evaluator, disabling the chain of thought so that comparisons ran at zero
+reasoning tokens rather than about $350$. That is a genuine resource
+manipulation. It is also not a coarsening.
+
+Under the manipulation the evaluator stopped comparing by content and began
+choosing by presentation position. Pairs are graded only when the verdict
+survives exchanging the two options, and between $1.6$ and $10.9$ percent of
+pairs survived, against $98$ percent with deliberation intact. Writing $p$ for
+the probability of choosing by position, survival is about $1-p$, which places
+the condition between $89$ and $98$ percent position-driven. The programme had
+already recorded the same pattern in two other models, at first-position rates
+of $0.8175$ and $0.700$. Deliberation is what makes this class of evaluator
+compare by content at all, so removing it removes the measuring instrument rather
+than narrowing the thing measured.
+
+\subsection*{Load degrades reliability before it degrades resolution}
+
+The third design kept deliberation and added distractor attributes, drawn per
+pair and identical across the two options of that pair. Their contribution to
+$d(a)^2-d(b)^2$ is then exactly zero, so the correct answer is invariant by
+cancellation at any load, while the evaluator must still read and weigh the
+added coordinates. At sixteen distractors the shared term adds about $34{,}000$
+to both distances and the difference between them is unchanged.
+
+This manipulation preserved the instrument. Every level passed the admissibility
+gate, first-position rates stayed within $0.061$ of each cell's answer-key rate,
+and reasoning rose from $398$ to $918$ tokens, so the load demonstrably landed.
+What it did not produce was a resolution effect. Scoring every pair at every
+load, with a swap-inconsistent verdict counted as uninformative rather than
+dropped, the trading-pair score was flat across the ladder at a correlation
+against load of $-0.28$, and its confidence intervals never came near one half
+from above, let alone crossed it. Within-subspace scores fell, from $0.977$ to
+$0.906$, because that class began at the ceiling and an uninformative verdict can
+only move it down. The class gap narrowed, and it narrowed because the control
+descended toward the trading class rather than because the trading class
+degraded. A budget predicts the opposite shape.
+
+What load did move was reliability. Swap consistency fell from $0.984$ to $0.844$
+in the control class and to $0.797$ in the trading class. The pattern across all
+three designs is the same: a resource manipulation applied to this evaluator
+reaches the instrument before it reaches the geometry.
+
+\subsection*{The estimand has to be chosen before the manipulation is run}
+
+One methodological point generalizes beyond this evaluator, and it inverted a
+result before it was caught. An analysis that conditions on a filter which the
+manipulation itself moves will report the effect backwards. Scoring accuracy over
+the pairs that survived the swap check, rather than over all pairs, made trading
+accuracy appear to \emph{rise} with load, from $0.857$ to $0.930$. It rose because
+the pairs lost to inconsistency were disproportionately ones the evaluator had
+been getting wrong: under random attrition nine errors among sixty-three graded
+pairs would leave about six among forty-three survivors, and three were observed,
+with a hypergeometric probability of $0.023$. On a fixed denominator the same
+data show no trend at all. Any design in which a manipulation can affect which
+observations are gradeable needs its estimand fixed in advance over the full set.
+
+\begin{open}
+\label{open:manipulable}
+None of the three manipulations produced a resolution effect, and two failed for
+reasons that would recur in any similar design. Whether a language-model
+evaluator has a rank budget that can be manipulated at all is therefore open. The
+alternatives are not distinguished by this evidence: that the budget exists and
+no intervention tried was the right one, that the resource such an evaluator
+spends is elastic rather than fixed so that a heavier task is met with more
+computation rather than a coarser geometry, or that the rank-budget abstraction
+does not describe this substrate. Until a manipulation degrades resolution while
+leaving swap consistency intact, P2 is untested here rather than unsupported.
+\end{open}
+
 \section{What is proved, what is measured, and what is posited}
 
 The programme's statements do not carry a uniform status, and a foundational
@@ -375,6 +482,7 @@ Budget change reverses preference between fixed actions & proved (existence) & G
 Threshold tracks budget in an evaluator & demonstrated & GET gate G3, sealed. A language-model scorer's indifference threshold is 0.87 to 0.88 of the rendering step, and every pair separated by 20 is ordered alike in every cell \\
 Hull law in a population & demonstrated as a tendency & GET gate G2, sealed, ANES 1972. Half of 489 testable respondents violate at least once against a shuffle null of 66 percent. It fails as a deterministic statement \\
 An evaluator can fail to be a quadratic evaluation object & measured, not sealed & Phase I instrument search \cite{c1}. Two of three candidate language-model evaluators could not be calibrated, ordering by presentation position at 0.8175 and 0.700. The third calibrated and held out at 0.985, which is a maximum selected over the three and should be read as one \\
+A rank budget in a language-model evaluator is manipulable & open, three attempts, no effect & \S\ref{sec:manip} and Open~\ref{open:manipulable}. One design did not manipulate a budget, one destroyed the instrument, one preserved it and produced no resolution effect \\
 Representation is prior to preference & posited for cognition & measured in other domains by OT, not in a cognitive observer \\
 Human cognitive budgets exist and are manipulable & posited & no sealed measurement \\
 Bounded search is the right dynamical abstraction & posited & alternatives in \S6 are not excluded \\
@@ -550,7 +658,12 @@ registered. A cold reread of its registration returned three defects that change
 what the experiment measures, of which Definition~\ref{def:gap} and the identity
 in Section~3 are two, together with five registered bars that cannot fire and an
 unregistered line in the sampler that decides a registered outcome \cite{c1}.
-The design is being repaired before it is sealed. The Phase I pilot and the
+The three manipulations in \S\ref{sec:manip} are design work and
+grade nothing either, and their common failure, that a resource intervention
+reaches the instrument before it reaches the geometry, is a fact about this
+substrate and this instrument rather than a result about budgets.
+Open~\ref{open:manipulable} is unresolved and bounds P2 in this programme: the
+prediction is untested here, not unsupported. The Phase I pilot and the
 instrument search are design work and grade nothing, and the one row of
 Table~\ref{tab:status} they support is marked unsealed. Open~\ref{open:partial}
 is unresolved and bounds every claim about partial identification.
