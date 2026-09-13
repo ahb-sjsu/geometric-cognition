@@ -1,0 +1,29 @@
+{
+ "stage": "order_probe",
+ "seed": 20260913,
+ "provenance": {
+  "host": "atlas",
+  "python": "3.12.3",
+  "numpy": "2.2.6",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.5.0",
+  "cuda_visible_devices": "1",
+  "gpu_at_start": "0, 0 %, 18803 MiB, 61\n1, 99 %, 15943 MiB, 81",
+  "utc": "2026-09-13T04:57:53Z",
+  "target_temp": 78.0,
+  "max_threads": 20
+ },
+ "n_pairs": 400,
+ "kept": 136,
+ "agreement_rate": 0.34,
+ "first_position_rate": 0.8175,
+ "unparsed": 0,
+ "instrument_gates": {
+  "parse": true,
+  "position_bias": false,
+  "agreement": false,
+  "quadratic_predicts_heldout": false,
+  "anti_vacuity_k2": false
+ },
+ "pass": false
+}

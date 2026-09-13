@@ -39,6 +39,7 @@ the tolerances.
 | Self-test | Atlas, 2026-09-13T04:24:18Z | **PASS** | [`experiments/C1/selftest.json`](experiments/C1/selftest.json) |
 | Probe | Atlas, 2026-09-13 | **MISS**, calibration does not recover at `r2` 0.0946 | [`experiments/C1/probe.json`](experiments/C1/probe.json) |
 | Prompt sweep | Atlas, 2026-09-13 | **gate NOT MET**, best eligible framing `r2` 0.4944, formula control 0.1547 | [`experiments/C1/sweep.json`](experiments/C1/sweep.json) |
+| Order probe | Atlas, 2026-09-13 | **MISS**, first-position rate 0.8175, agreement 0.3400 | [`experiments/C1/order_probe.json`](experiments/C1/order_probe.json) |
 | Pilot | not run | | |
 
 The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
@@ -84,6 +85,28 @@ that recovery synthetically at 12 of 12 cells from a weak order on 64 points. An
 order-based calibration asks only which of two options is nearer. It carries G3's
 known hazard, that a pairwise chooser measures its position bias first, so the
 replacement must gate on a position-bias rate before it estimates anything.
+
+**The order instrument missed on the hazard that was registered for it, and the
+substrate is the verdict.** The evaluator chooses the first-shown option at
+0.8175 against a gate of one half plus or minus 0.15, and agreement across
+presentations is 0.3400 against a floor of 0.60. Pure position choice at that
+rate predicts an agreement of 0.2984, so the observed excess is 0.0416, and of
+400 pairs roughly 17 carry information about the geometry against nine parameters
+to fit. Averaging the presentations recovers that component and cannot identify a
+quadratic from it at any sample size this gate would run.
+
+Two instruments have now failed on this evaluator for unrelated reasons. The
+reported-distance instrument failed on arithmetic, with the formula control
+scoring worse than three framings that withheld the formula. The comparison
+instrument fails on layout. An evaluator that neither computes a distance nor
+compares by content is not an evaluation object in the sense C1 requires.
+
+**A third instrument on Qwen2.5-7B-Instruct is not indicated.** What is indicated
+is a different evaluator, which is a change to the registration's world and the
+owner's to make. The gate is otherwise ready. Its self-test passes, its class
+construction and anti-vacuity hold, its estimator recovers a retained subspace to
+under two degrees while a fifth of comparisons are wrong, and its instrument
+gates have now caught two unfit instruments before either could grade a claim.
 
 The registration also carries the programme's rate-limit rule, which requires the
 draft to be reread cold in a later session before it is sealed, and Section 10 of

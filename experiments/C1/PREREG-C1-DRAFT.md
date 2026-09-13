@@ -344,6 +344,49 @@ choice-based calibration here must show both orders of every pair and report the
 position-bias rate as an instrument gate of its own, before any metric is
 estimated from the choices.
 
+**Order probe. Result: MISS on the hazard that was registered.** Atlas,
+2026-09-13, `order_probe.json`, 400 pairs in both presentation orders, 800
+comparisons, none unparsable.
+
+The evaluator chooses the first-shown option at a rate of **0.8175**, against a
+gate of one half plus or minus 0.15. Agreement across the two presentations is
+0.3400, against a floor of 0.60. No metric was fitted, because the position-bias
+gate runs first and failed.
+
+The two numbers together say more than either alone. Pure position choice at rate
+`p` produces an agreement rate of `2p(1-p)`, which at 0.8175 is **0.2984**. The
+observed 0.3400 exceeds that by 0.0416. So of the 136 pairs that agreed, about
+119 are what position alone would deliver, and roughly **17 pairs in 400 carry
+any information about the geometry**, against nine parameters to estimate. This
+is not heavy bias with a usable signal beneath it. It is choice by layout with a
+trace of content.
+
+Averaging the two presentations is the standard remedy and does not rescue this.
+It recovers the content component, and here that component is too small to
+identify a quadratic form at any sample size this gate would run. Reaching two
+hundred informative pairs at this rate needs about 4,700 pairs and 9,400
+comparisons, and an estimate built from the residue after removing an eighty-two
+percent layout preference would be dominated by whatever else is systematic in
+the instrument.
+
+G3 saw the same thing on the same model family and recorded it in the same terms,
+that a chooser's first-position preference holds the two-order average at one
+half until the gap is large. This probe reproduces that finding rather than
+discovering it.
+
+**Verdict on the substrate.** Two instruments have now failed on this evaluator
+for unrelated reasons. The reported-distance instrument failed because the
+arithmetic of a three-dimensional quadratic is beyond it, with the formula
+control scoring worse than three framings that withheld the formula. The
+comparison instrument fails because its choices are governed by position rather
+than by content. An evaluator that neither computes a distance nor compares by
+content is not an evaluation object in the sense this gate requires, and the
+limit is the model rather than the harness.
+
+A third instrument on the same model is not indicated. What is indicated is a
+different evaluator, and that is a change to Section 3's world that the owner
+makes, not one this draft makes on its own.
+
 **Pilot.** Every cell on the pilot seed, used only to fix `MARG`, `CEIL` and
 `BIN`.
 
