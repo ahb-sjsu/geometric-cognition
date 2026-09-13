@@ -238,7 +238,7 @@ the phenomenon in one artificial evaluator whose metric was identified on
 disjoint evidence. `GC-29`, that human budgets exist and are manipulable, is
 untouched by this gate and stays posited.
 
-## 7. Self-test, probe and pilot (BEFORE sealing, none of these has been run)
+## 7. Self-test, probe and pilot (all run before sealing; see Section 10)
 
 **Self-test.** A synthetic evaluator with a known `G`, a known `t`, and an exact
 rank-`k` projection reverses no within-subspace pair and reverses trading pairs
@@ -426,7 +426,10 @@ makes, not one this draft makes on its own.
 **Pilot.** Every cell on the pilot seed, used only to fix `MARG`, `CEIL` and
 `BIN`.
 
-*Result: NOT RUN.*
+*Result: RUN, 2026-09-13, seed 20260914, `pilot_qwen3.json`. It fixed the
+tolerances now standing in Section 5. Section 10 records that the contrast it
+produced is an identity in the evaluator's accuracy and not a measurement of a
+budget.*
 
 ## 8. Compute and thermal rule
 
@@ -453,10 +456,256 @@ around.
 
 ## 10. Reread record
 
-*Not yet performed. The rate-limit rule exists because a draft reread cold in a
-later session has, in this programme's record, caught a falsification condition
-that could not fire. Until this section names a reader and a date, this file is
-a draft and no result graded against it counts.*
+**Reader.** Two readers with no drafting context, run 2026-09-13, each given only
+this file and the Python in `experiments/C1/`, and fenced off from `CAMPAIGN.md`,
+the paper and the git history so that the drafter's rationale could not reach
+them. One was asked whether every registered condition can fire. One was asked to
+attack the design.
+
+**What kind of reread this was, stated plainly.** The rate-limit rule asks for a
+cold reread in a session other than the one that drafted the file. These readers
+were cold in the sense the rule is aimed at, since author blindness is the defect
+the rule names and a reader with no drafting context does not have it. They are
+not the owner rereading in a later session. The verdict below is therefore a
+finding, not a seal, and the seal remains the owner's act.
+
+**Verdict: NOT SEALABLE.** The reread found three defects that change what the
+experiment measures and eleven that make the document say something other than
+what the code does. The design defects are recorded here and are not repaired by
+this draft, because repairing them changes the experiment and that is the owner's
+decision.
+
+### 10.1 Design defects, blocking
+
+**D1. The retained subspace is sampling noise, so the budget is not a budget.**
+Section 3 draws options uniformly on `[0,100]^3` and puts the ideal at
+`(50,50,50)`, which is the centroid of that cube. The workload moment is then
+`E[(C-t)(C-t)^T] = (hi-lo)^2/12 * I = 833.33 * I`, isotropic analytically, with
+no spectral gap for a top-`k` eigenspace to find. The retained subspace is
+therefore fixed by which 400 pairs the calibration happened to draw. Verified on
+an exactly Euclidean evaluator with zero response error: the top eigenvector of
+two independent calibration draws sits a median of 56 degrees apart over twelve
+trials, against the 60 degrees expected between two uniformly random directions
+in three-space. Section 3's sentence that the retained subspace "is derived from
+the independently estimated metric and is not chosen by the experimenter" is
+true and worthless. It is chosen by noise. P2 as registered reduces to a claim
+about orthogonal projection onto an arbitrary plane, which any consistent
+distance calculator satisfies, and the harness's own `SyntheticScorer`, whose
+docstring says it "has no budget of its own," returns a contrast of 0.9787.
+The anti-vacuity gate does not catch this, because a discarded trace share of
+1/3 and 2/3 at `d = 3` is exactly what isotropy produces, so the gate that
+exists to show something was discarded fires hardest when nothing distinguished
+was.
+
+**D2. The contrast is an algebraic identity in the evaluator's accuracy, with no
+residual left for the budget.** `build_pairs` admits a pair to T only when the
+fitted metric says its rank-`k` order flips, and to W only when it says the
+order does not flip. The class label is the prediction. Writing `p` for the
+probability that a graded verdict agrees with the fitted metric, a T pair
+reverses when the evaluator agrees at both budgets or errs at both, and a W pair
+reverses when it errs at exactly one, so
+
+    R_T = p^2 + (1-p)^2      R_W = 2p(1-p)      contrast = (2p - 1)^2
+
+The observed contrast 0.9683 implies `p = 0.9920`, against a measured held-out
+accuracy of 0.9850 and an in-sample order accuracy of 1.0000. Every point of the
+observed effect is accounted for by per-comparison accuracy and none is left for
+the budget manipulation. The bars reduce to the same quantity: `MARG = 0.4841`
+is met exactly when `p >= 0.848`, and `CEIL = 0.05` exactly when `p >= 0.947`.
+Section 12 of this draft said the contrast was "close to a consequence" of an
+accurate calibration. That was too weak. It is the consequence, exactly, and
+Section 12 is corrected accordingly.
+
+**D3. A stimulus-surface property separates the two classes, and it is not
+matched.** A W pair is admitted only when its whitened difference has no
+discarded component, so at budget `k` the same vector is subtracted from both
+options and the rendered difference between them survives. A T pair is never of
+that form. Reproduced on the pilot's own fitted metric: W pairs receive an
+identical shift to both options in 25 of 63 cases at `k = 1` and 35 of 64 at
+`k = 2`, T pairs in 0 of 64 at both. The reader who raised this reported 64 of
+64 for W. That figure does not reproduce here and the correct statement is that
+the artifact is present in a large minority of W pairs and in no T pair. It is
+still a channel by which the classes differ in the text the evaluator reads
+rather than in the geometry, and Section 2's matched-margin argument does not
+close it, because margin matching matches the preference margin and not the
+transformation applied to the stimulus.
+
+The cheapest decisive controls, both re-renderings of pairs already built,
+against the evaluator already pinned, are recorded here as the reader proposed
+them and are for the owner to accept or reject. A placebo budget, rebuilding
+both classes against a random `k`-plane instead of the top-`k` eigenspace, which
+D1 predicts will reproduce the contrast. And a class W-prime, differing in the
+retained subspace as W does but shifted at budget `k` by independent vectors of
+T's norm, for which the algebra still predicts no reversal, so a rise toward
+`R_T` would show the gate is reading the rendering.
+
+### 10.2 Conditions that cannot fire
+
+Each of these is a bar the document registers and the run could never violate.
+
+- **The bootstrap clause in the P2 gate.** Section 5 asks for the lower end of a
+  bootstrap interval above zero in addition to `R_T - R_W >= MARG`. At
+  `MARG = 0.4841` with 64 pairs per class, the standard error of the difference
+  is at most 0.077, so a point estimate that clears `MARG` puts a 99.9 percent
+  interval's lower end at 0.230. The clause can never be the binding constraint.
+  It is the same defect class the rate-limit rule was written to catch.
+- **`BIN`.** Registered in Section 5 as a cell-voiding tolerance and in Section 7
+  as a quantity the pilot fixes. It is given no value in Section 5's table, no
+  value by the pilot, and no implementation anywhere in the code. Nothing
+  compares the two margin distributions to anything.
+- **The margin-match bar.** `_match_margins` admits `min(len(W_bin), len(T_bin),
+  per)` from each class in every bin, so the per-bin counts are equal by
+  construction and the quantity the bar inspects cannot differ. The imbalance
+  worth catching is within-bin, which the bar does not look at.
+- **The residual and component tolerance.** Section 3 defers to Section 5 for the
+  number and Section 5 defers to Section 3. Neither states one. The value in
+  force is a Python default, `min_component = 0.5`, that appears nowhere in the
+  registration, and it is enforced by refusing to admit a violating pair, so
+  "holds for every admitted pair" is true by construction.
+- **The full-budget competence gate.** Section 5 requires the evaluator's order
+  to agree with the calibration-implied order on at least 0.90 of pairs in each
+  class. `build_pairs` records `a_pref_full`, and no code anywhere consumes it.
+  The statistic is never computed.
+
+### 10.3 The instrument gate and the physics gate contradict each other
+
+Section 5 admits an evaluator at 0.90 full-budget agreement. By the identity in
+D2 that evaluator has `R_W = 2(0.9)(0.1) = 0.18`, and Section 5 fails any run
+whose `R_W` exceeds `CEIL = 0.05`. An evaluator that exactly meets the
+registered admission bar is therefore guaranteed to record a FAIL and to fire
+falsifier F3, on response noise alone. The design admits evaluators it then
+necessarily refutes.
+
+Related, and not registered: `CEIL = 0.05` carries no sampling allowance. At 64
+pairs per class the standard deviation of `R_W` at a true rate of 0.05 is 0.027,
+so an evaluator whose true rate sits at the bar trips it about half the time,
+and Section 5 makes that an unconditional Fail rather than INDETERMINATE.
+
+### 10.4 An unregistered filter decides a registered outcome
+
+`build_pairs` contains `if is_w and flip: continue`, which removes from W every
+pair the fitted metric predicts will reverse. Falsifier F3 is supposed to fire
+when "the retained subspace is not what the estimated metric says it is," and
+this filter assumes that proposition true at sampling time for every graded W
+pair. F3 can now only fire when the evaluator disagrees with its own
+calibration. The filter is material, it is not in Section 3's definition of the
+class, and it determines the outcome of the `CEIL` bar.
+
+### 10.5 Dropped data
+
+An item that times out, that is truncated after its one escalation, or that
+returns no letter is indistinguishable in `run_cell_order` from a pair whose two
+presentation orders disagree. All land in the ambiguous counters and leave the
+denominator, since the rate is `rev / graded`. The direction is unfavourable: a
+pair whose swap verdicts disagree is a pair the evaluator was near indifferent
+on, which is where a W reversal would come from, so dropping deflates `R_W` and
+helps both bars. Section 3 registers that an unparsable answer is "dropped and
+counted" and does not register the denominator. In the pilot the leverage is
+visible but small, 61 of 63 giving 0.9683 against 61 of 64 giving 0.9531.
+
+The calibration has the same structure and more room. `both_orders` discards
+every swap-disagreeing pair, and the registered agreement gate allows 0.60, so
+up to two fifths of calibration pairs may be dropped for being hard and the
+held-out floor then measured on the surviving three fifths. Under D2 an inflated
+`p` propagates directly into an inflated contrast.
+
+### 10.6 Document does not match code
+
+- Section 7's heading reads "none of these has been run" and its Pilot entry
+  reads "Result: NOT RUN," while Sections 5, 11 and 12 quote the pilot's
+  results. Corrected in this revision.
+- Section 7 carries no record of the order probe on the pinned `qwen3`, which is
+  the single result that licenses Section 3's revised world, and no record of
+  `gemma4-12b`, which is the second of the two failures Section 12 cites.
+  Section 7 still closes by recommending a change to Section 3 that Section 3
+  has already made. Corrected in this revision.
+- Section 3 asks for 200 matched pairs per class per budget. `prereg_config.json`
+  sets `n_per_class` to 64, which is what the code reads and what the pilot ran.
+  The tolerances were fixed from a pilot one third the registered size.
+- Three different generation budgets appear: 1024 tokens in Section 3 and the
+  config, "at most four tokens" twelve lines later in Section 3, and "at most 12
+  tokens" in Section 8. The last two describe the retired local and distance
+  instruments.
+- Section 8's compute accounting describes the retired instrument. It counts
+  batches of 32 and scores each distinct option once per cell; the hosted
+  chooser ignores `batch`, is governed by `concurrency`, scores pairs rather
+  than options, and issues four comparisons per pair per cell.
+- Section 7's registered self-test exercises `c1_calibrate` and `c1_scorer.run_cell`,
+  both on the retired distance path. `c1_order.calibrate_from_order` and
+  `c1_order.run_cell_order`, which are the registered estimator and the
+  registered grader, have no committed self-test. The PASS in Section 7
+  certifies code the run will not call.
+- Section 3 cites Section 7 for subspace-recovery angles of 1.07, 1.79 and 18.10
+  degrees. Those come from `c1_order.selftest`, which is in no committed
+  artifact; Section 7's self-test reports a different experiment on a different
+  instrument. The sweep behind them is also not monotone, 2.04 degrees at a
+  0.05 error rate against 1.79 at 0.20, so it is a single draw per rate.
+- Section 9 step 1 requires the model revision written into the config, and
+  Section 3 states the gateway publishes no revision. Step 1 also names
+  `pilot.json`, which does not exist, and omits `sweep.json`,
+  `order_probe.json`, `order_probe_qwen3.json` and `ellm_viability_gemma.json`,
+  on which Sections 7 and 12 depend.
+- No code produces `results.json` or `grade.json`, there is no graded-run stage
+  in `main()`, and no function computes the Pass, Fail and INDETERMINATE rule or
+  any bootstrap. The code that grades the claim does not yet exist.
+- Sections 9 and 3 both assert a freeze that no artifact records. The
+  calibration and the pair draw happen in one process and one JSON is written at
+  the end, and nothing records when the run seed was drawn. A third party cannot
+  check either step.
+- Section 12 said the pilot had "no ambiguous verdict anywhere." That is false.
+  `pilot_qwen3.json` records one ambiguous reference at `k = 1` and one
+  ambiguous at-budget verdict at `k = 2`, both in class T, one unparsed item and
+  ten truncation escalations, so both T cells graded 63 of 64. The claim was
+  true of W only. Corrected in this revision, and in `CAMPAIGN.md`.
+- Section 12 attributes held-out order accuracy figures of 0.0946 and 0.7661 to
+  the two failed evaluators. Both numbers are distance-report `r^2` values, a
+  different quantity. Qwen2.5's failure on the order instrument was the position
+  bias of 0.8175, not the 0.0946. Corrected in this revision.
+- Section 12 uses 0.9850 and 0.99 interchangeably in one paragraph. They are the
+  pilot's and the order probe's figures, from different runs.
+- Section 5's rendering-ceiling rationale says rounding returns some T pairs to
+  their original order. At `k = 1` the pilot records `lost_to_rounding: 0` and a
+  ceiling of exactly 1.0, so the rationale does not hold at that budget and the
+  evaluator missed two pairs a perfect one would have caught.
+- `prereg_config.json` still reads `"pilot": "FILL AT SEALING"` although the
+  pilot ran at seed 20260914, and the pilot's provenance records
+  `cuda_visible_devices: null` against Section 8's GPU 1 rule.
+
+### 10.7 Researcher degrees of freedom still open
+
+`n_bins = 8`, `oversample = 400`, `min_component = 0.5`, and
+`folds = 5, l2 = 1e-3, seed = 0` in `heldout_order_accuracy`, whose fold seed
+decides the 0.80 instrument gate, are all Python defaults absent from the
+registration. `max_tokens` was raised from 512 to 1024 after an instrument
+result, which the config discloses and Section 3 presents as given. The
+deliberation gate is `mean_reasoning_tokens > 0`, while Section 3 specifies
+about 240. The evaluator itself was selected on the gate's own discriminating
+statistic across at least three candidates, so 0.9850 is a selected maximum and
+Section 12 should report it as one. There is no registered fallback if the pin
+moves, and a pin that moves after the pilot leaves the choice of replacement to
+be made with the pilot in hand.
+
+### 10.8 What the reread did not find
+
+The tolerance-fixing arithmetic matches Section 5's stated rule exactly,
+including the aggregations, and recomputes from `pilot_qwen3.json` to
+`0.5 x 0.96825 = 0.4841`, `0.984375 - 0.05 - 0.05 = 0.8844` and
+`max(0, 0.05) = 0.05`. The seeds, the pin timestamp, and every numeric table
+transcribed from `probe.json`, `sweep.json` and `pilot_qwen3.json` are correct.
+Position bias is gated before any fitting, both presentation orders are shown,
+and the pilot's first-position rate is exactly 0.5000. Calibration and grading
+are disjoint in code. The margin means run slightly against the claim, which is
+conservative. The unregistered ridge does not drive the subspace; the
+calibration draw does.
+
+### 10.9 Disposition
+
+This file is not sealed and is not renamed. D1, D2 and D3 are design decisions
+for the owner. The document defects in 10.2 through 10.7 are recorded here in
+full; those that are plain falsehoods about what has already happened are
+corrected in this revision, and the rest are left standing and visible rather
+than quietly repaired, because a registration that is edited into agreement with
+its own code after the code is written is not a registration.
 
 ## 11. Known weaknesses of this design
 
@@ -496,38 +745,61 @@ Stated here rather than discovered later.
 ## 12. What a pass on this evaluator would and would not mean
 
 This section exists because the pilot's separation is near total, and a result
-that large invites being read for more than it carries.
+that large invites being read for more than it carries. The cold reread in
+Section 10 established that it carries less than the first version of this
+section claimed, and this is the corrected version.
 
-The pilot's reversal contrast is 0.9683 at both budgets, with no within-subspace
-pair reversing in 128 graded and no ambiguous verdict anywhere. The trading rate
-sits essentially at the rendering ceiling, 0.9683 against 0.9844 at rank 2. That
-is the synthetic self-test reproduced on a language model.
+The pilot's reversal contrast is 0.9683 at both budgets. No within-subspace pair
+reversed, in 128 graded. Both trading cells graded 63 of 64, having lost one pair
+each to an ambiguous verdict, one at the reference order and one at budget. An
+earlier version of this section said there was no ambiguous verdict anywhere.
+That was false and it was true of the within-subspace class only.
 
-**The informativeness of this gate is concentrated in the calibration, not in the
-contrast.** The held-out order accuracy of the fitted quadratic is 0.9850, so
-this evaluator is very nearly a quadratic evaluation object. A trading pair is
-admitted precisely because the fitted metric says the rank-`k` order disagrees
-with the full-budget order, so an evaluator that the metric describes almost
-exactly will reverse those pairs almost exactly. The contrast is then close to a
-consequence of the calibration being accurate rather than an independent test of
-the budget.
+**The contrast is an identity in the evaluator's accuracy, not a measurement of
+a budget.** A pair enters the trading class only when the fitted metric says its
+rank-`k` order flips, and the within-subspace class only when the metric says it
+does not, so the class label is the prediction. Writing `p` for the probability
+that a graded verdict agrees with the fitted metric, a trading pair reverses when
+the evaluator agrees at both budgets or errs at both, and a within-subspace pair
+reverses when it errs at exactly one:
 
-What is not near-tautological, and what carries the content, is the calibration
-itself. That a language model's pairwise comparisons are described by a quadratic
-form on a three-dimensional consequence space, well enough to predict unseen
-comparisons at 0.99, is a falsifiable claim that this programme has now seen fail
-twice. `Qwen2.5-7B-Instruct` failed it at a fit of 0.0946 and by choosing the
-first-shown option 0.8175 of the time, and `gemma4-12b` failed it at 0.7661 and
-0.7000. The gate's discriminating stage is the instrument gate, and the reversal
-contrast confirms that the budget manipulation does what the identified metric
-says it will.
+    R_T = p^2 + (1-p)^2      R_W = 2p(1-p)      R_T - R_W = (2p - 1)^2
 
-**A consequence for the design worth registering.** The reversal prediction is
-most at risk where an evaluator is approximately rather than almost exactly
-quadratic, because that is where the projection's predicted flips and the
-evaluator's actual flips can come apart. A held-out accuracy near one leaves the
-prediction little room to fail. A future gate of this shape should therefore
-treat held-out accuracy as a band rather than a floor, since too low means the
-metric is not identified and too high means the reversal test is nearly implied
-by the fit. C1 keeps the floor it registered and records the observation instead
-of acting on it after the fact.
+The observed 0.9683 implies `p = 0.9920`, against a measured held-out accuracy of
+0.9850 and an in-sample order accuracy of 1.0000. No part of the contrast is left
+over for the budget manipulation to explain. The bars are the same quantity in
+other clothes: `MARG` at 0.4841 is met exactly when `p >= 0.848`, and `CEIL` at
+0.05 exactly when `p >= 0.947`, so the physics gate is the instrument gate with
+its floor moved by 0.048 in `p`.
+
+**And the budget is not yet a budget.** Section 10 D1 shows the workload moment
+is isotropic by construction, because the ideal sits at the centroid of the cube
+the options are drawn from, so the retained subspace is fixed by the calibration
+draw rather than by any anisotropy in the evaluator. On an exactly Euclidean
+evaluator with no error at all, two independent draws pick retained directions a
+median of 56 degrees apart, against the 60 expected at random. Until that is
+repaired, a pass would say that projecting both options onto an arbitrary plane
+reverses the pairs the projection says it reverses.
+
+What survives is the calibration. That a language model's pairwise comparisons
+are described by a quadratic form on a three-dimensional consequence space, well
+enough to predict unseen comparisons held out from the fit, is a falsifiable
+claim, and this programme has seen it fail twice. `Qwen2.5-7B-Instruct` failed on
+the order instrument by choosing the first-shown option 0.8175 of the time, with
+an agreement rate across presentation orders matching what pure position
+preference predicts, and separately recovered reported distances at an `r^2` of
+0.0946. `gemma4-12b` recovered distances at 0.7661 and still chose by position at
+0.7000. An earlier version of this section reported those two `r^2` values as
+held-out order accuracies. They are a different quantity and the attribution was
+wrong.
+
+Two cautions on the surviving claim. The evaluator was chosen on this very
+statistic from at least three candidates, so 0.9850 is a selected maximum and
+should be read as one. And the pilot's 0.9850 and the order probe's 0.9900 come
+from different runs and are not interchangeable.
+
+**A consequence for the design.** Held-out accuracy should be a band, not a
+floor. Too low and the metric is not identified; too high and, by the identity
+above, the reversal test is implied by the fit. C1 registered a floor. Section 10
+records that as a defect to repair before sealing rather than an observation to
+note after the fact, which is what the first version of this section did.

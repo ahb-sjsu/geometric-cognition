@@ -60,11 +60,16 @@ theory that fits every record predicts nothing. We state that as a proposition
 rather than as a worry, and give the conditions under which the account
 carries content. The conditions are modular. Each of the observer's four
 components must be identified on evidence disjoint from the choices the theory
-is asked to predict. A pilot of the first phase then shows that this condition
-has a second edge. An identification accurate enough to predict unseen
-comparisons almost perfectly makes the prediction it licenses close to a
-consequence of the fit, so content is not monotone in identification accuracy
-and we can bound neither end. What survives is that identification is the step
+is asked to predict. A cold reread of the first phase's registration
+then shows that this condition is not sufficient. Where the class a pair is
+assigned to is itself read off the fitted model, the graded contrast is an
+algebraic identity in the evaluator's accuracy and measures nothing else, so
+content is not monotone in identification accuracy and we can bound neither end.
+A rank budget carries a further condition that modular identification does not
+imply, since the retained subspace is identified only where the workload moment
+has a spectral gap, and a design that places the ideal at the centre of its own
+consequence distribution has no gap and recovers a direction fixed by sampling
+noise. What survives is that identification is the step
 that fails in practice, since two of three candidate evaluators could not be
 calibrated at all. We restate the five predictions of the programme as
 consequences of those conditions, restate the seven falsifiers as conditions on
@@ -262,22 +267,63 @@ Proposition~\ref{prop:content} was written.
 
 The Phase I design identifies $G$ and $t$ from a calibration block of ordinal
 comparisons, then admits a pair into the trading class precisely when the fitted
-metric says the pair's rank-$k$ order disagrees with its full-budget order.
-Reversal is then predicted for that class and not for the class whose difference
-lies in the retained subspace. On the pinned evaluator the calibration predicted
-held-out comparisons at $0.985$, and the graded contrast came out at $0.968$
-against $0.000$. The separation is large, and most of it is entailed. An
-evaluator that the fitted metric describes almost exactly will reverse almost
-exactly the pairs the fitted metric says it will reverse, so at that accuracy
-the reversal test is close to a corollary of the calibration rather than an
-independent check on the budget.
+metric says the pair's rank-$k$ order disagrees with its full-budget order, and
+into the within-subspace class precisely when it says the order is preserved.
+Reversal is predicted for the first class and not for the second. The class
+label is therefore the prediction, and the consequence is not approximate. Write
+$p$ for the probability that a graded verdict agrees with the fitted metric. A
+trading pair reverses when the evaluator agrees with the fit at both budgets or
+errs at both, and a within-subspace pair reverses when it errs at exactly one,
+so
+\[
+R_T = p^2 + (1-p)^2, \qquad R_W = 2p(1-p), \qquad
+R_T - R_W = (2p-1)^2 .
+\]
+The contrast the design grades is a function of the evaluator's per-comparison
+accuracy and of nothing else. On the pinned evaluator the observed contrast of
+$0.968$ against $0.000$ implies $p = 0.992$, against a measured held-out
+accuracy of $0.985$. No part of the separation is left for the budget
+manipulation to explain, and the pass bars are the same quantity restated: the
+registered margin is met exactly when $p$ exceeds $0.848$.
 
 This is not an artifact of one design. Any test of the form \emph{identify the
-components, then predict a choice from them} inherits it, because the prediction
-is a function of the identified components and its informativeness falls as the
-identification error falls toward zero. Content is therefore not monotone in
-identification accuracy. It is low at both ends and the maximum is somewhere in
-between, and we can locate neither end.
+components, then predict a choice from them} inherits the difficulty, because
+the prediction is a function of the identified components and its
+informativeness falls as the identification error falls toward zero. Content is
+therefore not monotone in identification accuracy. It is low at both ends and
+the maximum is somewhere in between, and we can locate neither end.
+
+The same reread found a second condition, on $B$ rather than on $G$, which
+Definition~\ref{def:modular} does not state and should. A rank budget is a
+choice of top-$k$ eigenspace of the workload moment
+$M = \Eb[\,G^{1/2}(C-t)(C-t)^{\!\top} G^{1/2}\,]$, and that eigenspace is
+identified only if $M$ has a spectral gap at $k$. The Phase I design drew
+consequences uniformly on a cube and placed the ideal at the cube's centroid,
+which makes $M$ isotropic analytically, at $(\mathrm{hi}-\mathrm{lo})^2/12$
+times the identity. There is then no gap and no preferred eigenspace, and the
+retained subspace is fixed by which finitely many calibration pairs were drawn.
+On an evaluator that is exactly Euclidean, with no response error whatever, two
+independent calibration draws select retained directions a median of $56$
+degrees apart, against the $60$ degrees expected between two uniformly random
+directions in three-space. Under that design a budget manipulation is a
+projection onto an arbitrary plane, and a confirmation of P2 would report a
+property of orthogonal projection. Identifying $\Phi$ and $G$ on disjoint
+evidence does not help, because the defect is in the workload distribution the
+moment is taken over.
+
+\begin{definition}[Budget identification]
+\label{def:gap}
+A rank budget $B = k$ is identified for an evaluation object only if the
+workload moment $M$ has a spectral gap at $k$, and an experiment that
+manipulates $B$ must exhibit that gap against the sampling distribution of $M$
+at the realized sample size rather than assume it.
+\end{definition}
+
+\noindent The condition is easy to satisfy and easy to omit, and omitting it
+costs the whole experiment. It also shows that the anti-vacuity check the
+programme inherited from its sibling arm is not sufficient here. That check
+requires a non-trivial share of the trace to be discarded, and isotropy
+discards the largest such share while distinguishing nothing.
 
 \begin{open}
 \label{open:band}
@@ -322,7 +368,7 @@ Preference is a semiorder with threshold the budget & proved & GET Theorem 2, ma
 Budget change reverses preference between fixed actions & proved (existence) & GET Theorem 5, machine-checked \\
 Threshold tracks budget in an evaluator & demonstrated & GET gate G3, sealed. A language-model scorer's indifference threshold is 0.87 to 0.88 of the rendering step, and every pair separated by 20 is ordered alike in every cell \\
 Hull law in a population & demonstrated as a tendency & GET gate G2, sealed, ANES 1972. Half of 489 testable respondents violate at least once against a shuffle null of 66 percent. It fails as a deterministic statement \\
-An evaluator can fail to be a quadratic evaluation object & measured, not sealed & Phase I instrument search \cite{c1}. Two of three candidate language-model evaluators could not be calibrated, ordering by presentation position at 0.8175 and 0.700. The third calibrated and held out at 0.985 \\
+An evaluator can fail to be a quadratic evaluation object & measured, not sealed & Phase I instrument search \cite{c1}. Two of three candidate language-model evaluators could not be calibrated, ordering by presentation position at 0.8175 and 0.700. The third calibrated and held out at 0.985, which is a maximum selected over the three and should be read as one \\
 Representation is prior to preference & posited for cognition & measured in other domains by OT, not in a cognitive observer \\
 Human cognitive budgets exist and are manipulable & posited & no sealed measurement \\
 Bounded search is the right dynamical abstraction & posited & alternatives in \S6 are not excluded \\
@@ -353,9 +399,11 @@ trading a retained direction against a newly unresolved one. Pairs whose
 difference lies in the retained subspace keep their order. Requires independent
 identification of $\Phi$, since the retained subspace is a property of $\Phi$
 and $B$ together. This is the prediction that separates the account from a claim
-that load adds noise. Open~\ref{open:band} bounds what a confirmation of it is
-worth, because the class assignment is made by the same fitted metric that
-predicts the reversal.
+that load adds noise. Definition~\ref{def:gap} and Open~\ref{open:band} bound what a
+confirmation of it is worth. The retained subspace must be identified before it
+can be manipulated, and where the class assignment is made by the same fitted
+metric that predicts the reversal the contrast is an identity rather than a
+test.
 
 \textbf{P3, cross-measure boundary alignment.} At a genuine regime transition,
 several observables reorganize near the same control value. Requires a boundary
@@ -491,8 +539,13 @@ tolerances were not chosen with the answer in view.
 
 \section{What this paper has not done}
 
-No gate in this paper has been sealed. The Phase I pilot and the instrument
-search are design work and grade nothing, and the one row of
+No gate in this paper has been sealed, and Phase I is not sealable as
+registered. A cold reread of its registration returned three defects that change
+what the experiment measures, of which Definition~\ref{def:gap} and the identity
+in Section~3 are two, together with five registered bars that cannot fire and an
+unregistered line in the sampler that decides a registered outcome \cite{c1}.
+The design is being repaired before it is sealed. The Phase I pilot and the
+instrument search are design work and grade nothing, and the one row of
 Table~\ref{tab:status} they support is marked unsealed. Open~\ref{open:partial}
 is unresolved and bounds every claim about partial identification.
 Open~\ref{open:band} is unresolved and bounds what a Phase I pass would be

@@ -45,6 +45,7 @@ the tolerances.
 | NRP viability, `gemma4-12b` | Atlas to `ellm`, 2026-09-13 | **MISS both**, distance `r2` 0.7661, first-position 0.7000 | [`experiments/C1/ellm_viability_gemma.json`](experiments/C1/ellm_viability_gemma.json) |
 | Order probe, pinned `qwen3` | Atlas to `ellm`, 2026-09-13 | **PASS**, all six gates. Agreement 1.0000, first-position 0.5000, held-out order accuracy 0.9900, 0 unparsed of 800 | [`experiments/C1/order_probe_qwen3.json`](experiments/C1/order_probe_qwen3.json) |
 | Pilot | Atlas to `ellm`, 2026-09-13, seed 20260914 | **complete**, `MARG` 0.4841, `CEIL` 0.05, cap does not bind | [`experiments/C1/pilot_qwen3.json`](experiments/C1/pilot_qwen3.json) |
+| Cold reread | two readers with no drafting context, 2026-09-13 | **NOT SEALABLE**, three design defects and eleven document defects | [`experiments/C1/PREREG-C1-DRAFT.md`](experiments/C1/PREREG-C1-DRAFT.md) Section 10 |
 
 The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
 1.2e-6 degrees, and shows the subspace moving only 1.4 degrees under reporting
@@ -201,31 +202,39 @@ sets bars from this data.
 All three budgets are on file, at 512, 1024 and the escalating instrument, rather
 than the last one overwriting its predecessors.
 
-**The pilot has fixed the tolerances, and its separation is large enough to need
-a caveat rather than a celebration.** `MARG` is 0.4841 and `CEIL` is 0.05. The
-rendering ceiling caps `MARG` at 0.8844, which does not bind, so Section 5's
-rerun-at-finer-precision clause is not triggered. Within-subspace reversals are
-0.0000 at both budgets across 128 graded pairs with no ambiguous verdict
-anywhere, trading reversals are 0.9683 at both, and at rank 2 that sits against a
-rendering ceiling of 0.9844. The synthetic self-test has been reproduced on a
-language model.
+**The pilot fixed the tolerances, and the cold reread then found that its
+separation measures the evaluator's accuracy rather than a budget.** `MARG` is
+0.4841 and `CEIL` is 0.05, and the rendering ceiling caps `MARG` at 0.8844, which
+does not bind. Within-subspace reversals are 0.0000 at both budgets across 128
+graded pairs and trading reversals are 0.9683 at both, each trading cell having
+graded 63 of 64 after losing one pair to an ambiguous verdict. An earlier version
+of this entry said there was no ambiguous verdict anywhere. That was true of the
+within-subspace class only, and `pilot_qwen3.json` records one ambiguous
+reference at rank 1 and one ambiguous at-budget verdict at rank 2, both in the
+trading class, along with one unparsed item and ten truncation escalations.
 
-**The content of this gate is in the calibration, not in the contrast.** The
-fitted quadratic predicts unseen comparisons at 0.9850, so this evaluator is very
-nearly a quadratic evaluation object. A trading pair is admitted precisely
-because the fitted metric says its rank-`k` order disagrees with its full-budget
-order, so an evaluator the metric describes almost exactly will reverse those
-pairs almost exactly, and the contrast is close to a consequence of an accurate
-calibration rather than an independent test of the budget. What is not
-near-tautological is the calibration itself, and that claim has failed twice in
-this programme already, on `Qwen2.5-7B-Instruct` and on `gemma4-12b`.
+**The contrast is an identity, not a measurement.** A pair enters the trading
+class only when the fitted metric says its rank-`k` order flips, and the
+within-subspace class only when the metric says it does not, so the class label
+is the prediction. Writing `p` for the chance a graded verdict agrees with the
+fitted metric, `R_T = p^2 + (1-p)^2`, `R_W = 2p(1-p)`, and the contrast is
+`(2p-1)^2`. The observed 0.9683 implies `p` of 0.9920 against a held-out accuracy
+of 0.9850, so nothing is left over for the budget manipulation to explain. The
+bars are the same quantity restated: `MARG` is met exactly when `p` clears 0.848
+and `CEIL` exactly when it clears 0.947.
 
-A design consequence is registered rather than acted on after the fact. The
-reversal prediction is most at risk where an evaluator is approximately rather
-than almost exactly quadratic, so a future gate of this shape should treat
-held-out accuracy as a band rather than a floor. Too low and the metric is not
-identified, too high and the reversal test is nearly implied by the fit. C1 keeps
-the floor it registered.
+**And the budget is not yet a budget.** The ideal sits at the centroid of the
+cube the options are drawn from, so the workload moment is isotropic
+analytically, at `(hi-lo)^2/12` times the identity, and the top-`k` eigenspace
+has no anisotropy to find. On an exactly Euclidean evaluator with zero error, two
+independent calibration draws pick retained directions a median of 56 degrees
+apart, against the 60 expected between random directions in three-space. The
+retained subspace is the calibration draw's noise. The anti-vacuity gate does not
+catch this, because discarded trace shares of one third and two thirds at `d = 3`
+are what isotropy produces.
+
+What survives is the calibration, which is where the failures have actually
+happened, on `Qwen2.5-7B-Instruct` and on `gemma4-12b`.
 
 The pilot also measured the residual confound the margin match does not remove.
 Trading pairs span a mean attribute range of 56.76 against 45.47 for
@@ -234,9 +243,20 @@ rendered length is balanced at about 21.8 characters everywhere. A difference of
 roughly a fifth in range is present, measured, and recorded beside the result it
 bounds.
 
-The registration also carries the programme's rate-limit rule, which requires the
-draft to be reread cold in a later session before it is sealed, and Section 10 of
-the registration is empty until that happens.
+**The rate-limit rule earned its keep.** The registration has now been reread by
+two readers with no drafting context, and Section 10 records the result. The
+verdict is NOT SEALABLE. Three defects change what the experiment measures: the
+retained subspace is sampling noise, the contrast is the identity above, and a
+stimulus-surface property separates the two classes, since a within-subspace pair
+is shifted by the same vector in both options at budget and a trading pair never
+is. Five registered bars cannot fire at all, among them a bootstrap clause that
+is arithmetically unable to bind and a tolerance named `BIN` that has no value
+and no implementation. The instrument gate and the physics gate contradict each
+other, since an evaluator admitted at 0.90 agreement has `R_W` of 0.18 against a
+`CEIL` of 0.05 and is refuted on response noise alone. An unregistered line in
+the sampler, `if is_w and flip: continue`, decides the outcome of the `CEIL` bar.
+The file is not renamed and not sealed, and the three design defects are the
+owner's to settle.
 
 **What a pass would and would not establish.** A pass establishes the phenomenon
 in one artificial evaluator whose metric was identified on disjoint evidence. It
