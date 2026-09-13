@@ -40,6 +40,7 @@ the tolerances.
 | Probe | Atlas, 2026-09-13 | **MISS**, calibration does not recover at `r2` 0.0946 | [`experiments/C1/probe.json`](experiments/C1/probe.json) |
 | Prompt sweep | Atlas, 2026-09-13 | **gate NOT MET**, best eligible framing `r2` 0.4944, formula control 0.1547 | [`experiments/C1/sweep.json`](experiments/C1/sweep.json) |
 | Order probe | Atlas, 2026-09-13 | **MISS**, first-position rate 0.8175, agreement 0.3400 | [`experiments/C1/order_probe.json`](experiments/C1/order_probe.json) |
+| NRP viability, qwen3 | Atlas to `ellm`, 2026-09-13 | **comparison OK**, first-position 0.4956, agreement 1.0000. Distance MISS, 7 of 60 parsed | [`experiments/C1/ellm-partial.log`](experiments/C1/ellm-partial.log), run incomplete |
 | Pilot | not run | | |
 
 The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
@@ -103,7 +104,35 @@ compares by content is not an evaluation object in the sense C1 requires.
 
 **A third instrument on Qwen2.5-7B-Instruct is not indicated.** What is indicated
 is a different evaluator, which is a change to the registration's world and the
-owner's to make. The gate is otherwise ready. Its self-test passes, its class
+owner's to make.
+
+**A hosted evaluator changes the picture, and the first result is partial.** NRP
+runs a managed OpenAI-compatible gateway whose fair-use rules govern inference
+rather than pods, so none of the Nautilus job policy applies. Queried from Atlas
+so the token stays on the box. Against `qwen3` the comparison instrument that
+this repository's local evaluator failed comes back clean. The first-position
+rate is **0.4956** against a gate of one half plus or minus 0.15, and agreement
+across both presentation orders is **1.0000** on 60 pairs. The local model chose
+the first option 81.75 percent of the time with agreement at 0.3400. One model
+reports its layout and the other reports the geometry.
+
+The distance instrument still misses on the same model, at 7 of 60 parsed over
+187 seconds, and the cause is not yet read from the record. A reasoning model
+spends hundreds of tokens before it writes an answer, and the first run of this
+probe starved one on an 8-token budget, so truncation at the raised budget is the
+first hypothesis and the record now carries `finish_reason` to settle it.
+
+This is a viability check and grades nothing. **The run is incomplete.**
+`gpt-oss` and `gemma4-12b` have not finished, and no `ellm_viability.json` has
+been written, so the log is the only artifact and it is committed as a partial
+record rather than summarised into prose.
+
+The rotation risk is now live rather than theoretical. The catalog has already
+drifted from what the runbook recorded on 2026-07-18, gaining
+`deepseek-v4-flash`, `gemma4-12b`, `gemma4-small` and `gemma-small-e4b`. A sealed
+registration naming a hosted model can lose its evaluator without notice, which
+is weaker priority evidence than a local cache with a pinned revision, and the
+registration must say so. The gate is otherwise ready. Its self-test passes, its class
 construction and anti-vacuity hold, its estimator recovers a retained subspace to
 under two degrees while a fifth of comparisons are wrong, and its instrument
 gates have now caught two unfit instruments before either could grade a claim.

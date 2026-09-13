@@ -1,0 +1,4 @@
+[ellm] qwen3, concurrency 16
+  distance   quad_r2 +nan  parsed 0/80  4.5s  MISS
+  comparison first-pos nan  agree nan  pure-bias-would-give nan  MISS
+[ellm] gpt-oss, concurrency 16
