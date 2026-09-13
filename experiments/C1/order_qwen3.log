@@ -1,0 +1,15 @@
+[thermal] controller up, 20 threads, target 78.0 C
+[order] pin verified, qwen3 created 1760022469
+[order] 400 pairs, both presentation orders
+[thermal] controller stopped
+
+[order] agreement 1.0000  first-position rate 0.5000  unparsed 0
+[order] held-out order accuracy 0.9900  in-sample 1.0000  discarded share k2 0.3047
+  parse                        OK
+  position_bias                OK
+  agreement                    OK
+  quadratic_predicts_heldout   OK
+  deliberated                  OK
+  anti_vacuity_k2              OK
+order probe PASS, written to order_probe_qwen3.json
+PROBE_PASSED_RUNNING_PILOT

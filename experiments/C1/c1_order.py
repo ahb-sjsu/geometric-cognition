@@ -226,6 +226,42 @@ def both_orders(chooser, ideal_str: str, A, B, batch: int = 32) -> dict:
 # ------------------------------------------------------------------ self-test
 
 
+def run_cell_order(chooser, ideal_str: str, pairs, budget_key: str,
+                   batch: int = 32) -> dict:
+    """Reversal rate of one class at one budget, for an order instrument.
+
+    The reference is the evaluator's own full-budget order, not the fitted
+    metric's prediction, so a calibration error cannot manufacture a reversal.
+    Both presentation orders are shown at both budgets, and a pair whose verdict
+    flips when the options swap is dropped at that budget rather than counted,
+    because it has reported the presentation.
+    """
+    full = [(render_a, render_b) for render_a, render_b, _, _ in pairs]
+    kbud = [(ka, kb) for _, _, ka, kb in pairs]
+    shown = full if budget_key == "full" else kbud
+
+    ref_f = chooser.prefers_first(ideal_str, full, batch)
+    ref_r = chooser.prefers_first(ideal_str, [(b, a) for a, b in full], batch)
+    cut_f = chooser.prefers_first(ideal_str, shown, batch)
+    cut_r = chooser.prefers_first(ideal_str, [(b, a) for a, b in shown], batch)
+
+    rev = amb_ref = amb_cut = 0
+    graded = 0
+    for rf, rr, cf_, cr in zip(ref_f, ref_r, cut_f, cut_r):
+        if not (np.isfinite(rf) and np.isfinite(rr)) or (rf > 0.5) != (rr < 0.5):
+            amb_ref += 1
+            continue
+        if not (np.isfinite(cf_) and np.isfinite(cr)) or (cf_ > 0.5) != (cr < 0.5):
+            amb_cut += 1
+            continue
+        graded += 1
+        if (rf > 0.5) != (cf_ > 0.5):
+            rev += 1
+    return {"n": len(pairs), "graded": graded, "reversals": rev,
+            "ambiguous_reference": amb_ref, "ambiguous_at_budget": amb_cut,
+            "reversal_rate": (rev / graded) if graded else float("nan")}
+
+
 def heldout_order_accuracy(A, B, y, folds: int = 5, l2: float = 1e-3,
                            seed: int = 0) -> dict:
     """Cross-validated accuracy of the quadratic model on unseen comparisons.

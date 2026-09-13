@@ -1,0 +1,85 @@
+{
+ "stage": "order_probe",
+ "seed": 20260913,
+ "provenance": {
+  "host": "atlas",
+  "python": "3.12.3",
+  "numpy": "2.2.6",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.5.0",
+  "cuda_visible_devices": null,
+  "gpu_at_start": "0, 0 %, 18803 MiB, 57\n1, 0 %, 57 MiB, 50",
+  "utc": "2026-09-13T07:10:13Z",
+  "target_temp": 78.0,
+  "max_threads": 20
+ },
+ "evaluator_pin": {
+  "model_id": "qwen3",
+  "created": 1760022469,
+  "owned_by": "NRP",
+  "verified_utc": "2026-09-13T07:03:13Z"
+ },
+ "deadline_failures": 0,
+ "finish_reasons": {
+  "stop": 799,
+  "length": 1,
+  "unparsed_length": 1
+ },
+ "mean_reasoning_tokens": 242.6775,
+ "n_pairs": 400,
+ "kept": 399,
+ "agreement_rate": 0.9975,
+ "first_position_rate": 0.5006257822277848,
+ "unparsed": 1,
+ "calibration": {
+  "d": 3,
+  "n_comparisons": 399,
+  "G": [
+   [
+    0.9954638044335217,
+    0.011200579146894723,
+    0.007816185615769633
+   ],
+   [
+    0.01120057914689472,
+    0.9884136023049133,
+    0.0022790061457826135
+   ],
+   [
+    0.007816185615769619,
+    0.002279006145782576,
+    1.0161225932615647
+   ]
+  ],
+  "t": [
+   49.68109748845889,
+   50.437054518885866,
+   49.88486661959422
+  ],
+  "psd_clip": -0.0,
+  "well_conditioned": true,
+  "order_accuracy": 1.0
+ },
+ "heldout": {
+  "folds": 5,
+  "per_fold": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.9873417721518988
+  ],
+  "mean": 0.9974683544303797,
+  "min": 0.9873417721518988
+ },
+ "discarded_trace_share_k2": 0.3041776085994231,
+ "instrument_gates": {
+  "parse": false,
+  "position_bias": true,
+  "agreement": true,
+  "quadratic_predicts_heldout": true,
+  "deliberated": true,
+  "anti_vacuity_k2": true
+ },
+ "pass": false
+}

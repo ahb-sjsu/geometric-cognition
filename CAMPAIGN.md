@@ -43,7 +43,8 @@ the tolerances.
 | NRP viability, `qwen3` | Atlas to `ellm`, 2026-09-13 | **comparison OK**, first-position 0.4956, agreement 1.0000. Distance 7 of 60 parsed | [`experiments/C1/ellm-gptoss-stalled.log`](experiments/C1/ellm-gptoss-stalled.log), log only |
 | NRP viability, `gpt-oss` | Atlas to `ellm`, 2026-09-13 | **stalled**, 16 idle connections and no response for 43 minutes, stopped with permission | [`experiments/C1/ellm-gptoss-stalled.log`](experiments/C1/ellm-gptoss-stalled.log) |
 | NRP viability, `gemma4-12b` | Atlas to `ellm`, 2026-09-13 | **MISS both**, distance `r2` 0.7661, first-position 0.7000 | [`experiments/C1/ellm_viability_gemma.json`](experiments/C1/ellm_viability_gemma.json) |
-| Pilot | not run | | |
+| Order probe, pinned `qwen3` | Atlas to `ellm`, 2026-09-13 | **PASS**, all six gates. Agreement 1.0000, first-position 0.5000, held-out order accuracy 0.9900, 0 unparsed of 800 | [`experiments/C1/order_probe_qwen3.json`](experiments/C1/order_probe_qwen3.json) |
+| Pilot | Atlas to `ellm`, 2026-09-13 | running | |
 
 The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
 1.2e-6 degrees, and shows the subspace moving only 1.4 degrees under reporting
@@ -174,6 +175,31 @@ registration must say so. The gate is otherwise ready. Its self-test passes, its
 construction and anti-vacuity hold, its estimator recovers a retained subspace to
 under two degrees while a fifth of comparisons are wrong, and its instrument
 gates have now caught two unfit instruments before either could grade a claim.
+
+**The probe passes on the pinned hosted evaluator, at the third token budget.**
+Agreement across presentation orders is 1.0000 on 400 pairs, the first-position
+rate is 0.5000, held-out order accuracy is 0.9900 with a worst fold of 0.9750,
+the discarded trace share at rank 2 is 0.3047, and nothing failed to parse. A
+quadratic form predicts this evaluator's unseen comparisons almost exactly, which
+is what an evaluation object is, and what neither the local model nor
+`gemma4-12b` could do.
+
+Getting there took two instrument fixes and no change to any bar. At 512 tokens
+21 of 800 comparisons returned no letter, all of them truncated mid-reasoning
+against a mean of 232.5 reasoning tokens. At 1024 that fell to 1. The last one was
+cleared by a single bounded escalation, which retries an item once at double the
+budget when it hits the ceiling, and which fired twice in the passing run.
+
+The reason truncation was treated as a fault rather than an acceptable drop rate
+is that it is not missing at random. Truncation tracks reasoning length and
+reasoning length tracks how hard a pair is, so the drops concentrate on exactly
+the pairs where a budget effect would show, and tolerating them biases the
+calibration toward the easy subset in the direction that flatters the gate. At one
+in eight hundred the magnitude was trivial. The direction was not, and the pilot
+sets bars from this data.
+
+All three budgets are on file, at 512, 1024 and the escalating instrument, rather
+than the last one overwriting its predecessors.
 
 The registration also carries the programme's rate-limit rule, which requires the
 draft to be reread cold in a later session before it is sealed, and Section 10 of

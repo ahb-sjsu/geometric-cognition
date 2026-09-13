@@ -247,14 +247,28 @@ def stage_order_probe(cfg_path: str, out: str, seed: int) -> int:
     from c1_order import (LMChooser, both_orders, calibrate_from_order,
                           heldout_order_accuracy)
     cfg = json.load(open(cfg_path, encoding="utf-8"))
+    hosted = "evaluator" in cfg
     rng = np.random.default_rng(seed)
     d = len(cfg["ideal"])
     ideal = np.array(cfg["ideal"], dtype=float)
     n = int(cfg.get("n_order_pairs", 400))
 
+    pin = None
     with Thermal() as th:
-        print(f"[order] loading chooser, {th.threads()} host threads")
-        ch = LMChooser(cfg)
+        if hosted:
+            from c1_ellm_chooser import EllmChooser, preflight_model_pin
+            token = os.environ.get("NRP_LLM_TOKEN")
+            if not token:
+                raise RuntimeError("NRP_LLM_TOKEN absent; source /home/claude/.primer.env")
+            # Refuse to run if the pinned alias has been repointed. The gateway
+            # exposes no revision, so this timestamp is the only provenance the
+            # registration can hold on to.
+            pin = preflight_model_pin(cfg, token)
+            print(f"[order] pin verified, {pin['model_id']} created {pin['created']}")
+            ch = EllmChooser(cfg, token)
+        else:
+            print(f"[order] loading chooser, {th.threads()} host threads")
+            ch = LMChooser(cfg)
         A = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n, d))
         B = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n, d))
         As = [render_option(x) for x in A]
@@ -273,6 +287,12 @@ def stage_order_probe(cfg_path: str, out: str, seed: int) -> int:
         "agreement": bool(oo["agreement_rate"] >= 0.60),
     }
     rec = {"stage": "order_probe", "seed": seed, "provenance": provenance(),
+           "evaluator_pin": pin,
+           "deadline_failures": getattr(ch, "failed", 0),
+           "finish_reasons": getattr(ch, "finish_reasons", {}),
+           "truncation_escalations": getattr(ch, "escalations", 0),
+           "mean_reasoning_tokens": (float(np.mean(ch.reasoning_tokens))
+                                     if getattr(ch, "reasoning_tokens", None) else 0.0),
            "n_pairs": n, "kept": int(keep.sum()),
            "agreement_rate": oo["agreement_rate"],
            "first_position_rate": oo["first_position_rate"],
@@ -288,6 +308,12 @@ def stage_order_probe(cfg_path: str, out: str, seed: int) -> int:
         # The calibration gate for an order instrument is whether a quadratic
         # predicts comparisons the fit never saw.
         gates["quadratic_predicts_heldout"] = bool(ho["mean"] >= 0.80)
+        if hosted and cfg["evaluator"].get("requires_deliberation"):
+            # The registration requires an evaluator that deliberates, because
+            # the only one of three that compared by content was the only one
+            # that reasoned before answering. A run where it stopped reasoning
+            # is not a run against the registered evaluator.
+            gates["deliberated"] = bool(rec["mean_reasoning_tokens"] > 0)
         gates["anti_vacuity_k2"] = bool(res["discarded_trace_share"] >= 0.05)
     else:
         gates["quadratic_predicts_heldout"] = False
@@ -309,9 +335,147 @@ def stage_order_probe(cfg_path: str, out: str, seed: int) -> int:
     return 0 if rec["pass"] else 1
 
 
+def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
+    """Fix section 5's tolerances on a seed used for nothing else.
+
+    The pilot exists to set MARG, CEIL and BIN before the registration is
+    sealed. It is not a result and grades no claim. Its seed is disjoint from
+    the probe's and from the run's, and the run seed is drawn only after the
+    rename, so nothing measured here can have been chosen to suit what the run
+    will later show.
+    """
+    import os as _os
+    from c1_ellm_chooser import EllmChooser, preflight_model_pin
+    from c1_order import (both_orders, calibrate_from_order,
+                          heldout_order_accuracy, run_cell_order)
+
+    cfg = json.load(open(cfg_path, encoding="utf-8"))
+    rng = np.random.default_rng(seed)
+    d = len(cfg["ideal"])
+    ideal = np.array(cfg["ideal"], dtype=float)
+    ideal_str = render_option(ideal)
+    n_cal = int(cfg.get("n_order_pairs", 400))
+    n_class = int(cfg.get("n_per_class", 64))
+
+    with Thermal():
+        token = _os.environ.get("NRP_LLM_TOKEN")
+        if not token:
+            raise RuntimeError("NRP_LLM_TOKEN absent")
+        pin = preflight_model_pin(cfg, token)
+        print(f"[pilot] pin verified, {pin['model_id']} created {pin['created']}")
+        ch = EllmChooser(cfg, token)
+
+        # 1. Calibrate from order, on evidence the graded pairs never touch.
+        A = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n_cal, d))
+        B = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n_cal, d))
+        print(f"[pilot] calibrating on {n_cal} pairs, both orders")
+        oo = both_orders(ch, ideal_str, [render_option(x) for x in A],
+                         [render_option(x) for x in B])
+        keep = np.array(oo["keep"])
+        y = np.array(oo["a_nearer"], dtype=float)
+        cal = calibrate_from_order(A[keep], B[keep], y[keep])
+        ho = heldout_order_accuracy(A[keep], B[keep], y[keep])
+        G, t = np.array(cal["G"]), np.array(cal["t"])
+        print(f"[pilot] calibrated, held-out order accuracy {ho['mean']:.4f}, "
+              f"kept {int(keep.sum())} of {n_cal}")
+
+        cells = {}
+        for k in (1, 2):
+            built = build_pairs(G, t, A[keep], k=k, n_per_class=n_class, rng=rng)
+            Pi = np.array(built["retained"]["Pi_whitened"])
+            res = {"k": k,
+                   "discarded_trace_share": built["retained"]["discarded_trace_share"],
+                   "n_W": len(built["W"]), "n_T": len(built["T"]),
+                   "margin_mean_W": built["margin_mean_W"],
+                   "margin_mean_T": built["margin_mean_T"],
+                   "bins": built["bins"]}
+            if not built["W"] or not built["T"]:
+                res["note"] = "a class came out empty"
+                cells[str(k)] = res
+                continue
+            res["rendering_ceiling_T"] = rendering_ceiling(built["T"], G, t, Pi)
+            for name in ("W", "T"):
+                rows = [(render_option(p["a"]), render_option(p["b"]),
+                         p["a_render_k"], p["b_render_k"]) for p in built[name]]
+                print(f"[pilot] k={k} class {name}, {len(rows)} pairs")
+                res[name] = run_cell_order(ch, ideal_str, rows, "k")
+            res["contrast"] = res["T"]["reversal_rate"] - res["W"]["reversal_rate"]
+            # Section 11 asks for the class balance a margin match does not fix.
+            res["balance"] = {
+                "attr_range_W": float(np.mean([max(p["a"]) - min(p["a"])
+                                               for p in built["W"]])),
+                "attr_range_T": float(np.mean([max(p["a"]) - min(p["a"])
+                                               for p in built["T"]])),
+                "render_len_W": float(np.mean([len(render_option(p["a"]))
+                                               for p in built["W"]])),
+                "render_len_T": float(np.mean([len(render_option(p["a"]))
+                                               for p in built["T"]]))}
+            cells[str(k)] = res
+
+    # 2. Fix the tolerances, by the rule section 5 states, not by inspection.
+    usable = [c for c in cells.values() if "contrast" in c
+              and np.isfinite(c["contrast"])]
+    tol = {"rule": ("MARG is half the observed contrast floored at 0.10 and "
+                    "capped at the rendering ceiling minus CEIL minus 0.05. "
+                    "CEIL is twice the observed within-subspace rate floored "
+                    "at 0.05.")}
+    if usable:
+        obs_contrast = float(np.min([c["contrast"] for c in usable]))
+        obs_w = float(np.max([c["W"]["reversal_rate"] for c in usable]))
+        ceil_T = float(np.min([c["rendering_ceiling_T"]["ceiling"] for c in usable]))
+        CEIL = max(2.0 * obs_w, 0.05)
+        MARG = max(0.5 * obs_contrast, 0.10)
+        cap = ceil_T - CEIL - 0.05
+        tol.update({"observed_contrast_min": obs_contrast,
+                    "observed_W_max": obs_w,
+                    "rendering_ceiling_min": ceil_T,
+                    "CEIL": round(CEIL, 4),
+                    "MARG_before_cap": round(MARG, 4),
+                    "cap": round(cap, 4),
+                    "MARG": round(min(MARG, cap), 4),
+                    "cap_binds": bool(MARG > cap),
+                    "capped_below_floor": bool(cap < 0.10)})
+        if tol["capped_below_floor"]:
+            tol["action"] = ("the cap falls under the 0.10 floor, so section 5 "
+                             "requires the rendering precision to be increased "
+                             "and the pilot rerun before sealing")
+
+    rec = {"stage": "pilot", "seed": seed, "provenance": provenance(),
+           "evaluator_pin": pin, "calibration": cal, "heldout": ho,
+           "kept_calibration_pairs": int(keep.sum()),
+           "agreement_rate": oo["agreement_rate"],
+           "first_position_rate": oo["first_position_rate"],
+           "unparsed": ch.unparsed, "deadline_failures": ch.failed,
+           "finish_reasons": ch.finish_reasons,
+           "truncation_escalations": ch.escalations,
+           "mean_reasoning_tokens": (float(np.mean(ch.reasoning_tokens))
+                                     if ch.reasoning_tokens else 0.0),
+           "cells": cells, "tolerances": tol}
+    json.dump(rec, open(out, "w", encoding="utf-8"), indent=1)
+
+    print("\n[pilot] cells")
+    for k, c in cells.items():
+        if "contrast" in c:
+            print(f"  k={k}  W {c['W']['reversal_rate']:.4f}  "
+                  f"T {c['T']['reversal_rate']:.4f}  "
+                  f"contrast {c['contrast']:+.4f}  "
+                  f"ceiling {c['rendering_ceiling_T']['ceiling']:.4f}  "
+                  f"discarded {c['discarded_trace_share']:.4f}")
+        else:
+            print(f"  k={k}  {c.get('note')}")
+    if "MARG" in tol:
+        print(f"[pilot] tolerances  MARG {tol['MARG']}  CEIL {tol['CEIL']}  "
+              f"cap {tol['cap']}  cap_binds {tol['cap_binds']}")
+        if tol.get("capped_below_floor"):
+            print(f"[pilot] {tol['action']}")
+    print(f"pilot written to {out}")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--stage", choices=("selftest", "probe", "order_probe"),
+    ap.add_argument("--stage",
+                    choices=("selftest", "probe", "order_probe", "pilot"),
                     required=True)
     ap.add_argument("--config", default="prereg_config.json")
     ap.add_argument("--out")
@@ -322,6 +486,8 @@ def main() -> int:
         return stage_selftest(out)
     if args.stage == "order_probe":
         return stage_order_probe(args.config, out, args.seed)
+    if args.stage == "pilot":
+        return stage_pilot(args.config, out, args.seed)
     return stage_probe(args.config, out, args.seed)
 
 
