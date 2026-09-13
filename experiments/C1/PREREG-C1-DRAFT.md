@@ -138,6 +138,22 @@ share below 0.05 at a budget and a margin match that the pilot cannot achieve.
 the pilot's observed `R_T - R_W`, floored at 0.10. `CEIL` is set at twice the
 pilot's observed `R_W`, floored at 0.05.
 
+**The rendering ceiling bounds what a correct evaluator can score.** A T pair is
+admitted because the exact rank-`k` projection reverses its order, and the
+evaluator is shown that projection rounded to the rendering precision. Rounding
+returns a small share of those pairs to their original order, so an evaluator
+that implements the theory exactly still cannot reverse every T pair. A
+development run of the harness measured the share at 0.026 over 196 pairs at one
+decimal, and the synthetic evaluator's T rate equalled the ceiling to machine
+precision, which is how the effect was identified.
+
+The pilot measures the ceiling on its own draw with `rendering_ceiling` and
+records it here. `MARG` is then capped at the measured ceiling minus `CEIL`
+minus 0.05, and if that cap falls below the 0.10 floor the rendering precision
+is increased and the pilot is rerun before sealing. A bar that no correct
+evaluator could meet is not a bar, and this one was within reach of being set
+that way.
+
 ## 6. What falsifies
 
 A reversal rate in trading pairs that does not exceed the rate in
@@ -162,7 +178,19 @@ sampling error and `R_T` within 0.05 of its constructed value at each `k`, and
 recorded here. A calibration recovery worse than that tolerance stops the gate,
 because the retained subspace would then be an artifact.
 
-*Result: NOT RUN.*
+*Registered result: NOT RUN.*
+
+*Development check, laptop, 2026-09-13, recorded because it is what found the
+rendering ceiling and is not the registered record.* `c1_calibrate.py
+--selftest` recovers the metric to a relative error of 1.3e-13, the ideal to
+2.8e-14, and the rank-2 subspace to a maximum principal angle of 1.5e-6 degrees
+on 600 noiseless reports. Under reporting noise the subspace is stable, moving
+0.18 degrees at sigma 0.5 and 1.4 degrees at sigma 4.0 against distances of
+order 50, so the retained subspace is not the fragile part of this design.
+`c1_scorer.py --selftest` gives a W reversal rate of exactly 0 and a T rate
+equal to the rendering ceiling to machine precision, with a discarded trace
+share of 0.111. Pair yield was 196 admitted per class against 300 requested,
+which sizes the oversampling the pilot will need.
 
 **Probe.** One cell on the probe seed to establish event presence. Both classes
 non-empty at the required margins, the trace share above 0.05 at `k = 1` and
@@ -223,3 +251,13 @@ Stated here rather than discovered later.
 - Three dimensions is the smallest space in which the prediction has content.
   Nothing here speaks to whether the effect survives in the dimensions a real
   task has.
+- The evaluator is shown a rounded projection rather than the projection, so a
+  correct evaluator cannot reverse every trading pair. The share lost to
+  rounding was 0.026 at one decimal in a development run and is measured again
+  in the pilot. Raising the rendering precision lowers the loss and raises the
+  chance that two options render identically, and the registration fixes the
+  precision at one decimal rather than tuning it against the result.
+- The pair classes are drawn by rejection, and the yield was 196 per class
+  against 300 requested in development. A low yield narrows the margin bins that
+  can be matched, which is a constraint on the design rather than a result, and
+  the pilot reports it.
