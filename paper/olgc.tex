@@ -60,7 +60,13 @@ theory that fits every record predicts nothing. We state that as a proposition
 rather than as a worry, and give the conditions under which the account
 carries content. The conditions are modular. Each of the observer's four
 components must be identified on evidence disjoint from the choices the theory
-is asked to predict. We restate the five predictions of the programme as
+is asked to predict. A pilot of the first phase then shows that this condition
+has a second edge. An identification accurate enough to predict unseen
+comparisons almost perfectly makes the prediction it licenses close to a
+consequence of the fit, so content is not monotone in identification accuracy
+and we can bound neither end. What survives is that identification is the step
+that fails in practice, since two of three candidate evaluators could not be
+calibrated at all. We restate the five predictions of the programme as
 consequences of those conditions, restate the seven falsifiers as conditions on
 the record rather than on the author's judgment, and give a phased programme in
 which each phase retires exactly one degree of freedom. The theory's own
@@ -247,15 +253,64 @@ absorb. Until such a bound exists, an account that identifies three of four
 components is not known to be more falsifiable than one that identifies none.
 \end{open}
 
+\subsection*{Identification can also be too good}
+
+Open~\ref{open:partial} is one end of a problem with two ends. Under-identified,
+a free component absorbs the prediction and nothing is excluded. The other end
+appeared in the Phase I pilot and was not anticipated when
+Proposition~\ref{prop:content} was written.
+
+The Phase I design identifies $G$ and $t$ from a calibration block of ordinal
+comparisons, then admits a pair into the trading class precisely when the fitted
+metric says the pair's rank-$k$ order disagrees with its full-budget order.
+Reversal is then predicted for that class and not for the class whose difference
+lies in the retained subspace. On the pinned evaluator the calibration predicted
+held-out comparisons at $0.985$, and the graded contrast came out at $0.968$
+against $0.000$. The separation is large, and most of it is entailed. An
+evaluator that the fitted metric describes almost exactly will reverse almost
+exactly the pairs the fitted metric says it will reverse, so at that accuracy
+the reversal test is close to a corollary of the calibration rather than an
+independent check on the budget.
+
+This is not an artifact of one design. Any test of the form \emph{identify the
+components, then predict a choice from them} inherits it, because the prediction
+is a function of the identified components and its informativeness falls as the
+identification error falls toward zero. Content is therefore not monotone in
+identification accuracy. It is low at both ends and the maximum is somewhere in
+between, and we can locate neither end.
+
+\begin{open}
+\label{open:band}
+Proposition~\ref{prop:content} treats prior identification as a good whose
+quantity is to be maximized. The pilot shows it is not. No bound is known on how
+accurate an identification may be before the prediction it licenses becomes a
+consequence of the fit, and no measure separates the residual content from the
+entailed part. Until one exists, a design of this shape should register
+identification accuracy as an interval and not as a floor, and should expect the
+informative work to be done by the identification step rather than by the
+prediction it feeds.
+\end{open}
+
+The consolation is that the identification step is where the failures actually
+occurred. Of three candidate evaluators put through the Phase I calibration,
+two could not be calibrated at all. One ordered by presentation position at a
+first-position rate of $0.8175$, with an agreement rate across the two orders
+that matched what pure position preference predicts and nothing that a metric
+would explain. A second recovered distances at $r^2 = 0.766$ and still ordered
+by position at $0.700$. Only the third compared by content. An evaluator can
+fail to be a quadratic evaluation object, and most of the ones we tried did, so
+the step that carries the content is the step that can fail.
+
 \section{What is proved, what is measured, and what is posited}
 
 The programme's statements do not carry a uniform status, and a foundational
 paper that presents them at one strength misrepresents all of them.
 
 \begin{table}[!ht]
-\caption{Status of the programme's statements. The evaluation layer is proved
-and measured on artificial evaluators. Every statement specific to \emph{cognition}
-sits in the lower block and carries no sealed measurement.}
+\caption{Status of the programme's statements. The evaluation layer is proved,
+and measured on artificial evaluators except where a row says otherwise. Every
+statement specific to \emph{cognition} sits in the lower block and carries no
+sealed measurement.}
 \label{tab:status}
 \centering\footnotesize
 \begin{tabular}{@{}p{0.30\textwidth} p{0.14\textwidth} p{0.44\textwidth}@{}}
@@ -267,6 +322,7 @@ Preference is a semiorder with threshold the budget & proved & GET Theorem 2, ma
 Budget change reverses preference between fixed actions & proved (existence) & GET Theorem 5, machine-checked \\
 Threshold tracks budget in an evaluator & demonstrated & GET gate G3, sealed. A language-model scorer's indifference threshold is 0.87 to 0.88 of the rendering step, and every pair separated by 20 is ordered alike in every cell \\
 Hull law in a population & demonstrated as a tendency & GET gate G2, sealed, ANES 1972. Half of 489 testable respondents violate at least once against a shuffle null of 66 percent. It fails as a deterministic statement \\
+An evaluator can fail to be a quadratic evaluation object & measured, not sealed & Phase I instrument search \cite{c1}. Two of three candidate language-model evaluators could not be calibrated, ordering by presentation position at 0.8175 and 0.700. The third calibrated and held out at 0.985 \\
 Representation is prior to preference & posited for cognition & measured in other domains by OT, not in a cognitive observer \\
 Human cognitive budgets exist and are manipulable & posited & no sealed measurement \\
 Bounded search is the right dynamical abstraction & posited & alternatives in \S6 are not excluded \\
@@ -297,7 +353,9 @@ trading a retained direction against a newly unresolved one. Pairs whose
 difference lies in the retained subspace keep their order. Requires independent
 identification of $\Phi$, since the retained subspace is a property of $\Phi$
 and $B$ together. This is the prediction that separates the account from a claim
-that load adds noise.
+that load adds noise. Open~\ref{open:band} bounds what a confirmation of it is
+worth, because the class assignment is made by the same fitted metric that
+predicts the reversal.
 
 \textbf{P3, cross-measure boundary alignment.} At a genuine regime transition,
 several observables reorganize near the same control value. Requires a boundary
@@ -415,16 +473,33 @@ VI & A safety-relevant boundary predicted and prevented without training on the 
 Phase I is deliberately low-dimensional and is the only phase whose design is
 fixed at this draft. Its registration fixes the consequence vectors, the
 candidate retained subspaces, and the predicted ordering at each budget before
-any data are opened. The prediction it tests is P2, because P2 is the one that a
-noise account does not also make.
+any data are opened \cite{c1}. The prediction it tests is P2, because P2 is the
+one that a noise account does not also make.
+
+Phase I is designed but not sealed, and the distinction is worth keeping. Its
+evaluator is a hosted language model pinned by alias and creation timestamp,
+with a preflight that refuses to run if either has moved, because the gateway
+publishes no revision and an alias can be repointed without the identifier
+changing. That converts an unverifiable provenance claim into a check that fails
+loudly rather than into a sentence in a methods section. Its pass tolerances
+were fixed by a pilot on a seed disjoint from the run's, at a reversal margin of
+$0.484$ and an ambiguity tolerance of $0.05$, with the rendering ceiling not
+binding. The pilot is spent. It grades no claim, its numbers are not revised,
+and the run seed is drawn only after the registration is sealed. What it has
+established is that the design is executable on a real evaluator and that its
+tolerances were not chosen with the answer in view.
 
 \section{What this paper has not done}
 
-No gate in this paper has been sealed. Open~\ref{open:partial} is unresolved and
-bounds every claim about partial identification. No measurement of a human
-budget exists in this programme. The domain exposition's measurements are
-retained at the class its own admission filter assigned them and are not
-promoted by the appearance of this paper.
+No gate in this paper has been sealed. The Phase I pilot and the instrument
+search are design work and grade nothing, and the one row of
+Table~\ref{tab:status} they support is marked unsealed. Open~\ref{open:partial}
+is unresolved and bounds every claim about partial identification.
+Open~\ref{open:band} is unresolved and bounds what a Phase I pass would be
+worth. No measurement of a human budget exists in this programme, and nothing
+here licenses carrying a language-model result across to one. The domain
+exposition's measurements are retained at the class its own admission filter
+assigned them and are not promoted by the appearance of this paper.
 
 \section*{Acknowledgment of AI use}
 
@@ -442,6 +517,9 @@ draft 0.2, San Jos\'e State University, 2026. Claim ledger at
 \texttt{ahb-sjsu/observation-theory-campaigns}, 2026.
 \bibitem{gc} A.~H. Bond, \emph{Geometric Cognition, The Mathematical Structure
 of Human and Artificial Thought}, draft, 2026.
+\bibitem{c1} A.~H. Bond, \emph{C1, Direction-Specific Rank Reversal in a
+Language-Model Evaluator}, Phase I registration and stage records,
+\texttt{experiments/C1/}, 2026. Unsealed at the time of writing.
 \bibitem{thesis} A.~H. Bond, \emph{Observer-Limited Geometric Cognition, A
 Candidate Fundamental Theory of Cognition from Representation, Evaluation, and
 Bounded Search}, research thesis, September 2026.
