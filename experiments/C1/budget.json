@@ -1,0 +1,148 @@
+{
+ "stage": "budget",
+ "seed": 20260920,
+ "provenance": {
+  "host": "atlas",
+  "python": "3.12.3",
+  "numpy": "2.4.6",
+  "torch": "2.11.0+cu130",
+  "transformers": "5.5.3",
+  "cuda_visible_devices": null,
+  "gpu_at_start": "0, 0 %, 18803 MiB, 57\n1, 0 %, 57 MiB, 49",
+  "utc": "2026-09-13T18:59:57Z",
+  "target_temp": 78.0,
+  "max_threads": 20
+ },
+ "evaluator_pin": {
+  "model_id": "qwen3",
+  "created": 1760022469,
+  "owned_by": "NRP",
+  "verified_utc": "2026-09-13T18:43:56Z"
+ },
+ "grades_no_claim": true,
+ "design": "stimulus identical in both conditions at full rendering precision; the manipulation is enable_thinking",
+ "cells": {
+  "1": {
+   "deliberate": {
+    "W": {
+     "n_graded": 64,
+     "ambiguous": 0,
+     "n": 64,
+     "q_agree_full": 0.984375,
+     "mean_reasoning_tokens": 336.296875,
+     "ci95": [
+      0.9166570109970937,
+      0.9972365292495986
+     ]
+    },
+    "T": {
+     "n_graded": 64,
+     "ambiguous": 0,
+     "n": 64,
+     "q_agree_full": 0.890625,
+     "mean_reasoning_tokens": 364.6875,
+     "ci95": [
+      0.7910113670806147,
+      0.9459995524731695
+     ]
+    },
+    "unparsed": 0,
+    "deadline": 0
+   },
+   "immediate": {
+    "W": {
+     "n_graded": 2,
+     "ambiguous": 62,
+     "n": 64,
+     "q_agree_full": 1.0,
+     "mean_reasoning_tokens": 0.0,
+     "ci95": [
+      0.34237195288961925,
+      1.0
+     ]
+    },
+    "T": {
+     "n_graded": 7,
+     "ambiguous": 57,
+     "n": 64,
+     "q_agree_full": 0.8571428571428571,
+     "mean_reasoning_tokens": 0.0,
+     "ci95": [
+      0.48686549668097007,
+      0.9743210440510253
+     ]
+    },
+    "unparsed": 0,
+    "deadline": 0
+   },
+   "verdict": {
+    "q_T_immediate": 0.8571428571428571,
+    "q_W_immediate": 1.0,
+    "class_gap": 0.1428571428571429,
+    "T_below_half": false,
+    "reading": "no budget effect distinguishable from noise"
+   }
+  },
+  "2": {
+   "deliberate": {
+    "W": {
+     "n_graded": 64,
+     "ambiguous": 0,
+     "n": 64,
+     "q_agree_full": 0.984375,
+     "mean_reasoning_tokens": 332.546875,
+     "ci95": [
+      0.9166570109970937,
+      0.9972365292495986
+     ]
+    },
+    "T": {
+     "n_graded": 64,
+     "ambiguous": 0,
+     "n": 64,
+     "q_agree_full": 0.875,
+     "mean_reasoning_tokens": 378.87890625,
+     "ci95": [
+      0.7722521366978408,
+      0.9352783460737919
+     ]
+    },
+    "unparsed": 0,
+    "deadline": 0
+   },
+   "immediate": {
+    "W": {
+     "n_graded": 1,
+     "ambiguous": 63,
+     "n": 64,
+     "q_agree_full": 0.0,
+     "mean_reasoning_tokens": 0.0,
+     "ci95": [
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "T": {
+     "n_graded": 2,
+     "ambiguous": 62,
+     "n": 64,
+     "q_agree_full": 1.0,
+     "mean_reasoning_tokens": 0.0,
+     "ci95": [
+      0.34237195288961925,
+      1.0
+     ]
+    },
+    "unparsed": 0,
+    "deadline": 0
+   },
+   "verdict": {
+    "q_T_immediate": 1.0,
+    "q_W_immediate": 0.0,
+    "class_gap": -1.0,
+    "T_below_half": false,
+    "reading": "no budget effect distinguishable from noise"
+   }
+  }
+ }
+}

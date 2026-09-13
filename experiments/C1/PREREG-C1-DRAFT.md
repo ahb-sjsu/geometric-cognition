@@ -1063,6 +1063,98 @@ or the experiment is reported honestly as a calibration measurement and the
 claim it grades is changed to match. That is a decision for the owner, and it is
 the same decision 10.1 D2 named before any of the three redesigns.
 
+### 10.16 C1-B: manipulating the evaluator instead of the stimulus, and why it failed
+
+10.15 left one repair open, that the class construction stops using the fitted
+metric to assign pairs. Attempting it showed the diagnosis was too shallow.
+
+**C1 never manipulated a budget at all.** GET's theorem concerns fixed actions
+evaluated under different budgets. C1 held the budget fixed and changed the
+actions: it rendered pre-projected numbers and showed those. The evaluator was
+never resolution-limited, it read the numbers it was handed. That is why the
+agreement rate at the reduced budget came back at exactly 1.0000 in four of six
+cells in 10.15, and why every reversal rate fell out of two agreement rates with
+no remainder. Decoupling the class label from the prediction repairs nothing
+while the stimulus is still pre-projected, because the evaluator will compute the
+projected distance whatever the label says.
+
+C1-B therefore held the stimulus fixed and varied the evaluator. Both conditions
+saw the same options at full rendering precision. The deliberate condition ran
+normally at about 350 reasoning tokens per comparison. The immediate condition
+set `enable_thinking` false through the chat template, which the gateway honors,
+giving zero reasoning tokens and a two-token answer. Record `budget.json`.
+
+**The deliberate condition is sound and is the usable part of this run.**
+
+| budget | class | `q`, agrees with the full metric order | interval | graded |
+|---|---|---|---|---|
+| `k` = 1 | W | 0.9844 | 0.917 to 0.997 | 64 of 64 |
+| `k` = 1 | T | 0.8906 | 0.791 to 0.946 | 64 of 64 |
+| `k` = 2 | W | 0.9844 | 0.917 to 0.997 | 64 of 64 |
+| `k` = 2 | T | 0.8750 | 0.772 to 0.935 | 64 of 64 |
+
+This records a confound the margin match does not remove, measured twice rather
+than argued. Under full deliberation, on full-precision options, with no budget
+imposed on anything, trading pairs are judged less accurately than
+within-subspace pairs by 0.0938 at `k` = 1 and 0.1094 at `k` = 2. The gap is
+stable across budgets, which points at a structural property of the class, since
+a trading pair carries a large discarded component by construction and is simply
+harder to judge. Any future class-gap statistic must be read against this
+baseline rather than against zero.
+
+**The immediate condition failed the instrument, so no budget question was
+reachable.**
+
+| budget | class | graded of 64 | share |
+|---|---|---|---|
+| `k` = 1 | W | 2 | 3.1 percent |
+| `k` = 1 | T | 7 | 10.9 percent |
+| `k` = 2 | W | 1 | 1.6 percent |
+| `k` = 2 | T | 2 | 3.1 percent |
+
+A pair survives only if the evaluator picks the same option regardless of
+position. If it chooses by position with probability `p` and by content
+otherwise, survival is about `1 - p`, so survival between 1.6 and 10.9 percent
+places the immediate condition at roughly 89 to 98 percent position-driven.
+Turning deliberation off did not give the evaluator a coarser geometry. It
+stopped the evaluator comparing the options at all.
+
+That is the same pattern this programme has already recorded twice, on
+`Qwen2.5-7B-Instruct` at a first-position rate of 0.8175 and on `gemma4-12b` at
+0.7000. Deliberation is what makes this class of evaluator compare by content,
+and removing it removes the instrument rather than narrowing it. The budget
+hypothesis was never tested.
+
+**Two failures of this draft's own making, recorded because they are the same
+defects the reread was convened to find.**
+
+The switch was verified on one hand-made pair, which returned zero reasoning
+tokens and a correct parseable letter, and that was treated as the condition
+being usable. One item is not an instrument check. Section 5 already specifies
+the right one, on swap agreement and position bias, and a graded design was
+built on a condition that had never been put through it.
+
+The harness then printed verdicts from the wreckage. At `k` = 2 it reported a
+class gap of -1.0000 computed from a single graded pair in one class and two in
+the other, and at `k` = 1 it reported that trading accuracy was not below one
+half on the strength of seven pairs. A verdict emitted without a check that
+enough evidence survived to support one is exactly the defect 10.2 catalogued in
+the registration, reproduced in code written after that catalogue. The guard is
+now in place: `condition_admissible` refuses a verdict for any condition where
+fewer than 32 of 64 pairs survive the swap check, and the refusal names the
+condition and the survival rate. It refuses this run's immediate condition at
+all four cells and admits the deliberate one.
+
+**What a working version needs.** A manipulation that lowers the evaluator's
+effective resolution while leaving it able to compare by content. Removing
+deliberation entirely is too blunt. Candidates that keep deliberation on are
+adding distractor attributes so that a fixed reasoning resource covers
+proportionally less of the consequence space, raising the dimension of that
+space for the same reason, or a graded reduction in reasoning tokens that stops
+short of the point where position preference takes over. Each needs to pass the
+instrument gate at every level of the manipulation before any of it is graded,
+and that gating is the registered precondition rather than a courtesy.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.

@@ -1,0 +1,16 @@
+[budget] k=1  W 64  T 64  margin W 1.607 T 1.748
+[budget] k=2  W 64  T 64  margin W 2.025 T 2.013
+[thermal] controller up, 20 threads, target 78.0 C
+[budget] pin verified, qwen3 created 1760022469
+[budget] k=1 deliberate W: q 0.9844 [0.917, 0.997] n 64/64  reasoning 336
+[budget] k=1 deliberate T: q 0.8906 [0.791, 0.946] n 64/64  reasoning 365
+[budget] k=1  immediate W: q 1.0000 [0.342, 1.000] n 2/64  reasoning 0
+[budget] k=1  immediate T: q 0.8571 [0.487, 0.974] n 7/64  reasoning 0
+[budget] k=1 VERDICT  q_T 0.8571  q_W 1.0000  gap +0.1429  T below half: False
+[budget] k=2 deliberate W: q 0.9844 [0.917, 0.997] n 64/64  reasoning 333
+[budget] k=2 deliberate T: q 0.8750 [0.772, 0.935] n 64/64  reasoning 379
+[budget] k=2  immediate W: q 0.0000 [0.000, 0.793] n 1/64  reasoning 0
+[budget] k=2  immediate T: q 1.0000 [0.342, 1.000] n 2/64  reasoning 0
+[budget] k=2 VERDICT  q_T 1.0000  q_W 0.0000  gap -1.0000  T below half: False
+[thermal] controller stopped
+budget written to budget.json
