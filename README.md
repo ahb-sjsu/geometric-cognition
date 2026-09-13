@@ -73,10 +73,12 @@ is why the conversion was worth running.
 
 The registration discipline of `ahb-sjsu/observation-theory-campaigns`,
 `ahb-sjsu/geometric-observation` and `ahb-sjsu/geometric-evaluation-theory`
-applies unchanged. Seal before run. Event presence first. Misses at full
-prominence. Numbers trace to artifacts. Compute where it belongs. Owner submits.
-No em dashes, colons, or semicolons inside sentences, and no sentence that argues
-for the work's merit.
+applies unchanged, and is restated in full in [`PROTOCOL.md`](PROTOCOL.md). Seal
+before run. Event presence first. Misses at full prominence. Numbers trace to
+artifacts. Compute where it belongs. Owner submits. No em dashes, colons, or
+semicolons inside sentences, and no sentence that argues for the work's merit.
+And a stage that detects unfitness persists what it saw, not only its verdict,
+which is rule 8 and was added here during gate C1.
 
 Two of those are currently violated by the corpus rather than by the practice,
 and the ledger says so. Eight rows cite measurements whose primary artifacts are
