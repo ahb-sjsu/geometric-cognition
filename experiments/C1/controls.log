@@ -1,0 +1,25 @@
+[controls] workload moment eigenvalues [920.5, 833.6, 741.9], gap ratio top/next 1.1043
+[controls] k=1  real W 64 T 64  placebo W 64 T 64  W-prime 50 kept, 14 dropped {'no_discarded_norm': 0, 'degenerate_direction': 0, 'out_of_box': 12, 'renders_equal': 0, 'rounding_flipped_order': 2}
+           common-shift share  W 0.406  T 0.000  W-prime 0.000
+[controls] k=2  real W 64 T 64  placebo W 64 T 64  W-prime 59 kept, 5 dropped {'no_discarded_norm': 0, 'degenerate_direction': 0, 'out_of_box': 5, 'renders_equal': 0, 'rounding_flipped_order': 0}
+           common-shift share  W 0.672  T 0.000  W-prime 0.000
+[thermal] controller up, 20 threads, target 78.0 C
+[controls] pin verified, qwen3 created 1760022469
+[controls] k=1 placebo_W, 64 pairs
+           rate 0.0156 (64 graded)
+[controls] k=1 placebo_T, 64 pairs
+           rate 0.9688 (64 graded)
+[controls] k=1 W_prime, 50 pairs
+           rate 0.1800 (50 graded)
+[controls] k=2 placebo_W, 64 pairs
+           rate 0.0000 (64 graded)
+[controls] k=2 placebo_T, 64 pairs
+           rate 0.9688 (64 graded)
+[controls] k=2 W_prime, 59 pairs
+           rate 0.1864 (59 graded)
+[thermal] controller stopped
+
+[controls] summary, against the pilot's 0.0000 / 0.9683
+  k=1  placebo W 0.0156  placebo T 0.9688  placebo contrast 0.9531  W-prime 0.18
+  k=2  placebo W 0.0000  placebo T 0.9688  placebo contrast 0.9688  W-prime 0.1864
+controls written to controls.json

@@ -46,6 +46,7 @@ the tolerances.
 | Order probe, pinned `qwen3` | Atlas to `ellm`, 2026-09-13 | **PASS**, all six gates. Agreement 1.0000, first-position 0.5000, held-out order accuracy 0.9900, 0 unparsed of 800 | [`experiments/C1/order_probe_qwen3.json`](experiments/C1/order_probe_qwen3.json) |
 | Pilot | Atlas to `ellm`, 2026-09-13, seed 20260914 | **complete**, `MARG` 0.4841, `CEIL` 0.05, cap does not bind | [`experiments/C1/pilot_qwen3.json`](experiments/C1/pilot_qwen3.json) |
 | Cold reread | two readers with no drafting context, 2026-09-13 | **NOT SEALABLE**, three design defects and eleven document defects | [`experiments/C1/PREREG-C1-DRAFT.md`](experiments/C1/PREREG-C1-DRAFT.md) Section 10 |
+| Placebo and W-prime controls | Atlas to `ellm`, 2026-09-13, seed 20260915 | **D1 confirmed**, placebo contrast 0.9531 on a random plane against the registered 0.9683. **D3 confirmed**, W-prime 0.1800 against W's 0.0000 | [`experiments/C1/controls.json`](experiments/C1/controls.json) |
 
 The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
 1.2e-6 degrees, and shows the subspace moving only 1.4 degrees under reporting
@@ -242,6 +243,32 @@ within-subspace pairs at rank 1, and 54.37 against 47.56 at rank 2, while
 rendered length is balanced at about 21.8 characters everywhere. A difference of
 roughly a fifth in range is present, measured, and recorded beside the result it
 bounds.
+
+**The controls settle it. The contrast does not come from the budget.** Both
+diagnostics the cold reread proposed were run against the pinned evaluator on
+the pilot's own fitted metric, and neither grades a claim. Rebuilding both
+classes against a uniformly random plane, with the registered sampler otherwise
+untouched, reproduces the registered result: a contrast of 0.9531 at rank 1,
+where that plane sits 40.6 degrees from the top-`k` eigenspace, and 0.9688 at
+rank 2, against the registered 0.9683. The retained subspace is doing no work.
+A pass on the design as registered would have reported a property of orthogonal
+projection.
+
+Our own diagnostic needs one correction so it is not read as stronger than it
+is. The plane angle prints 0.0 degrees at rank 2, which is geometry rather than
+a failed randomization, since any two 2-planes in three-space share a line and
+their largest principal angle is identically zero. Rank 1 is the test that
+carries the finding.
+
+The second control is confirmed in direction and is the smaller effect. Class
+W-prime differs from the within-subspace class only in whether the two options
+move by the same vector at budget, the predicted reversal is zero for both and
+is asserted per pair before anything is sent, and the observed rate is 0.1800
+and 0.1864 against 0.0000. So the registered zero was not a property of the
+geometry alone. How much of it was is not settled, because an observed 0.18 is
+also what a per-comparison accuracy near 0.90 would produce on harder pairs, and
+the design does not separate those. W-prime alone would not collapse the
+contrast. The placebo does.
 
 **The rate-limit rule earned its keep.** The registration has now been reread by
 two readers with no drafting context, and Section 10 records the result. The

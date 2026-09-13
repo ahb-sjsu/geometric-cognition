@@ -1,0 +1,125 @@
+{
+ "stage": "controls",
+ "seed": 20260915,
+ "provenance": {
+  "host": "atlas",
+  "python": "3.12.3",
+  "numpy": "2.4.6",
+  "torch": "2.11.0+cu130",
+  "transformers": "5.5.3",
+  "cuda_visible_devices": null,
+  "gpu_at_start": "0, 0 %, 18803 MiB, 56\n1, 0 %, 57 MiB, 49",
+  "utc": "2026-09-13T14:26:11Z",
+  "target_temp": 78.0,
+  "max_threads": 20
+ },
+ "evaluator_pin": {
+  "model_id": "qwen3",
+  "created": 1760022469,
+  "owned_by": "NRP",
+  "verified_utc": "2026-09-13T14:07:39Z"
+ },
+ "grades_no_claim": true,
+ "workload_eigenvalues": [
+  920.5109619914012,
+  833.5781148222809,
+  741.8564793057915
+ ],
+ "pilot_reference": {
+  "contrast": 0.9682539682539683,
+  "R_W": 0.0,
+  "R_T": 0.9682539682539683
+ },
+ "unparsed": 0,
+ "deadline_failures": 0,
+ "finish_reasons": {
+  "stop": 1460
+ },
+ "escalations": 11,
+ "cells": {
+  "1": {
+   "plane_angle_deg": 40.568269876830676,
+   "mean_differential_shift": 42.5391417116082,
+   "wprime_drops": {
+    "no_discarded_norm": 0,
+    "degenerate_direction": 0,
+    "out_of_box": 12,
+    "renders_equal": 0,
+    "rounding_flipped_order": 2
+   },
+   "wprime_discarded_dimension": 2,
+   "common_shift_share": {
+    "W": 0.40625,
+    "T": 0.0,
+    "W_prime": 0.0
+   },
+   "placebo_W": {
+    "n": 64,
+    "graded": 64,
+    "reversals": 1,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.015625
+   },
+   "placebo_T": {
+    "n": 64,
+    "graded": 64,
+    "reversals": 62,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.96875
+   },
+   "W_prime": {
+    "n": 50,
+    "graded": 50,
+    "reversals": 9,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.18
+   },
+   "placebo_contrast": 0.953125
+  },
+  "2": {
+   "plane_angle_deg": 1.4787793334710982e-06,
+   "mean_differential_shift": 47.65353116581946,
+   "wprime_drops": {
+    "no_discarded_norm": 0,
+    "degenerate_direction": 0,
+    "out_of_box": 5,
+    "renders_equal": 0,
+    "rounding_flipped_order": 0
+   },
+   "wprime_discarded_dimension": 1,
+   "common_shift_share": {
+    "W": 0.671875,
+    "T": 0.0,
+    "W_prime": 0.0
+   },
+   "placebo_W": {
+    "n": 64,
+    "graded": 64,
+    "reversals": 0,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.0
+   },
+   "placebo_T": {
+    "n": 64,
+    "graded": 64,
+    "reversals": 62,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.96875
+   },
+   "W_prime": {
+    "n": 59,
+    "graded": 59,
+    "reversals": 11,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.1864406779661017
+   },
+   "placebo_contrast": 0.96875
+  }
+ }
+}

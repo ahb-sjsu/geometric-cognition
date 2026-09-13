@@ -707,6 +707,59 @@ corrected in this revision, and the rest are left standing and visible rather
 than quietly repaired, because a registration that is edited into agreement with
 its own code after the code is written is not a registration.
 
+### 10.10 The two controls, run
+
+Both controls proposed in 10.1 were run on 2026-09-13 at seed 20260915, against
+the pinned evaluator, on the pilot's own fitted metric. Record
+`controls.json`, log `controls.log`. Neither grades a claim. There were no
+unparsed items, no deadline failures, and every cell graded in full.
+
+| Cell | `k` = 1 | `k` = 2 | registered pilot |
+|---|---|---|---|
+| Placebo, within-subspace | 0.0156 | 0.0000 | 0.0000 |
+| Placebo, trading | 0.9688 | 0.9688 | 0.9683 |
+| Placebo contrast | 0.9531 | 0.9688 | 0.9683 |
+| Class W-prime | 0.1800 | 0.1864 | 0.0000 |
+
+**D1 is confirmed. The contrast does not depend on the retained subspace.**
+Rebuilding both classes against a uniformly random plane, with everything else
+in the registered sampler untouched, reproduces the registered result. At
+`k = 1` that plane is 40.6 degrees from the top-`k` eigenspace and the contrast
+is 0.9531 against the registered 0.9683. The top-`k` eigenspace has no
+privileged status, and a pass on the registered design would report a property
+of orthogonal projection rather than a budget.
+
+One caveat on our own diagnostic, since it would otherwise read as a stronger
+result than it is. The plane angle at `k = 2` is reported as 0.0 degrees. That
+is geometry and not a failed randomization. Any two 2-planes in three-space
+intersect in at least a line, so the largest principal angle between them is
+identically zero, checked over 200 random pairs. At `k = 2` the placebo is
+therefore a weaker test than at `k = 1`, and `k = 1` is the one that carries the
+finding.
+
+**D3 is confirmed in direction and is smaller than the contrast it disturbs.**
+W-prime differs from W only in whether the two options move by the same vector
+at budget. The predicted reversal rate is zero for both, asserted per pair
+before any comparison was sent. The observed rate is 0.1800 and 0.1864 against
+W's 0.0000. So the registered within-subspace rate of exactly zero is not a
+clean measure of a preserved subspace. Part of it is the common shift, which is
+present in 0.406 of W pairs at `k = 1` and 0.672 at `k = 2`, in no trading pair,
+and in no W-prime pair.
+
+The honest reading of the size is that two accounts remain open. Under the
+identity in 10.1 D2 an observed 0.18 implies a per-comparison accuracy near
+0.90 on these pairs, so W-prime may simply be harder rather than cue-free, and
+the design does not separate those. What is settled is that 0.0000 was not a
+property of the geometry alone. What is not settled is how much of it was.
+W-prime at 0.18 is still far below the trading rate, so D3 on its own does not
+collapse the contrast. D1 does.
+
+**Disposition unchanged, and now on evidence rather than on argument.** The
+registration is not sealed and is not renamed. The placebo result means the
+repair D1 needs is not cosmetic: the consequence distribution has to give the
+workload moment a spectral gap before a rank budget is a manipulable quantity
+at all.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.
