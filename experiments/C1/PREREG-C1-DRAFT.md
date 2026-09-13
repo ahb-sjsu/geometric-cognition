@@ -760,6 +760,98 @@ repair D1 needs is not cosmetic: the consequence distribution has to give the
 workload moment a spectral gap before a rank budget is a manipulable quantity
 at all.
 
+### 10.11 The D1 repair, and the defect it introduced
+
+The design was changed to give the workload moment a spectral gap, and the pilot
+was rerun at seed 20260916. Record `pilot2_qwen3.json`, log `pilot2.log`. The
+old pilot at seed 20260914 is superseded and its tolerances do not stand.
+
+An off-centroid ideal alone is not enough and cannot be. With options uniform on
+a box, `M = Cov(C) + (mu - t)(mu - t)^T`, which on an isotropic box is
+`s^2 I + dd^T`, whose eigenvalues are `s^2 + |d|^2`, `s^2`, `s^2`. The bottom two
+are equal for every `d`, so moving the ideal buys a gap at `k = 1` and never one
+at `k = 2`. The attribute ranges had to change as well.
+
+| | old design | repaired design |
+|---|---|---|
+| ideal | (50, 50, 50) | (95, 15, 8) |
+| box | `[0,100]^3` | `[0,100] x [0,60] x [0,22]` |
+| eigenvalues | 920.5, 833.6, 741.9 | 4014.5, 434.8, 28.3 |
+| gap at `k` = 1, 2 | 1.10, 1.13 | 9.23, 15.36 |
+| retained direction across draws | 56 degrees | 1.38 degrees |
+
+The subspace is now a property of the workload rather than of the draw, and
+`assert_spectral_gap` refuses any budget whose gap is below the registered floor
+or inside the 97.5th percentile of an isotropic null at the realized sample
+size. It refuses the old design at both budgets.
+
+**The repair introduced a defect of the same shape as the one it fixed.** The
+design was chosen by maximizing the smaller of the two gaps, and the discarded
+trace share was never checked. At `k = 2` the repaired design discards 0.0063 of
+the trace against the registration's own anti-vacuity floor of 0.05. That cell
+is vacuous. The budget is identified and discards essentially nothing, which is
+a budget in name only, and it was caught by a gate this registration already had
+rather than by the person making the change.
+
+**The two conditions on a rank budget are in tension, and this is general.**
+Identification needs `lambda_k / lambda_{k+1}` large. Non-vacuity needs
+`sum_{j>k} lambda_j / trace` not small. A large gap at `k` makes
+`lambda_{k+1}` small, which makes the discarded share small, and at the top
+budget `k = d - 1` the two conditions act on the same eigenvalue in opposite
+directions. Satisfying one by itself is easy and is what both C1 designs did, in
+opposite directions. A joint search finds the region is not empty: the box
+`[0,100] x [0,45] x [0,75]` with ideal `(75, 15, 20)` gives eigenvalues
+1706.3, 564.9, 187.2, a gap of 3.02 at both budgets and discarded shares of
+0.3059 and 0.0761, clearing both floors with a margin of about half again.
+
+### 10.12 The cells, and a prediction that failed
+
+Before the cells were opened, the identity in 10.1 D2 was used to predict them
+from the held-out accuracy of 0.9950, giving `R_T` 0.9901, `R_W` 0.0100 and a
+contrast of 0.9801 at both budgets. The prediction was recorded first and is
+reproduced here whatever it says.
+
+| | `k` = 1 | `k` = 2 | predicted |
+|---|---|---|---|
+| `R_W` | 0.0323 | 0.0476 | 0.0100 |
+| `R_T` | 0.8871 | 0.4186 | 0.9901 |
+| contrast | 0.8548 | 0.3710 | 0.9801 |
+| discarded share | 0.1034 | 0.0063 | |
+| graded | 62 of 63, 62 of 63 | 42 of 43, 43 of 43 | |
+
+It failed at both budgets, and badly at `k = 2`. That is the first evidence in
+this programme that the contrast is not wholly a restatement of the
+calibration's accuracy.
+
+**It is not yet evidence that the budget is doing the work, and the reason is a
+flaw in the prediction rather than in the result.** The identity is stated in
+`p`, the probability that a graded verdict agrees with the fitted metric on the
+graded pairs. Held-out accuracy was used as a proxy for `p`, and it is an upper
+bound rather than an estimate, because calibration pairs are drawn uniformly and
+carry large margins while graded pairs are margin-matched and sit near ties.
+Inverting the identity on the observed contrasts gives an implied `p` of 0.9623
+at `k = 1` and 0.8045 at `k = 2`, and both are entirely plausible values for a
+harder set of pairs. So the deflationary account survives: the evaluator may
+simply be less accurate where the pairs are hard, with the identity intact
+throughout.
+
+Separating the two requires measuring `p` on the graded pairs directly, which is
+the full-budget competence gate that Section 5 registers and 10.2 found is never
+computed. `build_pairs` records `a_pref_full` and nothing consumes it. Computing
+it turns the identity from an assumption into a test, and it is the next thing
+this design needs.
+
+**Status.** Not sealed and not renamed. The tolerances the rerun produced,
+`MARG` 0.1855 and `CEIL` 0.0952, are recorded but do not stand, because the
+`k = 2` cell that produced the smaller contrast is vacuous by the anti-vacuity
+gate. Three items now block a seal. The design must clear the gap floor and the
+anti-vacuity floor at both budgets together. The full-budget competence gate must
+be implemented so D2 can be tested rather than argued. And the cells must be
+full: the anisotropic box cost pairs, leaving 43 per class at `k = 2`, where a
+`CEIL` of 0.05 turns on two items and one more fails it, so `CEIL` wants stating
+as a binomial bound rather than a point comparison. The run also recorded three
+unparsed items against a parse gate registered at zero.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.

@@ -1,0 +1,17 @@
+[thermal] controller up, 20 threads, target 78.0 C
+[pilot] pin verified, qwen3 created 1760022469
+[pilot] calibrating on 400 pairs, both orders
+[pilot] calibrated, held-out order accuracy 0.9950, kept 399 of 400
+[pilot] budget k=1 identified, gap 9.23 against floor 2.0 and null p97.5 1.23
+[pilot] budget k=2 identified, gap 15.36 against floor 2.0 and null p97.5 1.26
+[pilot] k=1 class W, 63 pairs
+[pilot] k=1 class T, 63 pairs
+[pilot] k=2 class W, 43 pairs
+[pilot] k=2 class T, 43 pairs
+[thermal] controller stopped
+
+[pilot] cells
+  k=1  W 0.0323  T 0.8871  contrast +0.8548  ceiling 1.0000  discarded 0.1034
+  k=2  W 0.0476  T 0.4186  contrast +0.3710  ceiling 1.0000  discarded 0.0063
+[pilot] tolerances  MARG 0.1855  CEIL 0.0952  cap 0.8548  cap_binds False
+pilot written to pilot2_qwen3.json

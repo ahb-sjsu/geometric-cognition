@@ -207,14 +207,24 @@ def main() -> int:
     for k in (1, 2):
         real_Pi = np.array(retained(G, t, A, k)["Pi_whitened"], float)
         rand_Pi = random_plane(d, k, rng)
-        ang = np.degrees(np.arccos(np.clip(
-            np.abs(np.linalg.svd(real_Pi @ rand_Pi, compute_uv=False)[0]), 0, 1)))
+        # ALL principal angles, not just the one from the largest singular
+        # value. The first run reported only the largest, which is identically
+        # zero whenever the two subspaces must intersect: any two 2-planes in
+        # three-space share a line. That made the k=2 placebo look like a null
+        # rotation when it was a real one. The informative summary is the
+        # smallest angle that is not forced to zero, so report the whole set.
+        sv = np.clip(np.abs(np.linalg.svd(real_Pi @ rand_Pi, compute_uv=False)), 0, 1)
+        angs = np.degrees(np.arccos(sv))[:k]
+        ang = float(np.max(angs))
         real = build_pairs(G, t, A, k=k, n_per_class=args.n_per_class, rng=rng,
                            lo=LO, hi=HI)
         plac = build_with_plane(G, t, A, k, args.n_per_class, rng, rand_Pi)
         wp = wprime(real["W"], G, t, real_Pi, rng, LO, HI)
         built[k] = {"real": real, "placebo": plac, "wprime": wp,
-                    "plane_angle_deg": float(ang)}
+                    "plane_angle_deg": float(ang),
+                    "principal_angles_deg": [float(a) for a in angs],
+                    "forced_zero_angles": int(k - np.count_nonzero(angs > 1e-6))}
+        print(f"[controls] k={k}  principal angles {np.round(angs, 1).tolist()} deg")
         print(f"[controls] k={k}  real W {len(real['W'])} T {len(real['T'])}  "
               f"placebo W {len(plac['W'])} T {len(plac['T'])}  "
               f"W-prime {len(wp['pairs'])} kept, {wp['dropped']} dropped "
@@ -242,6 +252,8 @@ def main() -> int:
         for k in (1, 2):
             b = built[k]
             cell = {"plane_angle_deg": b["plane_angle_deg"],
+                    "principal_angles_deg": b["principal_angles_deg"],
+                    "forced_zero_angles": b["forced_zero_angles"],
                     "mean_differential_shift": b["wprime"]["mean_differential_shift"],
                     "wprime_drops": b["wprime"]["drop_reasons"],
                     "wprime_discarded_dimension": b["wprime"]["discarded_dimension"],
