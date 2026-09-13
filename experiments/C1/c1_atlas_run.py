@@ -27,7 +27,8 @@ import numpy as np
 
 import c1_calibrate
 import c1_scorer
-from c1_calibrate import assert_spectral_gap, calibrate, retained
+from c1_calibrate import (assert_budget_usable, assert_spectral_gap,
+                          clopper_pearson_upper, calibrate, retained)
 from c1_scorer import (LMScorer, build_pairs, render_option, rendering_ceiling,
                        run_cell)
 
@@ -402,17 +403,21 @@ def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
         # a gapless moment is a random plane, and the graded contrast survives
         # replacing it with one. Refuse rather than warn.
         floor = float(cfg.get("spectral_gap_floor", 2.0))
+        sfloor = float(cfg.get("discarded_share_floor", 0.05))
         gaps = {}
         for k in (1, 2):
-            gaps[str(k)] = assert_spectral_gap(G, t, A[keep], k, floor)
-            print(f"[pilot] budget k={k} identified, gap {gaps[str(k)]['gap']:.2f} "
-                  f"against floor {floor} and null p97.5 "
-                  f"{gaps[str(k)]['null_p975']:.2f}")
+            gaps[str(k)] = assert_budget_usable(G, t, A[keep], k, floor, sfloor)
+            print(f"[pilot] budget k={k} usable, gap {gaps[str(k)]['gap']:.2f} "
+                  f"(floor {floor}, null p97.5 {gaps[str(k)]['null_p975']:.2f}), "
+                  f"discarded share {gaps[str(k)]['discarded_share']:.4f} "
+                  f"(floor {sfloor})")
 
         cells = {}
         for k in (1, 2):
             built = build_pairs(G, t, A[keep], k=k, n_per_class=n_class, rng=rng,
-                                lo=LO, hi=HI)
+                                lo=LO, hi=HI,
+                                oversample=int(cfg.get('oversample', 400)),
+                                pool=int(cfg.get('pool', 3)))
             Pi = np.array(built["retained"]["Pi_whitened"])
             res = {"k": k,
                    "discarded_trace_share": built["retained"]["discarded_trace_share"],
@@ -428,9 +433,23 @@ def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
             for name in ("W", "T"):
                 rows = [(render_option(p["a"]), render_option(p["b"]),
                          p["a_render_k"], p["b_render_k"]) for p in built[name]]
+                prefs = [p["a_pref_full"] for p in built[name]]
                 print(f"[pilot] k={k} class {name}, {len(rows)} pairs")
-                res[name] = run_cell_order(ch, ideal_str, rows, "k")
+                res[name] = run_cell_order(ch, ideal_str, rows, "k",
+                                           pref_full=prefs)
             res["contrast"] = res["T"]["reversal_rate"] - res["W"]["reversal_rate"]
+            # D2 tested on this cell's own p rather than on held-out accuracy
+            pT, pW = res["T"].get("competence_p"), res["W"].get("competence_p")
+            if pT is not None and np.isfinite(pT) and np.isfinite(pW):
+                pbar = 0.5 * (pT + pW)
+                res["identity"] = {
+                    "p_T": pT, "p_W": pW, "p_mean": pbar,
+                    "predicted_contrast": float((2 * pbar - 1) ** 2),
+                    "residual": float(res["contrast"] - (2 * pbar - 1) ** 2)}
+                print(f"           competence p: T {pT:.4f} W {pW:.4f}; "
+                      f"identity predicts {(2*pbar-1)**2:+.4f}, "
+                      f"observed {res['contrast']:+.4f}, "
+                      f"residual {res['identity']['residual']:+.4f}")
             # Section 11 asks for the class balance a margin match does not fix.
             res["balance"] = {
                 "attr_range_W": float(np.mean([max(p["a"]) - min(p["a"])
@@ -454,10 +473,18 @@ def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
         obs_contrast = float(np.min([c["contrast"] for c in usable]))
         obs_w = float(np.max([c["W"]["reversal_rate"] for c in usable]))
         ceil_T = float(np.min([c["rendering_ceiling_T"]["ceiling"] for c in usable]))
-        CEIL = max(2.0 * obs_w, 0.05)
+        # CEIL as an exact upper bound at the realised cell size, not a point
+        # comparison. At 43 pairs a point CEIL of 0.05 turns on two items.
+        bounds = [clopper_pearson_upper(c["W"]["reversals"], c["W"]["graded"])
+                  for c in usable if c["W"]["graded"]]
+        CEIL = max(max(bounds) if bounds else 0.05, 0.05)
         MARG = max(0.5 * obs_contrast, 0.10)
         cap = ceil_T - CEIL - 0.05
-        tol.update({"observed_contrast_min": obs_contrast,
+        tol.update({"CEIL_rule": "Clopper-Pearson 97.5 upper bound on the "
+                                 "observed within-subspace reversals at the "
+                                 "realised cell size, floored at 0.05",
+                    "CEIL_bounds_per_cell": bounds,
+                    "observed_contrast_min": obs_contrast,
                     "observed_W_max": obs_w,
                     "rendering_ceiling_min": ceil_T,
                     "CEIL": round(CEIL, 4),

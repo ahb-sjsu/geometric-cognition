@@ -11,9 +11,9 @@
  ],
  "decimals": 1,
  "ideal": [
-  95.0,
+  75.0,
   15.0,
-  8.0
+  20.0
  ],
  "lo": [
   0.0,
@@ -22,14 +22,14 @@
  ],
  "hi": [
   100.0,
-  60.0,
-  22.0
+  45.0,
+  75.0
  ],
  "n_calibration": 300,
  "n_per_class": 64,
  "seeds": {
   "probe": 20260913,
-  "pilot": 20260916,
+  "pilot": 20260917,
   "run": "FILL AT SEALING, drawn only after the rename"
  },
  "chooser_prompt_template": "The ideal is: {ideal}\nOption A: {first}\nOption B: {second}\nWhich option is closer to the ideal? Answer with a single letter, A or B.",
@@ -52,5 +52,8 @@
  },
  "concurrency": 16,
  "spectral_gap_floor": 2.0,
- "_design_note": "Ideal off the box centre and per-attribute ranges, so the workload moment has a gap at both budgets. The first design put the ideal at the centroid of an isotropic box, which makes M isotropic analytically; the retained subspace was then the calibration draw's noise and the graded contrast survived replacing it with a random plane (controls.json). An off-centroid ideal alone cannot fix k=2, because s^2 I + dd^T has its bottom two eigenvalues equal for any d, so the ranges had to change too."
+ "_design_note": "Chosen to clear BOTH floors at BOTH budgets, which the two earlier designs each failed in opposite directions. The first had a discarded share and no spectral gap, so the retained subspace was the calibration draw's noise. The second had a gap of 15.36 at k=2 and discarded 0.0063 of the trace, so the budget was identified and threw nothing away. The conditions pull against each other because a large gap at k makes lambda_{k+1} small and the discarded share is built from lambda_{k+1} upward; at k=d-1 they act on the same eigenvalue. Eigenvalues here are about 1706, 565, 187: gap 3.02 and share 0.306 at k=1, gap 3.02 and share 0.076 at k=2.",
+ "discarded_share_floor": 0.05,
+ "oversample": 1500,
+ "pool": 16
 }

@@ -227,7 +227,7 @@ def both_orders(chooser, ideal_str: str, A, B, batch: int = 32) -> dict:
 
 
 def run_cell_order(chooser, ideal_str: str, pairs, budget_key: str,
-                   batch: int = 32) -> dict:
+                   batch: int = 32, pref_full=None) -> dict:
     """Reversal rate of one class at one budget, for an order instrument.
 
     The reference is the evaluator's own full-budget order, not the fitted
@@ -247,19 +247,39 @@ def run_cell_order(chooser, ideal_str: str, pairs, budget_key: str,
 
     rev = amb_ref = amb_cut = 0
     graded = 0
-    for rf, rr, cf_, cr in zip(ref_f, ref_r, cut_f, cut_r):
+    # Competence: does the evaluator's own full-budget order agree with the
+    # order the fitted metric predicts? This is p, on the pairs actually graded,
+    # and it is the quantity the reversal identity is stated in. Without it the
+    # identity contrast = (2p-1)^2 can only be argued, because held-out accuracy
+    # is measured on uniform calibration pairs with large margins and is an
+    # upper bound for p here, not an estimate of it.
+    comp_n = comp_hit = 0
+    for i, (rf, rr, cf_, cr) in enumerate(zip(ref_f, ref_r, cut_f, cut_r)):
         if not (np.isfinite(rf) and np.isfinite(rr)) or (rf > 0.5) != (rr < 0.5):
             amb_ref += 1
             continue
+        if pref_full is not None:
+            comp_n += 1
+            comp_hit += int(bool(rf > 0.5) == bool(pref_full[i]))
         if not (np.isfinite(cf_) and np.isfinite(cr)) or (cf_ > 0.5) != (cr < 0.5):
             amb_cut += 1
             continue
         graded += 1
         if (rf > 0.5) != (cf_ > 0.5):
             rev += 1
-    return {"n": len(pairs), "graded": graded, "reversals": rev,
-            "ambiguous_reference": amb_ref, "ambiguous_at_budget": amb_cut,
-            "reversal_rate": (rev / graded) if graded else float("nan")}
+    p = (comp_hit / comp_n) if comp_n else float("nan")
+    out = {"n": len(pairs), "graded": graded, "reversals": rev,
+           "ambiguous_reference": amb_ref, "ambiguous_at_budget": amb_cut,
+           "reversal_rate": (rev / graded) if graded else float("nan")}
+    if pref_full is not None:
+        out["competence_p"] = p
+        out["competence_n"] = comp_n
+        # what the identity predicts for THIS cell from THIS cell's own p
+        out["identity_predicted_reversal_rate"] = (
+            float(p * p + (1 - p) ** 2) if np.isfinite(p) else float("nan"))
+        out["identity_predicted_W_rate"] = (
+            float(2 * p * (1 - p)) if np.isfinite(p) else float("nan"))
+    return out
 
 
 def heldout_order_accuracy(A, B, y, folds: int = 5, l2: float = 1e-3,

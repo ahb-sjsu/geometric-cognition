@@ -136,7 +136,7 @@ def _dist(x, G, t) -> float:
 def build_pairs(G, t, X_cal, k: int, n_per_class: int, rng, *,
                 lo: float = 0.0, hi: float = 100.0,
                 min_component: float = 0.5, n_bins: int = 8,
-                oversample: int = 400) -> dict:
+                oversample: int = 400, pool: int = 3) -> dict:
     """Draw W and T candidates, then match them bin by bin on full-budget margin.
 
     A T candidate is admitted only when the fitted metric says the rank-k order
@@ -192,9 +192,9 @@ def build_pairs(G, t, X_cal, k: int, n_per_class: int, rng, *,
                            "a_pref_full": bool(da < db),
                            "a_render_k": render_option(round_to_render(pa)),
                            "b_render_k": render_option(round_to_render(pb))})
-            if len(W) >= n_per_class * 3 and len(T) >= n_per_class * 3:
+            if len(W) >= n_per_class * pool and len(T) >= n_per_class * pool:
                 break
-        if len(W) >= n_per_class * 3 and len(T) >= n_per_class * 3:
+        if len(W) >= n_per_class * pool and len(T) >= n_per_class * pool:
             break
 
     matched = _match_margins(W, T, n_per_class, n_bins)

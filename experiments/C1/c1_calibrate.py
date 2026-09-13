@@ -353,3 +353,60 @@ def assert_spectral_gap(G, t, X, k: int, floor: float, **kw) -> dict:
             f"eigenspace of a gapless moment is a random plane, and the graded "
             f"contrast survives replacing it with one.")
     return g
+
+
+def discarded_share(G, t, X, k: int) -> float:
+    """Share of the workload trace the budget throws away."""
+    w = np.sort(np.linalg.eigvalsh(workload_moment(G, t, X)))[::-1]
+    tot = float(w.sum())
+    return float(w[k:].sum() / tot) if tot > 0 else 0.0
+
+
+class VacuousBudget(RuntimeError):
+    """The budget is identified and discards nothing worth discarding."""
+
+
+def assert_budget_usable(G, t, X, k: int, gap_floor: float,
+                         share_floor: float, **kw) -> dict:
+    """Both conditions, together, because they pull against each other.
+
+    Identification wants lambda_k / lambda_{k+1} large. Non-vacuity wants the
+    discarded trace share not small. A large gap makes lambda_{k+1} small and so
+    makes the discarded share small, and at the top budget k = d-1 the two act on
+    the same eigenvalue in opposite directions. C1's first design had a share and
+    no gap; its second had a gap and no share. Checking one at a time is how both
+    happened, so this checks both or refuses.
+    """
+    g = assert_spectral_gap(G, t, X, k, gap_floor, **kw)
+    s = discarded_share(G, t, X, k)
+    if s < share_floor:
+        raise VacuousBudget(
+            f"budget k={k} is identified at gap {g['gap']:.2f} but discards only "
+            f"{s:.4f} of the workload trace, against a floor of {share_floor}. "
+            f"A budget that throws away nothing is a budget in name only. "
+            f"Eigenvalues {np.round(g['eigenvalues'], 1).tolist()}.")
+    g["discarded_share"] = s
+    return g
+
+
+def clopper_pearson_upper(k: int, n: int, alpha: float = 0.025) -> float:
+    """Exact upper confidence limit for a binomial rate, by bisection.
+
+    CEIL was registered as a point comparison against an observed rate. At 43
+    pairs per class that makes the bar turn on two items, so a true rate sitting
+    at the bar trips it about half the time. Stating the bar as an upper bound
+    at the realized cell size is the repair.
+    """
+    from math import comb
+    if n <= 0: return 1.0
+    if k >= n: return 1.0
+
+    def cdf_at(p):                      # P(X <= k) under Binomial(n, p)
+        return sum(comb(n, i) * p**i * (1 - p)**(n - i) for i in range(k + 1))
+
+    lo, hi = 0.0, 1.0
+    for _ in range(200):
+        mid = (lo + hi) / 2
+        if cdf_at(mid) > alpha: lo = mid
+        else: hi = mid
+    return float((lo + hi) / 2)

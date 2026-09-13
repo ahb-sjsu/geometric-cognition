@@ -59,7 +59,7 @@ def random_plane(d: int, k: int, rng) -> np.ndarray:
     return Q[:, :k] @ Q[:, :k].T
 
 
-def build_with_plane(G, t, X_cal, k, n_per_class, rng, Pi):
+def build_with_plane(G, t, X_cal, k, n_per_class, rng, Pi, LO, HI, OVER, POOL):
     """`build_pairs` exactly, but on a plane we hand it rather than the top-k.
 
     The patch is on `c1_scorer.retained`, so every other line of the admission
@@ -73,7 +73,7 @@ def build_with_plane(G, t, X_cal, k, n_per_class, rng, Pi):
     c1_scorer.retained = lambda *a, **kw: res
     try:
         return build_pairs(G, t, X_cal, k=k, n_per_class=n_per_class, rng=rng,
-                           lo=LO, hi=HI)
+                           lo=LO, hi=HI, oversample=OVER, pool=POOL)
     finally:
         c1_scorer.retained = real
 
@@ -189,6 +189,8 @@ def main() -> int:
     cfg = json.load(open(args.config, encoding="utf-8"))
     from c1_atlas_run import box
     LO, HI = box(cfg)
+    OVER = int(cfg.get('oversample', 400))
+    POOL = int(cfg.get('pool', 3))
     pilot = json.load(open(args.pilot, encoding="utf-8"))
     G = np.array(pilot["calibration"]["G"], float)
     t = np.array(pilot["calibration"]["t"], float)
@@ -217,8 +219,9 @@ def main() -> int:
         angs = np.degrees(np.arccos(sv))[:k]
         ang = float(np.max(angs))
         real = build_pairs(G, t, A, k=k, n_per_class=args.n_per_class, rng=rng,
-                           lo=LO, hi=HI)
-        plac = build_with_plane(G, t, A, k, args.n_per_class, rng, rand_Pi)
+                           lo=LO, hi=HI, oversample=OVER, pool=POOL)
+        plac = build_with_plane(G, t, A, k, args.n_per_class, rng, rand_Pi,
+                                LO, HI, OVER, POOL)
         wp = wprime(real["W"], G, t, real_Pi, rng, LO, HI)
         built[k] = {"real": real, "placebo": plac, "wprime": wp,
                     "plane_angle_deg": float(ang),
