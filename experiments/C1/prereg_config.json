@@ -1,0 +1,21 @@
+{
+  "_comment": "Fixed at sealing. The attribute labels and the ideal are frozen here so that neither is chosen after a result is seen.",
+  "model_id": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "FILL AT SEALING",
+  "scorer_prompt_template": "The ideal option is: {ideal}\nA candidate option is: {option}\nHow far is the candidate from the ideal? Answer with a single number and nothing else.",
+  "use_chat_template": true,
+  "max_new_tokens": 12,
+  "batch": 32,
+  "labels": ["P", "Q", "R"],
+  "decimals": 1,
+  "ideal": [50.0, 50.0, 50.0],
+  "lo": 0.0,
+  "hi": 100.0,
+  "n_calibration": 300,
+  "n_per_class": 64,
+  "seeds": {
+    "probe": 20260913,
+    "pilot": "FILL AT SEALING",
+    "run": "FILL AT SEALING, drawn only after the rename"
+  }
+}

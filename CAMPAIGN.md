@@ -32,10 +32,24 @@ and the contrast between them is the only quantity graded.
 
 **Before sealing.** A self-test on a synthetic evaluator with known metric and
 known projection, a probe for event presence and anti-vacuity, and a pilot to fix
-the tolerances. None has run. The registration also carries the programme's
-rate-limit rule, which requires the draft to be reread cold in a later session
-before it is sealed, and Section 10 of the registration is empty until that
-happens.
+the tolerances.
+
+| Stage | Run | Verdict | Record |
+|---|---|---|---|
+| Self-test | Atlas, 2026-09-13T04:24:18Z | **PASS** | [`experiments/C1/selftest.json`](experiments/C1/selftest.json) |
+| Probe | not complete | | |
+| Pilot | not run | | |
+
+The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
+1.2e-6 degrees, and shows the subspace moving only 1.4 degrees under reporting
+noise of sigma 4.0 against distances of order 50. The harness reverses no
+within-subspace pair and reverses every trading pair the rendering still flips.
+It ran under a batch-probe `ThermalController` at target 78 C with 20 threads, on
+GPU 1 through `CUDA_VISIBLE_DEVICES`, with GPU 0 left alone at 18803 MiB.
+
+The registration also carries the programme's rate-limit rule, which requires the
+draft to be reread cold in a later session before it is sealed, and Section 10 of
+the registration is empty until that happens.
 
 **What a pass would and would not establish.** A pass establishes the phenomenon
 in one artificial evaluator whose metric was identified on disjoint evidence. It
@@ -51,6 +65,7 @@ C1 does not answer it.
 | gates drafted | 1 |
 | gates sealed | 0 |
 | gates run | 0 |
+| pre-sealing stages passed | 1 of 3 |
 | claims raised by a sealed pass | 0 |
 
 No claim in `claims/LEDGER.md` has been raised or lowered by a gate in this

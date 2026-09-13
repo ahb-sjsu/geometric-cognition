@@ -1,0 +1,91 @@
+{
+ "stage": "selftest",
+ "provenance": {
+  "host": "atlas",
+  "python": "3.12.3",
+  "numpy": "2.2.6",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.5.0",
+  "cuda_visible_devices": "1",
+  "gpu_at_start": "0, 0 %, 18803 MiB, 59\n1, 0 %, 57 MiB, 51",
+  "utc": "2026-09-13T04:24:18Z",
+  "target_temp": 78.0,
+  "max_threads": 20
+ },
+ "calibration": {
+  "seed": 20260913,
+  "n": 600,
+  "metric_rel_error": 1.212162002774758e-13,
+  "ideal_rel_error": 3.871851619546063e-14,
+  "subspace_max_principal_angle_deg": 1.2074182697257333e-06,
+  "discarded_trace_share_k2": 0.11084758564685494,
+  "rms_residual": 2.1054071811575117e-10,
+  "r2": 1.0,
+  "psd_clip": -0.0,
+  "pass": true
+ },
+ "noise_sweep": [
+  {
+   "sigma": 0.1,
+   "metric_rel_error": 0.0004627700280621148,
+   "ideal_rel_error": 0.0002963160810164974,
+   "subspace_max_principal_angle_deg": 0.03492289485797163
+  },
+  {
+   "sigma": 0.5,
+   "metric_rel_error": 0.0023100796900657394,
+   "ideal_rel_error": 0.001481177718270454,
+   "subspace_max_principal_angle_deg": 0.1753119272283501
+  },
+  {
+   "sigma": 1.0,
+   "metric_rel_error": 0.00461100285979291,
+   "ideal_rel_error": 0.0029615467926467965,
+   "subspace_max_principal_angle_deg": 0.352329271346873
+  },
+  {
+   "sigma": 2.0,
+   "metric_rel_error": 0.0091871817208568,
+   "ideal_rel_error": 0.005921103937260145,
+   "subspace_max_principal_angle_deg": 0.711212543522094
+  },
+  {
+   "sigma": 4.0,
+   "metric_rel_error": 0.018249554319646488,
+   "ideal_rel_error": 0.011843202058712475,
+   "subspace_max_principal_angle_deg": 1.4463149566201166
+  }
+ ],
+ "harness": {
+  "n_W": 47,
+  "n_T": 47,
+  "margin_mean_W": 1.3432680238666967,
+  "margin_mean_T": 1.3059909545094273,
+  "discarded_trace_share": 0.11084758564681266,
+  "rendering_ceiling_T": {
+   "n": 47,
+   "lost_to_rounding": 1,
+   "share_lost": 0.02127659574468085,
+   "ceiling": 0.9787234042553191
+  },
+  "W": {
+   "n": 47,
+   "graded": 47,
+   "reversals": 0,
+   "indifferent": 0,
+   "undefined_reference": 0,
+   "reversal_rate": 0.0
+  },
+  "T": {
+   "n": 47,
+   "graded": 47,
+   "reversals": 46,
+   "indifferent": 0,
+   "undefined_reference": 0,
+   "reversal_rate": 0.9787234042553191
+  },
+  "contrast": 0.9787234042553191,
+  "pass": true
+ },
+ "pass": true
+}

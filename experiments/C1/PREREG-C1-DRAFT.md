@@ -178,10 +178,30 @@ sampling error and `R_T` within 0.05 of its constructed value at each `k`, and
 recorded here. A calibration recovery worse than that tolerance stops the gate,
 because the retained subspace would then be an artifact.
 
-*Registered result: NOT RUN.*
+**Registered result: PASS.** Atlas, `2026-09-13T04:24:18Z`, under a batch-probe
+`ThermalController` at target 78 C and 20 threads, `CUDA_VISIBLE_DEVICES=1`,
+torch 2.10.0+cu128, transformers 5.5.0, numpy 2.2.6. GPU 1 at 57 MiB and 51 C at
+start, GPU 0 left alone at 18803 MiB and 59 C. Record `selftest.json`.
 
-*Development check, laptop, 2026-09-13, recorded because it is what found the
-rendering ceiling and is not the registered record.* `c1_calibrate.py
+The calibration recovers the metric to a relative error of 1.2e-13, the ideal to
+3.9e-14, and the rank-2 retained subspace to a maximum principal angle of
+1.2e-6 degrees, at an `r2` of 1.000000 on 600 noiseless reports. Under reporting
+noise the subspace moves 0.035 degrees at sigma 0.1, 0.175 at 0.5, 0.352 at 1.0,
+0.711 at 2.0 and 1.446 at 4.0, against distances of order 50. The retained
+subspace is therefore not the fragile part of this design, which is the result
+that matters for the gate, because the subspace is what the two pair classes are
+defined against.
+
+The harness returns a W reversal rate of exactly 0 and a T rate of 0.9787, equal
+to the rendering ceiling to machine precision, with 1 of 47 T pairs returned to
+its original order by rounding and a discarded trace share of 0.1108. A
+synthetic evaluator that implements the theory exactly therefore reverses no
+within-subspace pair and every trading pair the rendering still flips, which is
+what the harness must show before any evaluator is graded against it.
+
+*The development check below was run on the laptop before the registered one. It
+is kept because it is what found the rendering ceiling, and it is not the
+record.* `c1_calibrate.py
 --selftest` recovers the metric to a relative error of 1.3e-13, the ideal to
 2.8e-14, and the rank-2 subspace to a maximum principal angle of 1.5e-6 degrees
 on 600 noiseless reports. Under reporting noise the subspace is stable, moving
