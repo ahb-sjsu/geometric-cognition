@@ -1,0 +1,25 @@
+[controls] workload moment eigenvalues [1504.3, 505.7, 229.0], gap ratio top/next 2.9749
+[controls] k=1  principal angles [62.5] deg
+[controls] k=1  real W 64 T 64  placebo W 64 T 64  W-prime 39 kept, 25 dropped {'no_discarded_norm': 0, 'degenerate_direction': 0, 'out_of_box': 25, 'renders_equal': 0, 'rounding_flipped_order': 0}
+           common-shift share  W 0.531  T 0.000  W-prime 0.000
+[controls] k=2  principal angles [0.0, 38.9] deg
+[controls] k=2  real W 64 T 64  placebo W 64 T 64  W-prime 53 kept, 11 dropped {'no_discarded_norm': 0, 'degenerate_direction': 0, 'out_of_box': 11, 'renders_equal': 0, 'rounding_flipped_order': 0}
+           common-shift share  W 0.672  T 0.000  W-prime 0.000
+[thermal] controller up, 20 threads, target 78.0 C
+[controls] pin verified, qwen3 created 1760022469
+[controls] k=1 placebo_W, 64 pairs
+[controls] k=1 placebo_T, 64 pairs
+[controls] k=1 W_prime, 39 pairs
+           placebo competence p: T 0.8571 W 0.9844; identity predicts +0.7082, observed +0.8415, residual +0.1334
+           rate 0.1282 (39 graded)
+[controls] k=2 placebo_W, 64 pairs
+[controls] k=2 placebo_T, 64 pairs
+[controls] k=2 W_prime, 53 pairs
+           placebo competence p: T 0.9365 W 0.9841; identity predicts +0.8476, observed +0.8730, residual +0.0254
+           rate 0.2157 (51 graded)
+[thermal] controller stopped
+
+[controls] summary, against the pilot's 0.0000 / 0.9683
+  k=1  placebo W 0.0156  placebo T 0.8571  placebo contrast 0.8415  W-prime 0.1282
+  k=2  placebo W 0.0317  placebo T 0.9048  placebo contrast 0.873  W-prime 0.2157
+controls written to controls4.json

@@ -939,6 +939,63 @@ and a second calibration block to bound the common-mode term. Those are design
 decisions for the owner, and the tolerances this pilot fixed, `MARG` 0.4194 and
 `CEIL` 0.1084, belong to a statistic this section recommends abandoning.
 
+### 10.14 The placebo residual, and the evaluator's reproducibility floor
+
+The placebo was rerun at the same seed, 20260918, with competence measured, so
+the residual attaches to the identical cells whose contrasts 10.13 reported.
+Record `controls4.json`. Rebuilding reproduced the pairs exactly, the same plane
+angles of 62.5 degrees and 38.9 degrees and the same cell sizes, which is what
+made the repeat usable as a test of the evaluator as well as of the design.
+
+| budget | pilot residual | placebo residual | difference |
+|---|---|---|---|
+| `k` = 1 | +0.0787 | +0.1334 | -0.0546 |
+| `k` = 2 | +0.0801 | +0.0254 | +0.0547 |
+
+**The residual is not a stable quantity and does not track the retained
+subspace.** A random plane gives a larger residual than the identified subspace
+at one budget and a smaller one at the other. Across the four measurements the
+residual ranges from 0.0254 to 0.1334, a spread of 0.11 that sits inside the
+plus or minus 0.17 interval 10.13 computed for a single cell. Nothing here
+distinguishes the identified subspace from an arbitrary plane on the residual
+any more than 10.13 did on the contrast.
+
+This also refutes the account offered in 10.13, which is recorded rather than
+quietly dropped. That account proposed a single error correlation across budgets
+as the source of the residual, and it reproduced the two numbers then available,
+including the placebo being the larger. It predicted the placebo should be
+systematically larger. At `k` = 2 it is not. One parameter fitted to two numbers
+was never a test, and with four numbers it fails.
+
+**The evaluator's reproducibility floor, which this registration never had.**
+The repeat used identical pairs, so the difference between the two runs is the
+evaluator and the gateway alone.
+
+| budget | cell | first run | repeat | delta |
+|---|---|---|---|---|
+| `k` = 1 | placebo W | 0.0159 | 0.0156 | +0.0002 |
+| `k` = 1 | placebo T | 0.8438 | 0.8571 | -0.0134 |
+| `k` = 1 | W-prime | 0.1282 | 0.1282 | 0.0000 |
+| `k` = 2 | placebo W | 0.0317 | 0.0317 | 0.0000 |
+| `k` = 2 | placebo T | 0.8871 | 0.9048 | -0.0177 |
+| `k` = 2 | W-prime | 0.2264 | 0.2157 | +0.0107 |
+
+Mean absolute difference 0.0070, maximum 0.0177, with two cells reproducing
+exactly. Hosted inference at temperature zero is not bitwise deterministic under
+continuous batching, and this is how much that costs here.
+
+The number matters for reading everything above it. Identical pairs return
+answers within 0.007 of each other, while different pair sets return residuals
+that differ by 0.11. The variation in the residual is therefore sampling over
+which pairs were drawn, not instability in the evaluator. At 64 pairs per cell
+the design cannot see through that variation, which is 10.13's power finding
+arriving from a second direction.
+
+For the registration it supplies a floor that was previously assumed rather than
+measured. `CEIL` and `MARG` are not limited by evaluator noise at 0.007. They
+are limited by pair-set sampling, which is an order of magnitude larger, and a
+bar set tighter than 0.007 would be measuring the gateway rather than the model.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.
