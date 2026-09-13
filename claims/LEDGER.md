@@ -128,11 +128,21 @@ rows cannot borrow their strength silently.
 
 | ID | Claim | Class | Stated | Uses |
 |---|---|---|---|---|
-| GC-34 | Under a registered budget manipulation with metric and ideal held fixed, reversals occur only for pairs trading a resolved direction against an unresolved one | `[predicted]`, unsealed | thesis 7.2, 8.1, OLGC paper P2 | GC-22, GC-23, GC-29 |
+| GC-34 | Under a registered budget manipulation with metric and ideal held fixed, reversals occur only for pairs trading a resolved direction against an unresolved one | `[predicted]`, unsealed | thesis 7.2, 8.1, OLGC paper P2, gate C1 | GC-22, GC-23 |
 
-`GC-34` is Phase I and is the first row in this ledger that can fail. It is
-`[predicted]` rather than `[demonstrated]` because no registration has been
-sealed. Sealing it is the next act of this programme.
+`GC-34` is Phase I and is the first row in this ledger that can fail. Its
+registration is drafted at
+[`experiments/C1/PREREG-C1-DRAFT.md`](../experiments/C1/PREREG-C1-DRAFT.md) and
+is **not sealed**. It is `[predicted]` rather than `[demonstrated]` because no
+self-test, probe or pilot has run and no hash has been recorded in
+`CAMPAIGN.md`.
+
+`GC-34` does not use `GC-29`. The gate as drafted runs on an artificial
+evaluator, so it needs no claim about human budgets, and a pass leaves `GC-29`
+exactly where it is. An earlier draft of this row listed `GC-29` as a dependency,
+which would have let a pass on an artificial evaluator raise a claim about human
+cognition through the graph. That is the error the support cap exists to catch
+and it is recorded here rather than quietly removed.
 
 ---
 
