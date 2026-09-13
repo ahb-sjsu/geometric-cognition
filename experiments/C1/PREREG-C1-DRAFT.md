@@ -216,7 +216,53 @@ which sizes the oversampling the pilot will need.
 non-empty at the required margins, the trace share above 0.05 at `k = 1` and
 `k = 2`, no unparsable report, and full-budget agreement above 0.90.
 
-*Result: NOT RUN.*
+**Result: MISS.** Atlas, 2026-09-13, `probe.json`, seed 20260913, 300
+calibration options. Three instrument gates hold. Class construction gives 64
+pairs per class at `k = 1` and 49 at `k = 2`, the discarded trace share is 0.450
+at `k = 1` and 0.110 at `k = 2`, and there is no unparsable report in 300.
+
+The fourth fails. **The calibration does not recover, at an `r2` of 0.0946.** The
+evaluator's reports are not a quadratic form in the option, so the metric
+estimated from them is not the evaluator's metric, and a retained subspace built
+from that estimate is not the evaluator's retained subspace. Under section 5 this
+is an instrument gate, so the run is void and no claim is graded. `GC-34` is
+untouched.
+
+The rerun that produced this record also fits the competing forms, because the
+first run recorded only the fit statistics and could not say what the evaluator
+was doing instead. It is doing none of them.
+
+| form | `r2` |
+|---|---|
+| quadratic in the option | 0.0946 |
+| Manhattan | 0.0906 |
+| mean absolute | 0.0906 |
+| Euclidean | 0.0806 |
+| squared Euclidean | 0.0743 |
+| Chebyshev | 0.0459 |
+| best single attribute | 0.0410 |
+
+A spread that narrow across forms that differ this much is the signature of
+reports that do not track the geometry at all. The magnitudes are nonetheless
+plausible. The mean report is 26.86 against a true mean absolute difference of
+25.0, and the largest is 145.3 against a largest Manhattan distance of 150.0,
+over 173 distinct values in 300 reports. The evaluator emits numbers of about the
+right size that do not depend on which option it was shown.
+
+**What this does and does not say.** It says this evaluator on this task is not
+an evaluation object in the sense the gate requires. It says nothing about P2.
+The reversal contrast in the same record is 0.524 against 0.508 at `k = 1` and
+0.404 against 0.469 at `k = 2`, which is a coin flip in both classes, and that is
+what an absent metric produces. Reporting those numbers as evidence against the
+directional prediction would have been the error the instrument gate exists to
+prevent, and the gate prevented it.
+
+**What follows.** A prompt sweep, `c1_prompt_sweep.py`, tests whether any framing
+elicits a reliable distance from this evaluator, selecting on calibration `r2`
+alone and never on the reversal contrast. It carries one ineligible control that
+states the formula outright, to separate a failure of elicitation from a failure
+of arithmetic. If the control also fails then the limit is the substrate rather
+than the wording, and this gate needs a different evaluator.
 
 **Pilot.** Every cell on the pilot seed, used only to fix `MARG`, `CEIL` and
 `BIN`.

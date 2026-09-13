@@ -1,0 +1,149 @@
+{
+ "stage": "probe",
+ "seed": 20260913,
+ "provenance": {
+  "host": "atlas",
+  "python": "3.12.3",
+  "numpy": "2.2.6",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.5.0",
+  "cuda_visible_devices": "1",
+  "gpu_at_start": "0, 0 %, 18803 MiB, 62\n1, 92 %, 15771 MiB, 79",
+  "utc": "2026-09-13T04:29:24Z",
+  "target_temp": 78.0,
+  "max_threads": 20
+ },
+ "config": {
+  "_comment": "Fixed at sealing. The attribute labels and the ideal are frozen here so that neither is chosen after a result is seen.",
+  "model_id": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "FILL AT SEALING",
+  "scorer_prompt_template": "The ideal option is: {ideal}\nA candidate option is: {option}\nHow far is the candidate from the ideal? Answer with a single number and nothing else.",
+  "use_chat_template": true,
+  "max_new_tokens": 12,
+  "batch": 32,
+  "labels": [
+   "P",
+   "Q",
+   "R"
+  ],
+  "decimals": 1,
+  "ideal": [
+   50.0,
+   50.0,
+   50.0
+  ],
+  "lo": 0.0,
+  "hi": 100.0,
+  "n_calibration": 300,
+  "n_per_class": 64,
+  "seeds": {
+   "probe": 20260913,
+   "pilot": "FILL AT SEALING",
+   "run": "FILL AT SEALING, drawn only after the rename"
+  }
+ },
+ "calibration": {
+  "d": 3,
+  "n_used": 300,
+  "n_dropped": 0,
+  "G": [
+   [
+    0.7563616821808185,
+    -0.19074541171146978,
+    -0.5884037154157605
+   ],
+   [
+    -0.19074541171146978,
+    1.029112858060976,
+    0.058599310939754186
+   ],
+   [
+    -0.5884037154157605,
+    0.05859931093975419,
+    1.2145254597582058
+   ]
+  ],
+  "t": [
+   53.69227666607365,
+   52.37796655610653,
+   37.97442783380212
+  ],
+  "psd_clip": -0.0,
+  "well_conditioned": true,
+  "consistency_c": 78.50400394864164,
+  "rms_residual": 1918.7964525851046,
+  "r2": 0.09460812813005326
+ },
+ "cells": {
+  "1": {
+   "k": 1,
+   "discarded_trace_share": 0.45041437164537235,
+   "n_W": 64,
+   "n_T": 64,
+   "margin_mean_W": 1.9798217954017798,
+   "margin_mean_T": 1.9159074798512634,
+   "rendering_ceiling_T": {
+    "n": 64,
+    "lost_to_rounding": 0,
+    "share_lost": 0.0,
+    "ceiling": 1.0
+   },
+   "W": {
+    "n": 64,
+    "graded": 63,
+    "reversals": 33,
+    "indifferent": 4,
+    "undefined_reference": 1,
+    "reversal_rate": 0.5238095238095238
+   },
+   "T": {
+    "n": 64,
+    "graded": 63,
+    "reversals": 32,
+    "indifferent": 3,
+    "undefined_reference": 1,
+    "reversal_rate": 0.5079365079365079
+   },
+   "contrast": -0.015873015873015928
+  },
+  "2": {
+   "k": 2,
+   "discarded_trace_share": 0.1097268632924541,
+   "n_W": 49,
+   "n_T": 49,
+   "margin_mean_W": 1.4018640305903614,
+   "margin_mean_T": 1.3509179875376007,
+   "rendering_ceiling_T": {
+    "n": 49,
+    "lost_to_rounding": 0,
+    "share_lost": 0.0,
+    "ceiling": 1.0
+   },
+   "W": {
+    "n": 49,
+    "graded": 47,
+    "reversals": 19,
+    "indifferent": 3,
+    "undefined_reference": 2,
+    "reversal_rate": 0.40425531914893614
+   },
+   "T": {
+    "n": 49,
+    "graded": 49,
+    "reversals": 23,
+    "indifferent": 5,
+    "undefined_reference": 0,
+    "reversal_rate": 0.46938775510204084
+   },
+   "contrast": 0.0651324359531047
+  }
+ },
+ "unparsed_reports": 0,
+ "instrument_gates": {
+  "class_construction": true,
+  "anti_vacuity": true,
+  "no_unparsable": true,
+  "calibration_recovered": false
+ },
+ "pass": false
+}

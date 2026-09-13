@@ -78,6 +78,55 @@ class Thermal:
         return False
 
 
+def competing_forms(X: np.ndarray, r: np.ndarray, ideal: np.ndarray) -> dict:
+    """Which functional form does the evaluator's report actually follow?
+
+    The gate assumes a quadratic form, because that is what an evaluation object
+    supplies. If the evaluator reports something else then the calibration is not
+    merely noisy, it is fitting the wrong family, and the retained subspace built
+    from it means nothing. Each candidate is scored by the R-squared of a least
+    squares fit with an intercept and a scale, so the comparison is of shape and
+    not of units.
+    """
+    keep = np.isfinite(r)
+    X, r = X[keep], r[keep]
+    D = X - np.asarray(ideal, float)
+
+    def r2(pred: np.ndarray) -> float:
+        A = np.column_stack([pred, np.ones(len(pred))])
+        beta, *_ = np.linalg.lstsq(A, r, rcond=None)
+        resid = r - A @ beta
+        denom = float(np.sum((r - r.mean()) ** 2))
+        return float(1.0 - np.sum(resid ** 2) / denom) if denom > 0 else float("nan")
+
+    out = {
+        "euclidean": r2(np.linalg.norm(D, axis=1)),
+        "manhattan": r2(np.abs(D).sum(axis=1)),
+        "chebyshev": r2(np.abs(D).max(axis=1)),
+        "mean_abs": r2(np.abs(D).mean(axis=1)),
+        "squared_euclidean": r2((D ** 2).sum(axis=1)),
+    }
+    for i in range(X.shape[1]):
+        out[f"abs_attr_{i}"] = r2(np.abs(D[:, i]))
+    # A full quadratic in x, which is the family the calibration fits.
+    from c1_calibrate import design
+    A = design(X)
+    beta, *_ = np.linalg.lstsq(A, r ** 2, rcond=None)
+    resid = r ** 2 - A @ beta
+    denom = float(np.sum((r ** 2 - np.mean(r ** 2)) ** 2))
+    out["quadratic_on_r_squared"] = (
+        float(1.0 - np.sum(resid ** 2) / denom) if denom > 0 else float("nan"))
+    out["report_min"] = float(r.min())
+    out["report_max"] = float(r.max())
+    out["report_mean"] = float(r.mean())
+    out["report_distinct"] = int(len(np.unique(np.round(r, 6))))
+    out["best"] = max((k for k in out if k.startswith(("euclid", "manhat", "chebysh",
+                                                       "mean_abs", "squared", "abs_attr",
+                                                       "quadratic"))),
+                      key=lambda k: (out[k] if np.isfinite(out[k]) else -9e9))
+    return out
+
+
 def provenance() -> dict:
     import torch
     import transformers
@@ -136,6 +185,11 @@ def stage_probe(cfg_path: str, out: str, seed: int) -> int:
                             [render_option(x) for x in X_cal],
                             batch=int(cfg.get("batch", 32)))
         cal = calibrate(X_cal, np.array(reports))
+        # A probe that misses must keep what would explain the miss. The first
+        # run of this stage recorded only the fit statistics, so an r2 of 0.09
+        # could not be diagnosed without scoring the block again.
+        cal["raw"] = {"options": X_cal.tolist(), "reports": list(map(float, reports))}
+        cal["forms"] = competing_forms(X_cal, np.array(reports), ideal)
         G, t = np.array(cal["G"]), np.array(cal["t"])
         print(f"[probe] calibration r2 {cal['r2']:.4f}, "
               f"dropped {cal['n_dropped']}, psd clip {cal['psd_clip']:.3e}")

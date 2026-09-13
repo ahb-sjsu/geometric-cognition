@@ -37,7 +37,8 @@ the tolerances.
 | Stage | Run | Verdict | Record |
 |---|---|---|---|
 | Self-test | Atlas, 2026-09-13T04:24:18Z | **PASS** | [`experiments/C1/selftest.json`](experiments/C1/selftest.json) |
-| Probe | not complete | | |
+| Probe | Atlas, 2026-09-13 | **MISS**, calibration does not recover at `r2` 0.0946 | [`experiments/C1/probe.json`](experiments/C1/probe.json) |
+| Prompt sweep | Atlas, 2026-09-13 | running | |
 | Pilot | not run | | |
 
 The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
@@ -46,6 +47,27 @@ noise of sigma 4.0 against distances of order 50. The harness reverses no
 within-subspace pair and reverses every trading pair the rendering still flips.
 It ran under a batch-probe `ThermalController` at target 78 C with 20 threads, on
 GPU 1 through `CUDA_VISIBLE_DEVICES`, with GPU 0 left alone at 18803 MiB.
+
+**The probe missed and the miss is the useful part.** Three instrument gates
+hold. Class construction, anti-vacuity and parsing are all fine, with 64 pairs
+per class at rank 1, a discarded trace share of 0.450 there and 0.110 at rank 2,
+and no unparsable report in 300. The calibration does not recover, at an `r2` of
+0.0946, and no competing form does better. Manhattan reaches 0.0906, Euclidean
+0.0806, Chebyshev 0.0459, and the best single attribute 0.0410. The evaluator
+emits numbers of roughly the right magnitude, a mean of 26.86 against a true mean
+absolute difference of 25.0, that do not depend on the option it was shown.
+
+The reversal contrast in the same record is a coin flip in both classes, 0.524
+against 0.508 at rank 1. Reported as a result that would have been a clean
+refutation of the directional prediction, and it would have been false, because
+an evaluator with no metric cannot exhibit a metric's budget effect. The
+calibration gate is an instrument gate precisely so that this voids the run
+instead of grading `GC-34`, and it did.
+
+A prompt sweep is running to find whether any framing elicits a reliable distance
+from this evaluator. It selects on calibration `r2` alone and cannot compute the
+reversal contrast, and it carries one ineligible control that states the formula
+outright, to tell a failure of elicitation apart from a failure of arithmetic.
 
 The registration also carries the programme's rate-limit rule, which requires the
 draft to be reread cold in a later session before it is sealed, and Section 10 of
