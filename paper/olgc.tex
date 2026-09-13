@@ -1,0 +1,475 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\geometry{margin=1.15in}
+\setlist{itemsep=2pt, topsep=4pt}
+\renewcommand{\arraystretch}{1.25}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{posit}[theorem]{Posit}
+\newtheorem{open}[theorem]{Open}
+
+\newcommand{\Rb}{\mathbb{R}}
+\newcommand{\Eb}{\mathbb{E}}
+
+\title{\vspace{-1.2cm}\textbf{Observer-Limited Geometric Cognition}\\[0.5em]
+\large The identification problem, and what has to hold for the theory\\
+to say anything a flexible embedding does not}
+
+\author{Andrew H. Bond\\
+\small Department of Computer Engineering, San Jos\'e State University\\
+\small \texttt{andrew.bond@sjsu.edu}}
+
+\date{\small Draft 0.1, September 2026\\[0.4em]
+\small Every statement is labeled \emph{proved}, \emph{defined}, \emph{posited},
+or \emph{open}.}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Observer-Limited Geometric Cognition holds that an agent represents a task under
+finite resolution, evaluates represented consequences in a geometry of its own,
+and selects behavior by bounded search. Preference is then a derived object
+rather than a primitive. The formal core of this picture is not new. Geometric
+Evaluation Theory supplies the evaluation object and proves that a rank budget
+coarsens distinctions, that the induced preference is a semiorder with threshold
+equal to the budget, and that a budget change reverses preference between fixed
+actions. Observation Theory supplies the prior layer, in which what a consumer
+can read is a property of the pair and not of the system. This paper argues that
+the open problem is neither geometry nor dynamics but identification. A
+representation, a metric, a reference, an admissible set and a search policy
+together form a family expressive enough to fit any finite choice record, so a
+theory that fits every record predicts nothing. We state that as a proposition
+rather than as a worry, and give the conditions under which the account
+carries content. The conditions are modular. Each of the observer's four
+components must be identified on evidence disjoint from the choices the theory
+is asked to predict. We restate the five predictions of the programme as
+consequences of those conditions, restate the seven falsifiers as conditions on
+the record rather than on the author's judgment, and give a phased programme in
+which each phase retires exactly one degree of freedom. The theory's own
+epistemic status is that the evaluation layer is proved and measured on
+artificial evaluators, the observer layer is measured in other domains, and the
+cognitive synthesis is posited.
+\end{abstract}
+
+\vspace{0.6em}
+\noindent\textbf{Keywords:} geometric cognition, observer-relative
+representation, resolution budget, preference reversal, identification,
+bounded search
+
+\section{What this paper claims and does not claim}
+
+The thesis behind this paper is that intelligent agents act by searching over
+observer-relative, resource-limited geometries of possible states. This paper
+does not argue for that thesis. It asks the prior question of what would have to
+be true for the thesis to be testable at all, and answers it.
+
+Three things are already established elsewhere and are used here without
+reproof. Geometric Evaluation Theory (GET) proves that unbudgeted distinctions
+form an equivalence, that a rank budget coarsens it, that the induced preference
+is a weak order at zero threshold and a semiorder at positive threshold with the
+threshold fixed by the budget, and that a rank budget change reverses preference
+between fixed actions. Observation Theory (OT) establishes in several domains
+that what a consumer can recover is a property of the pair formed by the system
+and the consumer rather than of the system alone. A domain exposition of
+geometric cognition exists and reports measurements on artificial agents.
+
+One thing is not established, and this paper is about it. The domain exposition
+measured cognition through a representation that it also chose. Its admission
+filter recorded the resulting circularity and refused the instrument, on the
+ground that no structure label independent of the embedding was available. That
+refusal is correct and it is the starting point here. A geometric account of
+cognition whose representation is fitted to the same choices it explains is not
+a weak theory. It is not yet a theory.
+
+\section{The evaluation object and the observer above it}
+
+\begin{definition}[Evaluation object, after GET]
+An evaluation object is a tuple
+\[
+E = (X, A, C, G, B, K)
+\]
+with states $X$ carrying a belief measure $\mu$, actions $A$, a consequence map
+$C \colon A \times X \to Y$, a pointed geometry $G$ consisting of a Riemannian
+metric on $Y$ and an ideal $t$, a resolution budget $B$, and an admissible set
+$K$ that may depend on the state or on the menu.
+\end{definition}
+
+The commitment that makes the object non-trivial is the split. The world
+supplies $(X, A, C)$ and the evaluator supplies $(G, B, K)$. Without it an
+evaluator free to choose $C$ after seeing the desired ordering represents any
+finite order by construction, and representability is a tautology. With it,
+representation and identification become questions with answers.
+
+Evaluation is by expected squared geodesic distance from the ideal, and cost is
+that distance squared,
+\[
+d(a) = \bigl[\, \Eb_\mu\, d_G\bigl(C(a,X), t\bigr)^2 \,\bigr]^{1/2},
+\qquad c(a) = d(a)^2 .
+\]
+A metric alone orders nothing. Ordering appears only relative to a reference,
+which separates the question of which differences the agent is sensitive to,
+carried by $G$, from the question of where those differences are measured from,
+carried by $t$.
+
+Under a rank budget $k$ the evaluator retains the top-$k$ eigenspace of the
+workload-weighted second moment,
+\[
+M_\omega = \Eb_\omega\bigl[\, G^{1/2}(C-t)(C-t)^{\!\top} G^{1/2} \,\bigr],
+\qquad
+d_k(a) = \bigl[\, \Eb_\mu \,\|\Pi_k G^{1/2}(C(a,X)-t)\|^2 \,\bigr]^{1/2}.
+\]
+Two consequences that differ only in discarded directions are then
+indistinguishable to the evaluator. This is the structural claim that separates
+the account from a noise model. A budget does not blur a complete
+representation. It removes directions.
+
+\begin{definition}[Observer layer]
+\label{def:observer}
+A cognitive observer adds a representation map $\Phi \colon W \to Y$ from the
+world's task structure $W$ to the consequence space on which the evaluation
+object is defined, and a search policy $\pi$ over represented states. The
+observer is the quadruple $(\Phi, G, B, K)$ together with $\pi$. The world
+retains $W$ and the action set.
+\end{definition}
+
+Definition~\ref{def:observer} is where OT enters. $\Phi$ is a read operator, and
+OT's finding is that its content is a property of the pair and not of the world.
+The cognitive reading is that two agents facing the same task can face different
+operational problems, and that this happens before anything that could be called
+a preference.
+
+\section{The vacuity problem, stated as a proposition}
+
+The programme's own statement of limits names flexibility as the principal
+threat. We state it more sharply, because a threat that is described in prose
+can be acknowledged indefinitely without being retired.
+
+\begin{proposition}[Vacuity without modular identification]
+\label{prop:vacuity}
+Let a finite choice record consist of menus $M_1,\dots,M_n$ drawn from a finite
+alternative set and a selection from each. If the observer's four components
+$(\Phi, G, B, K)$ are all fitted to that record, then for any record there
+exists an observer reproducing it exactly. The account therefore excludes no
+finite choice record, and no observation of choice alone can disconfirm it.
+\end{proposition}
+
+\noindent\emph{Status: proved, elementary, and not new.} Admissibility alone
+suffices. Taking $K$ menu-dependent and equal to the singleton actually chosen
+reproduces any record whatever, for any $\Phi$, $G$ and $B$.
+
+The proposition belongs to a known family and is restated here only because the
+components are ours. Kalai, Rubinstein and Spiegler show that rationalization by
+multiple rationales admits every choice function, so the model measures degrees
+of rationality rather than rationality \cite{krs2002}. Under endogenous menu
+assignment every dataset of menu frequencies and conditional choice
+probabilities is rationalizable by some random-utility distribution, and the
+classical axioms lose their content entirely. The contrast with Afriat is the
+instructive part \cite{afriat1967}. On budget data, rationalizability by a
+concave monotone utility has real content, because GARP can fail. What removes
+the content in our setting is menu-dependent admissibility, which is exactly the
+component GET keeps separate from cost because it can violate the weak axiom.
+The separation that makes $K$ theoretically interesting is the same separation
+that makes the account untestable when $K$ is free.
+
+The proposition's interest is therefore not mathematical. It is that vacuity
+arrives through the weakest of the four components, so no argument about the
+plausibility of a metric or the realism of a budget repairs it.
+
+Proposition~\ref{prop:vacuity} has the shape of a defect this programme has met
+before in another arm. A conformance property evaluated over an empty dependency
+graph passes perfectly and certifies nothing, and the repair there was to
+require that the structure the property quantifies over be non-vacuous before
+the property may be reported. The repair here is the same in form. The
+components of the observer must be identified on evidence that the prediction
+does not use.
+
+\begin{definition}[Modular identification]
+\label{def:modular}
+An OLGC account of a choice record $R$ is \emph{modularly identified} when each
+of $\Phi$, $G$, $B$ and $\pi$ is estimated from evidence disjoint from $R$, and
+$K$ is either fixed in advance or derived from a stated constraint that is not a
+function of the selections in $R$.
+\end{definition}
+
+\begin{proposition}[Content under modular identification]
+\label{prop:content}
+Under Definition~\ref{def:modular} with $\Phi$, $G$ and $B$ fixed before $R$ is
+opened, the induced order on any menu is determined, and the account therefore
+excludes every record that differs from the induced one by more than the
+semiorder's own indifference band.
+\end{proposition}
+
+\noindent\emph{Status: proved, given GET's Theorem 2.} The band is $\varepsilon_B$
+and is fixed by the budget rather than fitted, which is the property that makes
+the exclusion non-empty. The proposition is the reason the programme's
+experimental designs insist on separate calibration blocks. It converts a
+methodological preference into a condition for the theory to have content.
+
+A second repair exists and does not require external identification. Caplin and
+Dean give a revealed-preference test for optimal acquisition of costly
+information whose no-improving-attention-cycles condition is necessary and
+sufficient for a finite dataset to be consistent with the model, and they
+recover information costs from choice data alone \cite{caplindean2015}. Related
+work identifies consideration sets from choice in the same spirit
+\cite{masatlioglu2012,manzini2007}. That line and this one answer the same
+threat differently. Theirs constrains the model class until choice data
+discriminate within it. Ours holds the model class and constrains the evidence.
+Which is preferable is an empirical question about how much external
+identification costs, and it is not settled here. A budget recovered by a
+cycle condition and a budget manipulated experimentally are different objects,
+and P1 below is a test of the second.
+
+\begin{open}
+\label{open:partial}
+Proposition~\ref{prop:content} assumes full prior identification. The realistic
+case is partial, where one component is estimated jointly with the prediction.
+The degrees of freedom retired by identifying $\Phi$ alone, or $B$ alone, are
+not characterized, and no bound is known on how much a single free component can
+absorb. Until such a bound exists, an account that identifies three of four
+components is not known to be more falsifiable than one that identifies none.
+\end{open}
+
+\section{What is proved, what is measured, and what is posited}
+
+The programme's statements do not carry a uniform status, and a foundational
+paper that presents them at one strength misrepresents all of them.
+
+\begin{table}[!ht]
+\caption{Status of the programme's statements. The evaluation layer is proved
+and measured on artificial evaluators. Every statement specific to \emph{cognition}
+sits in the lower block and carries no sealed measurement.}
+\label{tab:status}
+\centering\footnotesize
+\begin{tabular}{@{}p{0.30\textwidth} p{0.14\textwidth} p{0.44\textwidth}@{}}
+\toprule
+\textbf{Statement} & \textbf{Status} & \textbf{Basis} \\
+\midrule
+Rank budget coarsens distinctions & proved & GET Theorem 1, machine-checked \\
+Preference is a semiorder with threshold the budget & proved & GET Theorem 2, machine-checked \\
+Budget change reverses preference between fixed actions & proved (existence) & GET Theorem 5, machine-checked \\
+Threshold tracks budget in an evaluator & demonstrated & GET gate G3, sealed. A language-model scorer's indifference threshold is 0.87 to 0.88 of the rendering step, and every pair separated by 20 is ordered alike in every cell \\
+Hull law in a population & demonstrated as a tendency & GET gate G2, sealed, ANES 1972. Half of 489 testable respondents violate at least once against a shuffle null of 66 percent. It fails as a deterministic statement \\
+Representation is prior to preference & posited for cognition & measured in other domains by OT, not in a cognitive observer \\
+Human cognitive budgets exist and are manipulable & posited & no sealed measurement \\
+Bounded search is the right dynamical abstraction & posited & alternatives in \S6 are not excluded \\
+Whitney stratification of cognitive state space & posited & no measurement distinguishes it from a steep smooth family \\
+Cross-architecture universality & posited & no collapse has been attempted \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The four rows at the bottom are the content of the synthesis. They are also the
+rows with no sealed measurement behind them. That is the position of the
+programme at draft 0.1 and it is stated here rather than in a closing section.
+
+\section{Predictions, as consequences of the identification conditions}
+
+The programme states five predictions. Each is restated here as a claim that
+becomes testable only under Definition~\ref{def:modular}, with the component
+whose independent identification it requires named beside it.
+
+\textbf{P1, the threshold-budget law.} Holding $G$ and $t$ fixed and
+manipulating $B$, the just-noticeable comparison threshold tracks the budget.
+Well separated pairs keep their order. Requires independent identification of
+$G$ and $t$. A systematic reordering of well separated pairs under a pure
+resolution manipulation contradicts the model.
+
+\textbf{P2, direction-specific rank reversal.} Reversals concentrate on pairs
+trading a retained direction against a newly unresolved one. Pairs whose
+difference lies in the retained subspace keep their order. Requires independent
+identification of $\Phi$, since the retained subspace is a property of $\Phi$
+and $B$ together. This is the prediction that separates the account from a claim
+that load adds noise.
+
+\textbf{P3, cross-measure boundary alignment.} At a genuine regime transition,
+several observables reorganize near the same control value. Requires a boundary
+located from one observable and registered before the others are examined.
+Without the registration the prediction is unfalsifiable in practice, because a
+boundary can be located in any observable after the fact.
+
+\textbf{P4, representation-first generalization.} An account whose $\Phi$ is
+identified on one task family and whose $G$ is identified on another predicts a
+third without refitting. This is Definition~\ref{def:modular} stated as an
+experiment rather than as a condition.
+
+\textbf{P5, cross-architecture universality.} Normalized quantities such as a
+margin-to-budget ratio collapse across substrates. Requires the normalization to
+be fixed before the second substrate is measured. Failure weakens the claim to a
+fundamental theory without refuting the evaluation layer.
+
+\section{Falsifiers, as conditions on the record}
+
+The programme lists seven falsifiers. Stated as conditions on a record rather
+than as judgments, they are checkable by a reader who did not run the
+experiment.
+
+\begin{enumerate}[label=F\arabic*.]
+\item A registered budget manipulation leaves the distinction threshold and the
+predicted reversal classes unchanged.
+\item A representation probe registered in advance shows no change where the
+account attributes a flip to representation.
+\item Choices reverse among alternatives whose differences lie in a subspace
+shown to be retained, by a probe registered before the choices are collected.
+\item A scalar model with fewer effective degrees of freedom predicts the same
+held-out reversals and process measures at least as well.
+\item Registered regime boundaries fail to align across independent observables.
+\item Cross-domain metric transfer disappears when researcher-coded encodings
+are replaced by independently measured ones.
+\item No reusable relation between representational limit and behavioral
+transition appears across substrates.
+\end{enumerate}
+
+F6 is the one the existing domain exposition already fails in its current form,
+because its encodings are researcher-coded. That is recorded rather than
+defended. Phase II exists to answer it.
+
+\section{Alternatives that are not excluded}
+
+A foundational paper that lists no live alternative is not reporting the state
+of the question.
+
+Geometry may be descriptive rather than mechanistic. A successful geometric
+account of endpoints does not establish that the process follows geometric
+paths, and the domain exposition is explicit that its basis is a modeling
+vocabulary. Distinguishing the two requires process evidence, which Phase III
+exists to collect.
+
+Stratification may be too strong. A steep smooth family approximates most
+categorical transitions. The stratified model earns its place only by predicting
+a regularity at the boundary that the smooth family misses, and no such
+prediction has been registered.
+
+Search may be the wrong abstraction. Sampling, diffusion, predictive coding and
+direct policy execution are all live. The account survives only if bounded
+search is read at a level of abstraction where some counterfactual or trajectory
+structure is measurable, and if nothing of that kind is measurable the dynamic
+layer should be reformulated rather than defended.
+
+\section{Related work}
+\label{sec:related}
+
+The components of this account are borrowed and the borrowing is stated here
+rather than in a footnote.
+
+Finite resolution producing intransitive indifference is Luce's semiorder
+\cite{luce1956}, and the behavioral fact it models is older than the
+formalism \cite{tversky1969}. Bounded resources producing satisficing rather
+than optimization is Simon's \cite{simon1955}. The result that finite data
+underdetermine the model is Afriat's on budget data \cite{afriat1967} and
+Kalai, Rubinstein and Spiegler's on choice functions \cite{krs2002}. Recovering
+an attention or information cost from choice alone is Caplin and Dean's
+\cite{caplindean2015}, with consideration-set identification in
+\cite{masatlioglu2012,manzini2007}.
+
+What this paper adds is narrow. It states the vacuity of the specific
+four-component observer as a proposition rather than as a limitations
+paragraph, gives modular identification as a condition on evidence rather than
+as methodological advice, and organizes a phase plan by which degree of freedom
+each phase retires. We do not offer a better theory of choice. We offer the
+condition under which this one can be wrong.
+
+\section{Programme}
+
+Each phase retires one degree of freedom named in
+Proposition~\ref{prop:vacuity}. That is the organizing principle, and a phase
+that retires none is not a phase.
+
+\begin{table}[!ht]
+\caption{The phase plan, organized by the degree of freedom each phase retires
+from Proposition~\ref{prop:vacuity}. A phase that retires none is not a phase.
+Only Phase I has a fixed design at this draft.}
+\label{tab:phases}
+\centering\footnotesize
+\begin{tabular}{@{}p{0.06\textwidth} p{0.40\textwidth} p{0.44\textwidth}@{}}
+\toprule
+& \textbf{Objective} & \textbf{Degree of freedom retired} \\
+\midrule
+I & A causal observer-limited reversal under registered budget manipulation & $B$ becomes manipulated rather than fitted \\
+II & Representation recovered from independent tasks or learned encoders & $\Phi$ stops being researcher-coded, answering F6 \\
+III & Trajectories from process measures & $\pi$ becomes measured rather than assumed \\
+IV & A registered boundary with a prediction the smooth family misses & stratification becomes an empirical claim or is dropped \\
+V & A collapse of normalized observables across substrates & the word fundamental acquires a referent or is withdrawn \\
+VI & A safety-relevant boundary predicted and prevented without training on the failure & the account becomes an instrument \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Phase I is deliberately low-dimensional and is the only phase whose design is
+fixed at this draft. Its registration fixes the consequence vectors, the
+candidate retained subspaces, and the predicted ordering at each budget before
+any data are opened. The prediction it tests is P2, because P2 is the one that a
+noise account does not also make.
+
+\section{What this paper has not done}
+
+No gate in this paper has been sealed. Open~\ref{open:partial} is unresolved and
+bounds every claim about partial identification. No measurement of a human
+budget exists in this programme. The domain exposition's measurements are
+retained at the class its own admission filter assigned them and are not
+promoted by the appearance of this paper.
+
+\section*{Acknowledgment of AI use}
+
+Drafting and structural editing were performed with the assistance of a large
+language model under the author's direction. The claims, the status assignments,
+and the decision to state vacuity as a proposition rather than as a limitation
+are the author's.
+
+\begin{thebibliography}{9}
+\footnotesize
+\bibitem{get} A.~H. Bond, \emph{Geometric Evaluation Theory}, foundational paper
+draft 0.2, San Jos\'e State University, 2026. Claim ledger at
+\texttt{claims/LEDGER.md}. % verify draft number at submission
+\bibitem{ot} A.~H. Bond, \emph{Observation Theory}, campaign record,
+\texttt{ahb-sjsu/observation-theory-campaigns}, 2026.
+\bibitem{gc} A.~H. Bond, \emph{Geometric Cognition, The Mathematical Structure
+of Human and Artificial Thought}, draft, 2026.
+\bibitem{thesis} A.~H. Bond, \emph{Observer-Limited Geometric Cognition, A
+Candidate Fundamental Theory of Cognition from Representation, Evaluation, and
+Bounded Search}, research thesis, September 2026.
+\bibitem{afriat1967} S.~N. Afriat, The construction of utility functions from
+finite demand data, \emph{International Economic Review}, 8(1), 67--77, 1967.
+
+\bibitem{krs2002} G.~Kalai, A.~Rubinstein and R.~Spiegler, Rationalizing choice
+functions by multiple rationales, \emph{Econometrica}, 70(6), 2481--2488, 2002.
+% verify issue and pages on final
+
+\bibitem{caplindean2015} A.~Caplin and M.~Dean, Revealed preference, rational
+inattention, and costly information acquisition, \emph{American Economic
+Review}, 105(7), 2015.
+% verify pages on final; do not copy Masatlioglu's range, they are different papers
+
+\bibitem{masatlioglu2012} Y.~Masatlioglu, D.~Nakajima and E.~Y. Ozbay, Revealed
+attention, \emph{American Economic Review}, 102(5), 2012.
+% verify pages on final
+
+\bibitem{manzini2007} P.~Manzini and M.~Mariotti, Sequentially rationalizable
+choice, \emph{American Economic Review}, 97(5), 1824--1849, 2007.
+
+\bibitem{luce1956} R.~D. Luce, Semiorders and a theory of utility discrimination,
+\emph{Econometrica}, 24(2), 178--191, 1956.
+\bibitem{tversky1969} A.~Tversky, Intransitivity of preferences,
+\emph{Psychological Review}, 76(1), 31--48, 1969.
+\bibitem{simon1955} H.~A. Simon, A behavioral model of rational choice,
+\emph{Quarterly Journal of Economics}, 69(1), 99--118, 1955.
+\end{thebibliography}
+
+\end{document}
