@@ -1,0 +1,31 @@
+[controls] workload moment eigenvalues [1504.3, 505.7, 229.0], gap ratio top/next 2.9749
+[controls] k=1  principal angles [62.5] deg
+[controls] k=1  real W 64 T 64  placebo W 64 T 64  W-prime 39 kept, 25 dropped {'no_discarded_norm': 0, 'degenerate_direction': 0, 'out_of_box': 25, 'renders_equal': 0, 'rounding_flipped_order': 0}
+           common-shift share  W 0.531  T 0.000  W-prime 0.000
+[controls] k=2  principal angles [0.0, 38.9] deg
+[controls] k=2  real W 64 T 64  placebo W 64 T 64  W-prime 53 kept, 11 dropped {'no_discarded_norm': 0, 'degenerate_direction': 0, 'out_of_box': 11, 'renders_equal': 0, 'rounding_flipped_order': 0}
+           common-shift share  W 0.672  T 0.000  W-prime 0.000
+[thermal] controller up, 20 threads, target 78.0 C
+[controls] pin verified, qwen3 created 1760022469
+[controls] k=1 placebo_W, 64 pairs
+           placebo_W rho +nan (p_full 0.9844, p_budget 1.0000, n 64)
+[controls] k=1 placebo_T, 64 pairs
+           placebo_T rho +nan (p_full 0.8689, p_budget 1.0000, n 61)
+[controls] k=1 W_prime, 39 pairs
+           W_prime rho +nan (p_full 1.0000, p_budget 0.8718, n 39)
+           placebo competence p: T 0.8689 W 0.9844; identity predicts +0.7280, observed +0.8532, residual +0.1252
+           rate 0.1282 (39 graded)
+[controls] k=2 placebo_W, 64 pairs
+           placebo_W rho +nan (p_full 1.0000, p_budget 0.9839, n 62)
+[controls] k=2 placebo_T, 64 pairs
+           placebo_T rho -0.0532 (p_full 0.9206, p_budget 0.9683, n 63)
+[controls] k=2 W_prime, 53 pairs
+           W_prime rho -0.0683 (p_full 0.9808, p_budget 0.8077, n 52)
+           placebo competence p: T 0.9206 W 1.0000; identity predicts +0.8476, observed +0.8728, residual +0.0252
+           rate 0.2115 (52 graded)
+[thermal] controller stopped
+
+[controls] summary, against the pilot's 0.0000 / 0.9683
+  k=1  placebo W 0.0156  placebo T 0.8689  placebo contrast 0.8532  W-prime 0.1282
+  k=2  placebo W 0.0161  placebo T 0.8889  placebo contrast 0.8728  W-prime 0.2115
+controls written to rho_controls.json

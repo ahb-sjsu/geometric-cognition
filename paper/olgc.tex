@@ -63,7 +63,8 @@ components must be identified on evidence disjoint from the choices the theory
 is asked to predict. A cold reread of the first phase's registration
 then shows that this condition is not sufficient. Where the class a pair is
 assigned to is itself read off the fitted model, the graded contrast is an
-algebraic identity in the evaluator's accuracy and measures nothing else, so
+algebraic identity in two agreement rates and measures nothing else, verified
+here against six cells to within the instrument's own reproducibility, so
 content is not monotone in identification accuracy and we can bound neither end.
 A rank budget carries a further condition that modular identification does not
 imply, since the retained subspace is identified only where the workload moment
@@ -270,21 +271,26 @@ comparisons, then admits a pair into the trading class precisely when the fitted
 metric says the pair's rank-$k$ order disagrees with its full-budget order, and
 into the within-subspace class precisely when it says the order is preserved.
 Reversal is predicted for the first class and not for the second. The class
-label is therefore the prediction, and the consequence is not approximate. Write
-$p$ for the probability that a graded verdict agrees with the fitted metric. A
-trading pair reverses when the evaluator agrees with the fit at both budgets or
-errs at both, and a within-subspace pair reverses when it errs at exactly one,
-so
+label is therefore the prediction, and the consequence is not approximate. Let
+$A$ be the event that the evaluator's order agrees with the fitted metric at
+full budget and $B$ that it agrees at the reduced budget. A trading pair is one
+the metric says reverses, so the evaluator reverses it exactly when $A$ and $B$
+take the same value; a within-subspace pair is one the metric says is preserved,
+so the evaluator reverses it exactly when they differ. Hence
 \[
-R_T = p^2 + (1-p)^2, \qquad R_W = 2p(1-p), \qquad
-R_T - R_W = (2p-1)^2 .
+R_T = \Pr(A = B), \qquad R_W = 1 - \Pr(A = B), \qquad
+R_T - R_W = \Pr(A=B \mid T) + \Pr(A=B \mid W) - 1 .
 \]
-The contrast the design grades is a function of the evaluator's per-comparison
-accuracy and of nothing else. On the pinned evaluator the observed contrast of
-$0.968$ against $0.000$ implies $p = 0.992$, against a measured held-out
-accuracy of $0.985$. No part of the separation is left for the budget
-manipulation to explain, and the pass bars are the same quantity restated: the
-registered margin is met exactly when $p$ exceeds $0.848$.
+The contrast the design grades is a function of two agreement rates and of
+nothing else. Measured on the pinned evaluator across six cells, the marginals
+reproduce every observed reversal rate to a maximum error of $0.0074$, against
+an instrument reproducibility floor of $0.0070$ established by rerunning
+identical pairs. The correlation between $A$ and $B$ was measured rather than
+assumed and is zero, at $-0.053$ and $-0.068$ in the two cells where both
+marginals have variance, so the independent form
+$R_T = p_A p_B + (1-p_A)(1-p_B)$ is exact. No part of the separation is left for
+the budget manipulation to explain, and the pass bars are the same two rates
+restated.
 
 This is not an artifact of one design. Any test of the form \emph{identify the
 components, then predict a choice from them} inherits the difficulty, because

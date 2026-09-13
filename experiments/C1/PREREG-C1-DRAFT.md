@@ -996,6 +996,73 @@ measured. `CEIL` and `MARG` are not limited by evaluator noise at 0.007. They
 are limited by pair-set sampling, which is an order of magnitude larger, and a
 bar set tighter than 0.007 would be measuring the gateway rather than the model.
 
+### 10.15 Rho measured, and the residual withdrawn
+
+The error correlation was measured rather than inferred, at the same seed again,
+so it attaches to the cells already measured twice. Record `rho_controls.json`.
+`build_pairs` now stores the metric's budget-`k` order beside its full-budget
+order, and `run_cell_order` accumulates the two-by-two table of `A`, the
+evaluator agreeing with the fitted metric at full budget, against `B`, it
+agreeing at budget `k`.
+
+**There is no residual. The earlier ones were an error in this draft's own
+arithmetic.** The identity was written as `(2p - 1)^2`, which is the special
+case where the agreement probability is the same at both budgets. It is not.
+Written correctly, with both marginals,
+
+    R_T = P(A = B) = pA*pB + (1-pA)(1-pB)        R_W = 1 - P(A = B)
+    contrast = P(A = B | T) + P(A = B | W) - 1
+
+| `k` | cell | `p` full | `p` budget | rho | n | predicted | observed | error |
+|---|---|---|---|---|---|---|---|---|
+| 1 | placebo W | 0.9844 | 1.0000 | undefined | 64 | 0.0156 | 0.0156 | +0.0000 |
+| 1 | placebo T | 0.8689 | 1.0000 | undefined | 61 | 0.8689 | 0.8689 | +0.0000 |
+| 1 | W-prime | 1.0000 | 0.8718 | undefined | 39 | 0.1282 | 0.1282 | +0.0000 |
+| 2 | placebo W | 1.0000 | 0.9839 | undefined | 62 | 0.0161 | 0.0161 | -0.0000 |
+| 2 | placebo T | 0.9206 | 0.9683 | -0.0532 | 63 | 0.8939 | 0.8889 | +0.0050 |
+| 2 | W-prime | 0.9808 | 0.8077 | -0.0683 | 52 | 0.2041 | 0.2115 | -0.0074 |
+
+Maximum error 0.0074, mean 0.0021, against an evaluator reproducibility floor of
+0.0070 measured in 10.14. Every reversal rate in this experiment is reproduced
+from two agreement rates to within the noise of the instrument. The contrast
+follows: predicted +0.8532 against observed +0.8532 at `k` = 1, and +0.8778
+against +0.8728 at `k` = 2.
+
+**Rho is zero.** Four of six cells have a marginal at exactly 1.0, where the
+correlation is undefined and, more to the point, where no dependence can exist,
+since `P(A = B)` equals the other marginal identically and the independent
+prediction is exact by construction. The two cells with variance in both
+marginals give -0.0532 and -0.0683, against a standard error near 0.12 at these
+sample sizes. The account offered in 10.13, that a positive cross-budget error
+correlation produced the residual, is refuted by direct measurement as well as
+by the inconsistency 10.14 found.
+
+**Three claims made earlier in this reread are withdrawn.** That the residual
+was the first evidence the contrast is not wholly a restatement of the
+calibration. That a common rho near 0.35 explained it. That it was real but
+unresolvable at 64 pairs per cell. All three were the same mistake, reading an
+approximation error as a signal, and the power analysis in 10.13 was an analysis
+of the resolution of a quantity that does not exist. The measured reproducibility
+floor and the sizing arithmetic stand on their own; the residual they were
+applied to does not.
+
+**What C1 grades, stated exactly.** The contrast is
+`P(A = B | T) + P(A = B | W) - 1`. It contains no budget term, no correlation
+term and no remainder. Two numbers, the rate at which the evaluator's order
+agrees with its own fitted metric at full budget and at the reduced budget,
+determine every cell in the experiment. Running the reversal design adds nothing
+to reporting those two rates, and W-prime is the plainest case: its `p` full is
+exactly 1.0, so its reversal rate must be `1 - p_budget = 0.1282`, which is what
+all three runs measured to four decimals.
+
+**Disposition.** C1 is not sealable and the repair is not a larger `n`. A design
+whose graded statistic is an arithmetic function of its own instrument gate does
+not test a rank budget at any sample size. Either the class construction stops
+using the fitted metric to assign pairs, so that the prediction is not the label,
+or the experiment is reported honestly as a calibration measurement and the
+claim it grades is changed to match. That is a decision for the owner, and it is
+the same decision 10.1 D2 named before any of the three redesigns.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.
