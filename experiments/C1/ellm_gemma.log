@@ -1,0 +1,4 @@
+[ellm] gemma4-12b, concurrency 8
+  distance   quad_r2 +0.7661  parsed 60/60  4.2s  MISS
+  comparison first-pos 0.7000  agree 0.5667  pure-bias-would-give 0.4200  MISS
+written to ellm_viability_gemma.json

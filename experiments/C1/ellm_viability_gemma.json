@@ -1,0 +1,32 @@
+{
+ "base": "https://ellm.nrp-nautilus.io/v1",
+ "results": [
+  {
+   "model": "gemma4-12b",
+   "n": 60,
+   "distance": {
+    "quadratic_r2": 0.766144758049227,
+    "parsed": 60,
+    "truncated": 0,
+    "mean_reasoning_tokens": 0.0,
+    "sample_raw": [
+     "45.11",
+     "54.63",
+     "53.35"
+    ],
+    "seconds": 4.2
+   },
+   "comparison": {
+    "first_position_rate": 0.7,
+    "agreement_rate": 0.5666666666666667,
+    "pure_bias_agreement": 0.42000000000000004,
+    "usable_pairs": 60,
+    "seconds": 41.9
+   },
+   "verdict": {
+    "distance_ok": false,
+    "position_ok": false
+   }
+  }
+ ]
+}

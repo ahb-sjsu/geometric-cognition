@@ -40,7 +40,9 @@ the tolerances.
 | Probe | Atlas, 2026-09-13 | **MISS**, calibration does not recover at `r2` 0.0946 | [`experiments/C1/probe.json`](experiments/C1/probe.json) |
 | Prompt sweep | Atlas, 2026-09-13 | **gate NOT MET**, best eligible framing `r2` 0.4944, formula control 0.1547 | [`experiments/C1/sweep.json`](experiments/C1/sweep.json) |
 | Order probe | Atlas, 2026-09-13 | **MISS**, first-position rate 0.8175, agreement 0.3400 | [`experiments/C1/order_probe.json`](experiments/C1/order_probe.json) |
-| NRP viability, qwen3 | Atlas to `ellm`, 2026-09-13 | **comparison OK**, first-position 0.4956, agreement 1.0000. Distance MISS, 7 of 60 parsed | [`experiments/C1/ellm-partial.log`](experiments/C1/ellm-partial.log), run incomplete |
+| NRP viability, `qwen3` | Atlas to `ellm`, 2026-09-13 | **comparison OK**, first-position 0.4956, agreement 1.0000. Distance 7 of 60 parsed | [`experiments/C1/ellm-gptoss-stalled.log`](experiments/C1/ellm-gptoss-stalled.log), log only |
+| NRP viability, `gpt-oss` | Atlas to `ellm`, 2026-09-13 | **stalled**, 16 idle connections and no response for 43 minutes, stopped with permission | [`experiments/C1/ellm-gptoss-stalled.log`](experiments/C1/ellm-gptoss-stalled.log) |
+| NRP viability, `gemma4-12b` | Atlas to `ellm`, 2026-09-13 | **MISS both**, distance `r2` 0.7661, first-position 0.7000 | [`experiments/C1/ellm_viability_gemma.json`](experiments/C1/ellm_viability_gemma.json) |
 | Pilot | not run | | |
 
 The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
@@ -122,10 +124,46 @@ spends hundreds of tokens before it writes an answer, and the first run of this
 probe starved one on an 8-token budget, so truncation at the raised budget is the
 first hypothesis and the record now carries `finish_reason` to settle it.
 
-This is a viability check and grades nothing. **The run is incomplete.**
-`gpt-oss` and `gemma4-12b` have not finished, and no `ellm_viability.json` has
-been written, so the log is the only artifact and it is committed as a partial
-record rather than summarised into prose.
+**The property does not generalise across the catalog, and the pattern in three
+evaluators is that deliberation removes the layout preference.**
+
+| evaluator | reasoning tokens | distance `r2` | first-position | agreement | pure bias predicts |
+|---|---:|---:|---:|---:|---:|
+| local Qwen2.5-7B | none | 0.0946 | 0.8175 | 0.3400 | 0.2984 |
+| `qwen3` hosted | about 237 | 7 of 60 parsed | **0.4956** | **1.0000** | 0.5000 |
+| `gemma4-12b` hosted | 0.0 | **0.7661** | 0.7000 | 0.5667 | 0.4200 |
+
+`gemma4-12b` answers directly and fast, 60 of 60 parsed in 4.2 seconds with no
+truncation and no reasoning tokens, and its reports track the geometry far better
+than the local model at an `r2` of 0.7661. It still misses the 0.90 calibration
+gate, and it still prefers the first-shown option at 0.7000. Its agreement of
+0.5667 does exceed the 0.4200 that pure position choice predicts, so content is
+present, but the bias is outside the registered band.
+
+`qwen3` is the only evaluator of the three that compares by content alone. It is
+also the only one that deliberates before answering. The mechanism this suggests
+is that a single forward pass answering A or B is dominated by the label prior,
+and that a model which reasons first is choosing after it has compared. **That is
+a pattern in three models and not a result.** Reasoning is confounded here with
+family, size and training, and nothing in this probe separates them.
+
+For the gate the consequence is concrete. The comparison instrument requires an
+evaluator that deliberates, and that is a property the registration must state
+rather than a preference among models.
+
+`gpt-oss` was stopped with permission after 43 minutes in which it held 16
+established connections with empty queues, no retransmit timers, and frozen
+process CPU. It accepted connections and never answered. That is a third failure
+mode for a hosted world, beside arithmetic and layout, and the registration needs
+a hard per-item deadline and a declared attempt budget because the current policy
+of five attempts at a 300 second timeout makes a stall indistinguishable from
+slow work for hours.
+
+**The `qwen3` numbers survive only in a log.** The probe wrote its JSON after all
+models finished, so stopping the stalled run destroyed the structured record of
+the model that had already succeeded. The probe now writes after every model and
+marks the file complete only at the end. This is rule 8 again, one level up, and
+it is the fourth instance in one session.
 
 The rotation risk is now live rather than theoretical. The catalog has already
 drifted from what the runbook recorded on 2026-07-18, gaining

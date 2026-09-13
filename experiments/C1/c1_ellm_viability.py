@@ -192,6 +192,13 @@ def main() -> int:
         except Exception as exc:
             r = {"model": m, "error": f"{type(exc).__name__}: {exc}"}
         rows.append(r)
+        # Write after every model rather than at the end. The qwen3 result of
+        # the previous run survived only in a log, because the process was
+        # stopped while a later model hung and the JSON had not been written
+        # yet. A record that exists only once every model has finished is a
+        # record that a single stall can erase.
+        json.dump({"base": BASE, "results": rows, "complete": False},
+                  open(args.out, "w", encoding="utf-8"), indent=1)
         if "error" in r:
             print(f"  ERROR {r['error']}", flush=True)
         else:
@@ -203,8 +210,8 @@ def main() -> int:
                   f"agree {c['agreement_rate']:.4f}  "
                   f"pure-bias-would-give {c['pure_bias_agreement']:.4f}  "
                   f"{'OK' if v['position_ok'] else 'MISS'}", flush=True)
-    json.dump({"base": BASE, "results": rows}, open(args.out, "w", encoding="utf-8"),
-              indent=1)
+    json.dump({"base": BASE, "results": rows, "complete": True},
+              open(args.out, "w", encoding="utf-8"), indent=1)
     print(f"written to {args.out}")
     return 0
 
