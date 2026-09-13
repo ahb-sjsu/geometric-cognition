@@ -852,6 +852,93 @@ full: the anisotropic box cost pairs, leaving 43 per class at `k = 2`, where a
 as a binomial bound rather than a point comparison. The run also recorded three
 unparsed items against a parse gate registered at zero.
 
+### 10.13 Third design, competence measured, and the placebo repeated
+
+The three repairs from 10.11 and 10.12 were made and the pilot rerun at seed
+20260917, with the placebo and W-prime controls chained at 20260918. Records
+`pilot3_qwen3.json` and `controls3.json`. The design clears both floors at both
+budgets, cells fill to 64 everywhere, and `CEIL` is now an exact upper bound at
+the realized cell size rather than a point comparison.
+
+| | `k` = 1 | `k` = 2 |
+|---|---|---|
+| gap, floor 2.0 | 2.97 | 2.21 |
+| discarded share, floor 0.05 | 0.3281 | 0.1023 |
+| `R_W` | 0.0312 | 0.0000 |
+| `R_T` | 0.8730 | 0.8387 |
+| contrast | +0.8418 | +0.8387 |
+| competence `p`, T and W | 0.9048, 0.9688 | 0.8710, 1.0000 |
+| identity prediction | +0.7630 | +0.7586 |
+| **residual** | **+0.0787** | **+0.0801** |
+| placebo contrast, random plane | +0.8279 | +0.8554 |
+| placebo plane angle | 62.5 deg | 0.0 and 38.9 deg |
+| W-prime | 0.1282 | 0.2264 |
+
+**D1 is repaired and the repair did not matter.** The retained subspace is now a
+property of the workload, stable across draws to 1.38 degrees where it was 56,
+and the guard refuses any design that does not make it so. The placebo
+nevertheless reproduces the contrast at both budgets, 0.8279 against 0.8418 and
+0.8554 against 0.8387, with the random plane 62.5 degrees away at rank 1. At
+rank 2 the random plane does slightly better than the identified one.
+
+The placebo was never a clean test of D1 and this draft should have seen it
+before spending the calls. A trading pair is admitted because the fitted metric
+says it flips under the projection in use, and that selection works for any
+plane whatever. So a surviving contrast is predicted equally by the claim that
+the budget is real and by the claim that the class label is the prediction, and
+the control cannot separate them. What the placebo does establish, by repeating
+on a design where the eigenspace is genuinely identified, is that the contrast
+carries no information about which subspace was retained. It is not a
+measurement of a rank budget. It is a measurement of how accurately the
+evaluator tracks its own fitted metric, which held-out accuracy already reports.
+
+**The residual is the only quantity left, and it is below the design's
+resolution.** With competence now measured on the graded pairs rather than
+proxied by held-out accuracy, the identity predicts +0.7630 and +0.7586 and the
+observed contrasts exceed those by +0.0787 and +0.0801. The agreement between
+the two budgets is close and must not be read as replication: both cells share
+one fitted metric, one calibration block, one random stream and one evaluator,
+so the calibration error is a common-mode term that averaging cannot remove and
+that these two cells cannot bound. A Monte Carlo at the realized cell sizes puts
+the rank 1 residual's 95 percent interval at roughly minus 0.10 to plus 0.25.
+
+A power calculation at the realized sizes, with competence estimated on an
+independent block, gives the sizing this design would need.
+
+| pairs per cell | resid 0.05 | resid 0.08 | resid 0.15 |
+|---|---|---|---|
+| 64, registered | 0.21 | 0.35 | 0.72 |
+| 200, Section 3's figure | 0.32 | 0.55 | 0.94 |
+| 600 | 0.66 | 0.95 | 1.00 |
+
+At the registered size the gate has about a third of the power it needs against
+the effect it exists to detect. Every version of C1 so far has spent its budget
+measuring the entailed quantity to three decimals and left the informative one
+at plus or minus 0.17.
+
+**D3 persists and is larger on this design.** W-prime reverses at 0.1282 and
+0.2264 against within-subspace rates of 0.0312 and 0.0000, on pairs whose
+predicted reversal is zero and is asserted per pair before anything is sent. The
+common-shift cue is present in 0.531 and 0.672 of within-subspace pairs.
+
+**A gap in the instrument, recorded rather than repaired quietly.** Competence
+was wired into the pilot and not into the controls, so this placebo yields a
+contrast and no residual. That is the comparison that now matters, because a
+placebo residual near +0.08 would show the residual is not about the retained
+subspace either, while a placebo residual near zero would make it the first
+quantity in this programme that tracks the subspace rather than the fit. The
+controls now carry the measurement and the placebo needs one more run.
+
+**Status. C1 is not sealable, and the reason has moved.** D1 is fixed, D3 is
+measured and unrepaired, and D2 is confirmed rather than refuted: the contrast
+is a restatement of the evaluator's accuracy and survives replacing the budget
+with a random plane. The registration's graded quantity should therefore change
+from the contrast to the residual, and the residual needs a design about ten
+times the registered size, a competence block independent of the graded pairs,
+and a second calibration block to bound the common-mode term. Those are design
+decisions for the owner, and the tolerances this pilot fixed, `MARG` 0.4194 and
+`CEIL` 0.1084, belong to a statistic this section recommends abandoning.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.

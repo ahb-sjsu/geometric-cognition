@@ -271,7 +271,29 @@ def main() -> int:
                     cell[name] = {"note": "empty"}
                     continue
                 print(f"[controls] k={k} {name}, {len(pairs)} pairs")
-                cell[name] = run_cell_order(ch, ideal_str, rows(pairs), "k")
+                # Competence here too. Without it the placebo yields a contrast
+                # and no residual, and the residual is the only quantity the
+                # identity does not already fix. A placebo that reproduces the
+                # CONTRAST tells us nothing the class construction did not
+                # guarantee; a placebo that also reproduces the RESIDUAL would
+                # show the residual is not about the retained subspace either.
+                cell[name] = run_cell_order(ch, ideal_str, rows(pairs), "k",
+                                            pref_full=[p["a_pref_full"] for p in pairs])
+            for a, bcls in (("placebo_T", "placebo_W"),):
+                if "reversal_rate" in cell.get(a, {}) and "reversal_rate" in cell.get(bcls, {}):
+                    pT = cell[a].get("competence_p")
+                    pW = cell[bcls].get("competence_p")
+                    if pT is not None and np.isfinite(pT) and np.isfinite(pW):
+                        pbar = 0.5 * (pT + pW)
+                        obs = cell[a]["reversal_rate"] - cell[bcls]["reversal_rate"]
+                        cell["placebo_identity"] = {
+                            "p_T": pT, "p_W": pW, "p_mean": pbar,
+                            "predicted_contrast": float((2 * pbar - 1) ** 2),
+                            "residual": float(obs - (2 * pbar - 1) ** 2)}
+                        print(f"           placebo competence p: T {pT:.4f} W {pW:.4f}; "
+                              f"identity predicts {(2*pbar-1)**2:+.4f}, "
+                              f"observed {obs:+.4f}, residual "
+                              f"{cell['placebo_identity']['residual']:+.4f}")
                 print(f"           rate {cell[name]['reversal_rate']:.4f} "
                       f"({cell[name]['graded']} graded)")
             if "placebo_W" in cell and "reversal_rate" in cell.get("placebo_T", {}):

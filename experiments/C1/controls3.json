@@ -1,0 +1,136 @@
+{
+ "stage": "controls",
+ "seed": 20260918,
+ "provenance": {
+  "host": "atlas",
+  "python": "3.12.3",
+  "numpy": "2.4.6",
+  "torch": "2.11.0+cu130",
+  "transformers": "5.5.3",
+  "cuda_visible_devices": null,
+  "gpu_at_start": "0, 0 %, 18803 MiB, 59\n1, 0 %, 57 MiB, 50",
+  "utc": "2026-09-13T16:24:34Z",
+  "target_temp": 78.0,
+  "max_threads": 20
+ },
+ "evaluator_pin": {
+  "model_id": "qwen3",
+  "created": 1760022469,
+  "owned_by": "NRP",
+  "verified_utc": "2026-09-13T16:06:18Z"
+ },
+ "grades_no_claim": true,
+ "workload_eigenvalues": [
+  1504.2879564573539,
+  505.66523886836217,
+  229.00215350445907
+ ],
+ "pilot_reference": {
+  "contrast": 0.9682539682539683,
+  "R_W": 0.0,
+  "R_T": 0.9682539682539683
+ },
+ "unparsed": 4,
+ "deadline_failures": 0,
+ "finish_reasons": {
+  "stop": 1387,
+  "length": 5,
+  "unparsed_length": 4
+ },
+ "escalations": 62,
+ "cells": {
+  "1": {
+   "plane_angle_deg": 62.53905104317429,
+   "principal_angles_deg": [
+    62.53905104317429
+   ],
+   "forced_zero_angles": 0,
+   "mean_differential_shift": 23.598967678556726,
+   "wprime_drops": {
+    "no_discarded_norm": 0,
+    "degenerate_direction": 0,
+    "out_of_box": 25,
+    "renders_equal": 0,
+    "rounding_flipped_order": 0
+   },
+   "wprime_discarded_dimension": 2,
+   "common_shift_share": {
+    "W": 0.53125,
+    "T": 0.0,
+    "W_prime": 0.0
+   },
+   "placebo_W": {
+    "n": 64,
+    "graded": 63,
+    "reversals": 1,
+    "ambiguous_reference": 1,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.015873015873015872
+   },
+   "placebo_T": {
+    "n": 64,
+    "graded": 64,
+    "reversals": 54,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.84375
+   },
+   "W_prime": {
+    "n": 39,
+    "graded": 39,
+    "reversals": 5,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.1282051282051282
+   },
+   "placebo_contrast": 0.8278769841269842
+  },
+  "2": {
+   "plane_angle_deg": 38.86020427161818,
+   "principal_angles_deg": [
+    0.0,
+    38.86020427161818
+   ],
+   "forced_zero_angles": 1,
+   "mean_differential_shift": 21.44744175109541,
+   "wprime_drops": {
+    "no_discarded_norm": 0,
+    "degenerate_direction": 0,
+    "out_of_box": 11,
+    "renders_equal": 0,
+    "rounding_flipped_order": 0
+   },
+   "wprime_discarded_dimension": 1,
+   "common_shift_share": {
+    "W": 0.671875,
+    "T": 0.0,
+    "W_prime": 0.0
+   },
+   "placebo_W": {
+    "n": 64,
+    "graded": 63,
+    "reversals": 2,
+    "ambiguous_reference": 1,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.031746031746031744
+   },
+   "placebo_T": {
+    "n": 64,
+    "graded": 62,
+    "reversals": 55,
+    "ambiguous_reference": 2,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.8870967741935484
+   },
+   "W_prime": {
+    "n": 53,
+    "graded": 53,
+    "reversals": 12,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.22641509433962265
+   },
+   "placebo_contrast": 0.8553507424475166
+  }
+ }
+}
