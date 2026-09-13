@@ -27,12 +27,27 @@ import numpy as np
 
 import c1_calibrate
 import c1_scorer
-from c1_calibrate import calibrate, retained
+from c1_calibrate import assert_spectral_gap, calibrate, retained
 from c1_scorer import (LMScorer, build_pairs, render_option, rendering_ceiling,
                        run_cell)
 
 TARGET_TEMP = 78.0          # below the 82 high and the 80 shed line for Package 0
 MAX_THREADS = 20            # the standing cap even with a controller
+
+
+def box(cfg) -> tuple:
+    """The consequence box, per attribute. Scalars are accepted for old configs.
+
+    Threaded explicitly into `build_pairs`, which otherwise falls back to its own
+    [0, 100] defaults. Under the first design those defaults happened to equal
+    the calibration box, so the omission was invisible. Under an anisotropic box
+    it would draw graded pairs from a different distribution than the one the
+    metric was fitted on.
+    """
+    d = len(cfg["ideal"])
+    lo = np.broadcast_to(np.asarray(cfg.get("lo", 0.0), float), (d,)).copy()
+    hi = np.broadcast_to(np.asarray(cfg.get("hi", 100.0), float), (d,)).copy()
+    return lo, hi
 
 
 def gpu_line() -> str:
@@ -170,6 +185,7 @@ def stage_probe(cfg_path: str, out: str, seed: int) -> int:
     here. A probe that passes says the gate can be run, not that it passed.
     """
     cfg = json.load(open(cfg_path, encoding="utf-8"))
+    LO, HI = box(cfg)
     rng = np.random.default_rng(seed)
     d = len(cfg["ideal"])
     ideal = np.array(cfg["ideal"], dtype=float)
@@ -179,7 +195,7 @@ def stage_probe(cfg_path: str, out: str, seed: int) -> int:
         sc = LMScorer(cfg)
 
         n_cal = int(cfg.get("n_calibration", 300))
-        X_cal = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n_cal, d))
+        X_cal = rng.uniform(LO, HI, size=(n_cal, d))
         print(f"[probe] scoring {n_cal} calibration options")
         reports = sc.scores(render_option(ideal),
                             [render_option(x) for x in X_cal],
@@ -197,7 +213,7 @@ def stage_probe(cfg_path: str, out: str, seed: int) -> int:
         cells = {}
         for k in (1, 2):
             res = retained(G, t, X_cal, k)
-            pairs = build_pairs(G, t, X_cal, k=k,
+            pairs = build_pairs(G, t, X_cal, k=k, lo=LO, hi=HI,
                                 n_per_class=int(cfg.get("n_per_class", 64)), rng=rng)
             Pi = np.array(pairs["retained"]["Pi_whitened"])
             ceil_T = rendering_ceiling(pairs["T"], G, t, Pi) if pairs["T"] else None
@@ -247,6 +263,7 @@ def stage_order_probe(cfg_path: str, out: str, seed: int) -> int:
     from c1_order import (LMChooser, both_orders, calibrate_from_order,
                           heldout_order_accuracy)
     cfg = json.load(open(cfg_path, encoding="utf-8"))
+    LO, HI = box(cfg)
     hosted = "evaluator" in cfg
     rng = np.random.default_rng(seed)
     d = len(cfg["ideal"])
@@ -269,8 +286,8 @@ def stage_order_probe(cfg_path: str, out: str, seed: int) -> int:
         else:
             print(f"[order] loading chooser, {th.threads()} host threads")
             ch = LMChooser(cfg)
-        A = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n, d))
-        B = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n, d))
+        A = rng.uniform(LO, HI, size=(n, d))
+        B = rng.uniform(LO, HI, size=(n, d))
         As = [render_option(x) for x in A]
         Bs = [render_option(x) for x in B]
         print(f"[order] {n} pairs, both presentation orders")
@@ -350,6 +367,7 @@ def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
                           heldout_order_accuracy, run_cell_order)
 
     cfg = json.load(open(cfg_path, encoding="utf-8"))
+    LO, HI = box(cfg)
     rng = np.random.default_rng(seed)
     d = len(cfg["ideal"])
     ideal = np.array(cfg["ideal"], dtype=float)
@@ -366,8 +384,8 @@ def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
         ch = EllmChooser(cfg, token)
 
         # 1. Calibrate from order, on evidence the graded pairs never touch.
-        A = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n_cal, d))
-        B = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n_cal, d))
+        A = rng.uniform(LO, HI, size=(n_cal, d))
+        B = rng.uniform(LO, HI, size=(n_cal, d))
         print(f"[pilot] calibrating on {n_cal} pairs, both orders")
         oo = both_orders(ch, ideal_str, [render_option(x) for x in A],
                          [render_option(x) for x in B])
@@ -379,9 +397,22 @@ def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
         print(f"[pilot] calibrated, held-out order accuracy {ho['mean']:.4f}, "
               f"kept {int(keep.sum())} of {n_cal}")
 
+        # The budget must be identified before it can be manipulated. This is
+        # the guard for the defect the cold reread found: a top-k eigenspace of
+        # a gapless moment is a random plane, and the graded contrast survives
+        # replacing it with one. Refuse rather than warn.
+        floor = float(cfg.get("spectral_gap_floor", 2.0))
+        gaps = {}
+        for k in (1, 2):
+            gaps[str(k)] = assert_spectral_gap(G, t, A[keep], k, floor)
+            print(f"[pilot] budget k={k} identified, gap {gaps[str(k)]['gap']:.2f} "
+                  f"against floor {floor} and null p97.5 "
+                  f"{gaps[str(k)]['null_p975']:.2f}")
+
         cells = {}
         for k in (1, 2):
-            built = build_pairs(G, t, A[keep], k=k, n_per_class=n_class, rng=rng)
+            built = build_pairs(G, t, A[keep], k=k, n_per_class=n_class, rng=rng,
+                                lo=LO, hi=HI)
             Pi = np.array(built["retained"]["Pi_whitened"])
             res = {"k": k,
                    "discarded_trace_share": built["retained"]["discarded_trace_share"],
@@ -441,6 +472,7 @@ def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
                              "and the pilot rerun before sealing")
 
     rec = {"stage": "pilot", "seed": seed, "provenance": provenance(),
+           "spectral_gaps": gaps, "box": {"lo": LO.tolist(), "hi": HI.tolist()},
            "evaluator_pin": pin, "calibration": cal, "heldout": ho,
            "kept_calibration_pairs": int(keep.sum()),
            "agreement_rate": oo["agreement_rate"],

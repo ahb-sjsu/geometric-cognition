@@ -72,7 +72,8 @@ def build_with_plane(G, t, X_cal, k, n_per_class, rng, Pi):
     res["note"] = "placebo, a uniformly random k-plane, not the top-k eigenspace"
     c1_scorer.retained = lambda *a, **kw: res
     try:
-        return build_pairs(G, t, X_cal, k=k, n_per_class=n_per_class, rng=rng)
+        return build_pairs(G, t, X_cal, k=k, n_per_class=n_per_class, rng=rng,
+                           lo=LO, hi=HI)
     finally:
         c1_scorer.retained = real
 
@@ -186,6 +187,8 @@ def main() -> int:
     args = ap.parse_args()
 
     cfg = json.load(open(args.config, encoding="utf-8"))
+    from c1_atlas_run import box
+    LO, HI = box(cfg)
     pilot = json.load(open(args.pilot, encoding="utf-8"))
     G = np.array(pilot["calibration"]["G"], float)
     t = np.array(pilot["calibration"]["t"], float)
@@ -194,8 +197,7 @@ def main() -> int:
     rng = np.random.default_rng(args.seed)
     # the calibration options, redrawn from the pilot's own seed and stream
     A = np.random.default_rng(pilot["seed"]).uniform(
-        cfg.get("lo", 0.0), cfg.get("hi", 100.0),
-        size=(int(cfg.get("n_order_pairs", 400)), d))
+        LO, HI, size=(int(cfg.get("n_order_pairs", 400)), d))
 
     M_eig = retained(G, t, A, k=1)["eigenvalues"]
     print(f"[controls] workload moment eigenvalues {np.round(M_eig, 1).tolist()}, "
@@ -207,9 +209,10 @@ def main() -> int:
         rand_Pi = random_plane(d, k, rng)
         ang = np.degrees(np.arccos(np.clip(
             np.abs(np.linalg.svd(real_Pi @ rand_Pi, compute_uv=False)[0]), 0, 1)))
-        real = build_pairs(G, t, A, k=k, n_per_class=args.n_per_class, rng=rng)
+        real = build_pairs(G, t, A, k=k, n_per_class=args.n_per_class, rng=rng,
+                           lo=LO, hi=HI)
         plac = build_with_plane(G, t, A, k, args.n_per_class, rng, rand_Pi)
-        wp = wprime(real["W"], G, t, real_Pi, rng, cfg.get("lo", 0.0), cfg.get("hi", 100.0))
+        wp = wprime(real["W"], G, t, real_Pi, rng, LO, HI)
         built[k] = {"real": real, "placebo": plac, "wprime": wp,
                     "plane_angle_deg": float(ang)}
         print(f"[controls] k={k}  real W {len(real['W'])} T {len(real['T'])}  "

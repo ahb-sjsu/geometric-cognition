@@ -303,3 +303,53 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+class NoSpectralGap(RuntimeError):
+    """The workload moment does not identify a rank-k retained subspace."""
+
+
+def spectral_gap(G, t, X, k: int, n_null: int = 400, seed: int = 0) -> dict:
+    """The gap at k, and where it sits against an isotropic null at this n.
+
+    C1's first design drew consequences uniformly on a cube and put the ideal at
+    the cube's centroid, which makes M isotropic analytically. A top-k eigenspace
+    of an isotropic matrix is whatever the finite sample happened to favour, so
+    the "budget" was a random plane and the graded contrast survived being
+    replaced by one. The ratio alone does not catch that, because a finite sample
+    of an isotropic M still produces a ratio above one. The null does.
+    """
+    M = workload_moment(G, t, X)
+    w = np.sort(np.linalg.eigvalsh(M))[::-1]
+    obs = float(w[k - 1] / w[k]) if k < len(w) and w[k] > 0 else float("inf")
+    n, d = np.asarray(X).shape
+    rng = np.random.default_rng(seed)
+    null = []
+    for _ in range(n_null):
+        U = rng.normal(size=(n, d))
+        e = np.sort(np.linalg.eigvalsh(U.T @ U / n))[::-1]
+        null.append(e[k - 1] / e[k])
+    null = np.sort(null)
+    return {"k": int(k), "eigenvalues": w.tolist(), "gap": obs,
+            "null_median": float(np.median(null)),
+            "null_p975": float(np.quantile(null, 0.975)),
+            "exceeds_null": bool(obs > np.quantile(null, 0.975))}
+
+
+def assert_spectral_gap(G, t, X, k: int, floor: float, **kw) -> dict:
+    """Refuse to run a budget that is not identified. Accounting beats recall.
+
+    A rank budget is a choice of top-k eigenspace, and that eigenspace exists as
+    a fact about the evaluator only where M has a gap at k. This is the rule the
+    cold reread found missing, encoded as a guard rather than left as a sentence.
+    """
+    g = spectral_gap(G, t, X, k, **kw)
+    if g["gap"] < floor or not g["exceeds_null"]:
+        raise NoSpectralGap(
+            f"budget k={k} is not identified. gap {g['gap']:.3f} against a "
+            f"registered floor of {floor} and an isotropic null whose 97.5th "
+            f"percentile at this sample size is {g['null_p975']:.3f}. "
+            f"Eigenvalues {np.round(g['eigenvalues'], 1).tolist()}. A top-k "
+            f"eigenspace of a gapless moment is a random plane, and the graded "
+            f"contrast survives replacing it with one.")
+    return g

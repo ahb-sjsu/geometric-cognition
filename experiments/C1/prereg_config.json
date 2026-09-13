@@ -11,17 +11,25 @@
  ],
  "decimals": 1,
  "ideal": [
-  50.0,
-  50.0,
-  50.0
+  95.0,
+  15.0,
+  8.0
  ],
- "lo": 0.0,
- "hi": 100.0,
+ "lo": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "hi": [
+  100.0,
+  60.0,
+  22.0
+ ],
  "n_calibration": 300,
  "n_per_class": 64,
  "seeds": {
   "probe": 20260913,
-  "pilot": "FILL AT SEALING",
+  "pilot": 20260916,
   "run": "FILL AT SEALING, drawn only after the rename"
  },
  "chooser_prompt_template": "The ideal is: {ideal}\nOption A: {first}\nOption B: {second}\nWhich option is closer to the ideal? Answer with a single letter, A or B.",
@@ -42,5 +50,7 @@
   "_timeout_comment": "gpt-oss held 16 idle connections for 43 minutes under a 5 by 300 second policy, so a stall was indistinguishable from slow work. A run that cannot finish an item in 60 seconds across 3 attempts records the item as failed and moves on.",
   "_max_tokens_comment": "Raised from 512 to 1024 on 2026-09-13 because 21 of 800 comparisons returned no letter at 512 with a mean of 232.5 reasoning tokens, so the tail of the reasoning distribution exhausted the budget before the answer was written. This fixes a diagnosed truncation in the instrument. The parse gate is left at zero and is not relaxed to accommodate the miss."
  },
- "concurrency": 16
+ "concurrency": 16,
+ "spectral_gap_floor": 2.0,
+ "_design_note": "Ideal off the box centre and per-attribute ranges, so the workload moment has a gap at both budgets. The first design put the ideal at the centroid of an isotropic box, which makes M isotropic analytically; the retained subspace was then the calibration draw's noise and the graded contrast survived replacing it with a random plane (controls.json). An off-centroid ideal alone cannot fix k=2, because s^2 I + dd^T has its bottom two eigenvalues equal for any d, so the ranges had to change too."
 }
