@@ -106,19 +106,57 @@ def run_level(chooser, ideal_vec, pairs, load, rng, lo, hi, batch=32) -> dict:
     ideal_str = render_loaded(ideal_vec, ideal_d)
     fwd = chooser.prefers_first(ideal_str, rows, batch)
     rev = chooser.prefers_first(ideal_str, [(b, a) for a, b in rows], batch)
+
+    # Scored over the FIXED set of every pair in the class, never over the
+    # survivors. 10.17 found that conditioning accuracy on swap-consistency
+    # inverts the result, because load moves consistency and the pairs it drops
+    # are disproportionately ones the evaluator was getting wrong. An estimand
+    # whose denominator is itself affected by the manipulation cannot measure
+    # the manipulation.
+    #
+    #   consistent and correct    -> 1.0
+    #   consistent and incorrect  -> 0.0
+    #   swap-inconsistent         -> 0.5, the evaluator supplied no information
+    #
+    # Noise and instrument degradation both drive this toward 0.5 from above and
+    # neither can push it below. A rank budget inverts trading pairs, so only a
+    # budget puts it under one half. The discriminating test survives the fix.
     n = hit = amb = first = nfirst = 0
+    scores, strict = [], []
     for p, f, r in zip(pairs, fwd, rev):
         if np.isfinite(f):
             nfirst += 1
             first += int(f > 0.5)
-        if not (np.isfinite(f) and np.isfinite(r)) or (f > 0.5) != (r < 0.5):
+        consistent = (np.isfinite(f) and np.isfinite(r)
+                      and (f > 0.5) == (r < 0.5))
+        if not consistent:
             amb += 1
+            scores.append(0.5)
+            strict.append(0.0)
             continue
         n += 1
-        hit += int(bool(f > 0.5) == bool(p["a_pref_full"]))
-    q = (hit / n) if n else float("nan")
-    return {"load": load, "n": len(pairs), "n_graded": n, "ambiguous": amb,
-            "q_agree_full": q, "ci95": wilson(hit, n),
+        ok = int(bool(f > 0.5) == bool(p["a_pref_full"]))
+        hit += ok
+        scores.append(float(ok))
+        strict.append(float(ok))
+    N = len(pairs)
+    sc = np.array(scores, float)
+    mean_score = float(sc.mean()) if N else float("nan")
+    se = float(sc.std(ddof=1) / np.sqrt(N)) if N > 1 else float("nan")
+    return {"load": load, "n": N, "n_graded": n, "ambiguous": amb,
+            # the answer-key rate this cell's position statistic must be read
+            # against; an unbiased evaluator returns first_position_rate == this
+            "a_correct_rate": float(np.mean([bool(p["a_pref_full"]) for p in pairs])),
+            # the fixed-set estimand, which is the one to read
+            "score_fixed": mean_score,
+            "score_fixed_se": se,
+            "score_fixed_ci95": (mean_score - 1.96 * se, mean_score + 1.96 * se),
+            "score_strict": float(np.mean(strict)) if N else float("nan"),
+            "consistency_rate": (n / N) if N else float("nan"),
+            # the survivor-conditioned rate, retained only so the bias in 10.17
+            # stays visible beside the corrected number
+            "q_agree_full_survivors": (hit / n) if n else float("nan"),
+            "ci95": wilson(hit, n),
             "first_position_rate": (first / nfirst) if nfirst else float("nan"),
             "mean_reasoning_tokens": (float(np.mean(chooser.reasoning_tokens))
                                       if chooser.reasoning_tokens else 0.0),
@@ -192,9 +230,10 @@ def main() -> int:
                 r = run_level(ch, ideal_vec, built[cls], load,
                               np.random.default_rng(args.seed + load), LO[0], HI[0])
                 cell[cls] = r
-                print(f"[distractor] load {load:>2} {cls}: q {r['q_agree_full']:.4f} "
-                      f"[{r['ci95'][0]:.3f}, {r['ci95'][1]:.3f}]  "
-                      f"n {r['n_graded']}/{r['n']}  "
+                print(f"[distractor] load {load:>2} {cls}: score {r['score_fixed']:.4f} "
+                      f"[{r['score_fixed_ci95'][0]:.3f}, {r['score_fixed_ci95'][1]:.3f}] "
+                      f"over {r['n']}  consistency {r['consistency_rate']:.3f}  "
+                      f"survivor-q {r['q_agree_full_survivors']:.4f}  "
                       f"first-pos {r['first_position_rate']:.3f}  "
                       f"reasoning {r['mean_reasoning_tokens']:.0f}")
             adm = condition_admissible(cell)
@@ -209,9 +248,12 @@ def main() -> int:
                 levels[str(load)] = cell
                 stopped = load
                 break
-            cell["class_gap"] = float(cell["W"]["q_agree_full"]
-                                      - cell["T"]["q_agree_full"])
-            cell["T_below_half"] = bool(cell["T"]["ci95"][1] < 0.5)
+            cell["class_gap"] = float(cell["W"]["score_fixed"]
+                                      - cell["T"]["score_fixed"])
+            cell["class_gap_survivors"] = float(
+                cell["W"]["q_agree_full_survivors"]
+                - cell["T"]["q_agree_full_survivors"])
+            cell["T_below_half"] = bool(cell["T"]["score_fixed_ci95"][1] < 0.5)
             print(f"[distractor] load {load:>2} gap {cell['class_gap']:+.4f}  "
                   f"T below half: {cell['T_below_half']}")
             levels[str(load)] = cell
@@ -233,9 +275,10 @@ def main() -> int:
             print(f"  load {load:>2}  not reached"); continue
         if "class_gap" not in c:
             print(f"  load {load:>2}  INADMISSIBLE"); continue
-        print(f"  load {load:>2}  q_W {c['W']['q_agree_full']:.4f}  "
-              f"q_T {c['T']['q_agree_full']:.4f}  gap {c['class_gap']:+.4f}  "
-              f"T<0.5 {c['T_below_half']}")
+        print(f"  load {load:>2}  score_W {c['W']['score_fixed']:.4f}  "
+              f"score_T {c['T']['score_fixed']:.4f}  gap {c['class_gap']:+.4f}  "
+              f"T<0.5 {c['T_below_half']}  "
+              f"(survivor gap {c['class_gap_survivors']:+.4f})")
     print(f"distractor written to {args.out}")
     return 0
 

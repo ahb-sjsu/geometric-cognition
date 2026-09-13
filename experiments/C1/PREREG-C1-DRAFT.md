@@ -1225,6 +1225,83 @@ over a fixed pair set, or carry the attrition test above beside every level, or
 both. Reporting a rate over survivors alone will show the effect backwards, as
 this ladder did before the test was run.
 
+### 10.18 The ladder rerun on a fixed pair set
+
+10.17 found that conditioning accuracy on swap-consistency inverts the result,
+because load moves consistency and the pairs it drops are not missing at random.
+The ladder was rerun at seed 20260922 with an estimand whose denominator the
+manipulation cannot touch. Record `distractor2.json`.
+
+**The estimand.** Every pair in the class is scored at every load, so the
+denominator is 64 throughout. A consistent and correct verdict scores 1, a
+consistent and incorrect one scores 0, and a swap-inconsistent one scores 0.5
+because the evaluator supplied no information. Noise and instrument degradation
+both drive this toward one half from above and neither can push it below; only a
+rank budget inverts trading pairs. The discriminating test therefore survives the
+correction, which is the property that made this estimand acceptable rather than
+merely attrition-free.
+
+| load | score W | score T | gap | consistency W | consistency T | survivor q T |
+|---|---|---|---|---|---|---|
+| 0 | 0.9766 | 0.8047 | +0.1719 | 0.984 | 0.984 | 0.8095 |
+| 4 | 0.9531 | 0.8281 | +0.1250 | 0.938 | 0.875 | 0.8750 |
+| 8 | 0.8984 | 0.7969 | +0.1016 | 0.859 | 0.781 | 0.8800 |
+| 16 | 0.9062 | 0.8047 | +0.1016 | 0.844 | 0.797 | 0.8824 |
+
+**The budget prediction is rejected on a clean estimand.** The trading score is
+flat, at a correlation against load of -0.282 and a range from 0.7969 to 0.8281.
+It does not approach one half at any level; the lower ends of its intervals run
+from 0.708 to 0.746. Nothing inverts.
+
+**What load does is degrade swap consistency, in both classes.** Consistency
+falls from 0.984 to 0.844 for within-subspace pairs and from 0.984 to 0.797 for
+trading pairs, at correlations of -0.920 and -0.821. The within-subspace score
+falls with it, from 0.9766 to 0.9062 at a correlation of -0.834, because that
+class began near the ceiling and converting a correct verdict into an
+uninformative one can only move it down. The class gap narrows across the ladder,
+from 0.1719 to 0.1016, but it narrows because the control class descends toward
+the trading class, not because the trading class degrades. That is the opposite
+shape from the one a budget predicts, where a stable control sits above a
+falling trading class.
+
+**The two estimands are visible side by side, and they disagree in sign.** The
+survivor-conditioned trading rate rises across the ladder, from 0.8095 to 0.8824
+at a correlation of +0.740, while the fixed-set score is flat. For trading pairs
+the two effects cancel almost exactly: at load 0 the score is
+`0.984 x 0.8095 + 0.016 x 0.5 = 0.805`, and at load 16 it is
+`0.797 x 0.8824 + 0.203 x 0.5 = 0.805`. Consistency falls and accuracy among the
+survivors rises by just enough to offset it. Reading either component alone gives
+a trend; reading the pair gives none, and the pair is what the fixed denominator
+measures.
+
+**Two defects in the gate this draft added, both found before they decided
+anything.**
+
+The first version of the position-bias check compared the first-position rate
+against one half. `build_pairs` assigns the two options arbitrarily, so the
+answer key is not balanced: in this seed's trading class option A is correct in
+0.3438 of pairs, and an evaluator with no bias whatever returns a first-position
+rate of 0.344 on it, which is exactly what was observed. Measuring against one
+half would have refused a flawless condition. The check now measures deviation
+from the cell's own answer-key rate.
+
+The second was worse and is the same error one layer down. When the recorded
+answer-key rate was absent, because this run began before the field was added,
+the check fell back to one half silently, and refused all four levels for bias
+the evaluator did not have. A fallback to a value known to be wrong is worse than
+no check. The gate now refuses to judge position bias at all when the cell does
+not carry its answer-key rate, and says so. With the true rates supplied, every
+level is admitted, at deviations between 0.000 and 0.061.
+
+**Standing.** Three manipulations have been tried. Removing deliberation
+destroyed the instrument, distractor load under a conditioned denominator showed
+the effect backwards, and distractor load under a fixed denominator shows no
+effect at all. The last of these is the first negative in this sequence that
+rests on a surviving instrument, an admissible gate and an estimand the
+manipulation cannot move, so it is the first one worth believing. C1 remains
+unsealed, and no manipulation tried so far produces a resolution effect in this
+evaluator.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.

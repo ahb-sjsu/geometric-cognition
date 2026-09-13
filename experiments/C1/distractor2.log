@@ -1,0 +1,25 @@
+[distractor] k=1  W 64  T 64  margins 1.606 / 1.766
+[distractor] invariance check W: 0 of 64 pairs differ in their distractor block (must be 0)
+[distractor] invariance check T: 0 of 64 pairs differ in their distractor block (must be 0)
+[thermal] controller up, 20 threads, target 78.0 C
+[distractor] pin verified, qwen3 created 1760022469
+[distractor] load  0 W: score 0.9766 [0.943, 1.011] over 64  consistency 0.984  survivor-q 0.9841  first-pos 0.476  reasoning 346
+[distractor] load  0 T: score 0.8047 [0.708, 0.901] over 64  consistency 0.984  survivor-q 0.8095  first-pos 0.344  reasoning 398
+[distractor] load  0 gap +0.1719  T below half: False
+[distractor] load  4 W: score 0.9531 [0.911, 0.995] over 64  consistency 0.938  survivor-q 0.9833  first-pos 0.492  reasoning 646
+[distractor] load  4 T: score 0.8281 [0.746, 0.910] over 64  consistency 0.875  survivor-q 0.8750  first-pos 0.317  reasoning 720
+[distractor] load  4 gap +0.1250  T below half: False
+[distractor] load  8 W: score 0.8984 [0.840, 0.957] over 64  consistency 0.859  survivor-q 0.9636  first-pos 0.467  reasoning 560
+[distractor] load  8 T: score 0.7969 [0.716, 0.878] over 64  consistency 0.781  survivor-q 0.8800  first-pos 0.322  reasoning 687
+[distractor] load  8 gap +0.1016  T below half: False
+[distractor] load 16 W: score 0.9062 [0.853, 0.959] over 64  consistency 0.844  survivor-q 0.9815  first-pos 0.439  reasoning 760
+[distractor] load 16 T: score 0.8047 [0.724, 0.885] over 64  consistency 0.797  survivor-q 0.8824  first-pos 0.333  reasoning 918
+[distractor] load 16 gap +0.1016  T below half: False
+[thermal] controller stopped
+
+[distractor] ladder
+  load  0  score_W 0.9766  score_T 0.8047  gap +0.1719  T<0.5 False  (survivor gap +0.1746)
+  load  4  score_W 0.9531  score_T 0.8281  gap +0.1250  T<0.5 False  (survivor gap +0.1083)
+  load  8  score_W 0.8984  score_T 0.7969  gap +0.1016  T<0.5 False  (survivor gap +0.0836)
+  load 16  score_W 0.9062  score_T 0.8047  gap +0.1016  T<0.5 False  (survivor gap +0.0991)
+distractor written to distractor2.json

@@ -134,18 +134,23 @@ def agreement_with_full(chooser, ideal_str, pairs, batch=32):
 
 
 MIN_GRADED = 32          # below this a cell reports no verdict, only a refusal
+MAX_POSITION_BIAS = 0.15  # the registration's band on the first-position rate
 
 
-def condition_admissible(cell, min_graded=MIN_GRADED) -> dict:
+def condition_admissible(cell, min_graded=MIN_GRADED,
+                         max_bias=MAX_POSITION_BIAS) -> dict:
     """Is a condition's output usable at all, before any of it is graded?
 
-    This is the check that should have run before C1-B was built. The
-    registration already gates the instrument on swap agreement and position
-    bias; a condition that fails those is not a coarser evaluator, it is an
-    evaluator that has stopped reading the options. Turning deliberation off
-    produced exactly that, and it was caught only after a graded design had been
-    built on top of it, because the switch had been verified on a single
-    hand-made pair rather than against the gate.
+    The registration gates the instrument on BOTH swap survival and position
+    bias. A first version of this function checked only survival, while its
+    docstring claimed to apply the registration's check. That is the defect this
+    reread has catalogued repeatedly in the registration itself, a bar that reads
+    as a gate and cannot fire on the thing it names, reproduced here. Survival
+    alone would have caught C1-B's collapse, which is why it looked sufficient,
+    but a condition can pass it while choosing by layout, and stopping that is
+    what the other half is for.
+
+    Both halves are reported, so a refusal names which one failed.
     """
     bad = []
     for cls in ("W", "T"):
@@ -155,7 +160,31 @@ def condition_admissible(cell, min_graded=MIN_GRADED) -> dict:
         if n < min_graded:
             bad.append(f"{cls}: only {n} of {tot} pairs survived the swap check "
                        f"({keep:.1%}), below the minimum of {min_graded}")
-    return {"admissible": not bad, "reasons": bad, "min_graded": min_graded}
+        # Position bias is the deviation from the rate at which option A is
+        # ACTUALLY the correct answer in this cell, not from one half. build_pairs
+        # assigns a and b arbitrarily, so the answer key is not balanced: one
+        # draw here came out 0.344, and an evaluator with no bias whatever
+        # returns a first-position rate of 0.344 on it. Measuring against 0.5
+        # would have refused a flawless condition, and did, until the base rate
+        # was checked.
+        fp, base = r.get("first_position_rate"), r.get("a_correct_rate")
+        if fp is not None and fp == fp:
+            if base is None or base != base:
+                # No silent fallback. Defaulting to 0.5 here is the exact error
+                # this check was rewritten to remove, and a record that predates
+                # the field would be judged against a reference known to be
+                # wrong. Refuse and say why instead.
+                bad.append(f"{cls}: cannot judge position bias, the cell does "
+                           f"not record its answer-key rate; supply "
+                           f"a_correct_rate or rerun")
+                continue
+            ref = base
+            if abs(fp - ref) > max_bias:
+                bad.append(f"{cls}: first-position rate {fp:.3f} is "
+                           f"{abs(fp-ref):.3f} from the cell's answer-key rate "
+                           f"of {ref:.3f}, outside the band of {max_bias}")
+    return {"admissible": not bad, "reasons": bad,
+            "min_graded": min_graded, "max_position_bias": max_bias}
 
 
 def wilson(k, n, z=1.96):
