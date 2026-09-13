@@ -235,9 +235,84 @@ def stage_probe(cfg_path: str, out: str, seed: int) -> int:
     return 0 if rec["pass"] else 1
 
 
+def stage_order_probe(cfg_path: str, out: str, seed: int) -> int:
+    """Event presence and instrument health for the order-based calibration.
+
+    The reported-distance instrument failed because it asked the evaluator for
+    arithmetic. This asks only which of two options is nearer. The instrument
+    gates come before the metric, because G3 discarded a chooser that measured
+    its own position bias first, and a metric fitted through that bias would be
+    the presentation's and not the evaluator's.
+    """
+    from c1_order import (LMChooser, both_orders, calibrate_from_order,
+                          heldout_order_accuracy)
+    cfg = json.load(open(cfg_path, encoding="utf-8"))
+    rng = np.random.default_rng(seed)
+    d = len(cfg["ideal"])
+    ideal = np.array(cfg["ideal"], dtype=float)
+    n = int(cfg.get("n_order_pairs", 400))
+
+    with Thermal() as th:
+        print(f"[order] loading chooser, {th.threads()} host threads")
+        ch = LMChooser(cfg)
+        A = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n, d))
+        B = rng.uniform(cfg.get("lo", 0.0), cfg.get("hi", 100.0), size=(n, d))
+        As = [render_option(x) for x in A]
+        Bs = [render_option(x) for x in B]
+        print(f"[order] {n} pairs, both presentation orders")
+        oo = both_orders(ch, render_option(ideal), As, Bs,
+                         batch=int(cfg.get("batch", 32)))
+
+    keep = np.array(oo["keep"])
+    y = np.array(oo["a_nearer"], dtype=float)
+    gates = {
+        "parse": ch.unparsed == 0,
+        # A chooser that picks the first option regardless is reporting its
+        # layout. Band fixed here before the numbers are seen.
+        "position_bias": bool(abs(oo["first_position_rate"] - 0.5) <= 0.15),
+        "agreement": bool(oo["agreement_rate"] >= 0.60),
+    }
+    rec = {"stage": "order_probe", "seed": seed, "provenance": provenance(),
+           "n_pairs": n, "kept": int(keep.sum()),
+           "agreement_rate": oo["agreement_rate"],
+           "first_position_rate": oo["first_position_rate"],
+           "unparsed": ch.unparsed}
+
+    if keep.sum() >= 10 * 9 and gates["position_bias"]:
+        cal = calibrate_from_order(A[keep], B[keep], y[keep])
+        ho = heldout_order_accuracy(A[keep], B[keep], y[keep])
+        res = retained(np.array(cal["G"]), np.array(cal["t"]), A[keep], 2)
+        rec["calibration"] = cal
+        rec["heldout"] = ho
+        rec["discarded_trace_share_k2"] = res["discarded_trace_share"]
+        # The calibration gate for an order instrument is whether a quadratic
+        # predicts comparisons the fit never saw.
+        gates["quadratic_predicts_heldout"] = bool(ho["mean"] >= 0.80)
+        gates["anti_vacuity_k2"] = bool(res["discarded_trace_share"] >= 0.05)
+    else:
+        gates["quadratic_predicts_heldout"] = False
+        gates["anti_vacuity_k2"] = False
+
+    rec["instrument_gates"] = gates
+    rec["pass"] = all(gates.values())
+    json.dump(rec, open(out, "w", encoding="utf-8"), indent=1)
+    print(f"\n[order] agreement {oo['agreement_rate']:.4f}  "
+          f"first-position rate {oo['first_position_rate']:.4f}  "
+          f"unparsed {ch.unparsed}")
+    if "heldout" in rec:
+        print(f"[order] held-out order accuracy {rec['heldout']['mean']:.4f}  "
+              f"in-sample {rec['calibration']['order_accuracy']:.4f}  "
+              f"discarded share k2 {rec['discarded_trace_share_k2']:.4f}")
+    for g, ok in gates.items():
+        print(f"  {g:28s} {'OK' if ok else 'MISS'}")
+    print(f"order probe {'PASS' if rec['pass'] else 'MISS'}, written to {out}")
+    return 0 if rec["pass"] else 1
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--stage", choices=("selftest", "probe"), required=True)
+    ap.add_argument("--stage", choices=("selftest", "probe", "order_probe"),
+                    required=True)
     ap.add_argument("--config", default="prereg_config.json")
     ap.add_argument("--out")
     ap.add_argument("--seed", type=int, default=20260913)
@@ -245,6 +320,8 @@ def main() -> int:
     out = args.out or f"{args.stage}.json"
     if args.stage == "selftest":
         return stage_selftest(out)
+    if args.stage == "order_probe":
+        return stage_order_probe(args.config, out, args.seed)
     return stage_probe(args.config, out, args.seed)
 
 

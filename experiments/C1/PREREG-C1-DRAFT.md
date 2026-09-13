@@ -41,14 +41,34 @@ margin is the gate, and the reversal rate of either class alone is not.
 ## 3. World
 
 **Evaluator.** `Qwen/Qwen2.5-7B-Instruct` from the HuggingFace cache on Atlas
-(revision recorded in `prereg_config.json` at sealing), on GPU 1, bfloat16. The
-scorer instrument of GET's G3 is reused unchanged in its reading discipline. The
-model is shown an ideal and one option and asked how far the option is from the
-ideal, and answers with a number, read as the first number in a greedy generation
-of at most 12 tokens. Preference between two options compares reported distances.
-Equal reports and unparsable reports are indifference. The G3 record established
-that this instrument parses and resolves at three decimals, which is why a
-chooser instrument is not used here.
+(revision recorded in `prereg_config.json` at sealing), on GPU 1, bfloat16.
+
+**The evaluator is asked which of two options is nearer, and never how far.**
+This replaces the reported-distance instrument of the first draft, which failed
+its calibration gate and whose failure is recorded in Section 7. The sweep
+showed the limit is arithmetic rather than elicitation, since the prompt that
+supplied the formula scored worse than three that did not, so no wording of a
+distance question is expected to work on this evaluator.
+
+The replacement is what the theory asks for rather than a workaround. GET
+Theorem 4 identifies the metric up to scale and the ideal up to the metric's
+kernel from the order on an open set, so reported distances were never a
+requirement of the theory, only of that harness. A comparison states that
+`q(a) < q(b)`, the constant of the quadratic form cancels in the difference, and
+each comparison is therefore one linear constraint on the form. Identification
+from order is a linear classification problem on difference features, which is
+why it asks the evaluator for no arithmetic at all.
+
+The model is shown the ideal and two options labelled A and B and answers with a
+single letter, read from a greedy generation of at most four tokens. An
+unparsable answer is dropped and counted.
+
+**Every pair is shown in both presentation orders.** G3 tried a pairwise chooser
+and discarded it, because with options on either side of the target it measured
+its own position bias before it measured anything else. That hazard is inherited
+with the instrument, so it is gated rather than hoped away. A pair whose verdict
+changes when the options swap places has reported the presentation and not the
+geometry, and is dropped. The remaining comparisons are the calibration.
 
 **Consequences.** Three attributes, so `Y` is three-dimensional. An option is a
 triple rendered as three labelled numbers in `[0, 100]` with one decimal. The
@@ -60,11 +80,25 @@ do not stand in for the metric.
 modular-identification condition of the OLGC paper made operational, and it is
 the condition under which this gate has content at all. A calibration block of
 pairs, disjoint from every pair graded below and drawn from an independent seed,
-is scored at full budget. `G` is estimated from those reports alone by the
-procedure in `c1_calibrate.py`, and the estimate is frozen and committed before
-any graded pair is drawn. No graded choice is used to fit `G` or `t`. If `G`
-cannot be recovered on the calibration block to the tolerance of Section 7's
-self-test, the gate does not run.
+is compared at full budget. `G` and `t` are estimated from those comparisons
+alone by `calibrate_from_order` in `c1_order.py`, and the estimate is frozen and
+committed before any graded pair is drawn. No graded choice is used to fit `G`
+or `t`.
+
+**The calibration gate is held-out prediction, not recovery error.** With a real
+evaluator there is no true metric to measure a recovery against, so the gate
+asks whether a quadratic form predicts comparisons the fit never saw. Five-fold
+cross-validated order accuracy must reach 0.80. An evaluator whose orders a
+quadratic cannot predict is not an evaluation object, which is the same verdict
+the first draft's gate reached by a route that required the evaluator to
+compute.
+
+Section 7's self-test fixes what this tolerates. The retained subspace is
+recovered to 1.07 degrees from noiseless orders and to 1.79 degrees when a fifth
+of the comparisons are wrong, and it collapses to 18.10 degrees at three tenths.
+The instrument therefore has a wide operating band in the evaluator's error rate
+and a definite edge, and the agreement and position-bias gates exist to keep the
+run inside it.
 
 **Budget.** A rank budget `k` in 1, 2, 3. The retained subspace at rank `k` is
 the top-`k` eigenspace of
