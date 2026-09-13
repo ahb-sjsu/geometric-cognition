@@ -190,6 +190,7 @@ def build_pairs(G, t, X_cal, k: int, n_per_class: int, rng, *,
             bucket.append({"a": ar.tolist(), "b": br.tolist(),
                            "margin": abs(da - db),
                            "a_pref_full": bool(da < db),
+                           "a_pref_k": bool(dka < dkb),
                            "a_render_k": render_option(round_to_render(pa)),
                            "b_render_k": render_option(round_to_render(pb))})
             if len(W) >= n_per_class * pool and len(T) >= n_per_class * pool:

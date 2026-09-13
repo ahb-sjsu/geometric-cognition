@@ -435,8 +435,10 @@ def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
                          p["a_render_k"], p["b_render_k"]) for p in built[name]]
                 prefs = [p["a_pref_full"] for p in built[name]]
                 print(f"[pilot] k={k} class {name}, {len(rows)} pairs")
-                res[name] = run_cell_order(ch, ideal_str, rows, "k",
-                                           pref_full=prefs)
+                res[name] = run_cell_order(
+                    ch, ideal_str, rows, "k",
+                    pref_full=prefs,
+                    pref_k=[p["a_pref_k"] for p in built[name]])
             res["contrast"] = res["T"]["reversal_rate"] - res["W"]["reversal_rate"]
             # D2 tested on this cell's own p rather than on held-out accuracy
             pT, pW = res["T"].get("competence_p"), res["W"].get("competence_p")
@@ -446,6 +448,12 @@ def stage_pilot(cfg_path: str, out: str, seed: int) -> int:
                     "p_T": pT, "p_W": pW, "p_mean": pbar,
                     "predicted_contrast": float((2 * pbar - 1) ** 2),
                     "residual": float(res["contrast"] - (2 * pbar - 1) ** 2)}
+                for nm in ("W", "T"):
+                    if "rho_measured" in res[nm]:
+                        print(f"           {nm} rho {res[nm]['rho_measured']:+.4f} "
+                              f"(p_full {res[nm]['p_full']:.4f}, "
+                              f"p_budget {res[nm]['p_budget']:.4f}, "
+                              f"n {res[nm]['rho_n']})")
                 print(f"           competence p: T {pT:.4f} W {pW:.4f}; "
                       f"identity predicts {(2*pbar-1)**2:+.4f}, "
                       f"observed {res['contrast']:+.4f}, "

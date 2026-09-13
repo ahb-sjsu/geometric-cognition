@@ -277,8 +277,15 @@ def main() -> int:
                 # CONTRAST tells us nothing the class construction did not
                 # guarantee; a placebo that also reproduces the RESIDUAL would
                 # show the residual is not about the retained subspace either.
-                cell[name] = run_cell_order(ch, ideal_str, rows(pairs), "k",
-                                            pref_full=[p["a_pref_full"] for p in pairs])
+                cell[name] = run_cell_order(
+                    ch, ideal_str, rows(pairs), "k",
+                    pref_full=[p["a_pref_full"] for p in pairs],
+                    pref_k=[p["a_pref_k"] for p in pairs])
+                if "rho_measured" in cell[name]:
+                    print(f"           {name} rho {cell[name]['rho_measured']:+.4f} "
+                          f"(p_full {cell[name]['p_full']:.4f}, "
+                          f"p_budget {cell[name]['p_budget']:.4f}, "
+                          f"n {cell[name]['rho_n']})")
             for a, bcls in (("placebo_T", "placebo_W"),):
                 if "reversal_rate" in cell.get(a, {}) and "reversal_rate" in cell.get(bcls, {}):
                     pT = cell[a].get("competence_p")

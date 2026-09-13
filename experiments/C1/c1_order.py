@@ -227,7 +227,7 @@ def both_orders(chooser, ideal_str: str, A, B, batch: int = 32) -> dict:
 
 
 def run_cell_order(chooser, ideal_str: str, pairs, budget_key: str,
-                   batch: int = 32, pref_full=None) -> dict:
+                   batch: int = 32, pref_full=None, pref_k=None) -> dict:
     """Reversal rate of one class at one budget, for an order instrument.
 
     The reference is the evaluator's own full-budget order, not the fitted
@@ -254,6 +254,13 @@ def run_cell_order(chooser, ideal_str: str, pairs, budget_key: str,
     # is measured on uniform calibration pairs with large margins and is an
     # upper bound for p here, not an estimate of it.
     comp_n = comp_hit = 0
+    # The 2x2 table of A = "agrees with the fitted metric at full budget" and
+    # B = "agrees with it at budget k", on the pairs graded at BOTH budgets.
+    # The reversal identity R_T = p^2+(1-p)^2, R_W = 2p(1-p) is exactly the
+    # independent case of this table. Its dependence is the thing that has been
+    # showing up as a residual, and rho is measured here rather than inferred
+    # from how far the residual sits from the independent prediction.
+    tab = {(True, True): 0, (True, False): 0, (False, True): 0, (False, False): 0}
     for i, (rf, rr, cf_, cr) in enumerate(zip(ref_f, ref_r, cut_f, cut_r)):
         if not (np.isfinite(rf) and np.isfinite(rr)) or (rf > 0.5) != (rr < 0.5):
             amb_ref += 1
@@ -265,12 +272,32 @@ def run_cell_order(chooser, ideal_str: str, pairs, budget_key: str,
             amb_cut += 1
             continue
         graded += 1
+        if pref_full is not None and pref_k is not None:
+            A = bool(rf > 0.5) == bool(pref_full[i])
+            B = bool(cf_ > 0.5) == bool(pref_k[i])
+            tab[(A, B)] += 1
         if (rf > 0.5) != (cf_ > 0.5):
             rev += 1
     p = (comp_hit / comp_n) if comp_n else float("nan")
     out = {"n": len(pairs), "graded": graded, "reversals": rev,
            "ambiguous_reference": amb_ref, "ambiguous_at_budget": amb_cut,
            "reversal_rate": (rev / graded) if graded else float("nan")}
+    if pref_full is not None and pref_k is not None:
+        n = sum(tab.values())
+        if n:
+            a = (tab[(True, True)] + tab[(True, False)]) / n     # P(A)
+            b = (tab[(True, True)] + tab[(False, True)]) / n     # P(B)
+            ab = tab[(True, True)] / n                           # P(A and B)
+            den = (a * (1 - a) * b * (1 - b)) ** 0.5
+            out["agreement_table"] = {f"{k_}": v for k_, v in
+                                      zip(("AB", "Ab", "aB", "ab"),
+                                          (tab[(True, True)], tab[(True, False)],
+                                           tab[(False, True)], tab[(False, False)]))}
+            out["p_full"] = a
+            out["p_budget"] = b
+            out["rho_measured"] = float((ab - a * b) / den) if den > 1e-12 else float("nan")
+            out["P_A_eq_B"] = float((tab[(True, True)] + tab[(False, False)]) / n)
+            out["rho_n"] = n
     if pref_full is not None:
         out["competence_p"] = p
         out["competence_n"] = comp_n
