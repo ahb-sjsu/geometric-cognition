@@ -40,8 +40,30 @@ margin is the gate, and the reversal rate of either class alone is not.
 
 ## 3. World
 
-**Evaluator.** `Qwen/Qwen2.5-7B-Instruct` from the HuggingFace cache on Atlas
-(revision recorded in `prereg_config.json` at sealing), on GPU 1, bfloat16.
+**Evaluator, pinned.** `qwen3` on the NRP managed gateway
+`https://ellm.nrp-nautilus.io/v1`, queried from Atlas so the token stays on that
+host. Greedy, `temperature` 0, `max_tokens` 1024 with a single bounded escalation
+on truncation, a 60 second per-item deadline and at most 3 attempts.
+
+`Qwen2.5-7B-Instruct` was the evaluator of the first draft and is not the
+evaluator of this one. It failed both instruments, on arithmetic and then on
+layout, and Section 7 records both.
+
+**The pin is a check, not a note.** The gateway publishes no revision, no
+underlying model name and no weights hash. A catalog entry carries an alias, an
+object type, an owner and a creation timestamp and nothing else, so the alias can
+be repointed at a different model without the identifier changing, and the
+timestamp is the only field that would show it. `preflight_model_pin` therefore
+refuses to run when the alias is absent or its `created` has moved from
+**1760022469**, which is 2025-10-09T15:07:49Z. This does not make the evaluator
+reproducible, because nothing the gateway exposes can. It makes an evaluator that
+changed underneath the gate impossible to run against by accident.
+
+**Deliberation is a registered property of the evaluator.** Of three evaluators
+measured, the only one that compared by content rather than by layout was the
+only one that reasoned before answering, at about 240 reasoning tokens per
+comparison. A run in which the evaluator reports no reasoning tokens is not a run
+against the registered evaluator, and the gate checks it.
 
 **The evaluator is asked which of two options is nearer, and never how far.**
 This replaces the reported-distance instrument of the first draft, which failed
@@ -171,6 +193,20 @@ share below 0.05 at a budget and a margin match that the pilot cannot achieve.
 `MARG` and `CEIL` are fixed from the pilot before sealing. `MARG` is set at half
 the pilot's observed `R_T - R_W`, floored at 0.10. `CEIL` is set at twice the
 pilot's observed `R_W`, floored at 0.05.
+
+**FIXED FROM THE PILOT, 2026-09-13, `pilot_qwen3.json`, seed 20260914.**
+
+| | value |
+|---|---|
+| `MARG` | **0.4841** |
+| `CEIL` | **0.05** |
+| cap from the rendering ceiling | 0.8844, does not bind |
+| observed contrast, the smaller of the two budgets | 0.9683 |
+| observed `R_W`, the larger of the two budgets | 0.0000 |
+| rendering ceiling, the smaller of the two budgets | 0.9844 |
+
+The pilot is spent. These numbers are not rerun and not revised, and the run seed
+is drawn only after the rename.
 
 **The rendering ceiling bounds what a correct evaluator can score.** A T pair is
 admitted because the exact rank-`k` projection reverses its order, and the
@@ -450,3 +486,48 @@ Stated here rather than discovered later.
   against 300 requested in development. A low yield narrows the margin bins that
   can be matched, which is a constraint on the design rather than a result, and
   the pilot reports it.
+- **The classes are matched on margin and not on attribute range, and the pilot
+  shows they differ.** Trading pairs span a mean attribute range of 56.76 against
+  45.47 for within-subspace pairs at rank 1, and 54.37 against 47.56 at rank 2.
+  Rendered length is balanced, at about 21.8 characters in every cell. A residual
+  confound of roughly a fifth in range is therefore present and measured rather
+  than assumed away, and a pass should be read with it.
+
+## 12. What a pass on this evaluator would and would not mean
+
+This section exists because the pilot's separation is near total, and a result
+that large invites being read for more than it carries.
+
+The pilot's reversal contrast is 0.9683 at both budgets, with no within-subspace
+pair reversing in 128 graded and no ambiguous verdict anywhere. The trading rate
+sits essentially at the rendering ceiling, 0.9683 against 0.9844 at rank 2. That
+is the synthetic self-test reproduced on a language model.
+
+**The informativeness of this gate is concentrated in the calibration, not in the
+contrast.** The held-out order accuracy of the fitted quadratic is 0.9850, so
+this evaluator is very nearly a quadratic evaluation object. A trading pair is
+admitted precisely because the fitted metric says the rank-`k` order disagrees
+with the full-budget order, so an evaluator that the metric describes almost
+exactly will reverse those pairs almost exactly. The contrast is then close to a
+consequence of the calibration being accurate rather than an independent test of
+the budget.
+
+What is not near-tautological, and what carries the content, is the calibration
+itself. That a language model's pairwise comparisons are described by a quadratic
+form on a three-dimensional consequence space, well enough to predict unseen
+comparisons at 0.99, is a falsifiable claim that this programme has now seen fail
+twice. `Qwen2.5-7B-Instruct` failed it at a fit of 0.0946 and by choosing the
+first-shown option 0.8175 of the time, and `gemma4-12b` failed it at 0.7661 and
+0.7000. The gate's discriminating stage is the instrument gate, and the reversal
+contrast confirms that the budget manipulation does what the identified metric
+says it will.
+
+**A consequence for the design worth registering.** The reversal prediction is
+most at risk where an evaluator is approximately rather than almost exactly
+quadratic, because that is where the projection's predicted flips and the
+evaluator's actual flips can come apart. A held-out accuracy near one leaves the
+prediction little room to fail. A future gate of this shape should therefore
+treat held-out accuracy as a band rather than a floor, since too low means the
+metric is not identified and too high means the reversal test is nearly implied
+by the fit. C1 keeps the floor it registered and records the observation instead
+of acting on it after the fact.

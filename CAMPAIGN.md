@@ -44,7 +44,7 @@ the tolerances.
 | NRP viability, `gpt-oss` | Atlas to `ellm`, 2026-09-13 | **stalled**, 16 idle connections and no response for 43 minutes, stopped with permission | [`experiments/C1/ellm-gptoss-stalled.log`](experiments/C1/ellm-gptoss-stalled.log) |
 | NRP viability, `gemma4-12b` | Atlas to `ellm`, 2026-09-13 | **MISS both**, distance `r2` 0.7661, first-position 0.7000 | [`experiments/C1/ellm_viability_gemma.json`](experiments/C1/ellm_viability_gemma.json) |
 | Order probe, pinned `qwen3` | Atlas to `ellm`, 2026-09-13 | **PASS**, all six gates. Agreement 1.0000, first-position 0.5000, held-out order accuracy 0.9900, 0 unparsed of 800 | [`experiments/C1/order_probe_qwen3.json`](experiments/C1/order_probe_qwen3.json) |
-| Pilot | Atlas to `ellm`, 2026-09-13 | running | |
+| Pilot | Atlas to `ellm`, 2026-09-13, seed 20260914 | **complete**, `MARG` 0.4841, `CEIL` 0.05, cap does not bind | [`experiments/C1/pilot_qwen3.json`](experiments/C1/pilot_qwen3.json) |
 
 The self-test recovers the metric to 1.2e-13 and the rank-2 retained subspace to
 1.2e-6 degrees, and shows the subspace moving only 1.4 degrees under reporting
@@ -200,6 +200,39 @@ sets bars from this data.
 
 All three budgets are on file, at 512, 1024 and the escalating instrument, rather
 than the last one overwriting its predecessors.
+
+**The pilot has fixed the tolerances, and its separation is large enough to need
+a caveat rather than a celebration.** `MARG` is 0.4841 and `CEIL` is 0.05. The
+rendering ceiling caps `MARG` at 0.8844, which does not bind, so Section 5's
+rerun-at-finer-precision clause is not triggered. Within-subspace reversals are
+0.0000 at both budgets across 128 graded pairs with no ambiguous verdict
+anywhere, trading reversals are 0.9683 at both, and at rank 2 that sits against a
+rendering ceiling of 0.9844. The synthetic self-test has been reproduced on a
+language model.
+
+**The content of this gate is in the calibration, not in the contrast.** The
+fitted quadratic predicts unseen comparisons at 0.9850, so this evaluator is very
+nearly a quadratic evaluation object. A trading pair is admitted precisely
+because the fitted metric says its rank-`k` order disagrees with its full-budget
+order, so an evaluator the metric describes almost exactly will reverse those
+pairs almost exactly, and the contrast is close to a consequence of an accurate
+calibration rather than an independent test of the budget. What is not
+near-tautological is the calibration itself, and that claim has failed twice in
+this programme already, on `Qwen2.5-7B-Instruct` and on `gemma4-12b`.
+
+A design consequence is registered rather than acted on after the fact. The
+reversal prediction is most at risk where an evaluator is approximately rather
+than almost exactly quadratic, so a future gate of this shape should treat
+held-out accuracy as a band rather than a floor. Too low and the metric is not
+identified, too high and the reversal test is nearly implied by the fit. C1 keeps
+the floor it registered.
+
+The pilot also measured the residual confound the margin match does not remove.
+Trading pairs span a mean attribute range of 56.76 against 45.47 for
+within-subspace pairs at rank 1, and 54.37 against 47.56 at rank 2, while
+rendered length is balanced at about 21.8 characters everywhere. A difference of
+roughly a fifth in range is present, measured, and recorded beside the result it
+bounds.
 
 The registration also carries the programme's rate-limit rule, which requires the
 draft to be reread cold in a later session before it is sealed, and Section 10 of

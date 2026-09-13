@@ -1,0 +1,263 @@
+{
+ "stage": "pilot",
+ "seed": 20260914,
+ "provenance": {
+  "host": "atlas",
+  "python": "3.12.3",
+  "numpy": "2.2.6",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.5.0",
+  "cuda_visible_devices": null,
+  "gpu_at_start": "0, 0 %, 18803 MiB, 58\n1, 0 %, 57 MiB, 50",
+  "utc": "2026-09-13T07:35:03Z",
+  "target_temp": 78.0,
+  "max_threads": 20
+ },
+ "evaluator_pin": {
+  "model_id": "qwen3",
+  "created": 1760022469,
+  "owned_by": "NRP",
+  "verified_utc": "2026-09-13T07:18:11Z"
+ },
+ "calibration": {
+  "d": 3,
+  "n_comparisons": 400,
+  "G": [
+   [
+    0.9987841629117804,
+    0.00319784892747351,
+    -0.00972089296309335
+   ],
+   [
+    0.0031978489274735265,
+    0.9808422405377318,
+    0.0046636325877094055
+   ],
+   [
+    -0.009720892963093386,
+    0.0046636325877094376,
+    1.0203735965504876
+   ]
+  ],
+  "t": [
+   49.70955573438235,
+   50.52101994262712,
+   49.69195794024371
+  ],
+  "psd_clip": -0.0,
+  "well_conditioned": true,
+  "order_accuracy": 1.0
+ },
+ "heldout": {
+  "folds": 5,
+  "per_fold": [
+   0.975,
+   1.0,
+   0.975,
+   0.975,
+   1.0
+  ],
+  "mean": 0.9850000000000001,
+  "min": 0.975
+ },
+ "kept_calibration_pairs": 400,
+ "agreement_rate": 1.0,
+ "first_position_rate": 0.5,
+ "unparsed": 1,
+ "deadline_failures": 0,
+ "finish_reasons": {
+  "stop": 1823,
+  "length": 1,
+  "unparsed_length": 1
+ },
+ "truncation_escalations": 10,
+ "mean_reasoning_tokens": 254.3267543859649,
+ "cells": {
+  "1": {
+   "k": 1,
+   "discarded_trace_share": 0.6311974995870707,
+   "n_W": 64,
+   "n_T": 64,
+   "margin_mean_W": 1.5691707837418827,
+   "margin_mean_T": 1.6936818109731973,
+   "bins": [
+    {
+     "bin": 0,
+     "lo": 0.0011652045464387584,
+     "hi": 0.12007676243465681,
+     "taken": 8
+    },
+    {
+     "bin": 1,
+     "lo": 0.12007676243465681,
+     "hi": 0.3001078139619757,
+     "taken": 8
+    },
+    {
+     "bin": 2,
+     "lo": 0.3001078139619757,
+     "hi": 0.5128610769044091,
+     "taken": 8
+    },
+    {
+     "bin": 3,
+     "lo": 0.5128610769044091,
+     "hi": 0.8533450986889335,
+     "taken": 8
+    },
+    {
+     "bin": 4,
+     "lo": 0.8533450986889335,
+     "hi": 1.3389651118481636,
+     "taken": 8
+    },
+    {
+     "bin": 5,
+     "lo": 1.3389651118481636,
+     "hi": 2.0976882197416273,
+     "taken": 8
+    },
+    {
+     "bin": 6,
+     "lo": 2.0976882197416273,
+     "hi": 3.2678329285384287,
+     "taken": 8
+    },
+    {
+     "bin": 7,
+     "lo": 3.2678329285384287,
+     "hi": 12.40053810833582,
+     "taken": 8
+    }
+   ],
+   "rendering_ceiling_T": {
+    "n": 64,
+    "lost_to_rounding": 0,
+    "share_lost": 0.0,
+    "ceiling": 1.0
+   },
+   "W": {
+    "n": 64,
+    "graded": 64,
+    "reversals": 0,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.0
+   },
+   "T": {
+    "n": 64,
+    "graded": 63,
+    "reversals": 61,
+    "ambiguous_reference": 1,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.9682539682539683
+   },
+   "contrast": 0.9682539682539683,
+   "balance": {
+    "attr_range_W": 45.4734375,
+    "attr_range_T": 56.7625,
+    "render_len_W": 21.859375,
+    "render_len_T": 21.703125
+   }
+  },
+  "2": {
+   "k": 2,
+   "discarded_trace_share": 0.29722462394539545,
+   "n_W": 64,
+   "n_T": 64,
+   "margin_mean_W": 1.7630569463729475,
+   "margin_mean_T": 1.9434541397765344,
+   "bins": [
+    {
+     "bin": 0,
+     "lo": 0.0010996328542702827,
+     "hi": 0.21176624848711167,
+     "taken": 8
+    },
+    {
+     "bin": 1,
+     "lo": 0.21176624848711167,
+     "hi": 0.4525882934425418,
+     "taken": 8
+    },
+    {
+     "bin": 2,
+     "lo": 0.4525882934425418,
+     "hi": 0.7845691690521157,
+     "taken": 8
+    },
+    {
+     "bin": 3,
+     "lo": 0.7845691690521157,
+     "hi": 1.2237353485218456,
+     "taken": 8
+    },
+    {
+     "bin": 4,
+     "lo": 1.2237353485218456,
+     "hi": 1.79083540097374,
+     "taken": 8
+    },
+    {
+     "bin": 5,
+     "lo": 1.79083540097374,
+     "hi": 2.659394156172702,
+     "taken": 8
+    },
+    {
+     "bin": 6,
+     "lo": 2.659394156172702,
+     "hi": 4.080137797075529,
+     "taken": 8
+    },
+    {
+     "bin": 7,
+     "lo": 4.080137797075529,
+     "hi": 13.75466183185996,
+     "taken": 8
+    }
+   ],
+   "rendering_ceiling_T": {
+    "n": 64,
+    "lost_to_rounding": 1,
+    "share_lost": 0.015625,
+    "ceiling": 0.984375
+   },
+   "W": {
+    "n": 64,
+    "graded": 64,
+    "reversals": 0,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 0,
+    "reversal_rate": 0.0
+   },
+   "T": {
+    "n": 64,
+    "graded": 63,
+    "reversals": 61,
+    "ambiguous_reference": 0,
+    "ambiguous_at_budget": 1,
+    "reversal_rate": 0.9682539682539683
+   },
+   "contrast": 0.9682539682539683,
+   "balance": {
+    "attr_range_W": 47.5578125,
+    "attr_range_T": 54.365625,
+    "render_len_W": 21.71875,
+    "render_len_T": 21.78125
+   }
+  }
+ },
+ "tolerances": {
+  "rule": "MARG is half the observed contrast floored at 0.10 and capped at the rendering ceiling minus CEIL minus 0.05. CEIL is twice the observed within-subspace rate floored at 0.05.",
+  "observed_contrast_min": 0.9682539682539683,
+  "observed_W_max": 0.0,
+  "rendering_ceiling_min": 0.984375,
+  "CEIL": 0.05,
+  "MARG_before_cap": 0.4841,
+  "cap": 0.8844,
+  "MARG": 0.4841,
+  "cap_binds": false,
+  "capped_below_floor": false
+ }
+}
