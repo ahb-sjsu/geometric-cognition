@@ -1,6 +1,8 @@
 # C2 registration, draft: does resource load open a class gap in order-dependence?
 
-**Status: DRAFT. Not sealed. No run seed drawn. Section 9 is empty.**
+**Status: DRAFT. NOT SEALABLE. No run seed drawn. Section 9 records a cold
+reread that found the design would pass under a model with no rank budget, and
+lists four repairs required before it can be sealed.**
 
 C1 is unsealed and stays unsealed. This is a separate gate testing one
 pre-specified quantity that emerged from C1's fourth ladder, and it is written to
@@ -140,10 +142,206 @@ budget exists anywhere in this programme.
 
 ## 9. Reread record
 
-*Empty. To be filled by a cold reread in a session other than the one that
-drafted this, before sealing. C1's first reread returned three design defects and
-eleven document defects. Its second found that two of its sections had measured a
-generation limit rather than the evaluator. This section is not a formality.*
+**Readers.** Two, with no drafting context, 2026-09-13, given this file and the
+C1 modules it reuses, and fenced off from `CAMPAIGN.md`, the paper and the
+history. One asked whether every bar can fire. One attacked the design.
+
+**Verdict: NOT SEALABLE. The design would return a pass under a model with no
+rank budget.** Every number below was recomputed before being accepted.
+
+### 9.1 The design defect that decides it
+
+**Pure per-attribute noise reproduces the registered signature exactly.**
+`build_pairs` matches the classes on `margin = |d(a) - d(b)|`. That is not the
+quantity governing flip probability under noise that enters per attribute. Write
+`c_i` for each attribute's contribution to `d(a)^2 - d(b)^2`. At matched margin:
+
+| | W | T |
+|---|---|---|
+| `\|sum c_i\|` | 157.7 | 122.0 |
+| `sqrt(sum c_i^2)` | 143.9 | 176.2 |
+| **decision SNR** | **1.041** | **0.719** |
+| `\|\|b - a\|\|` | 2.58 | 5.78 |
+
+A trading pair's decisive margin is the small residue of large opposing terms; a
+within-subspace pair's is not. Now take a model with no budget, no projection and
+no geometry, in which load is only an increase in per-attribute noise `sigma`:
+
+| `sigma` | W rate | T rate | difference | ratio |
+|---|---|---|---|---|
+| 0.005 | 0.0017 | 0.0025 | 0.0009 | 1.54 |
+| 0.050 | 0.0054 | 0.0273 | 0.0218 | 5.00 |
+| 0.120 | 0.0138 | 0.0588 | 0.0451 | 4.28 |
+| 0.200 | 0.0239 | 0.0924 | 0.0685 | 3.87 |
+
+C1-D observed 0.0208 against 0.0781, a difference of 0.0573 at a ratio of 3.75.
+That sits on this curve. The confound is multiplicative, so it vanishes at the
+floor and grows with load, which is precisely the difference in differences this
+registration treats as diagnostic. **The pattern C2-1 predicts is also what
+isotropic noise predicts, and this design cannot separate them.**
+
+### 9.2 The control the design already generates and throws away
+
+`build_pairs` draws pairs with a large discarded component and discards every one
+whose rank-1 order agrees with the full order, 22,311 of 28,311 candidates. Call
+that class N. It carries T's stimulus complexity and W's theoretical status,
+because under a rank-1 budget the retained direction is decisive and agrees.
+Margin-matched it sits beside T on every complexity axis and beside W on the
+budget prediction. A budget account predicts N behaves like W; a complexity or
+cancellation account predicts N behaves like T. The two-class design cannot
+separate those; adding N separates them in the same run for 512 more pairs per
+level. C1's own 10.1 D3 proposed this species of control and this draft did not
+carry it forward.
+
+### 9.3 A class-differential position lean is already in the data
+
+| load | W first-position minus answer key | T |
+|---|---|---|
+| 0 | +0.000 | +0.031 |
+| 4 | +0.000 | +0.047 |
+| 8 | +0.016 | +0.040 |
+| 16 | -0.002 | +0.057 |
+
+The within-subspace class tracks its answer key at every level. The trading class
+runs above it at every level and the lean grows with load. Under a mixture model
+in which the evaluator answers by position with probability `pi`, a deviation of
+0.025 from the reference produces order-dependence of about 0.041, which is most
+of the 0.057 gap under test. The registered band is 0.15, which admits a
+deviation producing four times the effect. The gate cannot fire on the thing it
+names.
+
+Its reference is also wrong for the fourth time. `condition_admissible` takes `q`
+from `q_agree_full_survivors`, which conditions on excluding order-dependent
+pairs, the very exclusion under study, and estimates it from the cell being
+graded. Because `q_T < q_W` the reference is pulled toward one half for the
+trading class, making the band effectively wider for the class the hypothesis
+concerns.
+
+### 9.4 The instrument gate fires because the hypothesis is true
+
+Section 5 requires at least 480 of 512 pairs graded. In the code this reuses,
+`n_graded` counts pairs consistent in both orders, and with unparsed and deadline
+separately pinned at zero the only remaining way to fail is genuine
+order-dependence. So the gate is exactly `genuine <= 32`, a rate of 0.0625,
+against a registered effect of 0.0781.
+
+| true trading rate | expected count of 512 | probability the cell is refused |
+|---|---|---|
+| 0.0781, the registered effect | 40.0 | **0.894** |
+| 0.0625 | 32.0 | 0.453 |
+| 0.0495, half the effect | 25.3 | 0.077 |
+
+Joint probability of an admissible cell and a passing primary: **0.091**, against
+the 0.992 Section 6 claims. Under the other reading of "graded" the bar is
+redundant with the two zero gates and can never fire. There is no reading on
+which it is useful. This is the defect class C1's 10.2 catalogues, reproduced in
+a document written to avoid it, under a heading reading "Bars, each stated so
+that it can fail."
+
+### 9.5 The zero-deadline gate refuses the evidence that motivates this design
+
+C1-D recorded deadline failures of 1 at load 8 and 10 at load 16, plus 3, 2 and 1
+in the calibration blocks. A zero tolerance therefore makes loads 8 and 16 of
+C1-D inadmissible, including the level that produced the 0 against 5 result and
+half the pooled counts Section 6 sizes from. At load 16 the number of unusable
+items exceeds the number of events, and the missingness is class-differential, 3
+against 7. Zero across roughly 5,300 gateway calls is not an achievable bar, and
+"inadmissible, no verdict" is a fail-when-true outcome with no recovery path.
+
+### 9.6 The primary statistic is not the claim
+
+Section 1 registers a difference in differences. Section 5 registers significance
+at one level plus non-significance at another, which is difference in
+significance and not a test of an interaction. The interaction is never
+estimated and never given an interval, and under the outcome Section 3 expects,
+zero events in both baseline cells, the baseline odds ratio is undefined and no
+difference in differences can be fitted at all. The headline quantity is not
+estimable from the registered data under the registered expectation.
+
+### 9.7 The baseline is a floor, not a control
+
+Zero of 64 gives a one-sided 95 percent upper bound of 0.0457. Pooling both
+baseline classes, zero of 128 bounds a rate at 0.0231. The effect under test is
+0.021 against 0.078. The upper bound on what the baseline could be hiding is
+about 80 percent of the trading rate the design is powered to detect. Seeing zero
+in 64 licenses "the baseline gap is smaller than the effect we are looking for",
+which is not a control. And because the confound in 9.1 is multiplicative it
+holds the ratio roughly fixed while the difference scales with load, so absence
+at the floor is what that confound predicts.
+
+### 9.8 The void check is a coin flip against the confound it exists to catch
+
+Probability the baseline test correctly returns `p < 0.05`, at 512 per class:
+
+| baseline W rate | T rate | probability of VOID | passes by default |
+|---|---|---|---|
+| 0.002 | 0.008 | 0.103 | **0.897** |
+| 0.005 | 0.020 | 0.489 | **0.511** |
+| 0.010 | 0.040 | 0.860 | 0.140 |
+
+The ratio-four rows are the ones that matter, because that is the confound's
+shape. The design catches a fourfold baseline gap at the 0.005 floor half the
+time and at the 0.002 floor a tenth of the time, while catching the same
+structure under load with power near 0.99. It finds the gap where it is large and
+misses it where it is small.
+
+### 9.9 Smaller defects, each confirmed
+
+The margin tolerance of 0.06 is asserted and enforced nowhere, and fails at 3 of
+10 candidate seeds, worst 0.0858. Since the seed is drawn after sealing, the
+registration would commit to a tolerance it discovers it has missed only
+afterwards. `assert_budget_usable` takes its arguments from the frozen pilot and
+cannot fire on any run draw. `verify_invariance` builds both renderings from the
+same array and can fail only if the renderer is broken. The generation limit of
+4096 is not the operative ceiling, because the chooser escalates once to 8192.
+Section 4's justification for the 180 second deadline splices two runs: 918
+tokens is from the 1024-cap ladder, which had zero timeouts, and the six-timeout
+figure is from the 4096 run, whose true deadline count is 10 and whose mean
+reasoning was 646 and 728. Section 6's "0.14 to 0.35" misreads its own table, in
+which 0.356 is the 256-pair cell and the 64-pair half-effect power is 0.030.
+Falsifier 4 names rendered length, which is 154 characters in both classes by
+construction and therefore inert, and gives no threshold that could convert
+"tracks" into a fail. No code computes the primary statistic; there is no Fisher
+exact anywhere in the codebase, no class comparison of genuine order-dependence,
+and no same-load replicate.
+
+### 9.10 What the readers found sound
+
+The endpoint is not an algebraic identity in the accuracy, so C1's 10.15 defect
+is genuinely not reproduced, and Section 2's diagnosis of it is correct. The
+cancellation argument for the distractors is correct under any positive
+weighting. The power table reproduces by exact enumeration, every cell within
+0.018. The box, ideal, spectral gap and discarded share all check out. The
+sampler fills 512 per class at all ten seeds tried. The margin match holds across
+the full distribution even where the means miss, at a two-sample KS `p` of 0.98.
+Every claim this file makes about C1 checks out against C1's own record.
+
+### 9.11 Required before this can be sealed
+
+Four repairs, in order of value against cost.
+
+1. A same-order replicate. Every pair is presented a third time in the order it
+   was first shown, which measures the gateway's own flip floor per class and
+   converts the endpoint into `flip(swapped)` above `flip(same order)`. The
+   forward and reverse presentations currently run as separate blocks, so the
+   endpoint is literally a between-block difference and any drift on a shared
+   gateway reads as order-dependence.
+2. The N control class, which the sampler already produces and discards.
+3. Matching on decision SNR rather than on geometric margin, with the achieved
+   match registered and asserted, and a registered covariate adjustment for
+   `sqrt(sum c_i^2)`, opposing mass, `||b - a||` and direction concentration.
+4. A graded interaction statistic, by penalised logistic regression that survives
+   zero cells, with the baseline stated as an equivalence test rather than as
+   null acceptance, and the manipulation check promoted from secondary to
+   co-primary so that a spectrum which does not move cannot leave a pass
+   standing.
+
+The instrument bars need rewriting alongside: delete or rescope the 480 gate,
+replace the zero-deadline bar with a tolerance and an exclusion rule, and tighten
+the position band to 0.03 against a reference computed on all pairs that returned
+a letter rather than on survivors.
+
+This file is not renamed and not sealed. No run seed is drawn.
 
 ## 10. Sealing procedure
 
