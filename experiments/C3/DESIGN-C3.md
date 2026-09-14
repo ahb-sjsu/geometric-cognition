@@ -1,15 +1,12 @@
 # C3 design note: measure the sensitivity profile, select nothing
 
-**Status: DESIGN NOTE, REREAD, NOT USABLE AS SPECIFIED. No bars, no seed, no
-run.** The reread record at the end finds that the construction carries answer
-shortcuts on the narrow axes, that the noise account is not the exact null this
-note claims, and that one pair per prompt gives the evaluator no workload to
-budget over. The change of approach, selecting nothing on a fitted metric,
-survives.
-
-The sections before the record set out the change of approach and the
-construction as first written, so that a registration can be written against
-something checked rather than against an idea.
+**Status: DESIGN NOTE, REBUILT, NOT YET REREAD. No bars, no seed, no run.** The
+pair construction described first was refused by the reread recorded below it. The
+rebuild at the end of this note replaces it with multi-option sets in which a
+byte-identical probe is shown in three contexts that differ only in the variance
+role of the probe's target attribute. Simulated on the built prompts, every
+no-budget model acting on the probe gives a role effect of exactly zero, and a
+rank budget gives a large one. The rebuild has not been reread.
 
 ## Why the previous four designs were refused
 
@@ -252,3 +249,143 @@ difference is genuinely invariant.
 
 The first item changes the stimulus unit from a pair to a set, which is a larger
 change than the others and should be settled before the rest are built.
+
+## Rebuild: multi-option sets, 2026-09-13
+
+This section supersedes the pair construction above, which the reread found
+unusable. The pair code stays in `c3_design.py` as a record; the rebuild is
+`c3_sets.py`.
+
+### The unit is a triplet of prompts
+
+Each prompt shows an ideal and 22 options. Two of them are the probe pair, which
+differs mainly along one target attribute. The other 20 are context, and their
+spread per attribute is set by design: one attribute high variance, one medium,
+one low.
+
+**The same probe appears in three prompts, byte for byte**, at the same list
+positions, with the same attribute order and labels. Only the context changes, and
+with it the role the probe's target attribute plays: high, medium or low.
+
+This is the change the reread's most consequential finding called for. The
+evaluator now has a workload in its context window, the budget prediction is about
+variance it can see, and the variance rank is manipulated while the probe is held
+fixed.
+
+### Why the null is now exact
+
+Any noise that acts on the probe, including the two-source model that moved the
+pair design's threshold ratio fourfold, sees identical input in all three prompts
+of a triplet. It therefore predicts no difference between roles. The null holds by
+construction and does not depend on a noise model.
+
+### What answers each reread finding
+
+| finding | answer |
+|---|---|
+| one pair per prompt gives no workload | a controlled 20-option context in every prompt |
+| range was the same variable as variance | every attribute spans the same range around the same ideal, `(50, 50, 50)`, so variance differs only in the context and attributes are exchangeable |
+| axis confounded with list position and label | attribute order and labels drawn per triplet from a pool; target attribute counterbalanced |
+| "pick the smaller value" answered the narrow axes | four sign patterns stratified exactly per cell, so smaller-value-is-nearer and straddling the ideal are each exactly 0.500 in every cell |
+| "pick the shorter string" answered `R` | every value renders as four characters |
+| options differed on one attribute only | non-target attributes perturbed symmetrically about the ideal, so options differ on every attribute and the answer still rests on the target |
+| biased root choice | no root choice; offsets come directly from the sign patterns |
+| threshold is undefined where the budget bites | the endpoint is accuracy by role at a fixed separation |
+| ideal unregistered | registered at `(50, 50, 50)` |
+
+Load is not part of this design. The rank budget is defined on workload variance,
+and in-context variance is a workload manipulation. The role contrast tests whether
+a budget exists. Whether load lowers its rank is a separate question. That keeps
+this design away from C1's record, where three of four resource manipulations
+degraded the instrument before the resolution.
+
+### Construction check, 768 triplets
+
+Three target attributes by four separations (1, 2, 4, 8), 64 triplets per cell.
+
+* Every cell fills to 64 within 64 to 70 attempts.
+* The probe lines are byte-identical across roles in 768 of 768 triplets.
+* Non-target offsets are exactly symmetric about the ideal in every probe.
+* Smaller-value-is-nearer and straddle are exactly 0.500 in every cell.
+* The nearer option sits at the first probe position in 0.496 of triplets.
+* Separation error has a mean of 0.92 percent and a maximum of 5.9 percent, at
+  the smallest separation, from rounding.
+* The target attribute's rendered position is 263, 242 and 263 across the three
+  slots.
+* In-context variance, probe included, follows the roles in every prompt at the
+  registered floor ratio of 2: about 370, 98 and 14 for high, medium and low.
+* The top eigenvector of the in-context workload lies within 3.44 degrees of the
+  high attribute in every prompt, median 1.44.
+* Context distance from the ideal has the same distribution in every role,
+  because the roles permute the same three spreads across attributes.
+
+Two differences between roles remain, and both are recorded rather than removed.
+
+**Option-line length differs with option-number digits.** It differs in 369 of 768
+probe pairs. It is identical across the three roles of a triplet, and the shorter
+line is the nearer option in 0.526 of those pairs, so it cannot produce a role
+effect.
+
+**Crowding differs by role.** The nearest context value to a probe value on the
+target attribute has a median distance of 2.10 in the high role, 1.50 in the medium
+role and 4.00 in the low role. The low-role probe sits outside a tight cluster.
+Crowding would therefore favour the low role, which is the opposite of the budget
+sign, and the simulation below finds it negligible.
+
+### Simulated evaluators on the built prompts
+
+Accuracy by role, pooled over target attributes. Each model has one noise level,
+set so its high role sits at 0.75 at separation 1.
+
+| model | separation | high | medium | low | high minus low |
+|---|---|---|---|---|---|
+| no budget, noise on the probe | 1 | 0.750 | 0.750 | 0.750 | +0.000 |
+| | 4 | 0.996 | 0.996 | 0.996 | +0.000 |
+| rank-1 budget on the in-context workload | 1 | 0.750 | 0.506 | 0.504 | +0.246 |
+| | 4 | 0.989 | 0.526 | 0.520 | +0.469 |
+| rank-2 budget on the in-context workload | 1 | 0.750 | 0.766 | 0.524 | +0.226 |
+| | 4 | 0.995 | 0.997 | 0.609 | +0.387 |
+| | 8 | 1.000 | 1.000 | 0.753 | +0.247 |
+| normalisation by in-context spread | 1 | 0.750 | 0.994 | 1.000 | -0.250 |
+| | 4 | 0.998 | 1.000 | 1.000 | -0.002 |
+| confusion with nearby context values | 1 | 0.704 | 0.699 | 0.702 | +0.002 |
+| | 4 | 0.963 | 0.959 | 0.966 | -0.003 |
+| rank coding within the prompt | 4 | 0.570 | 0.792 | 0.607 | -0.036 |
+| | 8 | 0.680 | 0.872 | 0.570 | +0.109 |
+
+The no-budget model's role effect is zero exactly, not approximately. A rank-1
+budget leaves the medium and low roles at chance while the high role is at ceiling.
+A rank-2 budget keeps the medium role and loses only the low one, so the medium role
+tells the two ranks apart. Normalisation predicts the opposite sign. Confusion with
+nearby context predicts nothing measurable.
+
+### Limits the simulation exposed
+
+**The largest separation weakens the signature.** At separation 8 the rank-2
+budget's low role rises to 0.753. A large probe offset adds variance to its own
+attribute and tilts the workload toward it, so at that rung the probe partly
+un-discards the attribute it is testing. Separation 4 is where the high role is at
+ceiling and the probe's own contribution is still small. The primary rung should
+be registered there in advance, not at the top of the ladder as the reread
+suggested for the pair design.
+
+**Rank coding is excluded only by the full profile.** At separation 8 it produces
+a positive high-minus-low of 0.109, the budget's sign. It also puts the medium role
+above the high role, 0.872 against 0.680, and neither budget does that. So the
+registered signature must be the whole profile: high at least medium, at least low,
+with the drop at the low role. A high-minus-low contrast alone would not exclude it.
+
+### What this rebuild does not do
+
+There is no registration, no bar, no sample size and no runner, and nothing has
+been sent to the gateway.
+
+The instrument has never been used in this format. Prompts are now 22 options
+long, and the position-bias, parse and swap-consistency gates C1 needed have not
+been measured on it. A pilot of the instrument gates on the set format has to come
+before anything is graded.
+
+The simulated models are the ones the readers raised plus the budget. A real
+evaluator may do something none of them does. That is what the cold reread of this
+rebuild is for, and on this programme's record it is where the defects have
+surfaced in five consecutive designs.
