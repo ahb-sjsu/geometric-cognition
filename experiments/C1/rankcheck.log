@@ -1,0 +1,28 @@
+[rankcheck] k=1  W 64  T 64  max_tokens 4096  calibration 200 pairs per load
+[thermal] controller up, 20 threads, target 78.0 C
+[rankcheck] pin verified, qwen3 created 1760022469
+[rankcheck] load  0 calibration: kept 200/200  heldout 0.9700  eig [2116.1, 666.2, 163.6]
+             gap_k1 3.176  discarded_k1 0.2817  top1 angle vs load 0 0.00 deg  unparsed 0
+[rankcheck] load  0 W: score 1.0000 strict 1.0000 surv 1.0000  amb 0 (trunc 0, genuine 0)  unparsed 0  reasoning 340
+[rankcheck] load  0 T: score 0.8750 strict 0.8750 surv 0.8750  amb 0 (trunc 0, genuine 0)  unparsed 0  reasoning 397
+[rankcheck] load  4 calibration: kept 196/200  heldout 0.9846  eig [2226.0, 660.6, 127.9]
+             gap_k1 3.370  discarded_k1 0.2616  top1 angle vs load 0 2.27 deg  unparsed 0
+[rankcheck] load  4 W: score 0.9844 strict 0.9688 surv 1.0000  amb 2 (trunc 0, genuine 2)  unparsed 0  reasoning 554
+[rankcheck] load  4 T: score 0.8203 strict 0.7812 surv 0.8475  amb 5 (trunc 0, genuine 5)  unparsed 0  reasoning 634
+[rankcheck] load  8 calibration: kept 197/200  heldout 0.9646  eig [2119.4, 655.8, 165.6]
+             gap_k1 3.232  discarded_k1 0.2793  top1 angle vs load 0 0.25 deg  unparsed 0
+[rankcheck] load  8 W: score 0.9688 strict 0.9531 surv 0.9839  amb 2 (trunc 0, genuine 2)  unparsed 0  reasoning 602
+[rankcheck] load  8 T: score 0.8594 strict 0.8125 surv 0.8966  amb 6 (trunc 1, genuine 5)  unparsed 0  reasoning 760
+[rankcheck] load 16 calibration: kept 196/200  heldout 0.9692  eig [2100.8, 607.8, 145.5]
+             gap_k1 3.457  discarded_k1 0.2639  top1 angle vs load 0 1.65 deg  unparsed 0
+[rankcheck] load 16 W: score 0.9766 strict 0.9531 surv 1.0000  amb 3 (trunc 3, genuine 0)  unparsed 0  reasoning 646
+[rankcheck] load 16 T: score 0.8516 strict 0.7656 surv 0.9245  amb 11 (trunc 6, genuine 5)  unparsed 0  reasoning 728
+[thermal] controller stopped
+
+[rankcheck] manipulation check, did the load move the geometry
+ load   gap_k1   disc_k1  top1 angle  heldout  trunc
+    0    3.176    0.2817        0.00   0.9700      0
+    4    3.370    0.2616        2.27   0.9846      0
+    8    3.232    0.2793        0.25   0.9646      0
+   16    3.457    0.2639        1.65   0.9692      0
+rankcheck written to rankcheck.json

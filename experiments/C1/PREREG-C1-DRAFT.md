@@ -1427,6 +1427,98 @@ spectrum or the retained subspace moving, a null result is not evidence about
 budgets. Two repairs come before any further run: raise the generation limit
 until no cell truncates, and add that manipulation check.
 
+### 10.20 The ladder with a working instrument, and one candidate signal
+
+Both repairs from 10.19 were made and the ladder rerun at seed 20260923. Record
+`rankcheck.json`. The generation limit was raised from 1024 to 4096, and a
+calibration block of 200 pairs was drawn and rendered with each level's
+distractors, so the fitted geometry at every load is the loaded one.
+
+**The instrument worked, for the first time in this sequence.** No unparsed
+comparison at any level, in the calibration blocks or the graded cells. Every
+level is admitted by the corrected gate, which now includes the registered parse
+check. The ambiguity that remains is separated into genuine order-dependence and
+items that produced no verdict at all, and the latter are timeouts rather than
+truncation, six at the highest load against a 60 second deadline on prompts that
+carry sixteen extra attributes.
+
+**The manipulation check is inconclusive, which is not what this draft
+predicted.**
+
+| load | gap at `k` = 1 | discarded share | top-1 angle vs load 0 | held-out | kept |
+|---|---|---|---|---|---|
+| 0 | 3.176 | 0.2817 | 0.00 deg | 0.9700 | 200 of 200 |
+| 4 | 3.370 | 0.2616 | 2.27 deg | 0.9846 | 196 of 200 |
+| 8 | 3.232 | 0.2793 | 0.25 deg | 0.9646 | 197 of 200 |
+| 16 | 3.457 | 0.2639 | 1.65 deg | 0.9692 | 196 of 200 |
+
+The gap rises across the ladder at a correlation of +0.763 and the discarded
+share falls at -0.481, which is the direction a concentrating spectrum would
+take, but load 8 breaks monotonicity in both and the whole range is 0.28 on a gap
+of about 3.2. At four points a correlation of +0.763 carries a two-sided p of
+about 0.24. Worse for the reading, **the design contains no same-load
+replicate**, so the noise floor for re-estimating the spectrum on the same
+calibration pairs is unmeasured and the movement cannot be compared against
+anything. This draft expected a flat spectrum and a clean negative. What it has
+is a small movement in the predicted direction that it cannot distinguish from
+noise, which is a weaker and more honest result. Adding a second calibration at
+one load, at a different draw of distractors, would settle it and costs 400
+comparisons.
+
+**The graded scores still give three signs under three conventions.**
+
+| convention for an unusable verdict | trading score, load 0 to 16 | correlation |
+|---|---|---|
+| counted 0.5 | 0.8750 to 0.8516 | -0.133 |
+| counted as an error | 0.8750 to 0.7656 | -0.772 |
+| conditioned away | 0.8750 to 0.9245 | +0.821 |
+| timeouts dropped, genuine disagreement 0.5 | 0.8750 to 0.8879 | +0.449 |
+
+A fourth convention is added here because the first three all mistreat something:
+counting a timeout as an error blames the evaluator for the gateway, and
+conditioning it away reintroduces the attrition 10.17 was written about. Dropping
+timeouts and scoring genuine indifference at one half is the only one of the four
+that treats each event as what it is. Under it the trading score does not fall.
+No convention puts it near one half.
+
+**The candidate signal is differential order-dependence.** Genuine swap
+disagreements, with truncation and timeouts excluded:
+
+| load | within-subspace | trading | difference | Fisher p |
+|---|---|---|---|---|
+| 0 | 0 | 0 | 0 | 1.000 |
+| 4 | 2 | 5 | 3 | 0.440 |
+| 8 | 2 | 5 | 3 | 0.440 |
+| 16 | 0 | 5 | 5 | 0.058 |
+
+Pooled over the loaded levels, 15 of 192 trading pairs against 4 of 192
+within-subspace pairs, Fisher exact two-sided **p = 0.0164**.
+
+This is the first quantity in the programme that is class-differential, points
+the way a partial budget predicts, and is measured on an instrument that passed
+its gate with no truncation anywhere. Under a partial budget the discriminating
+direction of a trading pair dissolves and the evaluator becomes indifferent, and
+indifference in a forced-choice instrument is order-dependence rather than
+confident inversion. That is exactly where this sits.
+
+**It is a hypothesis and not a result, for four reasons recorded before anyone
+else supplies them.** The pooling across loads was chosen after the per-load
+tests came back at 0.44, 0.44 and 0.058, which is a post hoc analysis decision of
+the kind this section has criticised elsewhere. The counts are small, 15 against
+4. The quantity was measured because the second cold reread pointed at it, so
+this draft went looking for a specific effect and found it, which is the
+circumstance under which a finding is least trustworthy. And 10.19 recorded that
+the same quantity was significant in one earlier ladder and not in the next,
+which is the replication failure this one now has to answer rather than
+overwrite.
+
+**Disposition.** C1 is not sealable and the next step is no longer a repair. It
+is a registered test of one pre-specified quantity, the differential rate of
+genuine order-dependence between the two classes under load, at a sample size
+fixed in advance from these counts, with a same-load replicate for the spectrum
+and the timeout deadline raised so the ambiguity bucket contains only what it
+names. That design would answer in one run what four ladders have not.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.
