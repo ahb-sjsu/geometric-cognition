@@ -1,12 +1,13 @@
 # C3 design note: measure the sensitivity profile, select nothing
 
-**Status: DESIGN NOTE, REBUILT, NOT YET REREAD. No bars, no seed, no run.** The
-pair construction described first was refused by the reread recorded below it. The
-rebuild at the end of this note replaces it with multi-option sets in which a
-byte-identical probe is shown in three contexts that differ only in the variance
-role of the probe's target attribute. Simulated on the built prompts, every
-no-budget model acting on the probe gives a role effect of exactly zero, and a
-rank budget gives a large one. The rebuild has not been reread.
+**Status: DESIGN NOTE, REBUILT, REREAD, NOT USABLE AS SPECIFIED. No bars, no
+seed, no run.** The pair construction described first was refused by the reread
+below it. The multi-option rebuild that follows was then reread in turn. It holds
+the probe byte-identical as designed, but the low role gives the probe a cue that
+runs against the budget's sign, and a central-tendency model with no capacity
+limit reproduces the budget's profile. On a decorrelated context a rank budget and
+a rule that ignores low-variance attributes are the same computation. The second
+reread record, at the end, lists what would have to change.
 
 ## Why the previous four designs were refused
 
@@ -389,3 +390,195 @@ The simulated models are the ones the readers raised plus the budget. A real
 evaluator may do something none of them does. That is what the cold reread of this
 rebuild is for, and on this programme's record it is where the defects have
 surfaced in five consecutive designs.
+
+## Reread of the rebuild, 2026-09-13
+
+Two readers with no drafting context, given only this note and `c3_sets.py`,
+fenced off from C1, C2, `CAMPAIGN.md`, the paper and the history. One checked the
+construction for any difference between the three prompts of a triplet other than
+the variance role. One attacked the logic with about thirty simulated evaluator
+models on the built prompts. The findings marked reproduced were rerun before
+being recorded.
+
+**Verdict: the rebuild is not usable as specified.** It can show that context
+changes how an evaluator compares two identical options. It cannot show that the
+cause is a rank budget, because several models with no capacity limit reproduce
+the budget's profile, and because the construction gives the low role a cue that
+runs the other way.
+
+The text of the three prompts is identical except for the 20 context lines, on
+every one of 3,840 triplets checked. Every finding below is in the numbers.
+
+### A cue that exists only in the low role
+
+Reproduced. The farther probe option is the most extreme value on the target
+attribute in every low-role prompt, and in no high-role prompt:
+
+| separation | farther option extreme on target, low role | "pick the less isolated option" accuracy, high / mid / low |
+|---|---|---|
+| 1 | 1.00 | 0.53 / 0.51 / 0.67 |
+| 4 | 1.00 | 0.52 / 0.57 / 0.89 |
+| 8 | 1.00 | 0.41 / 0.70 / 0.99 |
+
+The cause is in `c3_sets.py`. `NONTARGET_OFFSET` puts probe values outside the
+tight low-variance cluster, and the exclusion window keeps context values away
+from probe values. Both were chosen to avoid crowding. Together they make the
+probe the outlier of its own column exactly when its attribute is low-role.
+
+The cue makes the low role easier, which is the opposite of the budget's sign. It
+would mask or cancel a real budget. At separation 8 it also lifts the medium role
+above the high role, which is the profile this note used to rule out rank coding.
+
+### The exact null is exact and does little work
+
+The null covers evaluators whose decision uses the probe lines alone, and within
+that scope it is exact by construction. But in a transformer every token's
+representation depends on the whole prompt, so a context-blind evaluator is not a
+plausible model, and rejecting it shows only that context matters. The weight of
+inference falls on the alternatives table, and the table was missing the model
+most likely to mimic the budget.
+
+**Central tendency is that model.** Each value is shrunk toward the context by an
+amount set by its column's spread, as a Bayesian observer with a prior from the
+displayed set would do. It has no capacity limit. Reproduced at separation 4,
+shrinkage parameter 5: 0.995 / 0.974 / 0.726. That is the budget's profile, a drop
+at the low role with high and medium near ceiling. The reader's version gave 0.59
+in the low role, against the rank-2 budget's 0.61; the size depends on the free
+shrinkage parameter, and the shape does not. Column-scaled saturation, relevance
+inference that down-weights low-variance attributes, one-sided anchoring on nearby
+context values, and dilution restricted to the target column all produce the
+budget's sign as well.
+
+### The design cannot tell a capacity budget from a relevance judgement
+
+The context is decorrelated, so its second moment is diagonal. Projecting onto the
+top eigenvectors of a diagonal matrix is the same computation as giving zero weight
+to the lowest-variance attributes. On these stimuli a rank budget and a rule that
+ignores low-variance attributes are one model, and nothing here separates capacity
+from judged importance.
+
+The feature that would separate them is an **oblique workload**: two attributes
+strongly correlated in the context with equal marginal variances, and the probe
+varying along their difference. With marginals of 200 and correlation 0.9 the
+variances are 380 along the sum and 20 along the difference. A rank budget predicts
+a loss there. Per-attribute relevance, saturation, anchoring and outlier models
+predict none, because the marginals match. Only multivariate shrinkage still
+mimics the budget.
+
+### The budget model rests on premises the note did not state
+
+Reproduced: with the probe excluded from the workload, the rank-2 budget gives
+0.500 in the low role at both separation 4 and separation 8. The weakening at
+separation 8 that this note used to choose separation 4 as the primary rung came
+entirely from including the probe in the workload, not from anything about the
+evaluator. The probe is 43 to 68 percent of the low attribute's in-context second
+moment, so the "low" variance of about 14 is mostly the probe.
+
+A budget defined on the two named options alone predicts no role effect at all,
+because a rank-2 projection of two points loses nothing. The design's prediction
+therefore depends on the budget being computed over the whole displayed set before
+the question is read. The question comes last in every prompt, and
+`render_prompt`'s `question_first` argument swaps the two option numbers without
+moving the question. Centring about the ideal and about the context mean give the
+same answer, because the context is centred on the ideal by construction, so the
+design cannot tell which the evaluator uses.
+
+### Other construction differences between roles
+
+* **The probe's distance rank among the 22 options shifts with role.** Context
+  options closer to the ideal than the nearer probe, high minus low, paired within
+  triplet: +0.27 at separation 4 and +0.36 at 8. The exclusion window is the cause;
+  regenerating contexts without it gives about -0.04. The note's claim that context
+  distance from the ideal has the same distribution in every role holds pooled and
+  fails per prompt.
+* **Context rejection is heavily role-dependent.** A low-role context needs about
+  292 draws per success against 80 for high and 66 for medium. All 235 failed
+  triplets across five seeds fail on the low-role context, and they select probes:
+  those with a nearer target offset in the lowest band are kept 65 percent of the
+  time against at least 99 percent otherwise. The "64 to 70 attempts" figure counts
+  whole triplets and hides this.
+* **Crowding is asymmetric within the pair and only in the low role.** On the
+  target attribute the farther option's nearest context value has a median distance
+  of 7.0 in the low role against about 2 elsewhere; the "4.00" in this note pooled
+  both options. The low-role context sits entirely on the ideal's side of the probe,
+  which favours the budget's sign for any anchoring model.
+* **Variance role comes bundled with in-context range and shape.** In-context range
+  has a median of 63.7, 33.9 and 16.6 by role. "Every attribute spans the same
+  range" is true of the permitted box and not of what the evaluator sees. The box
+  truncates the high column, and QR orthogonalisation makes column shape depend on
+  the attribute's index, so attributes are not exchangeable within a cell.
+* **Smaller items.** The probe adds a cross-product between its two non-target
+  attributes, correlation up to 0.16. Context values rendered as "50.0", the same
+  string as the ideal, occur 0.03, 0.07 and 0.19 per prompt by role. Target-attribute
+  position and nearer-first position are random draws rather than stratified, and
+  the note's counts were one seed.
+
+### The profile test, the sample and the instrument
+
+"High at least medium at least low, with the drop at the low role" names no test
+and no decision rule. Read literally, a rank-1 result, high above medium equal to
+low, fails it, which contradicts this note's claim that the medium role separates
+rank 1 from rank 2. A usable version tests the three paired differences by exact
+McNemar and classifies with equivalence tests into drop-at-low, drop-at-medium,
+graded, medium-on-top, or indeterminate, with ceiling cells indeterminate by rule.
+That test separates rank 1, graded relevance and rank coding. It does not separate
+rank 2 from central tendency, relevance of the saturating kind, or column-scaled
+saturation.
+
+Detecting a high-minus-low difference of 0.10 needs roughly 70 to 330 triplets
+depending on baseline accuracy and correlation within a triplet. Telling rank 1
+from rank 2 by equivalence needs roughly 350 to 700 at the primary rung, several
+times the 64 per cell built here.
+
+Choosing separation 4 from a simulation of the favoured model is a problem. It
+also sits where the opposite-sign models are at ceiling and rank coding is weakest.
+A principled choice is to measure the evaluator's own accuracy curve in a pilot
+with a flat context, and register the separation where it reaches about 0.85 to
+0.90 before any role data exist.
+
+The instrument adds failure modes that can depend on role. Reading a target value
+from a context row is role-dependent, because low-role context values sit near 50.
+A reasoning model computing distances exactly would sit at ceiling in every role,
+so the reasoning mode must be registered and reasoning tokens logged. Answers
+outside the two named options have to be scored as errors rather than dropped, or
+the harder roles are censored. Parse and swap-consistency gates must be reported
+per role. The mirror-symmetric non-target values repeat in every probe and can be
+learned, which turns the task into a one-number comparison.
+
+The simulation behind this note's table is not in the repository. The rank-coding
+row does not reproduce as described, because its best high-role accuracy at
+separation 1 without noise is 0.539, below the 0.75 the calibration targets.
+
+### What the readers found sound
+
+The probe lines are byte-identical across roles in every triplet. The prompt text
+differs only in the 20 context lines. Sign patterns are exactly balanced in every
+cell. Context-only correlations stay below 0.003 after rounding. The variance-rank
+floor never binds, with a smallest ratio near 3 against a floor of 2. Nothing is
+selected on a fitted model. Per-column noise that follows role is roughly neutral
+when every column is processed, because each prompt contains all three roles.
+
+### What would have to change
+
+These are design decisions for the owner, recorded in order of what they separate.
+
+1. **An oblique workload.** Correlated attributes with equal marginals, probe along
+   the low-variance diagonal. It is the only change that separates a rank budget
+   from per-attribute relevance, saturation, anchoring and outlier models.
+2. **Break the probe's standing from its column's variance.** A heavy-tailed
+   low-variance column, most values tight to the ideal and a few beyond the probe,
+   so the probe sits inside its column's range. That removes the isolation cue and
+   the saturation, outlier and one-sided anchoring mimics. Budget and central
+   tendency both still predict a drop.
+3. **Register the workload premise and vary question placement.** A budget over what
+   is encoded before the question should shrink when the two options are named
+   first; a relevance judgement should not.
+4. **A registered decision table and a sample to match.** McNemar and equivalence
+   tests per the classes above, the primary separation fixed from a flat-context
+   pilot, and several hundred triplets at that separation.
+5. **Commit the simulation code**, and register the family of context-dependent
+   no-budget models, central tendency first, as the adversaries a budget reading must
+   beat.
+
+The first two change the stimulus distribution itself and should be settled before
+the rest are built.
