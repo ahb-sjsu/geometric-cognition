@@ -511,7 +511,9 @@ The observed contrast 0.9683 implies `p = 0.9920`, against a measured held-out
 accuracy of 0.9850 and an in-sample order accuracy of 1.0000. Every point of the
 observed effect is accounted for by per-comparison accuracy and none is left for
 the budget manipulation. The bars reduce to the same quantity: `MARG = 0.4841`
-is met exactly when `p >= 0.848`, and `CEIL = 0.05` exactly when `p >= 0.947`.
+is met exactly when `p >= 0.848`, and `CEIL = 0.05` exactly when `p >= 0.9743`.
+An earlier version of this line said 0.947, which is a transposition: at 0.947
+the within-subspace rate is 0.1004, twice the bar.
 Section 12 of this draft said the contrast was "close to a consequence" of an
 accurate calibration. That was too weak. It is the consequence, exactly, and
 Section 12 is corrected accordingly.
@@ -618,7 +620,10 @@ held-out floor then measured on the surviving three fifths. Under D2 an inflated
   the single result that licenses Section 3's revised world, and no record of
   `gemma4-12b`, which is the second of the two failures Section 12 cites.
   Section 7 still closes by recommending a change to Section 3 that Section 3
-  has already made. Corrected in this revision.
+  has already made. NOT corrected: an earlier version of this bullet claimed it
+  had been, and it had not. Section 7 still contains no reference to
+  `order_probe_qwen3.json` or to `gemma4-12b`, and still closes by recommending
+  the change. The claim of correction was false and is withdrawn.
 - Section 3 asks for 200 matched pairs per class per budget. `prereg_config.json`
   sets `n_per_class` to 64, which is what the code reads and what the pilot ran.
   The tolerances were fixed from a pilot one third the registered size.
@@ -667,9 +672,10 @@ held-out floor then measured on the surviving three fifths. Under D2 an inflated
   their original order. At `k = 1` the pilot records `lost_to_rounding: 0` and a
   ceiling of exactly 1.0, so the rationale does not hold at that budget and the
   evaluator missed two pairs a perfect one would have caught.
-- `prereg_config.json` still reads `"pilot": "FILL AT SEALING"` although the
-  pilot ran at seed 20260914, and the pilot's provenance records
-  `cuda_visible_devices: null` against Section 8's GPU 1 rule.
+- `prereg_config.json` recorded `"pilot": "FILL AT SEALING"` when this was
+  written; it now reads 20260917, the third pilot's seed, and only `"run"` is
+  still unfilled. The pilot's provenance records `cuda_visible_devices: null`
+  against Section 8's GPU 1 rule, which remains uncorrected.
 
 ### 10.7 Researcher degrees of freedom still open
 
@@ -732,8 +738,10 @@ of orthogonal projection rather than a budget.
 One caveat on our own diagnostic, since it would otherwise read as a stronger
 result than it is. The plane angle at `k = 2` is reported as 0.0 degrees. That
 is geometry and not a failed randomization. Any two 2-planes in three-space
-intersect in at least a line, so the largest principal angle between them is
-identically zero, checked over 200 random pairs. At `k = 2` the placebo is
+intersect in at least a line, so the SMALLEST principal angle between them is
+identically zero, and the diagnostic reported that one. An earlier version of
+this paragraph said the largest, which is wrong: the largest is generically
+nonzero, and 10.13 reports it at 38.9 degrees for the same pair of planes. At `k = 2` the placebo is
 therefore a weaker test than at `k = 1`, and `k = 1` is the one that carries the
 finding.
 
@@ -875,8 +883,12 @@ the realized cell size rather than a point comparison.
 | W-prime | 0.1282 | 0.2264 |
 
 **D1 is repaired and the repair did not matter.** The retained subspace is now a
-property of the workload, stable across draws to 1.38 degrees where it was 56,
-and the guard refuses any design that does not make it so. The placebo
+property of the workload and the guard refuses any design that does not make it
+so. An earlier version of this sentence quoted 1.38 degrees of draw-to-draw
+stability. That figure belongs to the second design, which 10.11 declares
+vacuous; recomputing the same procedure on this design gives medians of about 2
+to 4 degrees across seeds. Neither figure has a committed artifact, and at
+twelve trials the statistic is too variable to carry two significant figures. The placebo
 nevertheless reproduces the contrast at both budgets, 0.8279 against 0.8418 and
 0.8554 against 0.8387, with the random plane 62.5 degrees away at rank 1. At
 rank 2 the random plane does slightly better than the identified one.
@@ -1039,7 +1051,9 @@ by the inconsistency 10.14 found.
 
 **Three claims made earlier in this reread are withdrawn.** That the residual
 was the first evidence the contrast is not wholly a restatement of the
-calibration. That a common rho near 0.35 explained it. That it was real but
+calibration. That a single cross-budget error correlation explained it, which 10.13 stated
+without a number; the figure of about 0.35 was asserted only in discussion and
+never written here, so this withdrawal names a claim the record does not contain. That it was real but
 unresolvable at 64 pairs per cell. All three were the same mistake, reading an
 approximation error as a signal, and the power analysis in 10.13 was an analysis
 of the resolution of a quantity that does not exist. The measured reproducibility
@@ -1302,6 +1316,117 @@ manipulation cannot move, so it is the first one worth believing. C1 remains
 unsealed, and no manipulation tried so far produces a resolution effect in this
 evaluator.
 
+### 10.19 Second cold reread, and the correction of 10.17 and 10.18
+
+Two readers with no drafting context audited Section 10 itself, one recomputing
+every number from the artifacts and one asking whether its conclusions are
+earned. Both were fenced off from `CAMPAIGN.md`, the paper and the history. They
+found that the central mechanism claim of 10.17 and 10.18 is wrong.
+
+**The consistency decline is a generation limit, not a behaviour.** `run_level`
+scored an answer that never parsed identically to a verdict that parsed twice and
+disagreed. Both landed in the ambiguity bucket. In both ladders the ambiguity
+count tracks the unparsed count almost exactly, and `deadline` is zero
+everywhere.
+
+| ladder | load | class | ambiguous | unparsed | mean reasoning |
+|---|---|---|---|---|---|
+| 2 | 0 | T | 1 | 1 | 398 |
+| 2 | 4 | T | 8 | 8 | 720 |
+| 2 | 8 | T | 14 | 11 | 687 |
+| 2 | 16 | T | 13 | 18 | 918 |
+
+`max_tokens` is 1024. At load 16 the mean reasoning length is 918, so the
+evaluator is running into the cap. Bounding genuine disagreements as
+`ambiguous - unparsed` at worst and `ambiguous - ceil(unparsed/2)` at best, no
+cell of the second ladder has more than four, and most have none. What 10.18
+reported as "load degrades swap consistency in both classes" is the token cap.
+The sentence is withdrawn. So is 10.17's "it degrades swap consistency before it
+degrades accuracy."
+
+**The three manipulations do not share a failure mode, and this record's own
+artifacts refute the grouping.** `budget.json` gives the immediate condition
+`unparsed: 0` and `deadline: 0` with 57 to 63 ambiguous pairs of 64. Those pairs
+parsed in both orders and disagreed, which is genuine position-driven choice.
+The distractor ladders have ambiguity approximately equal to unparsed, which is
+truncation. Different mechanisms. 10.17's "the same failure mode as 10.16's,
+arriving gently rather than all at once" is withdrawn. The first-position rates
+say the same thing and were already in the record: they stay flat across load,
+between 0.317 and 0.525, which is not what a drift toward presentation-dependence
+looks like.
+
+There were also arguably two manipulations and not three. The first was not a
+budget manipulation at all, by 10.16's own diagnosis. 10.17 and 10.18 are one
+manipulation at two seeds, analysed two ways.
+
+**The convention was selected and the alternatives were computed and not
+reported.** `score_strict` sits in `distractor2.json` and was omitted from
+10.18's table. Trading score from load 0 to load 16: `score_fixed` +0.0000,
+`score_strict` -0.0938, survivor-conditioned +0.0728. Three conventions, three
+signs. Reporting one of them and calling the estimand clean was wrong, and all
+three now belong in the table.
+
+**The registered parse gate was never applied.** `prereg_config.json` states
+that the parse gate is left at zero and not relaxed. `condition_admissible`
+checked survival and position bias and did not look at `unparsed` at all. Every
+level of both ladders had between 1 and 21 unparsed comparisons and none was
+refused. This is the defect class 10.2 catalogues, occurring for the third time,
+in code written after the catalogue. With the check added, ladder 2's load 16 is
+refused.
+
+**The position-bias reference was still wrong, one layer below the two already
+corrected.** It compared the first-position rate against the cell's answer-key
+rate, which is the right reference only for a perfect evaluator. For accuracy `q`
+on a key with base rate `b`, an unbiased evaluator gives `q*b + (1-q)(1-b)`. At
+load 0 the trading class has `b` 0.344 and `q` 0.810, so the unbiased
+expectation is 0.403 and the observed 0.344 is a lean of 0.059 toward the second
+position, not 0.000. Still inside the band, but the gate was systematically
+lenient toward the class the hypothesis concerns. Third correction to this one
+reference.
+
+**The one signal that was deleted rather than tested.** Differential swap
+survival between the classes is the only class-differential dose-response
+quantity anywhere in this record and it is never computed here. Fisher exact,
+two-sided:
+
+| load | ladder 1, T minus W | p | ladder 2 | p |
+|---|---|---|---|---|
+| 4 | -0.047 | 0.560 | -0.062 | 0.364 |
+| 8 | -0.219 | **0.0027** | -0.078 | 0.357 |
+| 16 | -0.172 | **0.0381** | -0.047 | 0.646 |
+
+It points the way a budget predicts, it is significant at two levels of the
+first ladder, it does not replicate in the second, and it is confounded with
+truncation. 10.18's estimand absorbs it into the denominator by design. That
+was the wrong disposition: it should have been tested, not removed. It is
+recorded here as open rather than resolved in either direction.
+
+**Numerical corrections, all applied above.** The inverted `CEIL` threshold in
+10.1 D2 and Section 12, where 0.05 corresponds to `p` of 0.9743 and not 0.947,
+and the derived offset is 0.074 rather than 0.048. A claim in 10.6 that three
+defects had been corrected in that revision when none of them had. A stale
+statement about `prereg_config.json`, which now carries the third pilot's seed.
+The principal-angle caveat in 10.10, which named the largest angle when it is
+the smallest that is forced to zero. A stability figure of 1.38 degrees in 10.13
+imported from the second design, where this design gives about 2 to 4. A
+withdrawal in 10.15 naming a numerical value the record never stated.
+
+**And one claim that does not reproduce.** The power table in 10.13 does not
+recompute. Against the described procedure the reader obtains 0.07, 0.11 and
+0.20 at 64 pairs per cell where the table claims 0.21, 0.35 and 0.72, and the
+implied standard errors are below what two binomial rates alone contribute at
+that cell size. The table is withdrawn. Its subject was the resolution of the
+residual, which 10.15 withdrew as an artifact, so nothing depends on it, but it
+should not stand as a number.
+
+**Disposition.** C1 is not sealable, and the reason is now that no manipulation
+has been shown to move the quantity it is named after. There is no measurement
+anywhere in this record of whether any intervention reduced the evaluator's
+effective rank. Until a design recalibrates the metric under load and shows the
+spectrum or the retained subspace moving, a null result is not evidence about
+budgets. Two repairs come before any further run: raise the generation limit
+until no cell truncates, and add that manipulation check.
+
 ## 11. Known weaknesses of this design
 
 Stated here rather than discovered later.
@@ -1364,8 +1489,9 @@ The observed 0.9683 implies `p = 0.9920`, against a measured held-out accuracy o
 0.9850 and an in-sample order accuracy of 1.0000. No part of the contrast is left
 over for the budget manipulation to explain. The bars are the same quantity in
 other clothes: `MARG` at 0.4841 is met exactly when `p >= 0.848`, and `CEIL` at
-0.05 exactly when `p >= 0.947`, so the physics gate is the instrument gate with
-its floor moved by 0.048 in `p`.
+0.05 exactly when `p >= 0.9743`, so the physics gate is the instrument gate with
+its floor moved by 0.074 in `p` above the 0.90 admission bar. Both figures were
+wrong in an earlier version, at 0.947 and 0.048.
 
 **And the budget is not yet a budget.** Section 10 D1 shows the workload moment
 is isotropic by construction, because the ideal sits at the centroid of the cube

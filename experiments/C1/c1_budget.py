@@ -135,6 +135,7 @@ def agreement_with_full(chooser, ideal_str, pairs, batch=32):
 
 MIN_GRADED = 32          # below this a cell reports no verdict, only a refusal
 MAX_POSITION_BIAS = 0.15  # the registration's band on the first-position rate
+MAX_UNPARSED = 0         # prereg_config: "the parse gate is left at zero"
 
 
 def condition_admissible(cell, min_graded=MIN_GRADED,
@@ -178,13 +179,26 @@ def condition_admissible(cell, min_graded=MIN_GRADED,
                            f"not record its answer-key rate; supply "
                            f"a_correct_rate or rerun")
                 continue
-            ref = base
+            # An unbiased evaluator of accuracy q on a key with base rate b
+            # picks the first option at q*b + (1-q)(1-b), not at b. Using b
+            # assumes a PERFECT evaluator and is systematically lenient toward
+            # the less accurate class, which here is the one the hypothesis
+            # concerns. Third correction to this reference: 0.5, then b, now this.
+            q = r.get("q_agree_full", r.get("q_agree_full_survivors"))
+            ref = (q * base + (1 - q) * (1 - base)) if (q is not None and q == q) else base
             if abs(fp - ref) > max_bias:
                 bad.append(f"{cls}: first-position rate {fp:.3f} is "
-                           f"{abs(fp-ref):.3f} from the cell's answer-key rate "
-                           f"of {ref:.3f}, outside the band of {max_bias}")
-    return {"admissible": not bad, "reasons": bad,
-            "min_graded": min_graded, "max_position_bias": max_bias}
+                           f"{abs(fp-ref):.3f} from the {ref:.3f} an unbiased "
+                           f"evaluator of this accuracy would give on a key of "
+                           f"{base:.3f}, outside the band of {max_bias}")
+        up = r.get("unparsed")
+        if up is not None and up > MAX_UNPARSED:
+            bad.append(f"{cls}: {up} unparsed comparisons against a parse gate "
+                       f"registered at {MAX_UNPARSED}. An unparsed answer is "
+                       f"scored identically to a swap disagreement here, so a "
+                       f"generation limit reads as a behavioural effect")
+    return {"admissible": not bad, "reasons": bad, "min_graded": min_graded,
+            "max_position_bias": max_bias, "max_unparsed": MAX_UNPARSED}
 
 
 def wilson(k, n, z=1.96):

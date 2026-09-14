@@ -76,8 +76,10 @@ calibrated at all. Identifying a budget is also not the same as changing one,
 and we report three attempts to change one in a language-model evaluator, none
 of which produced a resolution effect. A projected stimulus is not a reduced
 budget, removing the evaluator's deliberation removes the instrument rather than
-narrowing it, and a load the instrument does survive degrades the reliability of
-a verdict before it degrades the geometry behind it. We restate the five
+narrowing it, and a load the instrument does survive moved nothing we could
+measure. None of the three included a check that the intervention reduced
+effective rank, which is why we report them as an open question rather than as
+evidence against the prediction. We restate the five
 predictions of the programme as
 consequences of those conditions, restate the seven falsifiers as conditions on
 the record rather than on the author's judgment, and give a phased programme in
@@ -365,10 +367,13 @@ the step that carries the content is the step that can fail.
 Definition~\ref{def:gap} says when a rank budget is identified. It does not say
 how to change one, and the first phase of this programme spent three designs
 discovering that the difference matters. All three ran against the same pinned
-language-model evaluator. None produced a resolution effect. The failures are
-reported here because they are more informative than the designs would have been
-had they worked, and because two of the three failure modes are available to any
-experiment of this shape.
+language-model evaluator. None produced a resolution effect, and they failed for
+three unrelated reasons rather than one. An earlier version of this section
+grouped the second and third as a common failure mode; the records refute that,
+since the second condition's unusable verdicts all parsed and disagreed while the
+third's had mostly not parsed at all. They are reported because they are more
+informative than the designs would have been had they worked, and because the
+first two failure modes are available to any experiment of this shape.
 
 \subsection*{A projected stimulus is not a reduced budget}
 
@@ -402,7 +407,9 @@ pairs survived, against $98$ percent with deliberation intact. Writing $p$ for
 the probability of choosing by position, survival is about $1-p$, which places
 the condition between $89$ and $98$ percent position-driven. The programme had
 already recorded the same pattern in two other models, at first-position rates
-of $0.8175$ and $0.700$. Deliberation is what makes this class of evaluator
+of $0.8175$ and $0.700$. This condition produced no unparsed answers at all, so
+its unusable verdicts are genuine order-dependence and not a generation limit,
+which is what distinguishes it from the third design below. Deliberation is what makes this class of evaluator
 compare by content at all, so removing it removes the measuring instrument rather
 than narrowing the thing measured.
 
@@ -415,23 +422,33 @@ cancellation at any load, while the evaluator must still read and weigh the
 added coordinates. At sixteen distractors the shared term adds about $34{,}000$
 to both distances and the difference between them is unchanged.
 
-This manipulation preserved the instrument. Every level passed the admissibility
-gate, first-position rates stayed within $0.061$ of each cell's answer-key rate,
-and reasoning rose from $398$ to $918$ tokens, so the load demonstrably landed.
-What it did not produce was a resolution effect. Scoring every pair at every
-load, with a swap-inconsistent verdict counted as uninformative rather than
-dropped, the trading-pair score was flat across the ladder at a correlation
-against load of $-0.28$, and its confidence intervals never came near one half
-from above, let alone crossed it. Within-subspace scores fell, from $0.977$ to
-$0.906$, because that class began at the ceiling and an uninformative verdict can
-only move it down. The class gap narrowed, and it narrowed because the control
-descended toward the trading class rather than because the trading class
-degraded. A budget predicts the opposite shape.
+This manipulation kept the evaluator comparing by content. First-position rates
+stayed flat across the ladder, and reasoning rose from $398$ to $918$ tokens, so
+the load landed. Scoring every pair at every load, with an ungradeable verdict
+counted as uninformative rather than dropped, the trading-pair score was flat,
+and its intervals never approached one half from above.
 
-What load did move was reliability. Swap consistency fell from $0.984$ to $0.844$
-in the control class and to $0.797$ in the trading class. The pattern across all
-three designs is the same: a resource manipulation applied to this evaluator
-reaches the instrument before it reaches the geometry.
+That null is weaker than it first appeared, for two reasons found by a later
+audit of the record rather than by the design. Reasoning at the highest load
+averaged $918$ tokens against a generation limit of $1024$, and the scoring
+treated an answer that never parsed identically to a verdict that parsed in both
+presentation orders and disagreed. The two counts track each other almost
+exactly. Bounding the difference, no cell at the highest load contains more than
+four genuine disagreements in sixty-four. What looked like a decline in the
+evaluator's reliability under load was the generation limit, and the apparent
+descent of the control class toward the trading class was the same artifact.
+Second, the scoring convention was selected after the fact from three that had
+been computed: over the interval the trading score moves by $+0.000$ counting an
+ungradeable verdict as uninformative, by $-0.094$ counting it as an error, and by
+$+0.073$ conditioning on gradeable pairs alone. Three conventions, three signs.
+
+The deeper gap is that nothing in this design establishes that the load reduced
+the evaluator's effective rank. The distractor coordinates are visibly
+uninformative, and an evaluator that sheds uninformative dimensions first is not
+exhibiting the budget the theory describes, which discards directions that are
+informative but low in variance. No spectrum was recalibrated under load. A null
+result from a manipulation that was never shown to move the quantity it is named
+after is not evidence about budgets.
 
 \subsection*{The estimand has to be chosen before the manipulation is run}
 
@@ -456,7 +473,11 @@ alternatives are not distinguished by this evidence: that the budget exists and
 no intervention tried was the right one, that the resource such an evaluator
 spends is elastic rather than fixed so that a heavier task is met with more
 computation rather than a coarser geometry, or that the rank-budget abstraction
-does not describe this substrate. Until a manipulation degrades resolution while
+does not describe this substrate. The evidence is weaker than three failed
+attempts suggests, because no attempt included a manipulation check. Nothing
+measured whether any intervention reduced effective rank, so a design that
+recalibrates the metric under the manipulation and reports the spectrum is a
+precondition for the next attempt rather than a refinement of it. Until a manipulation degrades resolution while
 leaving swap consistency intact, P2 is untested here rather than unsupported.
 \end{open}
 

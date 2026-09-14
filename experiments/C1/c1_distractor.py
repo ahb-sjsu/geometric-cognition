@@ -121,16 +121,27 @@ def run_level(chooser, ideal_vec, pairs, load, rng, lo, hi, batch=32) -> dict:
     # Noise and instrument degradation both drive this toward 0.5 from above and
     # neither can push it below. A rank budget inverts trading pairs, so only a
     # budget puts it under one half. The discriminating test survives the fix.
+    # Truncation and genuine swap disagreement are DIFFERENT events and were
+    # scored identically here, which is how a generation limit came to be
+    # reported as a behavioural effect. An answer that never parsed tells us
+    # nothing about the evaluator's ordering; an answer that parsed twice and
+    # disagreed tells us the verdict depends on presentation. Only the second
+    # is where a partial budget would show.
     n = hit = amb = first = nfirst = 0
+    truncated = genuine = 0
     scores, strict = [], []
     for p, f, r in zip(pairs, fwd, rev):
         if np.isfinite(f):
             nfirst += 1
             first += int(f > 0.5)
-        consistent = (np.isfinite(f) and np.isfinite(r)
-                      and (f > 0.5) == (r < 0.5))
+        parsed_both = np.isfinite(f) and np.isfinite(r)
+        consistent = parsed_both and (f > 0.5) == (r < 0.5)
         if not consistent:
             amb += 1
+            if parsed_both:
+                genuine += 1      # parsed twice, disagreed: real order-dependence
+            else:
+                truncated += 1    # never produced a letter: no information
             scores.append(0.5)
             strict.append(0.0)
             continue
@@ -144,6 +155,10 @@ def run_level(chooser, ideal_vec, pairs, load, rng, lo, hi, batch=32) -> dict:
     mean_score = float(sc.mean()) if N else float("nan")
     se = float(sc.std(ddof=1) / np.sqrt(N)) if N > 1 else float("nan")
     return {"load": load, "n": N, "n_graded": n, "ambiguous": amb,
+            "ambiguous_truncated": truncated,
+            "ambiguous_genuine_disagreement": genuine,
+            "finish_reasons": dict(chooser.finish_reasons),
+            "escalations": chooser.escalations,
             # the answer-key rate this cell's position statistic must be read
             # against; an unbiased evaluator returns first_position_rate == this
             "a_correct_rate": float(np.mean([bool(p["a_pref_full"]) for p in pairs])),
