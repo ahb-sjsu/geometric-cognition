@@ -1,8 +1,10 @@
 # C2 registration, draft: does resource load open a class gap in order-dependence?
 
-**Status: DRAFT. NOT SEALABLE. No run seed drawn. Section 9 records a cold
-reread that found the design would pass under a model with no rank budget, and
-lists four repairs required before it can be sealed.**
+**Status: DRAFT, revision 2. No run seed drawn. Section 9 records the cold
+reread that refused revision 1, and Section 11 records the four repairs made in
+response, what they cost, and the two of them that turned out to be weaker than
+they looked. Still not sealed: a second cold reread is required, and the run is
+an order of magnitude larger than anything this programme has executed.**
 
 C1 is unsealed and stays unsealed. This is a separate gate testing one
 pre-specified quantity that emerged from C1's fourth ladder, and it is written to
@@ -63,13 +65,31 @@ difference of squared distances is exactly zero and the correct answer is
 invariant at any load. This is asserted in code over every pair before anything
 is sent.
 
-**512 pairs per class per level**, margin matched, 2048 pairs in total. The
-sampler produces cells of that size with margins matched to within 0.06. The size
-is fixed by the power calculation in Section 6 and by nothing else.
+**Three classes, not two.** `W`, difference in the retained subspace, order
+preserved. `N`, difference with a large discarded component, order preserved.
+`T`, difference with a large discarded component, order flips. A rank budget
+predicts `N` behaves like `W`; a complexity or cancellation account predicts `N`
+behaves like `T`. The two-class design could not separate those, and the sampler
+was already generating `N` and discarding it, 22,311 candidates of 28,311.
 
-**Both presentation orders at both levels.** A pair counts as order-dependent
-when it parses in both orders and the verdict flips. A pair that fails to parse,
-or that times out, is counted separately and is never added to that number.
+**2048 pairs per class per level**, matched on decision SNR and not on geometric
+margin. The match is asserted before any comparison is sent, at a registered
+tolerance of 0.05 between any two classes, and a draw that misses it stops the
+run. Achieved on trial draws: SNR means 0.909, 0.912, 0.915, worst gap 0.0063,
+against a gap of 0.32 under the margin matching of revision 1.
+
+**Three presentations per pair**, forward, reversed, and a same-order replicate
+on a registered 25 percent subsample. All presentations, both classes and both
+load levels are interleaved into one randomised submission set. Revision 1 ran
+forward and reverse as separate blocks, which made the endpoint a between-block
+difference and confounded condition with wall-clock time.
+
+**The endpoint is swap flip minus the replicate floor.** A pair counts as
+order-dependent when its verdict names a different option after the two exchange
+position. The replicate measures how often the same gateway returns a different
+verdict to an unchanged prompt, per class, so nondeterminism is subtracted rather
+than assumed absent. A presentation that fails to parse or times out excludes its
+pair from numerator and denominator alike and is counted by cause.
 
 **Generation limit 4096 tokens and per-item deadline 180 seconds.** C1's ladders
 ran at 1024 and 60, and its Section 10.19 found that two of them had measured the
@@ -78,22 +98,49 @@ six items timed out.
 
 ## 5. Bars, each stated so that it can fail
 
-**Primary.** Fisher exact, two sided, on genuine order-dependence, trading
-against within-subspace, at load 16. A pass requires `p < 0.05` and the trading
-rate above the within-subspace rate. A significant result in the opposite
-direction is a fail, not a pass with the sign reversed.
+**Primary.** The `class x load` interaction coefficient of a logistic on swap
+flip, fitted by Firth's penalised likelihood and tested by penalised likelihood
+ratio, adjusted for decision SNR, log noise scale, opposing mass, displacement
+and direction concentration. A pass requires `p < 0.05` and a positive
+coefficient. Firth rather than an ordinary fit because the registered baseline
+outcome is near zero events, where an unpenalised fit separates and the
+interaction is not estimable at all, which is what revision 1's primary would
+have hit under its own expected result.
 
-**Baseline condition.** The same test at load 0 must return `p >= 0.05`. If the
-gap is already there without load, C2-1 is not tested by this design and the run
-is recorded VOID. This bar can fail, and it voids the gate when it does.
+**Co-primary, the discriminating contrast.** The same interaction for `N` against
+`W`. A rank budget requires `T` above `W` and `N` indistinguishable from `W`. If
+`N` tracks `T`, the result is a complexity effect and is recorded as one,
+whatever the `T` against `W` contrast says. This bar can turn a passing primary
+into a negative result, which is the point of it.
+
+**Co-primary, the manipulation check.** The load-16 spectrum must move by more
+than three times the same-load replicate floor. If it does not, the run yields a
+behavioural finding and explicitly not a budget reading. Revision 1 placed this
+under secondary, which inverted C1's own 10.19 disposition that a null from an
+unverified manipulation is not evidence about budgets.
+
+**Baseline condition, as equivalence and not as an accepted null.** The run is
+VOID unless the 95 percent interval on the baseline class difference lies inside
+plus or minus 0.010. Revision 1 required only `p >= 0.05` at baseline, which
+zero events satisfies by default; the reread showed that zero of 64 bounds a rate
+only at 0.046, most of the effect under test. At 2048 per class this margin
+voids a fourfold baseline gap with probability 1.000 and proceeds when the
+classes are truly equal with probability 0.993. A margin of 0.02 admitted the
+confound 79 percent of the time.
 
 **Instrument gates, applied per level before anything at that level is graded.**
-Zero unparsed comparisons, because the parse gate is registered at zero. Zero
-deadline failures. Genuine order-dependence and no-verdict items counted
-separately and never summed. First-position rate within 0.15 of
-`q*b + (1-q)(1-b)`, the rate an unbiased evaluator of accuracy `q` returns on a
-cell whose answer key has base rate `b`. At least 480 of 512 pairs graded per
-cell. A level that fails any of these is INADMISSIBLE and carries no verdict.
+No-verdict items, whether unparsed or timed out, at most 0.5 percent per cell,
+reported by cause, excluded from numerator and denominator alike, and accompanied
+by a sensitivity bound in which they are counted first all as order-dependent and
+then all as not. First-position rate within 0.03 of `q*b + (1-q)(1-b)`, with `q`
+computed over every pair that returned a letter in the forward presentation
+rather than over swap-consistent survivors. There is no minimum-graded bar.
+Revision 1 registered zero no-verdict items, which would have refused the run
+that motivates this design and is unreachable across tens of thousands of calls;
+a 0.15 position band, which admits a lean producing four times the effect under
+test and which the trading class already exceeds in C1-D at every loaded level;
+and a 480-of-512 minimum which, with the other two gates at zero, was
+arithmetically the statement that the effect must not occur.
 
 **Secondary, reported and not graded.** The spectrum under load, judged against a
 same-load replicate. Two calibration blocks of 200 pairs run at load 16 with
@@ -355,3 +402,60 @@ No pilot fixes any tolerance here. Every bar in Section 5 is fixed by the
 registered design or by the power calculation in Section 6, and none is set from
 data this design will later grade. C1 fixed its tolerances from a pilot three
 times and superseded them twice.
+
+## 11. What the repairs cost, including where they made the design weaker
+
+Recorded here rather than discovered after a run.
+
+**The interaction statistic is much less powerful than the test it replaces.**
+Grading the `class x load` interaction is the correct statistic for a difference
+in differences, and revision 1's difference in significance was not. But the
+baseline cells carry almost no events, so the interaction is estimated from very
+little. Simulated at the observed effect shape, baseline 0.004 in both classes
+and loaded 0.020 against 0.078:
+
+| pairs per class | power of the interaction test |
+|---|---|
+| 512 | 0.317 |
+| 1024 | 0.467 |
+| **2048** | **0.817** |
+| 4096 | 1.000 |
+
+Revision 1 claimed 0.992 at 512 for a statistic that was not testing the claim.
+The honest statistic needs four times the sample for less power. 2048 is
+registered.
+
+**The equivalence margin had to be tightened by a factor of two, and the first
+value admitted the confound.** At a margin of 0.02 the baseline check passes a
+fourfold baseline gap 79 percent of the time, and a fourfold gap at the floor is
+exactly the shape the noise confound in 9.1 takes. At 0.010 with 2048 per class
+it voids that gap every time and proceeds on truly equal classes 99.3 percent of
+the time. A margin of 0.005 would be stricter still but rejects equal classes 54
+percent of the time at this size.
+
+**SNR matching removes most of the confound and not all of it.** Under the
+no-budget noise model of 9.1, the predicted `T` minus `W` gap falls from 0.0464
+to 0.0084 at the noise level that reproduces C1-D's observation. That residual is
+about 15 percent of the effect under test, which is why the covariate adjustment
+in Section 5 is registered rather than optional.
+
+**The run is an order of magnitude larger than anything this programme has
+executed.** Three classes, two levels, 2048 pairs, two full presentations plus a
+25 percent replicate subsample is **27,648 comparisons**. C1's runs were 1,800 to
+5,300. The replicate is a subsample because it estimates a per-class floor rather
+than a per-pair quantity; at 25 percent its standard error is 0.0018 against a
+floor near 0.01.
+
+This is a load on shared infrastructure, and the `ellm` gateway's fair-use limits
+are not recorded in the NRP policy memory. The size is a consequence of doing the
+statistics honestly, not a preference, but whether it may be run is a question
+about the shared resource and is not settled by this document. The design is
+registered at 2048 and the decision to execute is separate.
+
+**One thing that got simpler.** Revision 1 carried three instrument gates that
+could not do what they named. All three are gone: the minimum-graded bar was the
+arithmetic complement of the endpoint, the zero-deadline bar was unreachable and
+would have refused this design's own motivating evidence, and the 0.15 position
+band admitted four times the effect. What replaces them is one tolerance on
+no-verdict items with a sensitivity bound, and one position band at 0.03 measured
+against a reference that does not condition on the pairs under study.
