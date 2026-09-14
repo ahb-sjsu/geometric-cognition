@@ -1,10 +1,13 @@
 # C2 registration, draft: does resource load open a class gap in order-dependence?
 
-**Status: DRAFT, revision 2. No run seed drawn. Section 9 records the cold
-reread that refused revision 1, and Section 11 records the four repairs made in
-response, what they cost, and the two of them that turned out to be weaker than
-they looked. Still not sealed: a second cold reread is required, and the run is
-an order of magnitude larger than anything this programme has executed.**
+**Status: DRAFT, revision 2, REFUSED. No run seed drawn. Section 9 records two
+cold rereads. The first refused revision 1. The second, in 9.12 to 9.14, refused
+revision 2: the primary statistic is implemented incorrectly, the confound the
+repairs removed was relocated at more than twice its original size, and the bar
+written to replace an accepted null is an accepted null. Section 11's account of
+the repairs stands, but its power figures were computed against the broken test
+and do not hold. Section 9.14 records why three consecutive revisions have failed
+the same way and what the readers suggest instead.**
 
 C1 is unsealed and stays unsealed. This is a separate gate testing one
 pre-specified quantity that emerged from C1's fourth ladder, and it is written to
@@ -389,6 +392,154 @@ the position band to 0.03 against a reference computed on all pairs that returne
 a letter rather than on survivors.
 
 This file is not renamed and not sealed. No run seed is drawn.
+
+### 9.12 Second cold reread, of revision 2: refused again
+
+Two further readers with no drafting context, given revision 2 and the new code,
+fenced off as before. **Verdict: REFUSED.** The four repairs each fixed the defect
+they were aimed at and introduced a worse one beside it. That pattern, and not
+any single finding, is the result.
+
+**The primary statistic is broken.** `firth_lrt` takes the penalised
+log-determinant of the reduced design, a `(k-1)` by `(k-1)` matrix, where Firth's
+penalised profile likelihood requires the full `k` by `k` information evaluated at
+the constrained fit. The error grows like `log n` and does not vanish. Measured
+type I error at a nominal 0.05:
+
+| n | event rate | observed size |
+|---|---|---|
+| 200 | 0.500 | 0.255 |
+| 1000 | 0.500 | **1.000** |
+| 4096 | 0.050 | 0.968 |
+| 16384 | 0.004 | 0.318 |
+
+At the registered design the size is 0.10 to 0.44 depending on the true rate. The
+statistic also returns -1.694 for zero events in both cells, and a nested
+likelihood ratio cannot be negative. Every power figure in Section 11 was
+computed against this implementation, so the honest power at 2048 is about 0.74
+rather than 0.817, on a test whose bar of `p < 0.05` does not name a 0.05 test.
+
+**The confound was relocated, not removed, and the relocation is larger than the
+original.** SNR matching is defined against multiplicative noise on the
+contributions. Under additive noise on each rendered number, which is the other
+obvious reading, the governing ratio is different and matching one necessarily
+unmatches the other.
+
+| noise model | margin-matched `T` minus `W` | SNR-matched |
+|---|---|---|
+| multiplicative, sigma 0.12 | +0.0440 | -0.0051 |
+| absolute, sigma 0.30 | -0.0010 | **-0.1284** |
+| absolute, sigma 1.00 | -0.0033 | **-0.1282** |
+
+Revision 1 was balanced under absolute noise and confounded under multiplicative.
+Revision 2 is the reverse, at more than twice the magnitude and with the opposite
+sign, which would manufacture falsifier 2 or mask a true effect. Section 11's
+claimed residual of 0.0084 also does not reproduce; the correct figure under the
+model it names is about 0.001, so that number is wrong in the conservative
+direction and has no committed code behind it.
+
+**The margin match revision 1 had was destroyed.** Mean margin went from W 1.679
+and T 1.712, matched, to W 1.136 and T 2.268. Section 9.10 had credited revision
+1 for matching margin across the whole distribution. Revision 2 broke it and does
+not say so.
+
+**There are two coherent budget models and they predict opposite signs.** Under
+budget uncertainty, where the weight on the discarded part is unstable, order
+instability is exactly the trading construction: simulated, W 0.000, N 0.000, T
+0.311. The `N` control works and is the best of the four repairs. Under fixed
+budget plus finite resolution, which is what Section 2 states in words,
+indifference lives at small projected margin, and SNR matching made `W` the
+small-margin class. The design is then anti-powered for its own hypothesis.
+Section 5 grades the first model and Section 2 asserts the second, and the
+registration never says which is being tested.
+
+The deeper form of that: the endpoint changed from reversal to order-dependence
+and the stimulus selection did not. `T` is still admitted on a reversal criterion,
+and only about 2 percent of `T` pairs have a projected margin small enough to
+produce indifference. The class definition that matches the new endpoint is
+"small projected margin", which straddles the `N` and `T` boundary.
+
+**The bar written to replace null-acceptance is null-acceptance.**
+`equivalence_baseline` uses a Wald interval. With zero events in both baseline
+classes, which is exactly what C1-D measured and what Section 3 predicts, the
+standard error is zero, the interval collapses to a point, and the verdict is
+"equivalent" with certainty at any sample size. The code default margin is also
+0.02, the value Section 11 spends a paragraph rejecting, and nothing in the
+repository passes 0.010. And the tightening does not reach the case Section 9.8
+identified: a fourfold gap at the 0.002 floor is a difference of 0.006, inside a
+margin of 0.010 by arithmetic, and is admitted 47 percent of the time.
+
+**The position band overshot into the same defect it replaced.** If indifference
+resolves positionally with probability `pi`, order-dependence is about `pi` and
+the first-position deviation is about `pi/2`, so a band of 0.03 caps the gradeable
+effect near 0.06. The deleted 480-of-512 gate capped it at 0.0625. The two bars
+have the same ceiling. C1-D's trading class already exceeds the new band at every
+level including load 0, at deviations of 0.031, 0.047, 0.040 and 0.057.
+
+**Three registered things are not implemented.** The endpoint is registered as
+swap flip minus the replicate floor; `interaction_test` regresses raw swap flip
+and `repeat_flip` appears nowhere in the model. The replicate is registered on a
+25 percent subsample; the code emits all three presentations for every pair, so
+the run is 36,864 comparisons and not the 27,648 offered to the shared-resource
+owner. And the drop accounting is registered by cause at item level; the code
+keeps one integer per cell at pair level.
+
+**Sections the first reread already asked to be fixed, still unfixed.** Section 6
+still registers 512 while Sections 4 and 11 register 2048, still grades by Fisher
+exact, and still contains the misread "0.14 to 0.35". Section 7's falsifier 1 is
+still the difference-in-significance framing, and falsifier 4 still names rendered
+length, which is 154 characters in both classes by construction. Section 8 still
+calls the manipulation check secondary, and so does the last paragraph of Section
+5, while the first paragraph of Section 5 promotes it to co-primary. A reader
+cannot tell whether a non-moving spectrum voids a pass.
+
+**Also unaddressed.** The discriminating co-primary is itself an accepted null
+with no margin, which is the defect the baseline repair exists to remove, one
+paragraph above it. The no-verdict tolerance of 0.5 percent is exceeded four to
+thirteen times over in every loaded cell of both prior ladders. The design is
+repeated measures, since the same pairs appear at both loads, and is analysed and
+powered as if independent. There is no runner, and nothing computes the spectrum
+co-primary, the position gate, the sensitivity bound or the `N` equivalence.
+
+### 9.13 What the readers confirmed is sound
+
+`firth_logit` itself is correct: it converges to the unpenalised estimate as the
+penalty becomes negligible, stays finite under complete separation and zero
+cells, its modified score vanishes at the returned estimate, and its leverages
+sum to `k`. `contributions` is the correct decomposition for any positive
+definite metric, to 1.6e-14. The three classes are built as defined, with `N`
+verified to have a large discarded component and zero flips. The SNR match holds
+across ten seeds at a worst gap of 0.0159, the assert fires when the matcher is
+defeated, and the build is feasible at 2048 in about three minutes. `swap_flip`
+is right and not inverted, checked against synthetic oracles. The interleaving is
+genuine, balanced across class, load and role. The covariates are not collinear.
+The 27,648 arithmetic is correct for the design as registered; only the code
+disagrees.
+
+### 9.14 The pattern, which matters more than the list
+
+Three consecutive designs have now been refused, and in each the repair created
+the next defect. C1's spectral-gap repair produced a vacuous budget. Revision 1's
+margin match produced the multiplicative confound. Revision 2's SNR match
+produced a larger absolute confound, destroyed the margin match, inverted which
+class sits at small margin, and replaced two unfireable bars with two more.
+
+The common root is that every version selects its classes by a property of a
+metric fitted to the evaluator being tested, and then asks whether the evaluator
+behaves differently across those classes. Matching on one statistic unmatches
+another, because the classes differ in the full joint distribution and not in one
+coordinate. A fourth revision that matches on a third statistic should be
+expected to fail in the same way.
+
+The alternative the readers point at, and which this programme has not tried, is
+to stop selecting on the fitted metric at all: construct pairs by direct
+manipulation of the stimulus in a way that makes the budget prediction without
+reference to a fitted geometry, or abandon the class-contrast design and measure
+the evaluator's resolution directly. That is a change of approach and not a
+revision, and it is the owner's decision.
+
+**Disposition. Revision 2 is refused. C2 is not sealed and no run seed is
+drawn.**
 
 ## 10. Sealing procedure
 
