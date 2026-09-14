@@ -1,13 +1,15 @@
 # C3 design note: measure the sensitivity profile, select nothing
 
-**Status: DESIGN NOTE, SECOND REBUILD, NOT YET REREAD. No bars, no seed, no
-run.** Three constructions are recorded below in order. The pair construction was
-refused. The multi-option rebuild was refused for a low-role cue and for being
-unable to tell a capacity budget from a relevance judgement. The second rebuild,
-at the end, keeps the context independent of the probe, adds a heavy-tailed low
-column, and adds an oblique arm in which every per-attribute no-budget model
-predicts exactly zero. A residual isolation cue and multivariate shrinkage remain
-and are recorded. The second rebuild has not been reread.
+**Status: DESIGN NOTE, SECOND REBUILD REREAD AND REFUSED. No bars, no seed, no
+run.** Three constructions are recorded below in order, each followed by its
+reread. The pair construction was refused. The multi-option rebuild was refused for
+a low-role cue and for being unable to tell a capacity budget from a relevance
+judgement. The second rebuild kept the context independent of the probe, added a
+heavy-tailed low column and an oblique arm, and its construction claims hold. Its
+reread refused it: the manipulation itself creates a cue of about 0.5 against the
+budget's sign in both arms, regression imputation reproduces the budget's
+signature (axis null, oblique +0.47), and no combination of outcomes separates
+capacity from relevance.
 
 ## Why the previous four designs were refused
 
@@ -727,3 +729,151 @@ estimate of several hundred triplets at the primary separation still applies, an
 the non-target values are still mirror-symmetric about the ideal in every probe,
 which a reader flagged as a learnable regularity. Nothing has been sent to the
 gateway. This rebuild has not been reread.
+
+## Reread of the second rebuild, 2026-09-14
+
+Two readers with no drafting context, given only this note, `c3_sets2.py` and
+`c3_verify2.py`, fenced off from C1, C2, `CAMPAIGN.md`, the paper and the history.
+One audited the construction and the verification script. One attacked the logic
+with about twenty additional evaluator models. The findings marked reproduced were
+rerun before being recorded.
+
+**Verdict: the second rebuild is not usable as specified.** What it claimed about
+its own construction holds. What it claimed about the oblique arm's power to
+discriminate does not.
+
+### What holds
+
+Both readers confirm the construction claims. Probe lines are byte-identical across
+the prompts of an item. Each context option's distance from the ideal is identical
+position by position, checked with exact integer arithmetic, and so is the probe's
+distance rank. No rejection path combines probe values with context values. No probe
+option is the most extreme value in any column or along the rotated `A + B` and
+`A - B` directions. The models that read only a column's second moment, univariate
+shrinkage, per-attribute relevance and column-scaled saturation, give exactly zero
+in the oblique arm with item-level variance zero. The simulation tables reproduce
+digit for digit at the reported seed.
+
+### A cue of about minus one half in both arms, reproduced
+
+The manipulation creates it. The probe varies along the direction the context does
+not, so in the low condition the probe breaks the context's pattern and the nearer
+option breaks it less.
+
+| rule, no reference to a metric | high | mid | low |
+|---|---|---|---|
+| oblique: pick the option closer to the line the context options lie on | 0.469 | n/a | **1.000** |
+| axis: pick the option nearer 50 on the lowest-variance column | 0.500 | 0.500 | **1.000** |
+
+The cue makes the low condition easier, which is the opposite of the budget's sign,
+and at about 0.5 above chance it is roughly three times the residual isolation cue this note
+recorded. No template change removes it, because it follows from the probe varying
+where the context does not.
+
+### A mimic that produces the pattern this note would have read as a budget, reproduced
+
+**Regression imputation.** Each attribute is read as half its value and half its
+linear prediction from the other two, fitted on the context. It has no capacity
+limit.
+
+| separation | axis arm, high minus low | oblique arm, high minus low |
+|---|---|---|
+| 1 | -0.002 | **+0.472** |
+| 2 | -0.017 | **+0.468** |
+| 4 | -0.005 | **+0.468** |
+
+An axis null with an oblique positive is the pattern this note singled out as the
+signature of a geometric, rotation-invariant budget. A correlation-completion
+heuristic produces it at the budget's full size. The second reader also found that
+relevance weighting on principal directions, rather than on named attributes, gives
+the budget's sign in both arms (+0.375 oblique at separation 4), and that whitened
+distance and a consistency penalty oppose it. Multivariate shrinkage is not the only
+surviving mimic, and isolation is not the only opposing cue.
+
+### "Every per-attribute model predicts exactly zero" is false as worded
+
+It holds for models symmetric about the ideal. The probe is not mirrored while the
+context's `B` column is, so the probe's `B` value sits among different neighbours in
+the two prompts: its percentile in `B` changes in 55 to 71 percent of items. Models
+that anchor on nearby values, rank within a column or shrink toward a column median
+change their decision in most items. Pooled over six seeds their mean contrasts are
+small, down to -0.014 at separation 4 for rank coding, with all six seeds at or
+below zero. The item-level standard deviation of the paired contrast reaches 0.58
+for a percentile code, which inflates the variance of any test well past the
+reread's earlier sample-size estimate. The note's table reported only separation 4,
+where anchoring sits at ceiling. At smaller separations the committed script already
+shows +0.018 for anchoring at separation 1 and -0.057 for rank coding at separation 2.
+
+### The residual isolation cue is larger than reported
+
+The note pooled over separations. At separation 4 the rule reaches 0.68 to 0.75 in
+the axis low role and 0.70 to 0.81 in the oblique low condition across three seeds,
+and a three-nearest-neighbour version of the rule reaches 0.685 and 0.680 where the
+note reported 0.64 to 0.67. A covariate matching the rule recovers a budget
+attenuated by the mixing weight; a covariate built on a different form of the cue
+leaves 0.02 to 0.04 of masking.
+
+### What the oblique arm can and cannot test
+
+It separates accounts that read named attributes from accounts that are invariant
+to rotation. It does not separate capacity from relevance, because a rank projection
+and a weighting of directions by their spread are the same computation up to hard
+against graded weights. No combination of axis-arm and oblique-arm outcomes licenses
+"capacity". Separating capacity needs a manipulation that relevance does not track:
+load at a fixed variance profile, the number of dimensions at fixed variance ratios,
+or an explicit equal-weight instruction.
+
+### Construction and script defects, all confirmed
+
+* **The verification script's checks are weaker than their labels.** The distance
+  check sorts and uses `np.allclose`, whose default relative tolerance would pass a
+  change of 0.1 in one value. The property holds by exact comparison; the check would
+  not have caught its failure. The extremeness check cannot fail in the axis arm and
+  tests raw columns rather than the rotated direction in the oblique arm. The
+  multiset check is true automatically after mirroring. Rank coding's calibration
+  stops at its lower bound without flagging it.
+* **The probe cap binds only at separation 4.** Acceptance there is 0.70 against 1.00
+  at the other rungs, shifting the probe offsets and confounding separation with the
+  probe's position against the fixed template values.
+* **Fixed templates create crowding cues whose direction flips with the rung.** On
+  the target column a "more isolated" rule takes the budget's sign at separation 4
+  and a "more crowded" rule takes it at separation 2.
+* **Minor.** The oblique arm stratifies straddle but not smaller-value-is-nearer.
+  Nearer-first, list positions, labels and rendered slots are random draws, not
+  stratified. Two figures in the note do not reproduce exactly: the second-seed
+  agreement ("within 0.005") is 0.006 on one contrast and 0.044 on rank coding, and
+  rank coding's oblique sign is positive at separations 1 and 2 on two seeds.
+
+### Other confounds the second reader raised
+
+The low condition always has a positive `A`-`B` correlation with visibly equal
+numbers and the high condition always a negative one, so correlation sign and
+surface salience go with condition. The prompt never defines "closer", so
+down-weighting low-variance directions is a legitimate choice of metric rather than
+lost resolution. The ideal is always the context centroid, so closeness to the ideal
+and typicality cannot be separated. Non-target values sum to exactly 100 in every
+axis probe, which reduces the task to one number.
+
+### What would have to change
+
+1. **A third oblique prompt with the same marginals and no correlation.** At
+   separation 1 it separates imputation (high 0.974, flat 0.719) from a rank-2 budget
+   (high 0.749, flat 0.725), because imputation lifts the high condition above flat
+   and a budget does not.
+2. **Probe types that cross target offset with non-target radius** instead of the
+   mirror. The second reader's four types reverse the budget's and the isolation
+   rule's predictions between two of them, a sign-reversal test that needs no
+   covariate, and one type puts a budget below chance, which noise cannot do.
+3. **Counterbalance the correlation sign** by adding items whose probe varies along
+   `A + B`, and offset the ideal from the context centroid in some items.
+4. **State the metric in the prompt**, straight-line distance with equal weights, so
+   ignoring a direction is an error and not a choice.
+5. **A capacity manipulation** that relevance does not track, if the claim is to be
+   about capacity at all.
+6. **Register the full adversary family**: imputation, principal-direction relevance,
+   whitening, consistency, the asymmetric per-attribute models, and the context-line
+   rule, with the contrast reported at every separation and the item-level variance
+   carried into the sample size.
+7. **Tighten `c3_verify2.py`**: exact position-by-position checks, extremeness along
+   the probe's direction, per-separation cue tables, and a flag when a calibration
+   hits its bound.
