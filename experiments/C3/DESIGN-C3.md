@@ -5,10 +5,11 @@ run.** The reread record at the end finds that the construction carries answer
 shortcuts on the narrow axes, that the noise account is not the exact null this
 note claims, and that one pair per prompt gives the evaluator no workload to
 budget over. The change of approach, selecting nothing on a fitted metric,
-survives. This
-records the change of approach and the construction, so that a registration can
-be written against something that has already been checked rather than against an
-idea.
+survives.
+
+The sections before the record set out the change of approach and the
+construction as first written, so that a registration can be written against
+something checked rather than against an idea.
 
 ## Why the previous four designs were refused
 
