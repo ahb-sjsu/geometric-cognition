@@ -1,13 +1,13 @@
 # C3 design note: measure the sensitivity profile, select nothing
 
-**Status: DESIGN NOTE, REBUILT, REREAD, NOT USABLE AS SPECIFIED. No bars, no
-seed, no run.** The pair construction described first was refused by the reread
-below it. The multi-option rebuild that follows was then reread in turn. It holds
-the probe byte-identical as designed, but the low role gives the probe a cue that
-runs against the budget's sign, and a central-tendency model with no capacity
-limit reproduces the budget's profile. On a decorrelated context a rank budget and
-a rule that ignores low-variance attributes are the same computation. The second
-reread record, at the end, lists what would have to change.
+**Status: DESIGN NOTE, SECOND REBUILD, NOT YET REREAD. No bars, no seed, no
+run.** Three constructions are recorded below in order. The pair construction was
+refused. The multi-option rebuild was refused for a low-role cue and for being
+unable to tell a capacity budget from a relevance judgement. The second rebuild,
+at the end, keeps the context independent of the probe, adds a heavy-tailed low
+column, and adds an oblique arm in which every per-attribute no-budget model
+predicts exactly zero. A residual isolation cue and multivariate shrinkage remain
+and are recorded. The second rebuild has not been reread.
 
 ## Why the previous four designs were refused
 
@@ -582,3 +582,148 @@ These are design decisions for the owner, recorded in order of what they separat
 
 The first two change the stimulus distribution itself and should be settled before
 the rest are built.
+
+## Second rebuild: an oblique workload and a heavy-tailed low column, 2026-09-14
+
+This section answers the first two changes the reread of the multi-option rebuild
+required. The code is `c3_sets2.py`, and every number below is printed by
+`c3_verify2.py`, which is committed with it. The reread found that the previous
+simulation table had no code behind it. The two earlier constructions stay in the
+repository as the record of what was refused.
+
+### One principle: the context never depends on the probe
+
+The low-role cue in the first rebuild came from conditioning the context on the
+probe. Probe values were pushed outside the tight low cluster, and an exclusion
+window kept context values away from them. Both are gone. Context values now come
+from fixed templates: wide (root-mean-square 20), mid (10) and heavy. The only
+rejection rule looks at the context by itself. It keeps a draw when every pair of
+columns has a sample correlation within 0.10, and it never looks at the probe.
+
+**Axis arm.** Each triplet draws one set of 20 context rows, each row holding one
+wide, one mid and one heavy value. A role decides only which attribute receives
+which. Across the three prompts of a triplet, every context option's distance from
+the ideal is therefore identical, and so is the probe's distance rank among the 22
+options. This answers the reread's findings that probe rank and per-prompt distance
+distributions shifted with role.
+
+**Heavy-tailed low column.** The heavy template has 12 values within one unit of
+the ideal, single values at 3.5, 6.5 and 9.5 on each side, and tails at 12. Its
+variance is 29, against 100 for mid and 400 for wide. Probe target offsets are
+capped at 10, inside the tails.
+
+**Oblique arm.** Two attributes `A` and `B` are built from a wide component `s`
+and a heavy component `d`, as `A = 50 + (s + d)/sqrt2` and `B = 50 + (s - d)/sqrt2`.
+The workload is then 400 along `A + B` and 29 along `A - B`. The paired prompt
+mirrors `B` about the ideal. That exchanges the two directions and leaves every
+`|value - 50|` unchanged, so each context option's distance from the ideal and each
+column's spread about the ideal is identical across the pair. The only thing that
+changes is the sign of the correlation. The probe varies along `A - B` and is
+identical in both prompts. The third attribute takes the mid template, and which
+two attributes form the pair is counterbalanced.
+
+### Construction checks, two seeds
+
+Both seeds give 576 items per arm, with every cell filled.
+
+| check | axis arm | oblique arm |
+|---|---|---|
+| probe lines byte-identical across prompts | 576/576, 576/576 | 576/576, 576/576 |
+| each context option's distance to the ideal identical | 576/576, 576/576 | 576/576, 576/576 |
+| probe distance rank identical | 576/576, 576/576 | 576/576, 576/576 |
+| a probe value is the most extreme in its column, any role | 0.000 | 0.000 |
+| each column's `\|value - 50\|` multiset identical across the pair | n/a | 576/576, 576/576 |
+| smaller value is nearer | 0.500, 0.500 | on `A` 0.486 and 0.498; on `B` 0.495 and 0.493 |
+| pair straddles the ideal | 0.500, 0.500 | 0.500, 0.500 |
+
+In the axis arm the context variances are exactly the registered 400, 100 and 29
+in every role. The largest column correlation in any prompt is 0.102. In the
+oblique arm the marginal variances of `A` and `B` are 215 and 214 in both prompts,
+and the directional variances swap between 400 and 29. Separation error has a mean
+of about 1.5 percent and a maximum of 9.3 percent, at the smallest separation, from
+rounding.
+
+The extremeness cue that made the first rebuild unusable is gone. The farther
+probe option was the most extreme value on its attribute in every low-role prompt.
+It is now never the most extreme value in any column, in either arm.
+
+### Simulated evaluators, seed 20260914
+
+Accuracy at separation 4. Each model's noise is set so the axis arm's high role
+sits at 0.75 at separation 1.
+
+| model | axis arm: high / mid / low | axis high minus low | oblique: high / low | oblique high minus low |
+|---|---|---|---|---|
+| no budget, noise on the probe | 0.996 / 0.996 / 0.996 | +0.000 | 0.996 / 0.996 | +0.000 |
+| rank-1 budget | 0.991 / 0.505 / 0.504 | +0.487 | 0.991 / 0.502 | **+0.489** |
+| rank-2 budget | 0.995 / 0.994 / 0.496 | +0.498 | 0.994 / 0.505 | **+0.490** |
+| univariate shrinkage, tau 5 | 0.995 / 0.979 / 0.858 | +0.137 | 0.989 / 0.989 | **+0.000** |
+| relevance weight, variance over maximum | 0.993 / 0.809 / 0.617 | +0.376 | 0.983 / 0.983 | **+0.000** |
+| column-scaled saturation | 0.996 / 0.992 / 0.963 | +0.033 | 0.995 / 0.995 | **+0.000** |
+| multivariate shrinkage, tau 5 | 0.995 / 0.978 / 0.856 | +0.139 | 0.995 / 0.859 | **+0.136** |
+| anchoring on the 3 nearest per column | 0.999 / 1.000 / 1.000 | -0.001 | 0.998 / 0.998 | -0.000 |
+| rank coding within the prompt | 0.701 / 0.948 / 0.919 | -0.219 | 0.852 / 0.852 | +0.000 |
+
+The second seed agrees within 0.005 on every oblique contrast.
+
+**The oblique arm does what it was built for.** In the axis arm, three models with
+no capacity limit give the budget's sign: univariate shrinkage, relevance weighting
+and saturation. In the oblique arm all three give exactly zero, because nothing
+about any single attribute differs between the two prompts. A rank budget gives
+about 0.49 in both arms. The axis arm on its own cannot tell a budget from a
+relevance judgement, and the oblique arm can.
+
+**Multivariate shrinkage survives, as expected.** Shrinking toward the context
+along its full covariance moves the probe most along the low-variance direction
+whatever that direction is. It gives the budget's sign in both arms, at about a
+quarter of the budget's size at this setting. The design cannot exclude it, and a
+budget reading has to carry it as a live alternative.
+
+**Two smaller results.** With the heavier low column, a rank-2 budget that includes
+the probe in its own workload now stays near chance at separation 4 (0.529, then
+0.533 on the second seed). In the first rebuild that figure rose to 0.753 at
+separation 8. Rank coding still cannot be calibrated to 0.75, as the reread found,
+and its sign is opposite or zero.
+
+### The residual cue, recorded rather than removed
+
+A rule that picks whichever probe option has the nearer context option in three
+dimensions still scores above chance in the low role:
+
+| arm, role | seed 20260914 | seed 20260915 |
+|---|---|---|
+| axis, high | 0.510 | 0.488 |
+| axis, mid | 0.476 | 0.486 |
+| axis, low | **0.644** | **0.651** |
+| oblique, high | 0.502 | 0.509 |
+| oblique, low | **0.630** | **0.668** |
+
+This cannot be designed away. A column with low variance that still spans the
+probe's range has to thin out away from the ideal. With the non-target attributes
+symmetric, the farther option always has the larger target offset, so in the low
+role it always sits in sparser territory.
+
+The template was chosen to minimise this cue before any budget result was
+examined. The first heavy template left an empty band between its core and its
+tails, and there the rule reached 0.72 in the low role. Four candidates were
+compared on the rule alone. Filling the band brought it to about 0.64. Two
+candidates tied within 0.005, and the one with lower variance was kept.
+
+The cue makes the low role easier, which is the opposite of the budget's sign.
+It cannot produce a budget reading. It can mask one, so a null result in the low
+role or the low-variance direction is not interpretable on its own. The analysis
+has to carry the isolation-rule prediction as a registered covariate, item by item.
+
+### What remains from the reread's list
+
+Items 3 to 5 of the reread's required changes are not done. The whole-set premise
+is not registered, and question placement is not varied. There is no decision
+table, and no primary separation has been fixed from a flat-context pilot. The
+family of no-budget adversaries is not registered either, though the verification
+script now implements the models used here.
+
+The instrument has never been run on 22-option prompts, the reread's sample-size
+estimate of several hundred triplets at the primary separation still applies, and
+the non-target values are still mirror-symmetric about the ideal in every probe,
+which a reader flagged as a learnable regularity. Nothing has been sent to the
+gateway. This rebuild has not been reread.
