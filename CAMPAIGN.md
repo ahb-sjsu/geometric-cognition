@@ -14,6 +14,20 @@ is summarised in `README.md`.
 | Gate | Claim | Registration | Sealed | Verdict |
 |---|---|---|---|---|
 | C1 | `GC-34`, reversals concentrate on pairs trading a resolved direction against an unresolved one | [`experiments/C1/PREREG-C1-DRAFT.md`](experiments/C1/PREREG-C1-DRAFT.md) | **no** | not run |
+| H1 | `GC-DRH-1`, the deliberation peak sits at the identified resolution boundary and moves with the role of the probe's attribute (human, two-budget fuzz) | [`experiments/H1/PREREG-H1-DRAFT.md`](experiments/H1/PREREG-H1-DRAFT.md) | **no** | not run, drafted 2026-09-18, awaits ethics, self-test, probe, pilot |
+
+## H1, self-test
+
+Drafted 2026-09-18. The human counterpart of C3. A calibration block fuzzes each
+participant on C3's byte-identical probe in three context roles and reads the
+endpoint by role, and a test block measures where deliberation peaks against the
+identified boundary. Registration `experiments/H1/PREREG-H1-DRAFT.md`.
+
+| Stage | Run | Verdict | Record |
+|---|---|---|---|
+| Self-test | Atlas, 2026-09-18, four runs, the fourth at 16:06Z | **PASS** 20 of 20, after three recorded failures that changed the estimator | [`experiments/H1/selftest.json`](experiments/H1/selftest.json), [`experiments/H1/record/`](experiments/H1/record/) |
+| Probe | not run | | |
+| Pilot | not run, waits on ethics | | |
 
 ## C1, Phase I
 

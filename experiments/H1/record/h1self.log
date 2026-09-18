@@ -1,0 +1,31 @@
+construction done {'construction': 22.0}
+observer rank_budget fitted 98.2
+observer uniform_noise fitted 143.9
+observer position fitted 224.4
+observer magnitude fitted 298.9
+{"verdict": "PASS", "n_checks": 20, "n_failed": 0, "elapsed_s": 300.6, "host": "atlas"}
+PASS construction_cells_full
+PASS rank_budget_retained_role_near_ceiling
+PASS rank_budget_discarded_role_low_endpoint
+PASS rank_budget_D_A_positive_and_ci_excludes_zero
+PASS rank_budget_monotone_hi_mid_lo
+PASS rank_budget_low_role_s_star_censored_in_most_cells
+PASS uniform_noise_D_A_within_equivalence_bound
+PASS uniform_noise_D_A_small
+PASS uniform_noise_D_A_exact_null_permutation
+PASS uniform_noise_b_near_zero
+PASS position_D_A_within_equivalence_bound
+PASS position_D_A_small
+PASS position_D_A_exact_null_permutation
+PASS position_b_recovered
+PASS magnitude_D_A_within_equivalence_bound
+PASS magnitude_D_A_small
+PASS magnitude_D_A_exact_null_permutation
+PASS magnitude_b_near_zero
+PASS smoother_recovers_placed_peaks
+PASS D_p_tracks_placed_displacement
+rank_budget D_A 0.297 [0.2743055555555556, 0.3229166666666667] A {'hi': 0.988, 'mid': 0.971, 'lo': 0.691} fitted plateau {'hi': 0.992, 'mid': 0.978, 'lo': 0.737} b 0.002
+uniform_noise D_A -0.0 [-0.011574074074074082, 0.010416666666666666] A {'hi': 0.986, 'mid': 0.984, 'lo': 0.986} fitted plateau {'hi': 0.986, 'mid': 0.988, 'lo': 0.99} b 0.0
+position D_A -0.006 [-0.04282407407407407, 0.02662037037037039] A {'hi': 0.565, 'mid': 0.557, 'lo': 0.571} fitted plateau {'hi': 0.977, 'mid': 0.97, 'lo': 0.986} b 0.777
+magnitude D_A -0.0 [-0.02893518518518518, 0.027777777777777787] A {'hi': 0.591, 'mid': 0.589, 'lo': 0.591} fitted plateau {'hi': 0.659, 'mid': 0.649, 'lo': 0.629} b 0.0
+H1_EXIT=0
