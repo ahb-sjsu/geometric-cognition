@@ -118,9 +118,24 @@ both observed rates with about 64, a share near 0.16. Either way most pairs are
 decided by position, against nine parameters to fit. (Correction 2026-09-25. This
 paragraph first gave "roughly 17" as the count. The mixture fit is machine-checked
 in the all-tests-pass repository, `lean/AllTestsPass/PositionBias.lean`, theorem
-`mixture_fits`. The next sentence was written against the count of 17 and has not
-been re-derived for 64.) Averaging the presentations recovers that component and cannot identify a
-quadratic from it at any sample size this gate would run.
+`mixture_fits`.) Keeping only the pairs that agree across presentations retains
+that component, diluted. A pair decided by position agrees about one time in five,
+and then carries a label unrelated to the geometry, so about half of the kept pairs
+are coin flips under the mixture reading and seven in eight under the excess
+reading. The held-out gate therefore has a ceiling of about 0.735 under the first
+reading and 0.565 under the second, below its bar of 0.80 at any sample size,
+because the ceiling depends on those shares and not on the count. Both ceilings are
+machine-checked in the same Lean file, theorems `ceiling_mixture` and
+`ceiling_excess`. The quadratic
+itself is not unidentifiable. In a simulation with this probe's estimator, box,
+ideal, and gate, the fitted metric ordered fresh pairs correctly 0.76 of the time
+at the 400 pairs the gate runs, 0.90 at 1,600, and 0.95 at 25,600 under the
+mixture reading, and 0.62 rising to 0.90 under the excess reading, while the gate
+passed in none of 160 runs. (Re-derived 2026-09-25. This sentence first said that
+averaging the presentations "cannot identify a quadratic from it at any sample size
+this gate would run", which was argued from the count of 17. The simulation is
+[`experiments/C1/order_mixture_sim.py`](experiments/C1/order_mixture_sim.py), with
+its record in [`order_mixture_sim.json`](experiments/C1/order_mixture_sim.json).)
 
 Two instruments have now failed on this evaluator for unrelated reasons. The
 reported-distance instrument failed on arithmetic, with the formula control
