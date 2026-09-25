@@ -110,9 +110,16 @@ replacement must gate on a position-bias rate before it estimates anything.
 substrate is the verdict.** The evaluator chooses the first-shown option at
 0.8175 against a gate of one half plus or minus 0.15, and agreement across
 presentations is 0.3400 against a floor of 0.60. Pure position choice at that
-rate predicts an agreement of 0.2984, so the observed excess is 0.0416, and of
-400 pairs roughly 17 carry information about the geometry against nine parameters
-to fit. Averaging the presentations recovers that component and cannot identify a
+rate predicts an agreement of 0.2984, so the observed excess is 0.0416. How many
+of the 400 pairs carry information about the geometry depends on how that excess
+is read. The excess times 400 is about 17. A mixture in which some pairs are
+decided by content, the same option in both orders, and the rest by position fits
+both observed rates with about 64, a share near 0.16. Either way most pairs are
+decided by position, against nine parameters to fit. (Correction 2026-09-25. This
+paragraph first gave "roughly 17" as the count. The mixture fit is machine-checked
+in the all-tests-pass repository, `lean/AllTestsPass/PositionBias.lean`, theorem
+`mixture_fits`. The next sentence was written against the count of 17 and has not
+been re-derived for 64.) Averaging the presentations recovers that component and cannot identify a
 quadratic from it at any sample size this gate would run.
 
 Two instruments have now failed on this evaluator for unrelated reasons. The
