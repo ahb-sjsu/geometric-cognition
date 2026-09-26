@@ -126,16 +126,24 @@ reading. The held-out gate therefore has a ceiling of about 0.735 under the firs
 reading and 0.565 under the second, below its bar of 0.80 at any sample size,
 because the ceiling depends on those shares and not on the count. Both ceilings are
 machine-checked in the same Lean file, theorems `ceiling_mixture` and
-`ceiling_excess`. The quadratic
-itself is not unidentifiable. In a simulation with this probe's estimator, box,
-ideal, and gate, the fitted metric ordered fresh pairs correctly 0.76 of the time
-at the 400 pairs the gate runs, 0.90 at 1,600, and 0.95 at 25,600 under the
-mixture reading, and 0.62 rising to 0.90 under the excess reading, while the gate
-passed in none of 160 runs. (Re-derived 2026-09-25. This sentence first said that
+`ceiling_excess`. In principle the quadratic is
+still identified, because labels that ignore the geometry leave the true order as
+the best classifier of the kept pairs. This probe's estimator does not get there.
+In a simulation with its estimator, box, ideal, and gate, clean labels recover the
+metric to a relative error of 0.06 at 400 pairs and 0.0003 at 102,400. Under the
+mixture reading the fitted metric orders fresh pairs correctly about 0.8 of the
+time at the 400 pairs the gate runs, then levels off near 0.95, while its error
+falls only from about 0.75 to 0.25 by 102,400 pairs with a wide spread across
+metrics, so the label noise biases the logistic fit. The gate passed in none of 260
+mixture and excess runs. (Re-derived 2026-09-25. This sentence first said that
 averaging the presentations "cannot identify a quadratic from it at any sample size
-this gate would run", which was argued from the count of 17. The simulation is
-[`experiments/C1/order_mixture_sim.py`](experiments/C1/order_mixture_sim.py), with
-its record in [`order_mixture_sim.json`](experiments/C1/order_mixture_sim.json).)
+this gate would run", which was argued from the count of 17. A first correction the
+same day said the quadratic becomes identifiable with more pairs, which the
+clean-label control showed was too strong. The simulations are
+[`experiments/C1/order_mixture_sim.py`](experiments/C1/order_mixture_sim.py) and
+[`order_mixture_sim_control.py`](experiments/C1/order_mixture_sim_control.py), with
+records in [`order_mixture_sim.json`](experiments/C1/order_mixture_sim.json) and
+[`order_mixture_sim_control.json`](experiments/C1/order_mixture_sim_control.json).)
 
 Two instruments have now failed on this evaluator for unrelated reasons. The
 reported-distance instrument failed on arithmetic, with the formula control
@@ -263,7 +271,9 @@ fitted metric, `R_T = p^2 + (1-p)^2`, `R_W = 2p(1-p)`, and the contrast is
 `(2p-1)^2`. The observed 0.9683 implies `p` of 0.9920 against a held-out accuracy
 of 0.9850, so nothing is left over for the budget manipulation to explain. The
 bars are the same quantity restated: `MARG` is met exactly when `p` clears 0.848
-and `CEIL` exactly when it clears 0.947.
+and `CEIL` exactly when it clears 0.974. (Corrected 2026-09-25. This sentence first
+said 0.947, a transposition. `R_W` at most 0.05 needs `p` at least
+`(1 + sqrt(0.9)) / 2`, which is 0.9743.)
 
 **And the budget is not yet a budget.** The ideal sits at the centroid of the
 cube the options are drawn from, so the workload moment is isotropic
@@ -298,8 +308,14 @@ projection.
 Our own diagnostic needs one correction so it is not read as stronger than it
 is. The plane angle prints 0.0 degrees at rank 2, which is geometry rather than
 a failed randomization, since any two 2-planes in three-space share a line and
-their largest principal angle is identically zero. Rank 1 is the test that
-carries the finding.
+their smallest principal angle is identically zero. The diagnostic printed that
+forced angle, so the rank 2 placebo was a real rotation, 38.9 degrees at its other
+principal angle (`experiments/C1/PREREG-C1-DRAFT.md` section 10.13), and
+its 0.9688 reproduces the registered contrast as the rank 1 placebo does. Rank 2
+is the weaker test, not an empty one. (Corrected 2026-09-25. This paragraph first
+said the largest principal angle is zero and that rank 1 alone carries the
+finding. Commit 0ce8c35 fixed the diagnostic to report every principal angle but
+left this text unchanged.)
 
 The second control is confirmed in direction and is the smaller effect. Class
 W-prime differs from the within-subspace class only in whether the two options
