@@ -140,8 +140,13 @@ its record in [`order_mixture_sim.json`](experiments/C1/order_mixture_sim.json).
 Two instruments have now failed on this evaluator for unrelated reasons. The
 reported-distance instrument failed on arithmetic, with the formula control
 scoring worse than three framings that withheld the formula. The comparison
-instrument fails on layout. An evaluator that neither computes a distance nor
-compares by content is not an evaluation object in the sense C1 requires.
+instrument fails on layout. Position decides most pairs, about five in six under
+the mixture reading, and the content that gets through cannot carry the held-out
+gate at any sample size. An evaluator that cannot compute a distance and compares
+by content on only a minority of pairs is not an evaluation object in the sense C1
+requires. (Corrected 2026-09-25. This paragraph first said the evaluator "neither
+computes a distance nor compares by content", which the mixture reading above does
+not support.)
 
 **A third instrument on Qwen2.5-7B-Instruct is not indicated.** What is indicated
 is a different evaluator, which is a change to the registration's world and the
