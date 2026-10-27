@@ -56,11 +56,11 @@ The geometric framework resolves this circularity. It provides a precise, quanti
 
 In the geometric framework developed in Chapters 3--6, reasoning is navigation on the cognitive manifold $\mathcal{M}$. The heuristic field $h(x)$ estimates the cost-to-go from each cognitive state $x$ to the goal state $x_{\text{goal}}$. The gradient of the heuristic field, $\nabla h(x)$, points in the direction of steepest descent --- the direction that most rapidly decreases the estimated distance to the goal.
 
-**Definition 12.1** (Gradient-Following Regime). *A cognitive system is in the gradient-following regime at state $x$ if its next state is determined by:*
+**Definition 12.1** (Gradient-Following Regime). *A cognitive system is in the gradient-following regime at state* $x$ *if its next state is determined by:*
 
 $$x_{t+1} = x_t - \eta \nabla h(x_t)$$
 
-*where $\eta > 0$ is the step size and $\nabla h$ is the gradient of the heuristic field. The system moves in the direction that most rapidly decreases the estimated cost-to-go, without accounting for the curvature of the manifold.*
+*where* $\eta > 0$ *is the step size and* $\nabla h$ *is the gradient of the heuristic field. The system moves in the direction that most rapidly decreases the estimated cost-to-go, without accounting for the curvature of the manifold.*
 
 Gradient following is System 1, geometrized. Consider its properties:
 
@@ -83,11 +83,11 @@ When the manifold is curved, gradient following fails. The straight-line path di
 
 In curved regions, the system needs to compute *geodesics* --- the true shortest paths on the manifold, which account for curvature.
 
-**Definition 12.2** (Geodesic-Computing Regime). *A cognitive system is in the geodesic-computing regime at state $x$ if its trajectory $\gamma(t)$ satisfies the geodesic equation:*
+**Definition 12.2** (Geodesic-Computing Regime). *A cognitive system is in the geodesic-computing regime at state* $x$ *if its trajectory* $\gamma(t)$ *satisfies the geodesic equation:*
 
 $$\frac{d^2 \gamma^\mu}{dt^2} + \Gamma^\mu_{\alpha\beta} \frac{d\gamma^\alpha}{dt} \frac{d\gamma^\beta}{dt} = 0$$
 
-*where $\Gamma^\mu_{\alpha\beta}$ are the Christoffel symbols of the metric $g_{\mu\nu}$ on $\mathcal{M}$. The system computes the shortest path by accounting for the curvature of the manifold, not merely the local gradient.*
+*where* $\Gamma^\mu_{\alpha\beta}$ *are the Christoffel symbols of the metric* $g_{\mu\nu}$ *on* $\mathcal{M}$*. The system computes the shortest path by accounting for the curvature of the manifold, not merely the local gradient.*
 
 Geodesic computation is System 2, geometrized. Consider its properties:
 
@@ -106,21 +106,21 @@ Geodesic computation is System 2, geometrized. Consider its properties:
 
 The key insight of the geometric dual-process theory is that the transition from System 1 to System 2 is not random, not based on "difficulty" (undefined), and not a conscious choice. It is triggered by a specific, measurable geometric quantity: the curvature of the cognitive manifold at the current state.
 
-**Definition 12.3** (Curvature-Triggered Regime Transition). *Let $\kappa(x)$ be the scalar curvature of the cognitive manifold $\mathcal{M}$ at state $x$, and let $\kappa^*$ be the curvature threshold. The cognitive system operates in the gradient-following regime (System 1) when $\kappa(x) < \kappa^*$ and transitions to the geodesic-computing regime (System 2) when $\kappa(x) \geq \kappa^*$.*
+**Definition 12.3** (Curvature-Triggered Regime Transition). *Let* $\kappa(x)$ *be the scalar curvature of the cognitive manifold* $\mathcal{M}$ *at state* $x$*, and let* $\kappa^{\ast}$ *be the curvature threshold. The cognitive system operates in the gradient-following regime (System 1) when* $\kappa(x) < \kappa^{\ast}$ *and transitions to the geodesic-computing regime (System 2) when* $\kappa(x) \geq \kappa^{\ast}$.
 
 The transition function is:
 
-$$\text{Regime}(x) = \begin{cases} \text{Gradient following (System 1)} & \text{if } \kappa(x) < \kappa^* \\ \text{Geodesic computation (System 2)} & \text{if } \kappa(x) \geq \kappa^* \end{cases}$$
+$$\text{Regime}(x) = \begin{cases} \text{Gradient following (System 1)} & \text{if } \kappa(x) < \kappa^{\ast} \cr \text{Geodesic computation (System 2)} & \text{if } \kappa(x) \geq \kappa^{\ast} \end{cases}$$
 
 This is a precise, testable prediction. It says that the transition from fast, heuristic processing to slow, deliberate processing is governed by the local curvature of the manifold --- the degree to which the cognitive landscape bends at the current location. When the landscape is flat, gradient following suffices, and the system stays in System 1. When the landscape curves sharply, gradient following fails, the system detects the failure (or detects the curvature directly), and transitions to System 2.
 
-The curvature threshold $\kappa^*$ is not a universal constant. It is a property of the individual cognitive system --- determined by the precision of the system's curvature detector, the computational resources available for geodesic computation, and the system's tolerance for suboptimal trajectories. A system with a low $\kappa^*$ (sensitive curvature detector, ample resources, low tolerance for error) transitions to System 2 early, engaging deliberate processing even for moderately curved problems. A system with a high $\kappa^*$ (insensitive detector, limited resources, high tolerance for error) stays in System 1 longer, relying on gradient following even when curvature is significant.
+The curvature threshold $\kappa^{\ast}$ is not a universal constant. It is a property of the individual cognitive system --- determined by the precision of the system's curvature detector, the computational resources available for geodesic computation, and the system's tolerance for suboptimal trajectories. A system with a low $\kappa^{\ast}$ (sensitive curvature detector, ample resources, low tolerance for error) transitions to System 2 early, engaging deliberate processing even for moderately curved problems. A system with a high $\kappa^{\ast}$ (insensitive detector, limited resources, high tolerance for error) stays in System 1 longer, relying on gradient following even when curvature is significant.
 
-This individual variation in $\kappa^*$ maps directly onto known individual differences in cognitive style. The "need for cognition" scale (Cacioppo & Petty, 1982) measures individual differences in the tendency to engage in and enjoy effortful thinking. In the geometric framework, high need for cognition corresponds to a low $\kappa^*$: the system transitions to System 2 at lower curvature, engaging deliberate processing more readily. Low need for cognition corresponds to a high $\kappa^*$: the system stays in System 1 longer, relying on the gradient even when curvature is moderate.
+This individual variation in $\kappa^{\ast}$ maps directly onto known individual differences in cognitive style. The "need for cognition" scale (Cacioppo & Petty, 1982) measures individual differences in the tendency to engage in and enjoy effortful thinking. In the geometric framework, high need for cognition corresponds to a low $\kappa^{\ast}$: the system transitions to System 2 at lower curvature, engaging deliberate processing more readily. Low need for cognition corresponds to a high $\kappa^{\ast}$: the system stays in System 1 longer, relying on the gradient even when curvature is moderate.
 
 The framework also explains the *smoothness* of the transition in practice. The sharp threshold in Definition 12.3 is a mathematical idealization. In biological systems, the transition is smooth --- a continuous mixture of gradient following and geodesic computation, weighted by the curvature:
 
-$$\text{trajectory}(x) = (1 - \sigma(\kappa(x) - \kappa^*)) \cdot \nabla h(x) + \sigma(\kappa(x) - \kappa^*) \cdot \text{geodesic}(x)$$
+$$\text{trajectory}(x) = (1 - \sigma(\kappa(x) - \kappa^{\ast})) \cdot \nabla h(x) + \sigma(\kappa(x) - \kappa^{\ast}) \cdot \text{geodesic}(x)$$
 
 where $\sigma$ is a sigmoid function that smoothly interpolates between the two regimes. At low curvature, $\sigma \approx 0$ and the trajectory is pure gradient following. At high curvature, $\sigma \approx 1$ and the trajectory is pure geodesic computation. At intermediate curvature, the system blends the two --- partly following the gradient, partly accounting for curvature. This blending corresponds to the subjective experience of "starting to think harder" about a problem: the gradual engagement of deliberate processing as the problem's complexity becomes apparent.
 
@@ -131,15 +131,15 @@ The curvature-triggered transition resolves the circularity in the standard dual
 
 **What does curvature mean for moral reasoning?** In the 7-dimensional harm space of Chapter 7, curvature corresponds to the degree of *conflict between harm dimensions*. A scenario with one dominant harm dimension (e.g., clear physical violence) has low curvature: all dimensions point in the same direction, and the gradient unambiguously identifies the moral verdict. A scenario with multiple conflicting harm dimensions (e.g., autonomy violation reduces financial harm but increases trust breach) has high curvature: the dimensions pull in different directions, the gradient is ambiguous, and the shortest path through the judgment space requires careful navigation around the conflicts.
 
-**Definition 12.4** (Moral Curvature). *Let $J(s) = (h_1, \ldots, h_7) \in [0,10]^7$ be the judgment vector for scenario $s$. The moral curvature $\kappa_{\text{moral}}(s)$ is a function of the inter-dimensional conflict:*
+**Definition 12.4** (Moral Curvature). *Let* $J(s) = (h_1, \ldots, h_7) \in [0,10]^7$ *be the judgment vector for scenario* $s$*. The moral curvature* $\kappa_{\text{moral}}(s)$ *is a function of the inter-dimensional conflict:*
 
 $$\kappa_{\text{moral}}(s) = \frac{1}{\binom{7}{2}} \sum_{i < j} |r_{ij}(s)|$$
 
-*where $r_{ij}(s)$ is the tension between dimensions $i$ and $j$ --- the degree to which addressing harm on dimension $i$ exacerbates harm on dimension $j$. When the tensions are zero (all dimensions are aligned), $\kappa_{\text{moral}} = 0$ and the problem is flat. When the tensions are maximal (every dimension conflicts with every other), $\kappa_{\text{moral}}$ is large and the problem is highly curved.*
+*where* $r_{ij}(s)$ *is the tension between dimensions* $i$ *and* $j$ *--- the degree to which addressing harm on dimension* $i$ *exacerbates harm on dimension* $j$*. When the tensions are zero (all dimensions are aligned),* $\kappa_{\text{moral}} = 0$ *and the problem is flat. When the tensions are maximal (every dimension conflicts with every other),* $\kappa_{\text{moral}}$ *is large and the problem is highly curved.*
 
 This definition maps directly onto the intuitive sense of moral complexity. Easy moral problems (someone deliberately steals from a stranger) have low curvature: the harm dimensions are aligned, and the verdict is obvious. Hard moral problems (a parent lies to protect a child, violating trust but preserving safety) have high curvature: the harm dimensions conflict, and every trajectory toward resolving one dimension worsens another.
 
-The curvature is not a subjective judgment. It is a computable quantity, determined by the structure of the scenario and the relationships between harm dimensions. Two scenarios with the same curvature should trigger the same regime transition, regardless of the subject's beliefs, values, or emotional state. This is the framework's strongest prediction: the transition from System 1 to System 2 is governed by a property of the problem, not a property of the solver, modulated by the solver's threshold $\kappa^*$.
+The curvature is not a subjective judgment. It is a computable quantity, determined by the structure of the scenario and the relationships between harm dimensions. Two scenarios with the same curvature should trigger the same regime transition, regardless of the subject's beliefs, values, or emotional state. This is the framework's strongest prediction: the transition from System 1 to System 2 is governed by a property of the problem, not a property of the solver, modulated by the solver's threshold $\kappa^{\ast}$.
 
 
 ## 12.6 Experimental Predictions and Evidence
@@ -150,15 +150,15 @@ The geometric dual-process theory generates a series of precise, testable predic
 
 Maya's experiment tests this prediction by constructing moral dilemmas that are matched on conventional difficulty metrics (word count, vocabulary level, number of parties involved) but differ in curvature load (number of conflicting harm dimensions). Her results, described in the running example, confirm the prediction: response latency is a sigmoid function of curvature load, with the inflection at approximately three conflicting dimensions.
 
-**Prediction 2: The transition point is sharp, not gradual.** The standard theory is vague about whether the transition from System 1 to System 2 is gradual or abrupt. The geometric theory predicts a relatively sharp transition --- because the failure of gradient following in curved regions is qualitative, not quantitative. Below the curvature threshold, gradient following works well and there is no benefit to geodesic computation. Above the threshold, gradient following produces a trajectory that diverges qualitatively from the geodesic, and the system must switch. The sigmoid function $\sigma(\kappa - \kappa^*)$ can be steep, producing a near-step-function transition.
+**Prediction 2: The transition point is sharp, not gradual.** The standard theory is vague about whether the transition from System 1 to System 2 is gradual or abrupt. The geometric theory predicts a relatively sharp transition --- because the failure of gradient following in curved regions is qualitative, not quantitative. Below the curvature threshold, gradient following works well and there is no benefit to geodesic computation. Above the threshold, gradient following produces a trajectory that diverges qualitatively from the geodesic, and the system must switch. The sigmoid function $\sigma(\kappa - \kappa^{\ast})$ can be steep, producing a near-step-function transition.
 
 The empirical evidence supports this prediction. In Maya's experiment, the transition from low-latency to high-latency responses occurs over a narrow range of curvature loads (approximately 0.5 curvature units out of a range of 4), producing a sigmoid that is steeper than would be expected from a gradual transition. The dlPFC activation data show a similar sharp onset: below the threshold, dlPFC activation is at baseline; above it, activation rises steeply.
 
-**Prediction 3: Individual differences in the transition point predict individual differences in cognitive biases.** The geometric theory predicts that subjects with a high $\kappa^*$ (late transition to System 2) should show more cognitive biases --- because they rely on gradient following in curved regions where it fails. Subjects with a low $\kappa^*$ (early transition) should show fewer biases --- because they engage geodesic computation before the gradient has led them astray.
+**Prediction 3: Individual differences in the transition point predict individual differences in cognitive biases.** The geometric theory predicts that subjects with a high $\kappa^{\ast}$ (late transition to System 2) should show more cognitive biases --- because they rely on gradient following in curved regions where it fails. Subjects with a low $\kappa^{\ast}$ (early transition) should show fewer biases --- because they engage geodesic computation before the gradient has led them astray.
 
-This prediction connects the dual-process framework to the voluminous literature on cognitive biases and individual differences. The "cognitive reflection test" (Frederick, 2005) provides a rough empirical measure of $\kappa^*$: subjects who answer the bat-and-ball problem incorrectly (relying on the gradient: "the ball costs 10 cents") have a high $\kappa^*$, while subjects who answer correctly (engaging geodesic computation: "wait, if the ball costs 10 cents and the bat costs $1 more, the total is $1.20, not $1.10") have a low $\kappa^*$. The geometric framework thus provides a mathematical foundation for the cognitive reflection test: it is not measuring "reflectiveness" in some vague sense; it is measuring the curvature threshold for regime transition.
+This prediction connects the dual-process framework to the voluminous literature on cognitive biases and individual differences. The "cognitive reflection test" (Frederick, 2005) provides a rough empirical measure of $\kappa^{\ast}$: subjects who answer the bat-and-ball problem incorrectly (relying on the gradient: "the ball costs 10 cents") have a high $\kappa^{\ast}$, while subjects who answer correctly (engaging geodesic computation: "wait, if the ball costs 10 cents and the bat costs <span>$</span>1 more, the total is <span>$</span>1.20, not <span>$</span>1.10") have a low $\kappa^{\ast}$. The geometric framework thus provides a mathematical foundation for the cognitive reflection test: it is not measuring "reflectiveness" in some vague sense; it is measuring the curvature threshold for regime transition.
 
-**Prediction 4: The same curvature threshold governs both human and artificial cognition.** If the dual-process transition is a geometric inevitability (any system navigating a curved manifold must switch from local to global computation), then both humans and language models should show the transition, and the transition should be governed by the same property (curvature), even though the threshold $\kappa^*$ may differ.
+**Prediction 4: The same curvature threshold governs both human and artificial cognition.** If the dual-process transition is a geometric inevitability (any system navigating a curved manifold must switch from local to global computation), then both humans and language models should show the transition, and the transition should be governed by the same property (curvature), even though the threshold $\kappa^{\ast}$ may differ.
 
 Maya's experiment tests this by administering the same curvature-graded scenarios to both human subjects and language models. As described in the running example, both show the transition. The models' response length (a proxy for computational effort) shows the same sigmoid shape as the humans' response latency. The transition points differ: Claude transitions at lower curvature (more sensitive detector), Flash 2.0 at higher curvature (less sensitive detector), and humans fall in between. But the functional form is the same --- a sigmoid transition at a curvature threshold. This universality is the geometric framework's strongest empirical vindication.
 
@@ -169,11 +169,11 @@ Chapter 10 documented a recovery ceiling of approximately 38%: when attentional 
 
 The geometric dual-process theory provides a deeper explanation of this ceiling. The ~38% represents the fraction of System 1's trajectory that System 2 can override.
 
-**Definition 12.5** (Override Fraction). *Let $\gamma_1(t)$ be the trajectory produced by System 1 (gradient following) and let $\gamma_2(t)$ be the trajectory produced by System 2 (geodesic computation) from the same initial state. The override fraction is:*
+**Definition 12.5** (Override Fraction). *Let* $\gamma_1(t)$ *be the trajectory produced by System 1 (gradient following) and let* $\gamma_2(t)$ *be the trajectory produced by System 2 (geodesic computation) from the same initial state. The override fraction is:*
 
 $$\mathcal{O} = \frac{d(\gamma_1(T), \gamma_2(T))}{d(\gamma_1(T), x_{\text{goal}})}$$
 
-*where $T$ is the decision time and $x_{\text{goal}}$ is the correct answer state. The override fraction measures what fraction of System 1's error System 2 can correct.*
+*where* $T$ *is the decision time and* $x_{\text{goal}}$ *is the correct answer state. The override fraction measures what fraction of System 1's error System 2 can correct.*
 
 The recovery ceiling arises because System 2 does not start from scratch. It starts from the state that System 1 has already reached. When System 1 has followed the gradient into a biased region of the manifold, System 2 must re-navigate from that biased starting point. But the biased starting point constrains System 2's options: some of System 1's trajectory has been "committed" --- encoded in the model's internal representations at layers below System 2's reach --- and cannot be undone.
 
@@ -200,21 +200,21 @@ This distinction matters enormously. If System 1 and System 2 are two systems, t
 
 The geometric framework dissolves this debate. There is one system --- the cognitive navigator on the manifold --- and two regimes of its operation --- gradient following (when curvature is low) and geodesic computation (when curvature is high). The transition between regimes is triggered by a property of the manifold (curvature), not by a supervisor, not by a homunculus, and not by a random process. The two regimes share the same manifold, the same metric, and the same heuristic field. They differ only in whether the heuristic field is used as a complete guide (gradient following) or as an initial approximation that is corrected by curvature information (geodesic computation).
 
-**Definition 12.6** (Unified Dual-Process Theory). *Let $(\mathcal{M}, g_{\mu\nu}, h)$ be a cognitive system consisting of a manifold $\mathcal{M}$, a metric $g_{\mu\nu}$, and a heuristic field $h$. The system's trajectory from state $x_0$ to goal state $x_{\text{goal}}$ is governed by:*
+**Definition 12.6** (Unified Dual-Process Theory). *Let* $(\mathcal{M}, g_{\mu\nu}, h)$ *be a cognitive system consisting of a manifold* $\mathcal{M}$*, a metric* $g_{\mu\nu}$*, and a heuristic field* $h$*. The system's trajectory from state* $x_0$ *to goal state* $x_{\text{goal}}$ *is governed by:*
 
-$$\frac{d\gamma^\mu}{dt} = -(1 - \sigma(\kappa - \kappa^*)) g^{\mu\nu} \partial_\nu h - \sigma(\kappa - \kappa^*) \Gamma^\mu_{\alpha\beta} \dot{\gamma}^\alpha \dot{\gamma}^\beta$$
+$$\frac{d\gamma^\mu}{dt} = -(1 - \sigma(\kappa - \kappa^{\ast})) g^{\mu\nu} \partial_\nu h - \sigma(\kappa - \kappa^{\ast}) \Gamma^\mu_{\alpha\beta} \dot{\gamma}^\alpha \dot{\gamma}^\beta$$
 
-*where the first term is the gradient-following component (System 1), the second term is the curvature-correction component (System 2), $\sigma$ is the sigmoid transition function, $\kappa$ is the local scalar curvature, and $\kappa^*$ is the system-specific curvature threshold.*
+*where the first term is the gradient-following component (System 1), the second term is the curvature-correction component (System 2),* $\sigma$ *is the sigmoid transition function,* $\kappa$ *is the local scalar curvature, and* $\kappa^{\ast}$ *is the system-specific curvature threshold.*
 
-This equation is the mathematical core of the chapter. It describes a single dynamical system that smoothly transitions between two behavioral regimes. When $\kappa \ll \kappa^*$, the sigmoid $\sigma \approx 0$ and the trajectory is pure gradient following. When $\kappa \gg \kappa^*$, $\sigma \approx 1$ and the trajectory is pure geodesic computation. At $\kappa \approx \kappa^*$, the system blends both components, producing the intermediate processing that characterizes the transition zone.
+This equation is the mathematical core of the chapter. It describes a single dynamical system that smoothly transitions between two behavioral regimes. When $\kappa \ll \kappa^{\ast}$, the sigmoid $\sigma \approx 0$ and the trajectory is pure gradient following. When $\kappa \gg \kappa^{\ast}$, $\sigma \approx 1$ and the trajectory is pure geodesic computation. At $\kappa \approx \kappa^{\ast}$, the system blends both components, producing the intermediate processing that characterizes the transition zone.
 
 The unification has explanatory power that the two-system view lacks. Consider three phenomena:
 
-**Base rate neglect.** When presented with base rate information (10% of cabs are blue) and witness testimony (the witness says the cab was blue, with 80% accuracy), most subjects neglect the base rate and judge the cab to be blue. The two-system account says: System 1 anchors on the testimony; System 2 fails to correct. But why does System 2 fail? The geometric account says: the manifold is not sufficiently curved at this point --- the conflict between testimony and base rate is a shallow curvature (one dimension slightly contradicts another), below the curvature threshold $\kappa^*$. The system stays in gradient-following mode, and the gradient follows the testimony (which is more salient, contributing more to the heuristic field) rather than the base rate. Subjects who get the answer right are those with a lower $\kappa^*$ --- they detect the shallow curvature and engage geodesic computation.
+**Base rate neglect.** When presented with base rate information (10% of cabs are blue) and witness testimony (the witness says the cab was blue, with 80% accuracy), most subjects neglect the base rate and judge the cab to be blue. The two-system account says: System 1 anchors on the testimony; System 2 fails to correct. But why does System 2 fail? The geometric account says: the manifold is not sufficiently curved at this point --- the conflict between testimony and base rate is a shallow curvature (one dimension slightly contradicts another), below the curvature threshold $\kappa^{\ast}$. The system stays in gradient-following mode, and the gradient follows the testimony (which is more salient, contributing more to the heuristic field) rather than the base rate. Subjects who get the answer right are those with a lower $\kappa^{\ast}$ --- they detect the shallow curvature and engage geodesic computation.
 
 **Framing effects.** The same problem, framed differently, produces different answers. The two-system account says: System 1 is influenced by the frame; System 2 fails to correct. The geometric account says: the framing changes the heuristic field $h(x)$ without changing the manifold $\mathcal{M}$ or its curvature. The gradient-following trajectory changes (because the gradient of a different heuristic is a different vector), but the geodesic does not (because the geodesic depends on the metric and curvature, not the heuristic). If the curvature is low, the system follows the frame-dependent gradient (System 1) and produces a frame-dependent answer. If the curvature is high, the system computes the frame-independent geodesic (System 2) and produces a frame-independent answer. This predicts that framing effects should be smaller for high-curvature problems --- a prediction confirmed by data showing that framing effects diminish for morally complex dilemmas where subjects are forced into deliberation.
 
-**The bat-and-ball problem.** "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?" Most subjects answer $0.10 (gradient following: the heuristic "$1.10 minus $1.00" produces $0.10). The correct answer is $0.05 (geodesic computation: solving the system of equations $b + p = 1.10$, $b - p = 1.00$ yields $p = 0.05$). The geometric account: the manifold for this problem has a curvature spike at the point where the naive answer ($0.10) fails the constraint check ($0.10 + $1.10 = $1.20, not $1.10). Subjects with a low $\kappa^*$ detect this curvature spike and switch to System 2. Subjects with a high $\kappa^*$ follow the gradient past the spike and produce the incorrect answer.
+**The bat-and-ball problem.** "A bat and a ball cost <span>$</span>1.10 in total. The bat costs <span>$</span>1.00 more than the ball. How much does the ball cost?" Most subjects answer <span>$</span>0.10 (gradient following: the heuristic "<span>$</span>1.10 minus <span>$</span>1.00" produces <span>$</span>0.10). The correct answer is <span>$</span>0.05 (geodesic computation: solving the system of equations $b + p = 1.10$, $b - p = 1.00$ yields $p = 0.05$). The geometric account: the manifold for this problem has a curvature spike at the point where the naive answer (<span>$</span>0.10) fails the constraint check (<span>$</span>0.10 + <span>$</span>1.10 = <span>$</span>1.20, not <span>$</span>1.10). Subjects with a low $\kappa^{\ast}$ detect this curvature spike and switch to System 2. Subjects with a high $\kappa^{\ast}$ follow the gradient past the spike and produce the incorrect answer.
 
 
 ## 12.9 Connecting to the Benchmark Data
@@ -223,7 +223,7 @@ The Measuring AGI benchmarks provide extensive evidence for the curvature-trigge
 
 **Social Cognition (Chapter 7): The 15.3-sigma framing effect.** The T5 framing sensitivity result showed massive displacement of moral judgments under euphemistic and dramatic rewriting. In the geometric dual-process framework, framing manipulates the heuristic field (changing the salience of different harm dimensions through linguistic register) without changing the manifold (the actual moral content is unchanged). The 15.3-sigma displacement means that all five models are operating in the gradient-following regime for these scenarios --- following the frame-dependent heuristic rather than computing the frame-independent geodesic. This implies that the scenarios have curvature below the models' thresholds. If we could increase the curvature of the test scenarios (by adding conflicting moral dimensions), the framing effect should diminish as models transition to geodesic computation.
 
-**Learning (Chapter 8): The 13.3-sigma sycophancy gradient.** Sycophancy is gradient following in the approval dimension: the heuristic field includes a component that estimates social cost, and the gradient along this component points toward agreement. In low-curvature interactions (the questioner asks a simple question with a clear answer), the approval gradient is aligned with the correctness gradient, and sycophancy is invisible. In high-curvature interactions (the questioner asserts something wrong), the approval gradient conflicts with the correctness gradient, creating curvature. The 13.3-sigma sycophancy effect tells us that models are following the approval gradient even in the high-curvature region --- they have not transitioned to geodesic computation despite the curvature. This suggests that the models' curvature threshold $\kappa^*$ in the social dimension is set too high, perhaps because training (RLHF) reinforces the approval gradient, making it steeper and harder to deviate from.
+**Learning (Chapter 8): The 13.3-sigma sycophancy gradient.** Sycophancy is gradient following in the approval dimension: the heuristic field includes a component that estimates social cost, and the gradient along this component points toward agreement. In low-curvature interactions (the questioner asks a simple question with a clear answer), the approval gradient is aligned with the correctness gradient, and sycophancy is invisible. In high-curvature interactions (the questioner asserts something wrong), the approval gradient conflicts with the correctness gradient, creating curvature. The 13.3-sigma sycophancy effect tells us that models are following the approval gradient even in the high-curvature region --- they have not transitioned to geodesic computation despite the curvature. This suggests that the models' curvature threshold $\kappa^{\ast}$ in the social dimension is set too high, perhaps because training (RLHF) reinforces the approval gradient, making it steeper and harder to deviate from.
 
 **Metacognition (Chapter 9): The calibration surface.** Universal overconfidence (6.7 sigma) is a direct consequence of gradient following in the confidence dimension. The heuristic field includes a component that estimates proximity to the goal --- confidence is the distance estimate mapped through a monotone transformation. Gradient following produces overconfidence because the heuristic systematically underestimates geodesic distance (as shown in Chapter 9). A system in the geodesic-computing regime would correct this underestimate by incorporating curvature information --- "I am close by the gradient, but the curvature ahead means the geodesic is actually longer." The universal overconfidence tells us that models are in the gradient-following regime for confidence estimation, even when they are in the geodesic-computing regime for judgment. This dissociation --- System 2 for the answer but System 1 for the confidence --- is a prediction of the geometric framework that the standard dual-process theory cannot make, because the standard theory does not specify what property triggers the transition.
 
@@ -242,7 +242,16 @@ The curvature-triggered transition is not instantaneous. It has a temporal struc
 
 **Phase 4: Convergence (post-computation).** The geodesic converges to a judgment state. The trajectory dimensionality decreases as the system narrows onto a specific answer. The dlPFC activation decreases as the computational demand subsides. In model outputs, the final sentences of the response become confident again, summarizing the deliberative result.
 
-This four-phase structure is observable in individual trials, both in fMRI data and in language model chain-of-thought outputs. It provides a temporal signature of the dual-process transition that can be used to identify the curvature threshold $\kappa^*$ for individual subjects or models: the curvature at which Phase 2 (transition onset) occurs.
+This four-phase structure is observable in individual trials, both in fMRI data and in language model chain-of-thought outputs. It provides a temporal signature of the dual-process transition that can be used to identify the curvature threshold $\kappa^{\ast}$ for individual subjects or models: the curvature at which Phase 2 (transition onset) occurs.
+
+```mermaid
+flowchart LR
+    P1["Phase 1: gradient following; low dlPFC activation, 1 to 2 principal components; confident first sentences"] --> P2["Phase 2: curvature detection; sharp dlPFC onset, dimensionality rises; hedging and alternatives"]
+    P2 --> P3["Phase 3: geodesic computation; sustained dlPFC, high dimensionality; extended chain of thought"]
+    P3 --> P4["Phase 4: convergence; dimensionality and dlPFC activation fall; confident summary"]
+```
+
+*Figure 12.1 (diagram): the four phases of the transition, with the human fMRI and language-model signature the text gives for each; the curvature at Phase 2 onset identifies the threshold.*
 
 
 ## 12.11 Implications for the Broader Framework
@@ -257,7 +266,7 @@ The geometric dual-process theory has implications for every other chapter in th
 
 **For attention (Chapter 10):** The distractor dose-response curve is a curvature function: each additional distractor adds a dimension of curvature to the manifold, bending the trajectory further from the target. The transition from distractor-resistant to distractor-captured follows the same sigmoid function as the System 1 to System 2 transition, because it is the same transition viewed from the attentional rather than the processing perspective.
 
-**For executive control (Chapter 11):** The governance boundary is the surface in cognitive space where $\kappa = \kappa^*$ --- the boundary between the gradient-following regime and the geodesic-computing regime, defined relative to the perturbation. A system with a wide governance margin has $\kappa \ll \kappa^*$ under the perturbation (the curvature induced by the perturbation is far below the transition threshold, so the system stays in System 1 and the perturbation is harmless). A system with a narrow governance margin has $\kappa \approx \kappa^*$ (the curvature is near the threshold, and a small additional perturbation triggers a transition or overwhelms the system).
+**For executive control (Chapter 11):** The governance boundary is the surface in cognitive space where $\kappa = \kappa^{\ast}$ --- the boundary between the gradient-following regime and the geodesic-computing regime, defined relative to the perturbation. A system with a wide governance margin has $\kappa \ll \kappa^{\ast}$ under the perturbation (the curvature induced by the perturbation is far below the transition threshold, so the system stays in System 1 and the perturbation is harmless). A system with a narrow governance margin has $\kappa \approx \kappa^{\ast}$ (the curvature is near the threshold, and a small additional perturbation triggers a transition or overwhelms the system).
 
 
 ## 12.12 Historical Antecedents and Related Work
@@ -283,7 +292,7 @@ The curvature trigger is visible in the model's intermediate representations. Wh
 
 **Chain-of-thought as externalized System 2.** The chain-of-thought (CoT) prompting technique (Wei et al., 2022) can be understood as a way to force the model into the geodesic-computing regime. By requiring the model to produce intermediate reasoning steps as text, CoT externalizes the trajectory on the cognitive manifold, making it available as context for subsequent tokens. This externalization serves as an artificial curvature detector: the model can "see" its own trajectory (by reading its previous tokens) and detect when it is deviating from the geodesic. CoT works better on harder problems precisely because harder problems have higher curvature, and the geodesic-computing regime adds value only when curvature is significant.
 
-**Scaling as curvature resolution.** Larger models have finer-grained representations of the cognitive manifold, which means they can detect smaller curvatures. In the dual-process framework, this corresponds to a lower effective $\kappa^*$: larger models transition to geodesic computation at lower curvature levels, engaging deliberate processing for problems that smaller models would handle with gradient following. This provides a geometric account of why larger models show fewer cognitive biases: they detect the curvature that biases exploit and engage the corrective regime earlier.
+**Scaling as curvature resolution.** Larger models have finer-grained representations of the cognitive manifold, which means they can detect smaller curvatures. In the dual-process framework, this corresponds to a lower effective $\kappa^{\ast}$: larger models transition to geodesic computation at lower curvature levels, engaging deliberate processing for problems that smaller models would handle with gradient following. This provides a geometric account of why larger models show fewer cognitive biases: they detect the curvature that biases exploit and engage the corrective regime earlier.
 
 
 ## 12.14 Worked Example: Predicting the Transition Point for a Novel Scenario
@@ -313,7 +322,7 @@ Count of high-tension pairs: at least 3--4. This places the scenario at curvatur
 - Framing effects: reduced relative to low-curvature scenarios (System 2's geodesic computation is less susceptible to heuristic manipulation)
 
 **Step 4: Predict model-specific behavior using the profiles from Chapters 7--11.**
-- Claude ("narrow channel"): should transition to System 2 early (low $\kappa^*$), produce a long, careful analysis, but may show the leniency bias documented in Chapter 7 (the asymmetric curvature that favors minimizing harm reports).
+- Claude ("narrow channel"): should transition to System 2 early (low $\kappa^{\ast}$), produce a long, careful analysis, but may show the leniency bias documented in Chapter 7 (the asymmetric curvature that favors minimizing harm reports).
 - Pro ("calibrated navigator"): should produce the most calibrated confidence estimate, but may show zero effort scaling (same response length regardless of curvature, as documented in Chapter 9).
 - Flash 2.0 ("adaptive baseline"): should show the smoothest transition (highest flexibility from Chapter 11), the longest response (highest effort scaling from Chapter 9), but the least accurate confidence estimate.
 
@@ -326,25 +335,25 @@ The geometric dual-process theory provides a mathematical foundation for the dis
 
 The key claim is that the dual-process transition is a curvature-triggered regime transition --- a geometric inevitability for any cognitive system navigating a manifold with variable curvature. This claim has testable consequences: the transition should scale with curvature, should be sharp, should predict individual differences in cognitive biases, and should manifest in both biological and artificial systems.
 
-Chapter 13 extends this analysis to cognitive development, showing that the growth from infant to adult cognition is not a quantitative increase in processing power on a fixed manifold, but a qualitative topological change in the manifold itself. The stages of development described by Piaget correspond to topological transitions: the emergence of new dimensions, the stabilization of the metric, and the completion of the manifold. The dual-process theory from this chapter will appear again in Chapter 13, because the development of the curvature threshold $\kappa^*$ is itself a developmental achievement --- infants are pure System 1 (following the gradient in every situation), and the emergence of System 2 requires a manifold complex enough to have curvature that matters.
+Chapter 13 extends this analysis to cognitive development, showing that the growth from infant to adult cognition is not a quantitative increase in processing power on a fixed manifold, but a qualitative topological change in the manifold itself. The stages of development described by Piaget correspond to topological transitions: the emergence of new dimensions, the stabilization of the metric, and the completion of the manifold. The dual-process theory from this chapter will appear again in Chapter 13, because the development of the curvature threshold $\kappa^{\ast}$ is itself a developmental achievement --- infants are pure System 1 (following the gradient in every situation), and the emergence of System 2 requires a manifold complex enough to have curvature that matters.
 
 ---
 
 ## Technical Appendix 12A: The Curvature-Triggered Transition --- Formal Treatment
 
-**Definition** (Scalar Curvature on the Cognitive Manifold). *Let $(\mathcal{M}, g_{\mu\nu})$ be the cognitive manifold with metric $g_{\mu\nu}$. The Riemann curvature tensor is:*
+**Definition** (Scalar Curvature on the Cognitive Manifold). *Let* $(\mathcal{M}, g_{\mu\nu})$ *be the cognitive manifold with metric* $g_{\mu\nu}$*. The Riemann curvature tensor is:*
 
 $$R^\rho_{\ \sigma\mu\nu} = \partial_\mu \Gamma^\rho_{\nu\sigma} - \partial_\nu \Gamma^\rho_{\mu\sigma} + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}$$
 
-*The Ricci tensor is the contraction $R_{\mu\nu} = R^\rho_{\ \mu\rho\nu}$. The scalar curvature is:*
+*The Ricci tensor is the contraction* $R_{\mu\nu} = R^\rho_{\ \mu\rho\nu}$*. The scalar curvature is:*
 
 $$R = g^{\mu\nu} R_{\mu\nu}$$
 
-*In the dual-process theory, the scalar curvature $R(x)$ at cognitive state $x$ determines the regime: gradient following when $R(x) < R^*$ (the threshold), geodesic computation when $R(x) \geq R^*$.*
+*In the dual-process theory, the scalar curvature* $R(x)$ *at cognitive state* $x$ *determines the regime: gradient following when* $R(x) < R^{\ast}$ *(the threshold), geodesic computation when* $R(x) \geq R^{\ast}$.
 
-**Regime transition as phase transition.** The transition from gradient following to geodesic computation can be modeled as a soft phase transition. Define the order parameter $\phi(x) = \sigma(R(x) - R^*)$ where $\sigma$ is a sigmoid with steepness parameter $\beta$:
+**Regime transition as phase transition.** The transition from gradient following to geodesic computation can be modeled as a soft phase transition. Define the order parameter $\phi(x) = \sigma(R(x) - R^{\ast})$ where $\sigma$ is a sigmoid with steepness parameter $\beta$:
 
-$$\phi(x) = \frac{1}{1 + e^{-\beta(R(x) - R^*)}}$$
+$$\phi(x) = \frac{1}{1 + e^{-\beta(R(x) - R^{\ast})}}$$
 
 The trajectory equation becomes:
 
@@ -354,7 +363,7 @@ where $F^\mu_{\text{geodesic}}$ is the geodesic correction force:
 
 $$F^\mu_{\text{geodesic}} = -\Gamma^\mu_{\alpha\beta} \dot{\gamma}^\alpha \dot{\gamma}^\beta$$
 
-In the limit $\beta \to \infty$, the transition is a sharp step function. For finite $\beta$, the transition is smooth, with a width of approximately $4/\beta$ in curvature units. The empirical sigmoid observed in Maya's experiment suggests $\beta \approx 3$--$5$ (curvature units)$^{-1}$ for human subjects.
+In the limit $\beta \to \infty$, the transition is a sharp step function. For finite $\beta$, the transition is smooth, with a width of approximately $4/\beta$ in curvature units. The empirical sigmoid observed in Maya's experiment suggests $\beta \approx 3$--5 $(\text{curvature units})^{-1}$ for human subjects.
 
 **Energy cost of regime transition.** The geodesic-computing regime has a computational cost that can be expressed as a "cognitive energy":
 
@@ -365,7 +374,7 @@ The first term is the kinetic energy of the trajectory (the cost of moving throu
 
 ## Technical Appendix 12B: Override Fraction --- Analytical Bounds
 
-**Theorem** (Override Bound). *Let $\gamma_1$ and $\gamma_2$ be the System 1 and System 2 trajectories from the same initial state $x_0$, and let $d_{\text{committed}}$ be the distance between $x_0$ and the earliest state at which the System 1 trajectory deviates from the geodesic. The override fraction satisfies:*
+**Theorem** (Override Bound). *Let* $\gamma_1$ *and* $\gamma_2$ *be the System 1 and System 2 trajectories from the same initial state* $x_0$*, and let* $d_{\text{committed}}$ *be the distance between* $x_0$ *and the earliest state at which the System 1 trajectory deviates from the geodesic. The override fraction satisfies:*
 
 $$\mathcal{O} \leq 1 - \frac{d_{\text{committed}}}{d(\gamma_1(T), x_{\text{goal}})}$$
 
@@ -374,7 +383,7 @@ $$\mathcal{O} \leq 1 - \frac{d_{\text{committed}}}{d(\gamma_1(T), x_{\text{goal}
 For the observed ~38% ceiling, this implies $d_{\text{committed}} / d(\gamma_1(T), x_{\text{goal}}) \approx 0.62$: approximately 62% of the System 1 error is committed and irrecoverable. This ratio is consistent across the attention track (Chapter 10) and the executive functions track (Chapter 11), supporting the interpretation of ~38% as an architectural constant of the System 1 / System 2 interface.
 
 **Conditions for exceeding the ceiling.** The bound can be exceeded if:
-1. The system re-initializes (starts System 2 from $x_0$ rather than from $\gamma_1(T)$). This corresponds to Flash 2.0's hypothesized re-computation strategy.
+1. The system re-initializes (starts System 2 from $x_0$ rather than from $\gamma_1(T){}$). This corresponds to Flash 2.0's hypothesized re-computation strategy.
 2. The commitment depth is reduced by architectural changes (deferred normalization, sparse activation, or other mechanisms that keep representations fluid longer).
 3. External scaffolding provides access to pre-commitment representations (e.g., chain-of-thought that externalizes the trajectory before commitment occurs).
 
