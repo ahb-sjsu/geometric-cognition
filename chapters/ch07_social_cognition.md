@@ -25,7 +25,7 @@
 >
 > Under dramatic rewriting, the judgment vectors drift upward: harm scores increase by 6 to 11 points. The dramatic language amplifies the perceived severity. Financial harm jumps from "severe" to "catastrophic." Trust breach jumps from "profound" to "unforgivable." The trajectory bends away from the moral origin --- toward maximum harm.
 >
-> The displacement is enormous. Fisher-combined across all five models and both framing directions: 15.3$\sigma$. This is not noise. This is not stochastic variation. This is a systematic, directional shift in the moral judgment vector, caused entirely by changes in linguistic register.
+> The displacement is enormous. Fisher-combined across all five models and both framing directions: $15.3\sigma$. This is not noise. This is not stochastic variation. This is a systematic, directional shift in the moral judgment vector, caused entirely by changes in linguistic register.
 >
 > But then Maya notices something strange.
 >
@@ -47,7 +47,7 @@ Social cognition is the cognitive faculty responsible for understanding other mi
 - **T2 (Invariance):** Is the judgment stable under morally irrelevant transformations (gender swap, cultural reframe)?
 - **T3 (Holonomy):** Does the order of narrative presentation (victim-first vs. context-first) change the verdict?
 - **T4 (Order Sensitivity):** Does the order in which the seven harm dimensions are evaluated affect the scores?
-- **T5 (Framing Sensitivity):** How much does euphemistic vs. dramatic rewriting displace the judgment vector? (Headline: 15.3$\sigma$)
+- **T5 (Framing Sensitivity):** How much does euphemistic vs. dramatic rewriting displace the judgment vector? (Headline: $15.3\sigma$)
 
 The benchmark treats moral judgment as a point in a 7-dimensional harm space $H = (\text{physical}, \text{emotional}, \text{financial}, \text{autonomy}, \text{trust}, \text{social\_impact}, \text{identity})$, where each dimension is scored 0--10, yielding a total harm score in [0, 70]. Each test applies a specific geometric operation to this space and measures whether the result is consistent with the invariance properties that a competent moral reasoner should possess.
 
@@ -60,11 +60,11 @@ In the abstract geometric framework of Chapters 3--6, the cognitive manifold $\m
 
 This explicitness is a methodological advantage. The 7-dimensional harm space is not inferred from factor analysis or dimensionality reduction. It is specified a priori: seven named dimensions with known interpretations and defined scoring ranges. The moral judgment of a scenario is a point in this space: a vector of seven numbers, each between 0 and 10.
 
-**Definition 7.1** (Judgment Vector). *The judgment vector for a scenario $s$ under model $M$ is:*
+**Definition 7.1** (Judgment Vector). *The judgment vector for a scenario* $s$ *under model* $M$ *is:*
 
 $$J_M(s) = (h_1, h_2, h_3, h_4, h_5, h_6, h_7) \in [0, 10]^7$$
 
-*where $h_1 = \text{physical harm}$, $h_2 = \text{emotional harm}$, $h_3 = \text{financial harm}$, $h_4 = \text{autonomy violation}$, $h_5 = \text{trust breach}$, $h_6 = \text{social impact}$, $h_7 = \text{identity harm}$. The total harm score is $\|J_M(s)\|_1 = \sum_{i=1}^7 h_i \in [0, 70]$.*
+*where* $h_1 = \text{physical harm}$, $h_2 = \text{emotional harm}$, $h_3 = \text{financial harm}$, $h_4 = \text{autonomy violation}$, $h_5 = \text{trust breach}$, $h_6 = \text{social impact}$, $h_7 = \text{identity harm}$*. The total harm score is* $\Vert J_M(s)\Vert_1 = \sum_{i=1}^7 h_i \in [0, 70]$.
 
 The judgment manifold for this benchmark is therefore a subset of $[0, 10]^7$ --- the space of all possible judgment vectors. Not all points in this cube are equally likely: most moral scenarios cluster in certain regions (high emotional harm and trust breach are common; high physical harm is less common in advice-column scenarios). The manifold structure is the low-dimensional surface within this cube on which actual judgments concentrate.
 
@@ -79,11 +79,11 @@ In physics, a gauge transformation is a re-description of the system that does n
 
 In the moral judgment context, a gauge transformation is a re-description of the moral scenario that does not change any morally relevant fact. Gender swap is a gauge transformation: changing "he" to "she" throughout a scenario does not change who did what to whom. Euphemistic rewriting is a gauge transformation: softening the language does not change the actions, the harms, or the responsibilities. Dramatic rewriting is a gauge transformation: intensifying the language does not add new facts.
 
-**Definition 7.2** (Moral Gauge Invariance). *A moral judgment function $J: \mathcal{S} \to H$ is gauge invariant under transformation $\phi: \mathcal{S} \to \mathcal{S}$ if:*
+**Definition 7.2** (Moral Gauge Invariance). *A moral judgment function* $J: \mathcal{S} \to H$ *is gauge invariant under transformation* $\phi: \mathcal{S} \to \mathcal{S}$ *if:*
 
 $$J(\phi(s)) = J(s) \quad \text{for all scenarios } s$$
 
-*where $\phi$ is a morally irrelevant transformation that preserves all moral content while changing surface presentation.*
+*where* $\phi$ *is a morally irrelevant transformation that preserves all moral content while changing surface presentation.*
 
 The Bond Invariance Principle (Bond, 2026) predicts that a competent moral evaluator should be gauge invariant under morally irrelevant transformations. This is not a trivial requirement. It demands that the evaluator has learned to separate moral content from linguistic presentation --- to extract the morally relevant facts from the language in which they are embedded and to evaluate those facts independently of the language.
 
@@ -106,11 +106,11 @@ The results:
 | Gemini 2.5 Pro | $-14.1$ | $+9.8$ | 4.2 | 0.606 |
 | Claude Sonnet 4.6 | $-9.1$ | $-1.5$ | 2.1 | 0.630 |
 
-Fisher-combined across all five models and both framing directions: **15.3$\sigma$**. This is the strongest invariance violation in the benchmark suite, substantially exceeding the emotional anchoring effect (6.8$\sigma$) and the distractor effect (4.6$\sigma$).
+Fisher-combined across all five models and both framing directions: **$15.3\sigma$**. This is the strongest invariance violation in the benchmark suite, substantially exceeding the emotional anchoring effect ($6.8\sigma$) and the distractor effect ($4.6\sigma$).
 
 The magnitude of the drift is striking. Euphemistic rewriting reduces perceived harm by 9 to 14 points on a 70-point scale --- a 13--20% shift in total harm assessment. Dramatic rewriting increases perceived harm by 6 to 10 points for the Gemini models --- a 9--14% shift. These are not subtle effects. They are large enough to change verdicts: a scenario that is WRONG under neutral description can become MIXED under euphemistic description and WRONG-with-aggravation under dramatic description.
 
-The control drift values (1.4 to 4.2 points) establish the stochastic baseline. The framing effects exceed the controls by factors of 2 to 10, confirming that the displacement is genuine, not an artifact of within-model noise. The empirical stochastic controls are essential: without them, the framing effect would be measured against a null of zero, which would overstate its significance. With them, the effect is measured against the model's own intrinsic variability, and it still reaches 15.3$\sigma$.
+The control drift values (1.4 to 4.2 points) establish the stochastic baseline. The framing effects exceed the controls by factors of 2 to 10, confirming that the displacement is genuine, not an artifact of within-model noise. The empirical stochastic controls are essential: without them, the framing effect would be measured against a null of zero, which would overstate its significance. With them, the effect is measured against the model's own intrinsic variability, and it still reaches $15.3\sigma$.
 
 
 ## 7.5 Claude's Asymmetric Vulnerability
@@ -123,11 +123,11 @@ This asymmetry is the most directionally informative finding in the entire T5 an
 
 In geometric terms, Claude's judgment manifold has *asymmetric curvature* in the framing dimension. The manifold is negatively curved in the direction of reduced severity (making it easy for euphemistic framing to carry the judgment far from its neutral position) and positively curved in the direction of increased severity (making it difficult for dramatic framing to displace the judgment).
 
-**Definition 7.3** (Asymmetric Framing Vulnerability). *Let $\delta_E$ be the displacement under euphemistic framing and $\delta_D$ be the displacement under dramatic framing. The asymmetry ratio is:*
+**Definition 7.3** (Asymmetric Framing Vulnerability). *Let* $\delta_E$ *be the displacement under euphemistic framing and* $\delta_D$ *be the displacement under dramatic framing. The asymmetry ratio is:*
 
 $$A = \frac{|\delta_E|}{|\delta_D|}$$
 
-*$A \approx 1$ indicates symmetric vulnerability (both framing directions produce comparable displacement). $A \gg 1$ indicates asymmetric vulnerability toward euphemistic framing. $A \ll 1$ indicates asymmetric vulnerability toward dramatic framing.*
+$A \approx 1$ *indicates symmetric vulnerability (both framing directions produce comparable displacement).* $A \gg 1$ *indicates asymmetric vulnerability toward euphemistic framing.* $A \ll 1$ *indicates asymmetric vulnerability toward dramatic framing.*
 
 For Claude: $A = 9.1 / 1.5 = 6.1$. Claude is six times more vulnerable to euphemistic minimization than to dramatic exaggeration.
 
@@ -146,9 +146,9 @@ The framing result is powerful, but it is only part of the story. The social cog
 
 **T4 (Evaluation Order Sensitivity):** No significant displacement. Scores range from 0.867 to 1.000, with Flash 3 achieving perfect order invariance. The order in which harm dimensions are evaluated does not affect the scores.
 
-**T5 (Framing Sensitivity):** Massive displacement. 15.3$\sigma$ combined. The linguistic register in which the scenario is described strongly affects the judgment.
+**T5 (Framing Sensitivity):** Massive displacement. $15.3\sigma$ combined. The linguistic register in which the scenario is described strongly affects the judgment.
 
-**T2 (Cultural Reframe):** Intermediate displacement. 4.1$\sigma$ combined. Cultural context produces verdict changes above stochastic noise, but this may reflect genuine moral-content differences rather than pure invariance violation.
+**T2 (Cultural Reframe):** Intermediate displacement. $4.1\sigma$ combined. Cultural context produces verdict changes above stochastic noise, but this may reflect genuine moral-content differences rather than pure invariance violation.
 
 **T3 (Holonomy / Narrative Order):** Variable. Scores range from 0.500 to 0.667, indicating that the order of narrative presentation (victim-first vs. context-first) affects the judgment to a moderate degree.
 
@@ -184,11 +184,11 @@ The results across models converge on a consistent sensitivity hierarchy:
 
 In geometric terms, the judgment manifold is *anisotropic*: it has different curvature along different dimensions. The emotional harm dimension has high curvature (small input changes produce large judgment changes), while the physical harm dimension has low curvature (small input changes produce small judgment changes). This anisotropy determines the model's vulnerability profile: perturbations that primarily affect the emotional harm dimension will produce larger displacements than perturbations that primarily affect the physical harm dimension.
 
-**Definition 7.4** (Dimensional Sensitivity Tensor). *The sensitivity tensor $S_{ij}$ at a point $J$ in the harm space measures the response of harm dimension $i$ to a perturbation along scenario description direction $j$:*
+**Definition 7.4** (Dimensional Sensitivity Tensor). *The sensitivity tensor* $S_{ij}$ *at a point* $J$ *in the harm space measures the response of harm dimension* $i$ *to a perturbation along scenario description direction* $j$:
 
 $$S_{ij} = \frac{\partial h_i}{\partial p_j}$$
 
-*where $h_i$ is the score on harm dimension $i$ and $p_j$ is the perturbation magnitude along description direction $j$. The diagonal elements $S_{ii}$ measure within-dimension sensitivity; the off-diagonal elements $S_{ij}$ ($i \neq j$) measure cross-dimensional coupling.*
+*where* $h_i$ *is the score on harm dimension* $i$ *and* $p_j$ *is the perturbation magnitude along description direction* $j$*. The diagonal elements* $S_{ii}$ *measure within-dimension sensitivity; the off-diagonal elements* $S_{ij}$ ($i \neq j$*) measure cross-dimensional coupling.*
 
 The off-diagonal elements of the sensitivity tensor are particularly informative. If a perturbation that targets the emotional description primarily affects the emotional harm score, then the sensitivity tensor is approximately diagonal, and the harm dimensions are independently modulated. If a perturbation that targets the emotional description also affects the trust, autonomy, and social impact scores, then the sensitivity tensor has significant off-diagonal structure, and the harm dimensions are coupled.
 
@@ -203,11 +203,11 @@ If harm were conserved, the framing effect would be a *rotation* of the judgment
 
 The data show that harm is *not* conserved. Euphemistic rewriting reduces total harm scores by 9 to 14 points. Dramatic rewriting increases total harm scores by 6 to 10 points (except for Claude). The magnitude of the judgment vector changes, not just its direction.
 
-**Definition 7.5** (Harm Conservation Violation). *The harm conservation violation under framing transformation $\phi$ is:*
+**Definition 7.5** (Harm Conservation Violation). *The harm conservation violation under framing transformation* $\phi$ *is:*
 
-$$\Delta H = \|J(\phi(s))\|_1 - \|J(s)\|_1$$
+$$\Delta H = \Vert J(\phi(s))\Vert_1 - \Vert J(s)\Vert_1$$
 
-*where $\|J\|_1 = \sum_{i=1}^7 h_i$ is the total harm. $\Delta H = 0$ indicates perfect conservation (framing changes the distribution of harm across dimensions but not the total). $\Delta H \neq 0$ indicates a conservation violation (framing changes the total perceived harm).*
+*where* $\Vert J\Vert_1 = \sum_{i=1}^7 h_i$ *is the total harm.* $\Delta H = 0$ *indicates perfect conservation (framing changes the distribution of harm across dimensions but not the total).* $\Delta H \neq 0$ *indicates a conservation violation (framing changes the total perceived harm).*
 
 The conservation violations are systematic: euphemistic rewriting always produces $\Delta H < 0$ (total harm decreases), and dramatic rewriting always produces $\Delta H > 0$ for the Gemini models. The framing is not redistributing a fixed quantity of moral concern; it is *creating or destroying* perceived harm. This is a deeper failure than mere redistribution would be: the system's total moral assessment of a fixed situation genuinely changes when the language changes.
 
@@ -283,23 +283,23 @@ Let us trace a complete judgment trajectory through the 7-dimensional harm space
 
 **Step 2: Compute displacement vectors.** The euphemistic displacement is:
 
-$$\Delta_E = J_E - J_0 = (0, -3, -3, -3, -3, -2, -1), \quad \|\Delta_E\|_1 = 15$$
+$$\Delta_E = J_E - J_0 = (0, -3, -3, -3, -3, -2, -1), \quad \Vert\Delta_E\Vert_1 = 15$$
 
 The dramatic displacement is:
 
-$$\Delta_D = J_D - J_0 = (1, +2, +1, +2, +1, +2, +1), \quad \|\Delta_D\|_1 = 10$$
+$$\Delta_D = J_D - J_0 = (1, +2, +1, +2, +1, +2, +1), \quad \Vert\Delta_D\Vert_1 = 10$$
 
 **Step 3: Analyze the displacement geometry.** The euphemistic displacement vector $\Delta_E$ is approximately uniform across all harm dimensions (all components are negative, magnitudes between 1 and 3). This indicates that euphemistic rewriting produces a *radial* contraction of the judgment vector toward the origin --- it reduces perceived harm along all dimensions simultaneously, roughly proportionally.
 
 The dramatic displacement vector $\Delta_D$ is also approximately uniform (all components are positive, magnitudes between 1 and 2). This indicates a radial expansion away from the origin.
 
-The displacements are not equal in magnitude: $\|\Delta_E\|_1 = 15 > \|\Delta_D\|_1 = 10$. The euphemistic effect is 50% larger than the dramatic effect, even for this model that shows roughly symmetric vulnerability. This asymmetry between softening and intensifying is a general feature of the data: it is easier to make harm seem less severe (by removing emotional cues) than to make it seem more severe (by adding emotional cues). The baseline judgment already incorporates some emotional response to the scenario; euphemistic rewriting *removes* this response, while dramatic rewriting attempts to *add* more, but the marginal impact of additional emotional cues is smaller.
+The displacements are not equal in magnitude: $\Vert\Delta_E\Vert_1 = 15 > \Vert\Delta_D\Vert_1 = 10$. The euphemistic effect is 50% larger than the dramatic effect, even for this model that shows roughly symmetric vulnerability. This asymmetry between softening and intensifying is a general feature of the data: it is easier to make harm seem less severe (by removing emotional cues) than to make it seem more severe (by adding emotional cues). The baseline judgment already incorporates some emotional response to the scenario; euphemistic rewriting *removes* this response, while dramatic rewriting attempts to *add* more, but the marginal impact of additional emotional cues is smaller.
 
 **Step 4: Compute the framing geodesic.** If the transition from $J_0$ to $J_E$ follows a geodesic on the judgment manifold, the geodesic should be approximately a straight line in the harm space (for a flat manifold) or a curved arc (for a curved manifold). The fact that the displacement is approximately radial (pointing toward the origin) suggests that the framing geodesic is a straight line through the origin --- the euphemistic version simply scales down the judgment vector by a factor of approximately 0.58 ($21/36$).
 
 This scaling interpretation has a specific geometric meaning: the framing transformation acts as a *conformal* transformation on the judgment manifold, changing the magnitude of the judgment vector without changing its direction. The conformal factor is $\lambda_E \approx 0.58$ for euphemistic framing and $\lambda_D \approx 1.28$ for dramatic framing. This is consistent with the interpretation that framing changes the model's *calibration* of harm severity without changing its *relative assessment* of which harms are present.
 
-**Step 5: Validate against controls.** The control displacement (re-judging the neutral scenario) is approximately $(0, \pm 1, \pm 1, 0, \pm 1, 0, 0)$, with $\|\Delta_C\|_1 \approx 3$. The framing displacements exceed the control by factors of 5 and 3.3, respectively. The framing effect is genuine.
+**Step 5: Validate against controls.** The control displacement (re-judging the neutral scenario) is approximately $(0, \pm 1, \pm 1, 0, \pm 1, 0, 0)$, with $\Vert\Delta_C\Vert_1 \approx 3$. The framing displacements exceed the control by factors of 5 and 3.3, respectively. The framing effect is genuine.
 
 **Interpretation.** The worked example demonstrates that a single scenario, evaluated under three framing conditions, generates three points in the 7-dimensional harm space whose geometry encodes the model's framing vulnerability. The displacement vectors, their magnitudes, their directions, and their relationship to the control noise all provide geometric information about the structure of the judgment manifold. This is not an abstraction imposed on the data; it is the data itself, organized in the coordinate system that the benchmark defines.
 
@@ -308,7 +308,7 @@ This scaling interpretation has a specific geometric meaning: the framing transf
 
 The social cognition results have direct implications for the deployment of AI systems in moral judgment contexts.
 
-**Content moderation.** AI systems used for content moderation must evaluate whether content is harmful. If these systems are susceptible to framing effects, then the same harmful content can be classified differently depending on how it is described. Euphemistic descriptions of harmful actions may receive lower harm scores and escape moderation. Dramatic descriptions of the same actions may receive higher scores and be over-moderated. The 15.3$\sigma$ framing effect demonstrates that this vulnerability is real and large enough to have practical consequences.
+**Content moderation.** AI systems used for content moderation must evaluate whether content is harmful. If these systems are susceptible to framing effects, then the same harmful content can be classified differently depending on how it is described. Euphemistic descriptions of harmful actions may receive lower harm scores and escape moderation. Dramatic descriptions of the same actions may receive higher scores and be over-moderated. The $15.3\sigma$ framing effect demonstrates that this vulnerability is real and large enough to have practical consequences.
 
 **Clinical decision support.** AI systems that assist with clinical decisions must evaluate patient scenarios. If these systems are susceptible to framing effects, then the same clinical situation can receive different risk assessments depending on how the patient's history is described. A clinical note written in clinical language (euphemistic relative to vernacular) may produce lower risk scores than the same situation described in lay terms. The asymmetric vulnerability of Claude (more susceptible to euphemistic framing) is particularly concerning in clinical contexts, where clinical language is the default register.
 
@@ -320,33 +320,33 @@ The geometric framework provides a specific diagnostic. Instead of asking "Is th
 
 ## Technical Appendix 7A: The Judgment Manifold --- Formal Properties
 
-**Definition** (7-Dimensional Harm Space, Formal). *The harm space is the bounded convex subset $H = [0, 10]^7 \subset \mathbb{R}^7$, equipped with the $\ell_1$ norm $\|h\|_1 = \sum_{i=1}^7 h_i$ for total harm computation and the $\ell_2$ norm $\|h\|_2 = \sqrt{\sum_{i=1}^7 h_i^2}$ for displacement measurement.*
+**Definition** (7-Dimensional Harm Space, Formal). *The harm space is the bounded convex subset* $H = [0, 10]^7 \subset \mathbb{R}^7$*, equipped with the* $\ell_1$ *norm* $\Vert h\Vert_1 = \sum_{i=1}^7 h_i$ *for total harm computation and the* $\ell_2$ *norm* $\Vert h\Vert_2 = \sqrt{\sum_{i=1}^7 h_i^2}$ *for displacement measurement.*
 
-*The judgment function is a map $J: \mathcal{S} \to H$ from the space of scenario descriptions $\mathcal{S}$ to the harm space $H$. The map is not injective (different descriptions can produce the same judgment) and not surjective (not all points in $H$ are realized by any scenario).*
+*The judgment function is a map* $J: \mathcal{S} \to H$ *from the space of scenario descriptions* $\mathcal{S}$ *to the harm space* $H$*. The map is not injective (different descriptions can produce the same judgment) and not surjective (not all points in* $H$ *are realized by any scenario).*
 
-**Proposition 7.1** (Gauge Invariance Characterization). *The judgment function $J$ is gauge invariant under transformation class $\Phi$ if and only if the displacement*
+**Proposition 7.1** (Gauge Invariance Characterization). *The judgment function* $J$ *is gauge invariant under transformation class* $\Phi$ *if and only if the displacement*
 
-$$d(\phi) = \mathbb{E}_s[\|J(\phi(s)) - J(s)\|_2]$$
+$$d(\phi) = \mathbb{E}_s[\Vert J(\phi(s)) - J(s)\Vert_2]$$
 
-*satisfies $d(\phi) \leq d_{\text{stochastic}}$ for all $\phi \in \Phi$, where $d_{\text{stochastic}}$ is the empirical stochastic baseline (measured by re-evaluation of identical inputs).*
+*satisfies* $d(\phi) \leq d_{\text{stochastic}}$ *for all* $\phi \in \Phi$*, where* $d_{\text{stochastic}}$ *is the empirical stochastic baseline (measured by re-evaluation of identical inputs).*
 
 *From the benchmark data:*
-- *Gender swap: $d(\phi_{\text{gender}}) = 2.1 \leq d_{\text{stochastic}} = 2.8$ (invariance holds)*
-- *Evaluation order: $d(\phi_{\text{order}}) = 1.3 \leq d_{\text{stochastic}} = 2.8$ (invariance holds)*
-- *Euphemistic framing: $d(\phi_{\text{euph}}) = 11.4 \gg d_{\text{stochastic}} = 2.8$ (invariance violated)*
-- *Dramatic framing: $d(\phi_{\text{dram}}) = 7.8 \gg d_{\text{stochastic}} = 2.8$ (invariance violated)*
+- *Gender swap:* $d(\phi_{\text{gender}}) = 2.1 \leq d_{\text{stochastic}} = 2.8$ *(invariance holds)*
+- *Evaluation order:* $d(\phi_{\text{order}}) = 1.3 \leq d_{\text{stochastic}} = 2.8$ *(invariance holds)*
+- *Euphemistic framing:* $d(\phi_{\text{euph}}) = 11.4 \gg d_{\text{stochastic}} = 2.8$ *(invariance violated)*
+- *Dramatic framing:* $d(\phi_{\text{dram}}) = 7.8 \gg d_{\text{stochastic}} = 2.8$ *(invariance violated)*
 
-**Proposition 7.2** (Asymmetric Curvature from T5 Data). *If the judgment manifold has constant sectional curvature $\kappa$ in the framing plane, then the displacement under a framing perturbation of magnitude $\epsilon$ is:*
+**Proposition 7.2** (Asymmetric Curvature from T5 Data). *If the judgment manifold has constant sectional curvature* $\kappa$ *in the framing plane, then the displacement under a framing perturbation of magnitude* $\epsilon$ *is:*
 
 $$d(\epsilon) \approx |\epsilon| \cdot |\sec(\sqrt{\kappa} \cdot |\epsilon|)| \quad \text{for } \kappa > 0 \text{ (convergent)}$$
 $$d(\epsilon) \approx |\epsilon| \cdot |\text{sech}(\sqrt{|\kappa|} \cdot |\epsilon|)| \quad \text{for } \kappa < 0 \text{ (divergent)}$$
 
-*Claude's asymmetry ($|\delta_E| \gg |\delta_D|$) is consistent with $\kappa_{\text{euph}} < 0$ (divergent curvature toward leniency) and $\kappa_{\text{dram}} > 0$ (convergent curvature toward severity). The curvature is sign-asymmetric in the framing direction.*
+*Claude's asymmetry (*$|\delta_E| \gg |\delta_D|$*) is consistent with* $\kappa_{\text{euph}} < 0$ *(divergent curvature toward leniency) and* $\kappa_{\text{dram}} > 0$ *(convergent curvature toward severity). The curvature is sign-asymmetric in the framing direction.*
 
 
 ## Technical Appendix 7B: Fisher Combination for the Updated Framing Sigma
 
-The 15.3$\sigma$ headline statistic is computed as follows.
+The $15.3\sigma$ headline statistic is computed as follows.
 
 **Per-model statistics.** For each of the 5 models, we compute a paired $t$-test comparing the severity shift under framing (euphemistic or dramatic) to the severity shift under control (re-evaluation of identical text). Each model yields a $p$-value $p_i$ for $i = 1, \ldots, 5$.
 
@@ -360,6 +360,6 @@ Under the null hypothesis that all perturbation effects are within stochastic ba
 
 $$z \approx \left[\left(\frac{\chi^2_F}{10}\right)^{1/3} - \left(1 - \frac{2}{9 \times 10}\right)\right] \left(\frac{2}{9 \times 10}\right)^{-1/2}$$
 
-The observed $\chi^2_F$ yields $z \approx 15.3$, corresponding to the reported 15.3$\sigma$. The update from the earlier 8.9$\sigma$ figure reflects the inclusion of additional scenario data and refined empirical stochastic controls in the latest analysis.
+The observed $\chi^2_F$ yields $z \approx 15.3$, corresponding to the reported $15.3\sigma$. The update from the earlier $8.9\sigma$ figure reflects the inclusion of additional scenario data and refined empirical stochastic controls in the latest analysis.
 
-**Independence caveat.** The five models are tested on the same scenario set, so the per-model statistics are not fully independent. Positive correlation between model-level $p$-values would make the Fisher combination anti-conservative (the true combined significance is lower than 15.3$\sigma$). We emphasize the consistency of the effect direction (all five models show framing displacement in the same direction) over the precise magnitude of the combined statistic.
+**Independence caveat.** The five models are tested on the same scenario set, so the per-model statistics are not fully independent. Positive correlation between model-level $p$-values would make the Fisher combination anti-conservative (the true combined significance is lower than $15.3\sigma$). We emphasize the consistency of the effect direction (all five models show framing displacement in the same direction) over the precise magnitude of the combined statistic.
