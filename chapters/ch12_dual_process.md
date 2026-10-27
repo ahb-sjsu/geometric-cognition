@@ -246,9 +246,9 @@ This four-phase structure is observable in individual trials, both in fMRI data 
 
 ```mermaid
 flowchart LR
-    P1["Phase 1: gradient following; low dlPFC activation, 1 to 2 principal components; confident first sentences"] --> P2["Phase 2: curvature detection; sharp dlPFC onset, dimensionality rises; hedging and alternatives"]
-    P2 --> P3["Phase 3: geodesic computation; sustained dlPFC, high dimensionality; extended chain of thought"]
-    P3 --> P4["Phase 4: convergence; dimensionality and dlPFC activation fall; confident summary"]
+    P1["Phase 1: gradient following, low dlPFC activation, 1 to 2 principal components, confident first sentences"] --> P2["Phase 2: curvature detection, sharp dlPFC onset, dimensionality rises, hedging and alternatives"]
+    P2 --> P3["Phase 3: geodesic computation, sustained dlPFC, high dimensionality, extended chain of thought"]
+    P3 --> P4["Phase 4: convergence, dimensionality and dlPFC activation fall, confident summary"]
 ```
 
 *Figure 12.1 (diagram): the four phases of the transition, with the human fMRI and language-model signature the text gives for each; the curvature at Phase 2 onset identifies the threshold.*

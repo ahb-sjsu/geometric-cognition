@@ -228,10 +228,10 @@ The empty Quadrant I has a topological interpretation. The metacognitive configu
 ```mermaid
 flowchart TD
     Q["Metacognitive configuration: self-monitoring M3 and effort scaling M4"]
-    Q --> Q1["Quadrant I, high M3 and high M4: integrated metacognition; empty"]
-    Q --> Q2["Quadrant II, high M3 and low M4: knowledge without control; Pro"]
+    Q --> Q1["Quadrant I, high M3 and high M4: integrated metacognition, currently empty"]
+    Q --> Q2["Quadrant II, high M3 and low M4: knowledge without control, where Pro sits"]
     Q --> Q3["Quadrant III, low M3 and low M4: metacognitive absence"]
-    Q --> Q4["Quadrant IV, low M3 and high M4: control without knowledge; Flash 2.0"]
+    Q --> Q4["Quadrant IV, low M3 and high M4: control without knowledge, where Flash 2.0 sits"]
     Q2 -.->|"achievable region may connect II to IV without passing through I"| Q4
 ```
 

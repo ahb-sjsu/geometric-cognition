@@ -140,8 +140,8 @@ flowchart TD
     X["Cognitive state x on the manifold"] --> K{"Is the magnitude of curvature at x below the critical threshold?"}
     K -->|"yes: locally near-flat"| S1["System 1: gradient following"]
     K -->|"no: high curvature"| S2["System 2: geodesic computation"]
-    S1 --> A1["Steepest descent is close to the geodesic; answer approximately correct at low cost"]
-    S2 --> A2["Geodesic correction terms computed; uses working memory, sustained attention, inhibitory control"]
+    S1 --> A1["Steepest descent is close to the geodesic, answer approximately correct at low cost"]
+    S2 --> A2["Geodesic correction terms computed, uses working memory, sustained attention, inhibitory control"]
 ```
 
 *Figure 2.1 (diagram): Definition 2.3 as a decision, with the reason each branch is taken.*

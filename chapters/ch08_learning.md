@@ -254,11 +254,11 @@ This four-part decomposition is more informative than any single sycophancy test
 
 ```mermaid
 flowchart LR
-    EV["Incoming evidence or correction"] --> FI["L2: correction filter, projecting onto valid corrections; model-dependent, a control-layer property"]
-    FI --> RV["L4: revision mechanism, proportional force response; works"]
+    EV["Incoming evidence or correction"] --> FI["L2: correction filter, projecting onto valid corrections, model-dependent, a control-layer property"]
+    FI --> RV["L4: revision mechanism with proportional force response, which works"]
     RV --> TR["Belief trajectory on the manifold"]
-    PL["L1: manifold pre-learned; few-shot exemplars do not move the position"] --> TR
-    TR --> L3["L3: transport between domain patches; curvature distorts frameworks"]
+    PL["L1: manifold pre-learned, few-shot exemplars do not move the position"] --> TR
+    TR --> L3["L3: transport between domain patches, curvature distorts frameworks"]
 ```
 
 *Figure 8.1 (diagram): the four Learning subtests as four parts of one belief-revision pipeline; the sycophancy failure sits in the filter, not the mechanism.*
