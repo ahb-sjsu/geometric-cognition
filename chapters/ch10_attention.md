@@ -71,15 +71,15 @@ The dose-response is graded. Vivid distractors produce more displacement than mi
 
 **The geometric interpretation.** In terms of the attention metric, a distractor activates metric components along irrelevant dimensions. The activation is proportional to the distractor's salience: vivid distractors produce a larger metric perturbation $\delta g_{\mu\nu}$ than mild distractors. The perturbation distorts the geodesic from the problem representation to the correct judgment, pulling the trajectory toward the distractor's dimension and away from the morally relevant dimensions.
 
-**Definition 10.1** (Distractor Perturbation of the Metric). *Let $g_{\mu\nu}$ be the task-relevant metric and let $\delta g_{\mu\nu}(\sigma)$ be the perturbation caused by a distractor of salience $\sigma$. The perturbed metric is:*
+**Definition 10.1** (Distractor Perturbation of the Metric). *Let* $g_{\mu\nu}$ *be the task-relevant metric and let* $\delta g_{\mu\nu}(\sigma)$ *be the perturbation caused by a distractor of salience* $\sigma$*. The perturbed metric is:*
 
 $$\tilde{g}_{\mu\nu} = g_{\mu\nu} + \delta g_{\mu\nu}(\sigma)$$
 
-*If $\delta g_{\mu\nu}$ is proportional to $\sigma$:*
+*If* $\delta g_{\mu\nu}$ *is proportional to* $\sigma$:
 
 $$\delta g_{\mu\nu}(\sigma) = \sigma \cdot \Delta g_{\mu\nu}$$
 
-*then the geodesic displacement is approximately proportional to $\sigma$ for small perturbations (linear dose-response), which is consistent with the observed vivid > mild > control ordering.*
+*then the geodesic displacement is approximately proportional to* $\sigma$ *for small perturbations (linear dose-response), which is consistent with the observed vivid > mild > control ordering.*
 
 The proportional dose-response constrains the functional form of the metric's vulnerability. It rules out threshold models (where the metric is stable below a salience threshold and collapses above it) and saturation models (where the metric is equally disrupted by all non-zero distractors). It supports a linear or mildly nonlinear dose-response, consistent with the metric perturbation being a smooth function of distractor salience.
 
@@ -148,11 +148,11 @@ The range is narrow: 0.16 across all five models. All values are only slightly a
 
 This weak metric discrimination explains the vulnerability to distractors (A1). If the metric barely distinguishes relevant from irrelevant dimensions, then activations along irrelevant dimensions (distractors) have nearly as much influence on the geodesic as activations along relevant dimensions (the actual moral content). The distractor's metric weight is only 22--38% less than the signal's metric weight---far from the ideal case where the distractor's weight would be near zero.
 
-**Definition 10.2** (Metric Signal-to-Noise Ratio). *Let $g_s$ be the average metric component along signal dimensions and $g_n$ be the average metric component along noise dimensions. The metric SNR is:*
+**Definition 10.2** (Metric Signal-to-Noise Ratio). *Let* $g_s$ *be the average metric component along signal dimensions and* $g_n$ *be the average metric component along noise dimensions. The metric SNR is:*
 
 $$\text{SNR}_g = \frac{g_s}{g_n}$$
 
-*The geodesic's vulnerability to noise perturbation is proportional to $1 / (\text{SNR}_g - 1)$. For $\text{SNR}_g$ near 1.0, the vulnerability is high. For $\text{SNR}_g \gg 1$, the vulnerability is low. The observed $\text{SNR}_g$ values of 1.22--1.38 correspond to high vulnerability, consistent with the 4.6 sigma distractor effect.*
+*The geodesic's vulnerability to noise perturbation is proportional to* $1 / (\text{SNR}_g - 1)$*. For* $\text{SNR}_g$ *near 1.0, the vulnerability is high. For* $\text{SNR}_g \gg 1$*, the vulnerability is low. The observed* $\text{SNR}_g$ *values of 1.22--1.38 correspond to high vulnerability, consistent with the 4.6 sigma distractor effect.*
 
 The universal weakness of the SNR has implications beyond the Attention track. If the attention metric provides only 22--38% more resolution along relevant dimensions than irrelevant ones, then *all* cognitive processing occurs in a noisy metric environment. The geodesic equation, which depends on the metric and its derivatives, is computed with noisy inputs. The curvature estimates, which determine System 1/System 2 transitions, are contaminated by noise. The heuristic field, which guides search, is evaluated on a manifold measured with a blurry ruler.
 
@@ -197,11 +197,11 @@ where $\lambda$ is the total attention budget and $k$ is the number of simultane
 
 The isotropic metric is not "better" in all contexts. It trades per-stream resolution for multi-stream coverage. In tasks where maximal resolution on a single dimension is critical (e.g., sycophancy resistance, where the model must attend with extreme precision to the truthfulness dimension), the rank-1 metric may be superior. Claude's zero sycophancy (L2 = 1.000) may be a consequence of its narrow metric: by concentrating all attention on the truthfulness dimension, it achieves maximal resistance to social pressure.
 
-**Definition 10.3** (Metric Rank). *Let $g_{\mu\nu}$ be the attention metric tensor at a point on the cognitive manifold, and let $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n$ be its eigenvalues. The effective rank of the metric is:*
+**Definition 10.3** (Metric Rank). *Let* $g_{\mu\nu}$ *be the attention metric tensor at a point on the cognitive manifold, and let* $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n$ *be its eigenvalues. The effective rank of the metric is:*
 
 $$\text{rank}_{\text{eff}}(g) = \frac{(\sum_i \lambda_i)^2}{\sum_i \lambda_i^2}$$
 
-*This is the participation ratio of the eigenvalues. For a rank-1 metric, $\text{rank}_{\text{eff}} = 1$. For an isotropic metric with $k$ nonzero eigenvalues, $\text{rank}_{\text{eff}} = k$.*
+*This is the participation ratio of the eigenvalues. For a rank-1 metric,* $\text{rank}_ {\text{eff}} = 1$*. For an isotropic metric with* $k$ *nonzero eigenvalues,* $\text{rank}_ {\text{eff}} = k$.
 
 Claude's effective metric rank is approximately 1 (narrow channel, single-stream processing). Flash 3's effective metric rank is approximately 2 or more (wide aperture, multi-stream processing). The metric rank is the quantitative measure of the "shape" of attention that determines whether the model processes one thing very well or multiple things adequately.
 
@@ -242,7 +242,7 @@ The threshold condition for successful divided attention is $W / 2 \geq W_{\min}
 
 Integrating the four subtask results, we can construct the *attention robustness surface* for each model---a mapping from perturbation type and intensity to judgment displacement.
 
-**Definition 10.4** (Attention Robustness Surface). *The attention robustness surface of a model is the function $R: \mathcal{P} \times [0, 1] \to [0, 1]$ that maps each perturbation type $p \in \mathcal{P}$ and perturbation intensity $\sigma \in [0, 1]$ to the expected displacement $R(p, \sigma)$ of the model's judgment.*
+**Definition 10.4** (Attention Robustness Surface). *The attention robustness surface of a model is the function* $R: \mathcal{P} \times [0, 1] \to [0, 1]$ *that maps each perturbation type* $p \in \mathcal{P}$ *and perturbation intensity* $\sigma \in [0, 1]$ *to the expected displacement* $R(p, \sigma)$ *of the model's judgment.*
 
 The four subtasks sample this surface at specific points:
 
@@ -332,11 +332,11 @@ Chapter 11 brings the story to its synthesis. The executive control track integr
 
 ## Technical Appendix 10A: Distractor Dose-Response---Statistical Framework
 
-**Definition** (Dose-Response Model). *Let $D(\sigma)$ be the expected verdict displacement as a function of distractor salience $\sigma \in \{0, \sigma_{\text{mild}}, \sigma_{\text{vivid}}\}$. The dose-response model is:*
+**Definition** (Dose-Response Model). *Let* $D(\sigma)$ *be the expected verdict displacement as a function of distractor salience* $\sigma \in \lbrace0, \sigma_{\text{mild}}, \sigma_{\text{vivid}}\rbrace$*. The dose-response model is:*
 
 $$D(\sigma) = D_0 + \beta \sigma + \epsilon$$
 
-*where $D_0$ is the baseline displacement rate (control condition), $\beta$ is the dose-response coefficient, and $\epsilon$ is noise. The null hypothesis is $\beta = 0$ (no dose-response). The alternative is $\beta > 0$ (higher salience produces more displacement).*
+*where* $D_0$ *is the baseline displacement rate (control condition),* $\beta$ *is the dose-response coefficient, and* $\epsilon$ *is noise. The null hypothesis is* $\beta = 0$ *(no dose-response). The alternative is* $\beta > 0$ *(higher salience produces more displacement).*
 
 **Graded bonus scoring.** The A1 composite score includes a graded bonus that rewards proportional dose-response: models receive additional credit when their displacement ordering matches vivid > mild > control. This rewards informative dose-response structure over binary distractor sensitivity.
 
@@ -349,11 +349,11 @@ Under the null hypothesis of no distractor effect, $\chi^2_{\text{Fisher}} \sim 
 
 ## Technical Appendix 10B: Divided Attention---Metric Rank Analysis
 
-**Proposition 10.1** (A4 Score as Metric Rank Indicator). *Let $g_{\mu\nu}$ be the attention metric under divided attention conditions, with eigenvalues $\lambda_1 \geq \lambda_2$. Define the metric isotropy as $\iota = \lambda_2 / \lambda_1 \in [0, 1]$. For a task requiring minimum resolution $\lambda_{\min}$ along each of two dimensions, the A4 score is:*
+**Proposition 10.1** (A4 Score as Metric Rank Indicator). *Let* $g_{\mu\nu}$ *be the attention metric under divided attention conditions, with eigenvalues* $\lambda_1 \geq \lambda_2$*. Define the metric isotropy as* $\iota = \lambda_2 / \lambda_1 \in [0, 1]$*. For a task requiring minimum resolution* $\lambda_{\min}$ *along each of two dimensions, the A4 score is:*
 
-$$\text{A4}(\iota) = \begin{cases} 1.0 & \text{if } \lambda_2 \geq \lambda_{\min} \\ f(\lambda_2 / \lambda_{\min}) & \text{if } \lambda_2 < \lambda_{\min} \end{cases}$$
+$$\text{A4}(\iota) = \begin{cases} 1.0 & \text{if } \lambda_2 \geq \lambda_{\min} \cr f(\lambda_2 / \lambda_{\min}) & \text{if } \lambda_2 < \lambda_{\min} \end{cases}$$
 
-*where $f$ is a monotonically increasing function with $f(0) = f_0$ (minimum score from primary-stream-only processing) and $f(1) = 1.0$.*
+*where* $f$ *is a monotonically increasing function with* $f(0) = f_0$ *(minimum score from primary-stream-only processing) and* $f(1) = 1.0$.
 
 For Claude: $\iota \approx 0$ (rank-1 metric), so $\lambda_2 \approx 0 < \lambda_{\min}$, and $\text{A4} = f_0 \approx 0.571$ (processing based almost entirely on the primary stream, with the secondary stream contributing noise).
 
