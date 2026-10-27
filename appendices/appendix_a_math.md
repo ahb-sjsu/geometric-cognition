@@ -8,7 +8,7 @@ This appendix collects the mathematical definitions and results used throughout 
 
 **Definition A.1 (Topological Manifold).** A *topological manifold* of dimension $n$ is a Hausdorff, second-countable topological space $M$ such that every point $p \in M$ has a neighborhood homeomorphic to an open subset of $\mathbb{R}^n$.
 
-**Definition A.2 (Smooth Manifold).** A *smooth manifold* is a topological manifold equipped with a maximal smooth atlas --- a collection of charts $\{(U_\alpha, \varphi_\alpha)\}$ covering $M$ such that all transition maps $\varphi_\beta \circ \varphi_\alpha^{-1}$ are $C^\infty$.
+**Definition A.2 (Smooth Manifold).** A *smooth manifold* is a topological manifold equipped with a maximal smooth atlas --- a collection of charts $\lbrace(U_\alpha, \varphi_\alpha)\rbrace$ covering $M$ such that all transition maps $\varphi_\beta \circ \varphi_\alpha^{-1}$ are $C^\infty$.
 
 *Cognitive interpretation*: The cognitive manifold $\mathcal{M}$ is the space of all cognitive states a system can occupy. Each "chart" corresponds to a particular representation scheme --- a particular way of encoding cognitive state, such as an fMRI activation pattern, a transformer residual stream snapshot, or a psychometric test battery result. Transition maps are the conversions between these representations. The smoothness requirement says that small changes in one representation produce small changes in any other. (See Chapter 3.)
 
@@ -16,7 +16,7 @@ This appendix collects the mathematical definitions and results used throughout 
 
 *Cognitive interpretation*: The tangent space at a cognitive state $x$ represents working memory --- the set of cognitive states reachable in one reasoning step from $x$. Working memory capacity is the effective dimension of this tangent space. The E4 benchmark (working memory scaling: 0.710 to 0.909 across models) measures how well this tangent space grows with task demands. (See Chapter 5.)
 
-**Definition A.4 (Riemannian Metric).** A *Riemannian metric* on a smooth manifold $M$ is a smooth assignment of a positive-definite inner product $g_p: T_pM \times T_pM \to \mathbb{R}$ to each tangent space $T_pM$. In local coordinates, $g = g_{\mu\nu} \, dx^\mu \otimes dx^\nu$.
+**Definition A.4 (Riemannian Metric).** A *Riemannian metric* on a smooth manifold $M$ is a smooth assignment of a positive-definite inner product $g_p: T_pM \times T_pM \to \mathbb{R}$ to each tangent space $T_pM$. In local coordinates, $g = g_{\mu\nu} \thinspace dx^\mu \otimes dx^\nu$.
 
 *Cognitive interpretation*: The attention metric $g_{\mu\nu}$ defines which cognitive states are "close" (easily reached) and which are "far" (requiring effort). Selective attention narrows the metric, reducing effective dimensionality. Divided attention widens it, increasing the number of simultaneously accessible states. (See Chapter 4.)
 
@@ -28,7 +28,7 @@ where $\Gamma^\mu_{\alpha\beta}$ are the Christoffel symbols of the Levi-Civita 
 
 **Definition A.6 (Geodesic Distance).** The geodesic distance between $p, q \in M$ is
 
-$$d(p, q) = \inf_\gamma \int_0^1 \sqrt{g_{\gamma(t)}(\dot{\gamma}(t), \dot{\gamma}(t))} \, dt$$
+$$d(p, q) = \inf_\gamma \int_0^1 \sqrt{g_{\gamma(t)}(\dot{\gamma}(t), \dot{\gamma}(t))} \thinspace dt$$
 
 where the infimum is over all smooth curves from $p$ to $q$.
 
@@ -64,13 +64,13 @@ The Fisher information matrix is a Riemannian metric on the parameter space. Whe
 
 **Definition A.10 (Admissibility).** A heuristic $h$ is *admissible* if $h(x) \leq d(x, G)$ for all $x \in M$, where $d(x,G)$ is the true geodesic distance to the nearest goal state.
 
-**Definition A.11 (A* Search).** Given a weighted graph $(V, E, w)$ with start vertex $v_0$ and goal set $G \subseteq V$, the A* algorithm finds the minimum-cost path by maintaining:
+**Definition A.11 (A\* Search).** Given a weighted graph $(V, E, w)$ with start vertex $v_0$ and goal set $G \subseteq V$, the A* algorithm finds the minimum-cost path by maintaining:
 
 $$f(v) = g(v) + h(v)$$
 
 where $g(v)$ is the cost of the best known path from $v_0$ to $v$, and $h(v)$ is the heuristic estimate of the remaining cost to the goal.
 
-**Theorem A.1 (Optimality of A*).** If $h$ is admissible and consistent ($h(v) \leq w(v,v') + h(v')$ for all edges $(v,v')$), then A* returns an optimal path.
+**Theorem A.1 (Optimality of A\*).** If $h$ is admissible and consistent ($h(v) \leq w(v,v') + h(v')$ for all edges $(v,v'){}$), then A* returns an optimal path.
 
 *Cognitive interpretation*: Cognition is A* search on the cognitive manifold. The $g(v)$ component is deliberate reasoning --- the accumulated, verified cost of the reasoning path so far. The $h(v)$ component is the cognitive heuristic --- the fast, approximate estimate of how much further reasoning is needed. System 1 dominates when $h$ is reliable (low curvature); System 2 engages when $h$ is unreliable (high curvature). Heuristic corruption --- measured by the five sigma values --- is the mechanism of cognitive bias. (See Chapters 1--2.)
 

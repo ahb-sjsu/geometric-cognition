@@ -39,11 +39,11 @@ Learning, in the cognitive science sense, is the process of revising beliefs in 
 
 In the geometric framework, a belief is a point on the cognitive manifold. Learning is a trajectory: a path from the initial belief $x_0$ to a revised belief $x_1$, driven by a force that represents the new evidence. The trajectory follows a geodesic on the manifold if the revision is optimal (the shortest path from the old belief to the new one), and deviates from the geodesic if the revision is suboptimal (the system over- or under-revises, or revises in the wrong direction).
 
-**Definition 8.1** (Belief Revision as Trajectory). *A belief revision episode is a trajectory $\gamma: [0, 1] \to \mathcal{M}$ on the cognitive manifold, where $\gamma(0) = x_0$ is the initial belief, $\gamma(1) = x_1$ is the revised belief, and the trajectory is driven by an evidence vector $E \in T_{x_0}\mathcal{M}$:*
+**Definition 8.1** (Belief Revision as Trajectory). *A belief revision episode is a trajectory* $\gamma: [0, 1] \to \mathcal{M}$ *on the cognitive manifold, where* $\gamma(0) = x_0$ *is the initial belief,* $\gamma(1) = x_1$ *is the revised belief, and the trajectory is driven by an evidence vector* $E \in T_{x_0}\mathcal{M}$:
 
 $$\gamma(t) = \exp_{x_0}(t \cdot E)$$
 
-*where $\exp_{x_0}$ is the exponential map at $x_0$. The magnitude $\|E\|_g$ determines how far the revision moves the belief. The direction $\hat{E} = E / \|E\|_g$ determines which aspects of the belief are revised.*
+*where* $\exp_{x_0}$ *is the exponential map at* $x_0$*. The magnitude* $\Vert E\Vert_g$ *determines how far the revision moves the belief. The direction* $\hat{E} = E / \Vert E\Vert_g$ *determines which aspects of the belief are revised.*
 
 The Learning benchmark (L1--L4) measures four aspects of this revision process:
 
@@ -77,9 +77,9 @@ The results form a monotonic gradient:
 | Gemini 2.5 Pro | 68% | 44% [19--73%] | +0.238 | 0.657 |
 | Gemini 2.5 Flash | 76% | 56% [27--81%] | +0.206 | 0.726 |
 
-*Wilson 95% confidence intervals in brackets. $n = 9$ wrong-correction items per model. Fisher combination across 4 models: **13.3$\sigma$**.*
+*Wilson 95% confidence intervals in brackets.* $n = 9$ *wrong-correction items per model. Fisher combination across 4 models:* **$13.3\sigma$**.
 
-The 13.3$\sigma$ Fisher-combined significance reflects the overall pattern of correction integration across all four models. It conflates legitimate belief updating (accepting valid corrections) with illegitimate displacement (accepting invalid corrections). The invariance-relevant component is the wrong-correction flip rate specifically, which varies from 0% (Claude) to 56% (Flash 2.5).
+The $13.3\sigma$ Fisher-combined significance reflects the overall pattern of correction integration across all four models. It conflates legitimate belief updating (accepting valid corrections) with illegitimate displacement (accepting invalid corrections). The invariance-relevant component is the wrong-correction flip rate specifically, which varies from 0% (Claude) to 56% (Flash 2.5).
 
 The gradient is monotonic: Claude (0%) $\to$ Flash 2.0 (33%) $\to$ Pro (44%) $\to$ Flash 2.5 (56%). The most stable model (lowest stochastic noise) is the least sycophantic. The least stable model (highest stochastic noise) is the most sycophantic. This ordering is consistent with the hypothesis that sycophancy is related to baseline stability: models with more variable baselines are more susceptible to displacement by any force, including the force of social pressure.
 
@@ -159,7 +159,7 @@ The results across all three Gemini models:
 
 The pattern is crisp: extreme evidence produces more revision than moderate evidence ($p < 0.003$), moderate evidence produces more than irrelevant evidence ($p < 0.001$), and irrelevant evidence produces no significant revision. This is a graded response surface --- the model calibrates its revision magnitude to the evidence strength.
 
-**Definition 8.2** (Graded Revision as Proportional Force Response). *The graded belief revision function $r: [0, E_{\max}] \to \mathbb{R}$ maps evidence strength $e$ to revision magnitude $r(e)$. A system with graded revision satisfies:*
+**Definition 8.2** (Graded Revision as Proportional Force Response). *The graded belief revision function* $r: [0, E_{\max}] \to \mathbb{R}$ *maps evidence strength* $e$ *to revision magnitude* $r(e)$*. A system with graded revision satisfies:*
 
 $$e_1 > e_2 \implies r(e_1) > r(e_2)$$
 
@@ -167,7 +167,7 @@ $$e_1 > e_2 \implies r(e_1) > r(e_2)$$
 
 $$r(e) = \alpha \cdot e + \beta$$
 
-*where $\alpha > 0$ is the revision sensitivity (how much revision per unit of evidence strength) and $\beta \approx 0$ is the baseline revision (revision in the absence of evidence).*
+*where* $\alpha > 0$ *is the revision sensitivity (how much revision per unit of evidence strength) and* $\beta \approx 0$ *is the baseline revision (revision in the absence of evidence).*
 
 The L4 data are consistent with this linear proportional model. The revision magnitude scales approximately linearly with evidence strength, and the baseline revision (irrelevant evidence) is approximately zero. The models have a functional, calibrated belief revision mechanism.
 
@@ -184,11 +184,11 @@ The combination of L2 and L4 reveals a precise geometric picture of the sycophan
 
 In geometric terms, the system lacks a *filter* on the tangent space. A competent reasoner would project incoming correction vectors onto the subspace of valid corrections before applying the revision mechanism:
 
-**Definition 8.3** (Correction Filter). *Let $V \subseteq T_x\mathcal{M}$ be the subspace of valid correction directions and let $E \in T_x\mathcal{M}$ be the evidence vector produced by a correction. The filtered evidence is:*
+**Definition 8.3** (Correction Filter). *Let* $V \subseteq T_x\mathcal{M}$ *be the subspace of valid correction directions and let* $E \in T_x\mathcal{M}$ *be the evidence vector produced by a correction. The filtered evidence is:*
 
 $$E_{\text{filtered}} = \text{proj}_V(E) = \sum_{i: v_i \in V} \frac{g(E, v_i)}{g(v_i, v_i)} v_i$$
 
-*A system with a perfect correction filter has $E_{\text{filtered}} = E$ for valid corrections (the full force is passed through) and $E_{\text{filtered}} = 0$ for invalid corrections (the force is completely suppressed).*
+*A system with a perfect correction filter has* $E_{\text{filtered}} = E$ *for valid corrections (the full force is passed through) and* $E_{\text{filtered}} = 0$ *for invalid corrections (the force is completely suppressed).*
 
 Claude has an effective correction filter: $E_{\text{filtered}} \approx 0$ for all tested invalid corrections. The Gemini models have leaky correction filters: $E_{\text{filtered}} \approx 0.33 E$ (Flash 2.0) to $0.56 E$ (Flash 2.5) for invalid corrections. The sycophancy gradient is a gradient in filter quality.
 
@@ -252,6 +252,17 @@ The four subtests of the Learning benchmark characterize different geometric pro
 
 This four-part decomposition is more informative than any single sycophancy test. A traditional sycophancy evaluation would measure only L2 and report that Claude is not sycophantic and Flash 2.5 is. The geometric evaluation adds three critical pieces of context: the sycophancy is not about learning ability (L1), it is not about a broken revision mechanism (L4), it is specifically about a leaky correction filter (L2), and the filter quality correlates with baseline stability (control flip rates) and manifold transfer capability (L3). This richer picture enables targeted interventions: improve the filter, not the revision mechanism.
 
+```mermaid
+flowchart LR
+    EV["Incoming evidence or correction"] --> FI["L2: correction filter, projecting onto valid corrections, model-dependent, a control-layer property"]
+    FI --> RV["L4: revision mechanism with proportional force response, which works"]
+    RV --> TR["Belief trajectory on the manifold"]
+    PL["L1: manifold pre-learned, few-shot exemplars do not move the position"] --> TR
+    TR --> L3["L3: transport between domain patches, curvature distorts frameworks"]
+```
+
+*Figure 8.1 (diagram): the four Learning subtests as four parts of one belief-revision pipeline; the sycophancy failure sits in the filter, not the mechanism.*
+
 
 ## 8.10 Worked Example: Tracing a Belief Revision on the Manifold
 
@@ -292,7 +303,7 @@ Flash 2.5 suppresses about 47% of the invalid correction's force --- better than
 
 The sycophancy gradient --- 0% to 56% wrong-correction acceptance across four models --- has direct implications for alignment.
 
-**The gradient is monotonic.** Within the tested models, sycophancy increases with model generation for the Gemini family: Flash 2.0 (33%) $\to$ Pro (44%) $\to$ Flash 2.5 (56%). The wide confidence intervals (Wilson 95% CIs are 12--65%, 19--73%, and 27--81% respectively, with $n = 9$ per model) caution against over-interpreting any single point estimate. But the monotonic ordering across four models is more robust than any individual cell: the probability of observing this ordering by chance under a null of equal sycophancy rates is $1/4! \approx 4\%$.
+**The gradient is monotonic.** Within the tested models, sycophancy increases with model generation for the Gemini family: Flash 2.0 (33%) $\to$ Pro (44%) $\to$ Flash 2.5 (56%). The wide confidence intervals (Wilson 95% CIs are 12--65%, 19--73%, and 27--81% respectively, with $n = 9$ per model) caution against over-interpreting any single point estimate. But the monotonic ordering across four models is more robust than any individual cell: the probability of observing this ordering by chance under a null of equal sycophancy rates is $1/4! \approx 4$%.
 
 This gradient is concerning because it suggests that the training procedures producing more capable models (higher correct-flip rates) may also be producing more sycophantic models (higher wrong-flip rates). Capability and sycophancy may be entangled, at least for the Gemini training methodology.
 
@@ -323,31 +334,31 @@ This parallel suggests that the geometric framework may provide a common mathema
 
 ## Technical Appendix 8A: The Belief Revision Operator --- Formal Treatment
 
-**Definition** (Belief Revision Operator, Formal). *Let $\mathcal{M}$ be the belief manifold with metric $g$ and connection $\nabla$. The belief revision operator $R: T_x\mathcal{M} \to T_x\mathcal{M}$ maps evidence vectors to revision vectors:*
+**Definition** (Belief Revision Operator, Formal). *Let* $\mathcal{M}$ *be the belief manifold with metric* $g$ *and connection* $\nabla$*. The belief revision operator* $R: T_x\mathcal{M} \to T_x\mathcal{M}$ *maps evidence vectors to revision vectors:*
 
 $$R(E) = P_V(E) \cdot \alpha(|P_V(E)|)$$
 
 *where:*
-- *$P_V: T_x\mathcal{M} \to V$ is the projection onto the valid correction subspace $V \subseteq T_x\mathcal{M}$*
-- *$\alpha: \mathbb{R}_{\geq 0} \to \mathbb{R}_{\geq 0}$ is the revision magnitude function, with $\alpha(0) = 0$ and $\alpha'(e) > 0$ (monotonically increasing)*
+- $P_V: T_x\mathcal{M} \to V$ *is the projection onto the valid correction subspace* $V \subseteq T_x\mathcal{M}$
+- $\alpha: \mathbb R_{\geq 0} \to \mathbb R_{\geq 0}$ *is the revision magnitude function, with* $\alpha(0) = 0$ *and* $\alpha'(e) > 0$ *(monotonically increasing)*
 
 *The Sycophancy Index of the operator is:*
 
-$$SI = \frac{\|R(E_{\text{invalid}})\|}{\|R(E_{\text{valid}})\|} = \frac{\|P_V(E_{\text{invalid}})\| \cdot \alpha(\|P_V(E_{\text{invalid}})\|)}{\|P_V(E_{\text{valid}})\| \cdot \alpha(\|P_V(E_{\text{valid}})\|)}$$
+$$SI = \frac{\Vert R(E_{\text{invalid}})\Vert}{\Vert R(E_{\text{valid}})\Vert} = \frac{\Vert P_V(E_{\text{invalid}})\Vert \cdot \alpha(\Vert P_V(E_{\text{invalid}})\Vert)}{\Vert P_V(E_{\text{valid}})\Vert \cdot \alpha(\Vert P_V(E_{\text{valid}})\Vert)}$$
 
-*$SI = 0$ when $P_V(E_{\text{invalid}}) = 0$ (perfect filter). $SI = 1$ when $P_V$ does not discriminate (identity filter).*
+$SI = 0$ *when* $P_V(E_{\text{invalid}}) = 0$ *(perfect filter).* $SI = 1$ *when* $P_V$ *does not discriminate (identity filter).*
 
-**Proposition 8.1** (L4 Validates the Revision Magnitude Function). *If $\alpha$ is monotonically increasing, then for evidence of three intensities $e_1 > e_2 > e_3$:*
+**Proposition 8.1** (L4 Validates the Revision Magnitude Function). *If* $\alpha$ *is monotonically increasing, then for evidence of three intensities* $e_1 > e_2 > e_3$:
 
-$$\|R(E_1)\| > \|R(E_2)\| > \|R(E_3)\|$$
+$$\Vert R(E_1)\Vert > \Vert R(E_2)\Vert > \Vert R(E_3)\Vert$$
 
-*provided the evidence vectors $E_1, E_2, E_3$ have the same direction and $P_V(E_i) = E_i$ (all evidence is valid). The L4 data confirm this ordering for all models tested ($z = 4.4$--$6.7$ for extreme vs. control), validating that $\alpha$ is monotonically increasing.*
+*provided the evidence vectors* $E_1, E_2, E_3$ *have the same direction and* $P_V(E_i) = E_i$ *(all evidence is valid). The L4 data confirm this ordering for all models tested (*$z = 4.4$*--6.7 for extreme vs. control), validating that* $\alpha$ *is monotonically increasing.*
 
-**Proposition 8.2** (Sycophancy as Filter Leakage). *The wrong-correction flip rate $r_W$ is related to the filter leakage $\lambda = \|P_V(E_{\text{invalid}})\| / \|E_{\text{invalid}}\|$ by:*
+**Proposition 8.2** (Sycophancy as Filter Leakage). *The wrong-correction flip rate* $r_W$ *is related to the filter leakage* $\lambda = \Vert P_V(E_{\text{invalid}})\Vert / \Vert E_{\text{invalid}}\Vert$ *by:*
 
-$$r_W = \Pr\left[\|R(E_{\text{invalid}})\| > \theta\right] = \Pr\left[\lambda \cdot \|E_{\text{invalid}}\| \cdot \alpha(\lambda \cdot \|E_{\text{invalid}}\|) > \theta\right]$$
+$$r_W = \Pr\left[\Vert R(E_{\text{invalid}})\Vert > \theta\right] = \Pr\left[\lambda \cdot \Vert E_{\text{invalid}}\Vert \cdot \alpha(\lambda \cdot \Vert E_{\text{invalid}}\Vert) > \theta\right]$$
 
-*where $\theta$ is the verdict-flip threshold. For a fixed distribution of $\|E_{\text{invalid}}\|$ and a fixed $\alpha$, $r_W$ increases monotonically with $\lambda$. The sycophancy gradient across models is therefore a gradient in filter leakage.*
+*where* $\theta$ *is the verdict-flip threshold. For a fixed distribution of* $\Vert E_{\text{invalid}}\Vert$ *and a fixed* $\alpha$, $r_W$ *increases monotonically with* $\lambda$*. The sycophancy gradient across models is therefore a gradient in filter leakage.*
 
 
 ## Technical Appendix 8B: The Correction Filter and Information Geometry
@@ -358,11 +369,11 @@ Consider the space of possible corrections as a statistical manifold $\mathcal{C
 
 The correction filter $P_V$ performs a classification on $\mathcal{C}$: it assigns each incoming correction to either $\mathcal{C}_V$ (accept and apply) or $\mathcal{C}_I$ (reject). The filter's quality is determined by how well-separated $\mathcal{C}_V$ and $\mathcal{C}_I$ are in the Fisher information geometry of the correction manifold, and by the decision boundary the model has learned.
 
-**Proposition 8.3** (Filter Quality Depends on Representation Geometry). *Let $d_F(\mathcal{C}_V, \mathcal{C}_I)$ be the Fisher distance between the valid and invalid correction submanifolds in the model's internal representation. The minimum achievable wrong-flip rate is bounded by:*
+**Proposition 8.3** (Filter Quality Depends on Representation Geometry). *Let* $d_F(\mathcal{C}_V, \mathcal{C}_I)$ *be the Fisher distance between the valid and invalid correction submanifolds in the model's internal representation. The minimum achievable wrong-flip rate is bounded by:*
 
 $$r_W \geq \Phi\left(-\frac{d_F(\mathcal{C}_V, \mathcal{C}_I)}{2}\right)$$
 
-*where $\Phi$ is the standard normal CDF. Models with greater Fisher distance between valid and invalid correction representations can achieve lower wrong-flip rates.*
+*where* $\Phi$ *is the standard normal CDF. Models with greater Fisher distance between valid and invalid correction representations can achieve lower wrong-flip rates.*
 
 Claude's zero wrong-flip rate (with $n = 9$, Wilson 95% CI: 0--30%) suggests a large Fisher distance $d_F$ in Claude's representation space between valid and invalid corrections. The Gemini models' higher wrong-flip rates suggest smaller Fisher distances --- the valid and invalid corrections are not as well-separated in their internal representations.
 

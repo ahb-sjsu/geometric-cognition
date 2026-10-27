@@ -37,11 +37,11 @@ This chapter addresses the remaining dimension: how models *control* their own n
 
 Executive functions are the cognitive control mechanisms that regulate reasoning. They include cognitive flexibility (the ability to switch between different reasoning frameworks), inhibitory control (the ability to resist irrelevant influences), counterfactual reasoning (the ability to consider alternative scenarios), and working memory (the ability to maintain and manipulate information under load). In the geometric framework, executive functions are the *governance layer*---the mechanisms that select search strategies, modulate effort, and maintain the reasoning trajectory against perturbation.
 
-**Definition 11.1** (Governance Margin). *Let $\gamma(t)$ be the model's actual reasoning trajectory and let $\gamma^*(t)$ be the optimal geodesic from the problem representation to the correct judgment. The governance margin at time $t$ is:*
+**Definition 11.1** (Governance Margin). *Let* $\gamma(t)$ *be the model's actual reasoning trajectory and let* $\gamma^{\ast}(t)$ *be the optimal geodesic from the problem representation to the correct judgment. The governance margin at time* $t$ *is:*
 
 $$G(t) = d(\gamma(t), \partial \mathcal{B}(t))$$
 
-*where $\partial \mathcal{B}(t)$ is the governance boundary---the surface in cognitive space where the control system can no longer maintain the trajectory against perturbation. A large governance margin means the trajectory is safely inside the governed region. A small margin means the trajectory is near the boundary, vulnerable to being pushed outside.*
+*where* $\partial \mathcal{B}(t)$ *is the governance boundary---the surface in cognitive space where the control system can no longer maintain the trajectory against perturbation. A large governance margin means the trajectory is safely inside the governed region. A small margin means the trajectory is near the boundary, vulnerable to being pushed outside.*
 
 The governance margin is the executive functions analogue of the safety margin in engineering: the distance between the current operating point and the failure boundary. A system with a large governance margin can withstand large perturbations without losing control. A system with a small margin is fragile---even small perturbations can push it across the boundary and into ungoverned territory.
 
@@ -68,11 +68,11 @@ Flash 2.0 leads with the highest E1 score, driven primarily by its highest verdi
 
 **The geometric interpretation.** In the framework of Chapter 6, framework switching is a *metric-regime transition*: the model must rotate its attention metric from one orientation (utilitarian: weighted toward consequences) to another orientation (deontological: weighted toward duties) to another (virtue ethics: weighted toward character).
 
-**Definition 11.2** (Metric-Regime Transition). *A metric-regime transition is a smooth transformation of the attention metric from configuration $g_{\mu\nu}^{(1)}$ (the metric under framework 1) to configuration $g_{\mu\nu}^{(2)}$ (the metric under framework 2):*
+**Definition 11.2** (Metric-Regime Transition). *A metric-regime transition is a smooth transformation of the attention metric from configuration* $g_{\mu\nu}^{(1)}$ *(the metric under framework 1) to configuration* $g_{\mu\nu}^{(2)}$ *(the metric under framework 2):*
 
 $$g_{\mu\nu}(t) = (1 - \alpha(t)) g_{\mu\nu}^{(1)} + \alpha(t) g_{\mu\nu}^{(2)}$$
 
-*where $\alpha: [0, T] \to [0, 1]$ is the transition function. A smooth transition ($\alpha$ is differentiable) produces a smooth change in the metric. An abrupt transition ($\alpha$ is a step function) produces a discontinuous change.*
+*where* $\alpha: [0, T] \to [0, 1]$ *is the transition function. A smooth transition (*$\alpha$ *is differentiable) produces a smooth change in the metric. An abrupt transition (*$\alpha$ *is a step function) produces a discontinuous change.*
 
 The key property of a smooth transition is that the intermediate states are coherent. During the transition, the metric is a weighted average of the two framework metrics, and the reasoning at any intermediate point reflects a blend of both frameworks. This is what we observe in the data: the models do not switch frameworks like a light switch (all-or-nothing) but gradually shift the weight of their reasoning from one framework to another.
 
@@ -109,11 +109,11 @@ This dissociation is one of the most informative structural findings in the enti
 
 **Flash 2.0's failure mode: elastic boundary.** Flash 2.0 yields more easily to emotional perturbation (it is displaced more often). But when given the inhibition instruction, it recovers strongly (73%). The boundary bends under pressure but springs back when the pressure is named. Flash 2.0's governance mechanism is elastic: it accommodates the perturbation, then uses the inhibition instruction to reset its metric to the task-relevant configuration.
 
-**Definition 11.3** (Governance Elasticity). *The governance elasticity of a model is the recovery rate $\mathcal{R}$ achieved under metacognitive inhibition instruction:*
+**Definition 11.3** (Governance Elasticity). *The governance elasticity of a model is the recovery rate* $\mathcal{R}$ *achieved under metacognitive inhibition instruction:*
 
 $$\mathcal{R} = \frac{N_{\text{recovered}}}{N_{\text{displaced}}}$$
 
-*where $N_{\text{displaced}}$ is the number of verdicts displaced by the perturbation and $N_{\text{recovered}}$ is the number of displaced verdicts restored by the inhibition instruction. A high $\mathcal{R}$ indicates elastic governance; a low $\mathcal{R}$ indicates brittle governance.*
+*where* $N_{\text{displaced}}$ *is the number of verdicts displaced by the perturbation and* $N_{\text{recovered}}$ *is the number of displaced verdicts restored by the inhibition instruction. A high* $\mathcal{R}$ *indicates elastic governance; a low* $\mathcal{R}$ *indicates brittle governance.*
 
 The geometric interpretation of governance elasticity connects directly to the metric framework. The emotional anchor perturbs the attention metric, inflating the metric component along the emotional dimension and distorting the geodesic. The inhibition instruction attempts to reset the metric by suppressing the emotional dimension. In an elastic system, the metric reset is effective: the model can "undo" the perturbation and return to the task-relevant metric. In a brittle system, the perturbation has been committed to the representation in a way that the metric reset cannot undo---the distortion is "baked in" to the lower layers of the model.
 
@@ -124,7 +124,7 @@ The 6.8 sigma Fisher combined significance for emotional anchoring means that th
 
 In the geometric framework introduced in Chapter 7, the emotional anchor is a corruption of the heuristic field. The corruption tensor $C_{\mu\nu}$ (Appendix A, Definition A.13) quantifies the displacement of the heuristic gradient caused by an irrelevant influence. For emotional anchoring, the corruption tensor has its largest components along the emotional dimension of the judgment space, rotating the heuristic gradient away from the moral-content direction and toward the emotional-salience direction.
 
-**Definition 11.4** (Emotional Corruption Tensor). *Let $h(x)$ be the heuristic field on the cognitive manifold and let $h_{\text{emo}}(x) = h(x) + \delta h_{\text{emo}}(x)$ be the corrupted heuristic field under emotional anchoring. The emotional corruption tensor is:*
+**Definition 11.4** (Emotional Corruption Tensor). *Let* $h(x)$ *be the heuristic field on the cognitive manifold and let* $h_{\text{emo}}(x) = h(x) + \delta h_{\text{emo}}(x)$ *be the corrupted heuristic field under emotional anchoring. The emotional corruption tensor is:*
 
 $$C_{\mu\nu}^{\text{emo}} = \nabla_\mu \nabla_\nu \delta h_{\text{emo}}$$
 
@@ -157,11 +157,11 @@ Pro leads decisively with E3 = 0.750. Flash 2.0 is at chance level with E3 = 0.5
 
 A model with good counterfactual sensitivity has a metric that accurately detects the changed fact and routes the geodesic to a different destination. A model with poor counterfactual sensitivity has a metric that is insensitive to the changed fact, routing both scenarios along the same geodesic to the same destination.
 
-**Definition 11.5** (Counterfactual Sensitivity). *Let $x$ be the original scenario state and $x' = x + \delta x$ be the counterfactual state, where $\delta x$ is the perturbation along the causal pivot dimension. The counterfactual sensitivity is the probability that the model's judgment changes:*
+**Definition 11.5** (Counterfactual Sensitivity). *Let* $x$ *be the original scenario state and* $x' = x + \delta x$ *be the counterfactual state, where* $\delta x$ *is the perturbation along the causal pivot dimension. The counterfactual sensitivity is the probability that the model's judgment changes:*
 
 $$S_{\text{CF}} = P(\text{judgment}(x') \neq \text{judgment}(x))$$
 
-*For a well-designed counterfactual where the causal pivot should flip the verdict, $S_{\text{CF}}$ should be close to 1.0.*
+*For a well-designed counterfactual where the causal pivot should flip the verdict,* $S_{\text{CF}}$ *should be close to 1.0.*
 
 Pro's high counterfactual sensitivity (0.750) contrasts interestingly with its poor effort scaling (M4 = 0.000, Chapter 9). Pro can discriminate causal changes (it adjusts *what* it concludes when the facts change) but does not adjust reasoning effort (it writes the same amount regardless of complexity). This dissociation---adapting conclusions without adapting effort---is invisible without cross-track profiling and reveals that Pro's cognitive architecture separates the "what" of reasoning from the "how much."
 
@@ -186,11 +186,11 @@ Working memory scales with model generation within the Gemini family: Flash 2.0 
 
 **The geometric interpretation.** Working memory is the tangent space at the current cognitive state (Chapter 5). The tangent space $T_x\mathcal{M}$ contains all the directions in which the cognitive state can change in one step. Its effective dimensionality is the number of independent entities or relationships the model can simultaneously maintain and manipulate.
 
-**Definition 11.6** (Working Memory Capacity as Tangent Space Dimension). *The working memory capacity at state $x$ is the effective dimension of the tangent space:*
+**Definition 11.6** (Working Memory Capacity as Tangent Space Dimension). *The working memory capacity at state* $x$ *is the effective dimension of the tangent space:*
 
 $$\text{WM}(x) = \dim_{\text{eff}}(T_x\mathcal{M})$$
 
-*where $\dim_{\text{eff}}$ is the number of independent directions with sufficient metric resolution for task-relevant processing.*
+*where* $\dim_{\text{eff}}$ *is the number of independent directions with sufficient metric resolution for task-relevant processing.*
 
 As the number of parties increases, the task demands a higher-dimensional tangent space. Each additional party adds at least one new dimension (the party's identity, role, and moral responsibility) and potentially several (the party's relationships to other parties). A model whose tangent space has sufficient dimensionality can track all parties simultaneously. A model whose tangent space is too small must drop or confuse parties as the count grows.
 
@@ -244,12 +244,12 @@ Geometrically, Claude's governance boundary has high *stiffness* (it maintains t
 
 Geometrically, Flash 2.0's governance boundary has moderate stiffness (it yields more easily) but high elasticity (it recovers when given a corrective signal). The boundary is a rubber sheet: it deforms under perturbation but returns to its original configuration when the perturbation is counteracted.
 
-**Definition 11.8** (Governance Boundary Profile). *The governance boundary profile of a model under perturbation type $P$ is the pair $(\sigma_{\text{crit}}, \mathcal{R})$, where $\sigma_{\text{crit}}$ is the critical perturbation strength at which the verdict first flips (stiffness) and $\mathcal{R}$ is the recovery rate under metacognitive inhibition (elasticity). The profile determines the shape of the governance boundary:*
+**Definition 11.8** (Governance Boundary Profile). *The governance boundary profile of a model under perturbation type* $P$ *is the pair* $(\sigma_{\text{crit}}, \mathcal{R})$*, where* $\sigma_{\text{crit}}$ *is the critical perturbation strength at which the verdict first flips (stiffness) and* $\mathcal{R}$ *is the recovery rate under metacognitive inhibition (elasticity). The profile determines the shape of the governance boundary:*
 
-- *$(\text{high } \sigma_{\text{crit}}, \text{low } \mathcal{R})$: brittle boundary (Claude)*
-- *$(\text{low } \sigma_{\text{crit}}, \text{high } \mathcal{R})$: elastic boundary (Flash 2.0)*
-- *$(\text{high } \sigma_{\text{crit}}, \text{high } \mathcal{R})$: resilient boundary (ideal, unobserved)*
-- *$(\text{low } \sigma_{\text{crit}}, \text{low } \mathcal{R})$: fragile boundary (worst case)*
+- $(\text{high } \sigma_{\text{crit}}, \text{low } \mathcal{R})$*: brittle boundary (Claude)*
+- $(\text{low } \sigma_{\text{crit}}, \text{high } \mathcal{R})$*: elastic boundary (Flash 2.0)*
+- $(\text{high } \sigma_{\text{crit}}, \text{high } \mathcal{R})$*: resilient boundary (ideal, unobserved)*
+- $(\text{low } \sigma_{\text{crit}}, \text{low } \mathcal{R})$*: fragile boundary (worst case)*
 
 The "resilient boundary" quadrant---high stiffness and high elasticity---is unoccupied, paralleling the empty Quadrant I in metacognition and the executive-metacognitive space. The pattern of empty ideal-quadrants across cognitive dimensions suggests a broad architectural constraint: current language models can optimize for one type of robustness (stiffness or elasticity, monitoring or control, narrowness or breadth) but not both simultaneously.
 
@@ -381,18 +381,18 @@ Flash 2.0 has the highest useful governance despite moderate raw displacement, b
 
 **Metric distance between frameworks.** Let $g_{\mu\nu}^{(U)}$, $g_{\mu\nu}^{(D)}$, and $g_{\mu\nu}^{(V)}$ be the attention metrics under utilitarian, deontological, and virtue-ethics prompts respectively. The distance between two metric configurations in the space of positive-definite symmetric matrices is:
 
-$$d(g^{(1)}, g^{(2)}) = \left\| \log\left((g^{(1)})^{-1/2} g^{(2)} (g^{(1)})^{-1/2}\right) \right\|_F$$
+$$d(g^{(1)}, g^{(2)}) = \left\Vert \log\left((g^{(1)})^{-1/2} g^{(2)} (g^{(1)})^{-1/2}\right) \right\Vert_F$$
 
-where $\log$ is the matrix logarithm and $\|\cdot\|_F$ is the Frobenius norm. This is the geodesic distance on the Riemannian manifold of positive-definite matrices.
+where $\log$ is the matrix logarithm and $\Vert\cdot\Vert_F$ is the Frobenius norm. This is the geodesic distance on the Riemannian manifold of positive-definite matrices.
 
 The E1 score is related to the model's ability to traverse this distance: a high E1 score means the model can move from $g^{(U)}$ to $g^{(D)}$ to $g^{(V)}$ efficiently, adjusting both its metric (verdict changes) and its reasoning (framework markers). The verdict switch rate measures the *distance traveled* in metric space, while the framework markers measure the *coherence* of the trajectory.
 
 
 ## Technical Appendix 11C: Working Memory Scaling---Tangent Space Dimensionality
 
-**Definition** (Effective Tangent Space Dimension Under Load). *Let $a(n)$ be the party-identification accuracy at $n$ parties. The effective tangent space dimension $d_{\text{eff}}$ is estimated as the value of $n$ at which $a(n)$ drops below a threshold $a_{\min}$:*
+**Definition** (Effective Tangent Space Dimension Under Load). *Let* $a(n)$ *be the party-identification accuracy at* $n$ *parties. The effective tangent space dimension* $d_{\text{eff}}$ *is estimated as the value of* $n$ *at which* $a(n)$ *drops below a threshold* $a_{\min}$:
 
-$$d_{\text{eff}} = \max\{n : a(n) \geq a_{\min}\}$$
+$$d_{\text{eff}} = \max\lbrace n : a(n) \geq a_{\min}\rbrace$$
 
 For Flash 2.0 with $a_{\min} = 0.75$: $d_{\text{eff}} \approx 5$ (accuracy drops below 75% between 4 and 6 parties).
 

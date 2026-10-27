@@ -61,7 +61,7 @@ Every one of these properties maps directly onto properties of the tangent space
 
 ## 5.3 The Tangent Space Is Working Memory
 
-**Definition 5.1** (Working Memory as Tangent Space). *The working memory of a cognitive system at state $x \in \mathcal{M}$ is the tangent space $T_x\mathcal{M}$, equipped with the attention metric $g_x$. The contents of working memory are the tangent vectors currently activated in $T_x\mathcal{M}$. The capacity of working memory is $\dim(T_x\mathcal{M}) = n$, the dimension of the manifold.*
+**Definition 5.1** (Working Memory as Tangent Space). *The working memory of a cognitive system at state* $x \in \mathcal{M}$ *is the tangent space* $T_x\mathcal{M}$*, equipped with the attention metric* $g_x$*. The contents of working memory are the tangent vectors currently activated in* $T_x\mathcal{M}$*. The capacity of working memory is* $\dim(T_x\mathcal{M}) = n$*, the dimension of the manifold.*
 
 This identification works because the four key properties of working memory correspond to four properties of the tangent space:
 
@@ -82,11 +82,11 @@ In the psychological literature, working memory capacity is typically measured a
 
 In the tangent space model, capacity is the dimension $n$ of the manifold at the current state. This is not the same as the number of items held in memory, because a single tangent dimension can represent more than one "item" if the items are correlated (they lie along the same tangent direction), and a single "item" can consume more than one tangent dimension if it has internal structure (it requires multiple independent dimensions to represent).
 
-**Definition 5.2** (Effective Working Memory Dimension). *The effective working memory dimension $n_{\text{eff}}(x)$ at cognitive state $x$ is the number of tangent dimensions with significant metric weight:*
+**Definition 5.2** (Effective Working Memory Dimension). *The effective working memory dimension* $n_{\text{eff}}(x)$ *at cognitive state* $x$ *is the number of tangent dimensions with significant metric weight:*
 
 $$n_{\text{eff}}(x) = \frac{\left(\sum_{\mu=1}^{n} \lambda_\mu(x)\right)^2}{\sum_{\mu=1}^{n} \lambda_\mu(x)^2}$$
 
-*where $\lambda_1(x) \geq \lambda_2(x) \geq \cdots \geq \lambda_n(x) > 0$ are the eigenvalues of the metric tensor $g_{\mu\nu}(x)$. This is the participatory ratio of the metric eigenvalues, measuring how many dimensions carry significant attentional weight.*
+*where* $\lambda_1(x) \geq \lambda_2(x) \geq \cdots \geq \lambda_n(x) > 0$ *are the eigenvalues of the metric tensor* $g_{\mu\nu}(x)$*. This is the participatory ratio of the metric eigenvalues, measuring how many dimensions carry significant attentional weight.*
 
 The effective dimension $n_{\text{eff}}$ is bounded above by $n$ (when all eigenvalues are equal, meaning attention is uniformly distributed) and below by 1 (when one eigenvalue dominates, meaning attention is concentrated on a single dimension). The connection to Chapter 4 is direct: selective attention reduces $n_{\text{eff}}$ by concentrating the metric eigenvalues, while divided attention increases $n_{\text{eff}}$ by distributing them.
 
@@ -123,7 +123,7 @@ What happens when a task's demands exceed the tangent space dimension?
 
 In the tangent space model, overload occurs when the number of independent quantities that must be held simultaneously exceeds $n_{\text{eff}}$. The system must then perform a dimensionality-reducing operation: it projects the full set of quantities onto the available tangent dimensions, losing information about some dimensions in the process.
 
-**Definition 5.3** (Working Memory Overload). *A cognitive system at state $x$ is in working memory overload for a task requiring $m$ independent dimensions when $m > n_{\text{eff}}(x)$. Under overload, the system projects the $m$-dimensional task representation onto the $n_{\text{eff}}$-dimensional tangent subspace, losing $m - n_{\text{eff}}$ dimensions of task-relevant information.*
+**Definition 5.3** (Working Memory Overload). *A cognitive system at state* $x$ *is in working memory overload for a task requiring* $m$ *independent dimensions when* $m > n_{\text{eff}}(x)$*. Under overload, the system projects the* $m$*-dimensional task representation onto the* $n_{\text{eff}}$*-dimensional tangent subspace, losing* $m - n_{\text{eff}}$ *dimensions of task-relevant information.*
 
 The projection is not random. It is governed by the attention metric: the tangent dimensions with the largest metric eigenvalues (the most strongly attended dimensions) are preserved, and the dimensions with the smallest eigenvalues (the least attended) are dropped. This produces a specific, predictable pattern of failure: the system loses track of the *least salient* aspects of the task, not random aspects.
 
@@ -140,11 +140,11 @@ One of the deepest geometric consequences of identifying working memory with the
 
 On a curved manifold, the tangent spaces at different points are not the same. Moving from point $x$ to point $y$ along a curve $\gamma$ requires *transporting* the tangent vectors from $T_x\mathcal{M}$ to $T_y\mathcal{M}$ using the parallel transport operation. Parallel transport preserves the length and angle of tangent vectors (it is an isometry with respect to the metric), but it may change their direction relative to the coordinate axes. The change in direction is determined by the curvature of the manifold: on a flat manifold, parallel transport is trivial (the vector does not change direction), while on a curved manifold, parallel transport rotates the vector.
 
-**Definition 5.4** (Parallel Transport of Working Memory). *When a cognitive system moves from state $x$ to state $y$ along trajectory $\gamma$, the contents of working memory are parallel-transported from $T_x\mathcal{M}$ to $T_y\mathcal{M}$. A tangent vector $v \in T_x\mathcal{M}$ representing a working memory item at $x$ is transported to a vector $v' \in T_y\mathcal{M}$ satisfying the parallel transport equation:*
+**Definition 5.4** (Parallel Transport of Working Memory). *When a cognitive system moves from state* $x$ *to state* $y$ *along trajectory* $\gamma$*, the contents of working memory are parallel-transported from* $T_x\mathcal{M}$ *to* $T_y\mathcal{M}$*. A tangent vector* $v \in T_x\mathcal{M}$ *representing a working memory item at* $x$ *is transported to a vector* $v' \in T_y\mathcal{M}$ *satisfying the parallel transport equation:*
 
 $$\nabla_{\dot{\gamma}} v = 0$$
 
-*where $\nabla$ is the Levi-Civita connection associated with the attention metric.*
+*where* $\nabla$ *is the Levi-Civita connection associated with the attention metric.*
 
 In cognitive terms, parallel transport is the process of *maintaining* working memory contents while reasoning proceeds. When you are holding a fact in mind and simultaneously reasoning about something else (moving along the manifold), the representation of that fact in working memory must be continuously updated to remain valid in the new cognitive context. This continuous updating is parallel transport.
 
@@ -176,11 +176,11 @@ A model with more attention heads or wider heads has a larger effective tangent 
 
 The tangent space model provides a natural definition of working memory load.
 
-**Definition 5.5** (Working Memory Load). *The working memory load at cognitive state $x$ for a task requiring tangent vectors $v_1, \ldots, v_m \in T_x\mathcal{M}$ is:*
+**Definition 5.5** (Working Memory Load). *The working memory load at cognitive state* $x$ *for a task requiring tangent vectors* $v_1, \ldots, v_m \in T_x\mathcal{M}$ *is:*
 
 $$\text{Load}(x) = \frac{\dim(\text{span}(v_1, \ldots, v_m))}{n_{\text{eff}}(x)}$$
 
-*where $\text{span}(v_1, \ldots, v_m)$ is the subspace of $T_x\mathcal{M}$ spanned by the working memory items. Load ranges from 0 (no working memory items) to 1 (tangent space fully occupied) and can exceed 1 (overload, requiring projection).*
+*where* $\text{span}(v_1, \ldots, v_m)$ *is the subspace of* $T_x\mathcal{M}$ *spanned by the working memory items. Load ranges from 0 (no working memory items) to 1 (tangent space fully occupied) and can exceed 1 (overload, requiring projection).*
 
 Load is the ratio of the dimensionality *used* to the dimensionality *available*. A load of 0.5 means the task requires half the available tangent dimensions. A load of 1.0 means the task requires exactly as many dimensions as are available. A load greater than 1.0 indicates overload: the task requires more dimensions than the tangent space provides, and information must be lost.
 
@@ -203,7 +203,7 @@ $$\text{E4}(k) = \sigma\left(\frac{n_{\text{eff}} - k_{\text{req}}(k)}{T}\right)
 
 where $k_{\text{req}}(k)$ is the number of tangent dimensions required for $k$ parties (approximately $k + k(k-1)/4$ for the E4 task structure, assuming partial compression of relationship representations), $T$ is a temperature parameter, and $\sigma$ is a sigmoid function.
 
-The prediction is that E4 scores should form a family of sigmoid curves parameterized by $n_{\text{eff}}$: for each model, there is a critical party count $k^*$ at which performance transitions from high to low, and $k^*$ increases with $n_{\text{eff}}$. The Flash 2.0 to Flash 3 progression is consistent with this prediction: the transition point moves from approximately $k^* = 5$ (Flash 2.0) to approximately $k^* = 8$ or beyond (Flash 3).
+The prediction is that E4 scores should form a family of sigmoid curves parameterized by $n_{\text{eff}}$: for each model, there is a critical party count $k^{\ast}$ at which performance transitions from high to low, and $k^{\ast}$ increases with $n_{\text{eff}}$. The Flash 2.0 to Flash 3 progression is consistent with this prediction: the transition point moves from approximately $k^{\ast} = 5$ (Flash 2.0) to approximately $k^{\ast} = 8$ or beyond (Flash 3).
 
 
 ## 5.11 Working Memory, Attention, and the Metric: The Unified Picture
@@ -215,6 +215,17 @@ The tangent space model of working memory unifies several threads from the prece
 **Attention determines which tangent dimensions are active.** The attention metric (Chapter 4) determines the eigenvalues of the metric tensor, which in turn determine $n_{\text{eff}}$. Selective attention concentrates the eigenvalues, reducing $n_{\text{eff}}$. Divided attention distributes the eigenvalues, increasing $n_{\text{eff}}$. Attention and working memory are not separate systems; they are the same system viewed from different angles. Attention determines the metric; the metric determines the effective tangent space dimension; the effective tangent space dimension *is* working memory capacity.
 
 **The A4 divided attention test is a working memory test.** The A4 subtask, which measures the model's ability to attend to two targets simultaneously, is directly measuring the effective tangent space dimension in a dual-target regime. Claude's low A4 score (0.571) reflects a narrow effective tangent space: under divided attention, too few dimensions carry significant metric weight to represent both targets. Flash 3's perfect A4 score (1.000) reflects a wide effective tangent space: enough dimensions carry significant weight for both targets. The A4 score and the E4 score are measuring the same underlying quantity --- tangent space dimension --- from different angles. A4 measures it through attention manipulation; E4 measures it through complexity scaling.
+
+```mermaid
+flowchart LR
+    AT["Attention allocation"] --> MT["Metric tensor and its eigenvalues"]
+    MT --> NE["Effective tangent space dimension n_eff"]
+    NE --> WM["Working memory capacity"]
+    A4["A4 divided attention: via attention manipulation"] -.->|"measures"| NE
+    E4["E4 working memory scaling: via complexity scaling"] -.->|"measures"| NE
+```
+
+*Figure 5.1 (diagram): attention sets the metric, the metric sets the effective tangent dimension, and that dimension is working memory capacity; A4 and E4 probe the same quantity from two sides.*
 
 **The correlation between working memory and reasoning ability is geometric.** The well-documented correlation between working memory capacity and reasoning ability (Engle, 2002) has a direct geometric explanation. Reasoning requires navigating the cognitive manifold along geodesics. The geodesic computation involves holding the current state, the goal state, and the intermediate states in the tangent space simultaneously --- a working memory demand. A larger tangent space supports longer and more complex geodesic computations, enabling more sophisticated reasoning. The correlation is not a coincidence; it is a geometric necessity.
 
@@ -231,7 +242,7 @@ $$\text{Accuracy}(k) = \frac{1}{1 + e^{-\beta(n_{\text{eff}} - d_k)}}$$
 
 where $d_k$ is the number of effective dimensions required for $k$ parties. We estimate $d_k \approx 2k$ (each party requires approximately 2 tangent dimensions: one for identity and one for relational context, with compression of the harm dimensions).
 
-**Step 1: Estimate $n_{\text{eff}}$ for Flash 2.0.** With E4 score 0.710, the model begins to degrade at $k = 6$ (requiring $d_6 \approx 12$ dimensions). Solving the sigmoid equation at the transition point gives $n_{\text{eff}} \approx 10$--$11$ for Flash 2.0. The tangent space can represent roughly 5 parties' worth of information with full fidelity, and the sixth party exceeds the available dimensions.
+**Step 1: Estimate $n_{\text{eff}}$ for Flash 2.0.** With E4 score 0.710, the model begins to degrade at $k = 6$ (requiring $d_6 \approx 12$ dimensions). Solving the sigmoid equation at the transition point gives $n_{\text{eff}} \approx 10$--11 for Flash 2.0. The tangent space can represent roughly 5 parties' worth of information with full fidelity, and the sixth party exceeds the available dimensions.
 
 **Step 2: Estimate $n_{\text{eff}}$ for Flash 3.** With E4 score 0.909, the model shows minimal degradation even at $k = 8$ (requiring $d_8 \approx 16$ dimensions). This implies $n_{\text{eff}} \geq 16$ for Flash 3. The tangent space comfortably accommodates the full complexity of an 8-party scenario.
 
@@ -286,25 +297,25 @@ These predictions connect the geometric framework to testable empirical claims, 
 
 ## Technical Appendix 5A: The Tangent Space as Working Memory --- Formal Treatment
 
-**Definition** (Tangent Space, Formal). *Let $\mathcal{M}$ be an $n$-dimensional smooth manifold and let $x \in \mathcal{M}$. The tangent space $T_x\mathcal{M}$ is the $n$-dimensional real vector space of derivations at $x$: the set of all $\mathbb{R}$-linear maps $v: C^\infty(\mathcal{M}) \to \mathbb{R}$ satisfying the Leibniz rule:*
+**Definition** (Tangent Space, Formal). *Let* $\mathcal{M}$ *be an* $n$*-dimensional smooth manifold and let* $x \in \mathcal{M}$*. The tangent space* $T_x\mathcal{M}$ *is the* $n$*-dimensional real vector space of derivations at* $x$*: the set of all* $\mathbb{R}$*-linear maps* $v: C^\infty(\mathcal{M}) \to \mathbb{R}$ *satisfying the Leibniz rule:*
 
 $$v(fg) = v(f) g(x) + f(x) v(g) \quad \text{for all } f, g \in C^\infty(\mathcal{M})$$
 
-*Equivalently, $T_x\mathcal{M}$ is the space of equivalence classes of smooth curves through $x$, where two curves $\gamma_1, \gamma_2: (-\epsilon, \epsilon) \to \mathcal{M}$ with $\gamma_1(0) = \gamma_2(0) = x$ are equivalent if $(f \circ \gamma_1)'(0) = (f \circ \gamma_2)'(0)$ for all $f \in C^\infty(\mathcal{M})$.*
+*Equivalently,* $T_x\mathcal{M}$ *is the space of equivalence classes of smooth curves through* $x$*, where two curves* $\gamma_1, \gamma_2: (-\epsilon, \epsilon) \to \mathcal{M}$ *with* $\gamma_1(0) = \gamma_2(0) = x$ *are equivalent if* $(f \circ \gamma_1)'(0) = (f \circ \gamma_2)'(0)$ *for all* $f \in C^\infty(\mathcal{M})$.
 
-**Proposition 5.1** (Parallel Transport Preserves Working Memory Norm). *Let $\gamma: [0,1] \to \mathcal{M}$ be a smooth curve and let $v(0) \in T_{\gamma(0)}\mathcal{M}$ be a working memory item at the initial state. The parallel transport of $v$ along $\gamma$ produces a vector field $v(t) \in T_{\gamma(t)}\mathcal{M}$ satisfying $\nabla_{\dot{\gamma}} v = 0$. Then:*
+**Proposition 5.1** (Parallel Transport Preserves Working Memory Norm). *Let* $\gamma: [0,1] \to \mathcal{M}$ *be a smooth curve and let* $v(0) \in T_{\gamma(0)}\mathcal{M}$ *be a working memory item at the initial state. The parallel transport of* $v$ *along* $\gamma$ *produces a vector field* $v(t) \in T_{\gamma(t)}\mathcal{M}$ *satisfying* $\nabla_{\dot{\gamma}} v = 0$*. Then:*
 
-$$\|v(t)\|_{g_{\gamma(t)}} = \|v(0)\|_{g_{\gamma(0)}} \quad \text{for all } t \in [0,1]$$
+$$\Vert v(t)\Vert_{g_{\gamma(t)}} = \Vert v(0)\Vert_{g_{\gamma(0)}} \quad \text{for all } t \in [0,1]$$
 
 *That is, the "intensity" of the working memory item is preserved during parallel transport. Information loss under parallel transport manifests as directional rotation, not magnitude decay.*
 
 *Proof.* $\frac{d}{dt} g(v, v) = 2 g(\nabla_{\dot{\gamma}} v, v) = 0$ by the parallel transport condition and the metric compatibility of the Levi-Civita connection.
 
-**Proposition 5.2** (Working Memory Interference as Curvature). *Let $v$ and $w$ be two working memory items (tangent vectors) at $x \in \mathcal{M}$. After parallel transport along a curve $\gamma$ of length $L$ through a region of sectional curvature $\kappa$ in the plane spanned by $v$ and $\dot{\gamma}$, the angle $\theta$ between $v$ and $w$ changes by approximately:*
+**Proposition 5.2** (Working Memory Interference as Curvature). *Let* $v$ *and* $w$ *be two working memory items (tangent vectors) at* $x \in \mathcal{M}$*. After parallel transport along a curve* $\gamma$ *of length* $L$ *through a region of sectional curvature* $\kappa$ *in the plane spanned by* $v$ *and* $\dot{\gamma}$*, the angle* $\theta$ *between* $v$ *and* $w$ *changes by approximately:*
 
 $$\Delta \theta \approx \kappa \cdot A$$
 
-*where $A$ is the area enclosed by the curve in the $(v, \dot{\gamma})$ plane. For a reasoning loop that returns to its starting point, the total rotation (holonomy) is $\oint \kappa \, dA$, and any nonzero holonomy represents working memory corruption --- the items have been rotated relative to each other, even though no items were dropped.*
+*where* $A$ *is the area enclosed by the curve in the* $(v, \dot{\gamma})$ *plane. For a reasoning loop that returns to its starting point, the total rotation (holonomy) is* $\oint \kappa \thinspace dA$*, and any nonzero holonomy represents working memory corruption --- the items have been rotated relative to each other, even though no items were dropped.*
 
 This proposition provides the formal basis for the claim that curvature causes working memory interference. The interference is not due to "competition for resources" but to the geometric fact that parallel transport on a curved manifold rotates vectors. The rotation accumulates over the reasoning trajectory, and if the trajectory passes through a region of high curvature, the accumulated rotation can be large enough to corrupt the working memory representation.
 
@@ -317,13 +328,13 @@ $$a_k = \frac{1}{1 + \exp\left(-\beta(n_{\text{eff}} - c \cdot k)\right)}$$
 
 where $c$ is the number of tangent dimensions required per party (estimated as $c \approx 2$ based on the task structure) and $\beta$ is a sharpness parameter. The fitting procedure is:
 
-1. For each model, compute the party count $k^*$ at which accuracy drops below 0.8 (the operational capacity threshold).
-2. Estimate $n_{\text{eff}} = c \cdot k^*$ as the tangent space dimension at which the system transitions from adequate to inadequate capacity.
+1. For each model, compute the party count $k^{\ast}$ at which accuracy drops below 0.8 (the operational capacity threshold).
+2. Estimate $n_{\text{eff}} = c \cdot k^{\ast}$ as the tangent space dimension at which the system transitions from adequate to inadequate capacity.
 3. Refine the estimate by fitting the full sigmoid to all four data points using least squares.
 
 **Results.** Applying this method to the E4 data:
 
-| Model | $k^*$ (transition) | $n_{\text{eff}}$ (estimated) | 95% CI |
+| Model | $k^{\ast}$ (transition) | $n_{\text{eff}}$ (estimated) | 95% CI |
 |---|---|---|---|
 | Gemini 2.0 Flash | ~5 | 10.2 | [8.5, 12.0] |
 | Gemini 2.5 Flash | ~7 | 14.4 | [12.1, 16.8] |

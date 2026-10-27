@@ -19,7 +19,7 @@
 **Christoffel symbols** ($\Gamma^\mu_{\alpha\beta}$), 3, 12, A --- connection coefficients encoding how the metric varies; required for geodesic computation (System 2)
 **cognitive manifold** ($\mathcal{M}$), 3, 4, 5, 12, 13, 14, 15, 17 --- the space of all cognitive states a system can occupy; central construction of the book
 **cognitive pathology**, 14 --- geometric defects: metric instability (ADHD), collapsed heuristic (depression), inflated heuristic (anxiety), metric rigidity (autism)
-**cognitive profile tensor** ($\mathbf{C}(S)$), 1, 16, C --- vector in $[0,1]^{21}$ capturing all subtask scores; the object that scalar contraction destroys
+**cognitive profile tensor** ($\mathbf{C}(S){}$), 1, 16, C --- vector in $[0,1]^{21}$ capturing all subtask scores; the object that scalar contraction destroys
 **composite score**, 1 --- *see* scalar contraction
 **corruption tensor** ($C_{\mu\nu}$), 7, 10, 11, A --- quantifies deviation of the heuristic field under perturbation; its eigenstructure reveals vulnerable dimensions
 **counterfactual reasoning**, 6, 11 --- E3 subtask; geodesic sensitivity; computing alternative trajectories on the manifold; scores 50--75%

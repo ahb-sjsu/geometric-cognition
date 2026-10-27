@@ -48,11 +48,11 @@ In the geometric framework, the sensorimotor manifold has the following properti
 
 **Low dimensionality.** The manifold has approximately 3--5 independent dimensions, corresponding to sensory modality, motor state, and basic affect. The infant's cognitive state is determined by what it is currently perceiving and what action it is currently executing. There are no additional dimensions for symbolic representation, abstract concepts, or metacognition.
 
-**Definition 13.1** (Sensorimotor Manifold). *The sensorimotor manifold $\mathcal{M}_0$ is a submanifold of the full cognitive manifold $\mathcal{M}$ with dimensionality $d_0 \approx 3$--$5$:*
+**Definition 13.1** (Sensorimotor Manifold). *The sensorimotor manifold* $\mathcal{M}_0$ *is a submanifold of the full cognitive manifold* $\mathcal{M}$ *with dimensionality* $d_0 \approx 3$*--5:*
 
-$$\mathcal{M}_0 = \{x \in \mathcal{M} : x = f(s, m, a)\}$$
+$$\mathcal{M}_0 = \lbrace x \in \mathcal{M} : x = f(s, m, a)\rbrace$$
 
-*where $s$ is the current sensory state, $m$ is the current motor plan, and $a$ is the current affective state. The embedding $f$ maps the sensorimotor variables into the full activation space.*
+*where* $s$ *is the current sensory state,* $m$ *is the current motor plan, and* $a$ *is the current affective state. The embedding* $f$ *maps the sensorimotor variables into the full activation space.*
 
 **Local connectivity.** The manifold is locally connected but globally fragmented. States that are close in one sensory modality (two similar visual scenes) are connected by short paths. But states in different modalities (a visual scene and a sound) are not connected unless they co-occur in experience. The manifold is a collection of *patches* --- small, locally connected regions corresponding to specific sensorimotor routines --- that are not yet integrated into a global structure.
 
@@ -72,21 +72,21 @@ The transition from the sensorimotor stage to the pre-operational stage, occurri
 - **Pretend play dimension**: The child can occupy cognitive states that do not correspond to current reality. "I am a dinosaur" is a navigable state on the manifold, even though it has no sensorimotor correlate.
 - **Basic causal dimension**: Actions produce effects, and effects have causes. "I pushed the block, so it fell" is a trajectory that connects action to outcome.
 
-**Definition 13.2** (Pre-Operational Manifold). *The pre-operational manifold $\mathcal{M}_1$ extends $\mathcal{M}_0$ with additional dimensions:*
+**Definition 13.2** (Pre-Operational Manifold). *The pre-operational manifold* $\mathcal{M}_1$ *extends* $\mathcal{M}_0$ *with additional dimensions:*
 
 $$\mathcal{M}_1 = \mathcal{M}_0 \times \mathcal{S} \times \mathcal{P} \times \mathcal{C}$$
 
-*where $\mathcal{S}$ is the symbolic representation space, $\mathcal{P}$ is the pretend/hypothetical space, and $\mathcal{C}$ is the causal structure space. The dimensionality is $d_1 = d_0 + \dim(\mathcal{S}) + \dim(\mathcal{P}) + \dim(\mathcal{C}) \approx 6$--$10$.*
+*where* $\mathcal{S}$ *is the symbolic representation space,* $\mathcal{P}$ *is the pretend/hypothetical space, and* $\mathcal{C}$ *is the causal structure space. The dimensionality is* $d_1 = d_0 + \dim(\mathcal{S}) + \dim(\mathcal{P}) + \dim(\mathcal{C}) \approx 6$*--10.*
 
 This dimensional addition is a **topological transition**. The manifold's topology changes: $\mathcal{M}_1$ is not homeomorphic to $\mathcal{M}_0$, because it has more independent dimensions. The transition is not a continuous deformation of the old manifold; it is the creation of a new manifold with a fundamentally different topological type.
 
 **Metric inconsistency.** The pre-operational manifold has the right dimensions but the wrong metric. The child can represent quantities (the number dimension exists), but the metric on this dimension is not invariant under irrelevant transformations. When five pennies are spread apart, they "look like more" because the spatial extent dimension (which exists on $\mathcal{M}_0$) contaminates the number dimension (which is new on $\mathcal{M}_1$). The metric on the number dimension is context-dependent: the distance between "five" and "six" varies depending on the spatial arrangement. This is the geometric interpretation of the pre-operational child's failure on conservation tasks.
 
-**Definition 13.3** (Metric Inconsistency). *The metric $g_{\mu\nu}$ on $\mathcal{M}_1$ is inconsistent if there exist coordinate transformations $\phi$ that preserve the relevant dimension (e.g., number) but change the metric distance:*
+**Definition 13.3** (Metric Inconsistency). *The metric* $g_{\mu\nu}$ *on* $\mathcal{M}_1$ *is inconsistent if there exist coordinate transformations* $\phi$ *that preserve the relevant dimension (e.g., number) but change the metric distance:*
 
 $$g_{\mu\nu}(x) \neq g_{\mu\nu}(\phi(x))$$
 
-*for transformations $\phi$ that should be gauge transformations (morally, numerically, or logically irrelevant). A consistent metric satisfies $g_{\mu\nu}(x) = g_{\mu\nu}(\phi(x))$ for all such $\phi$.*
+*for transformations* $\phi$ *that should be gauge transformations (morally, numerically, or logically irrelevant). A consistent metric satisfies* $g_{\mu\nu}(x) = g_{\mu\nu}(\phi(x))$ *for all such* $\phi$.
 
 The pre-operational stage is therefore a manifold that has grown the right dimensions but has not yet developed the right metric. The child can *represent* the relevant cognitive variables, but the distances between states are not yet reliable. Thinking has the right vocabulary but the wrong grammar.
 
@@ -99,7 +99,7 @@ The transition to the concrete operational stage, occurring around age 7, is fun
 
 **Conservation as gauge invariance.** The hallmark achievement of the concrete operational stage is conservation: the understanding that quantity is invariant under spatial rearrangement, that mass is invariant under shape change, that liquid volume is invariant under container change. In the geometric framework, conservation is **gauge invariance of the metric**.
 
-**Definition 13.4** (Metric Stabilization). *The concrete operational manifold $\mathcal{M}_2$ has the same dimensions as $\mathcal{M}_1$ (possibly with modest additions) but a stabilized metric:*
+**Definition 13.4** (Metric Stabilization). *The concrete operational manifold* $\mathcal{M}_2$ *has the same dimensions as* $\mathcal{M}_1$ *(possibly with modest additions) but a stabilized metric:*
 
 $$g_{\mu\nu}^{(\mathcal{M}_2)}(x) = g_{\mu\nu}^{(\mathcal{M}_2)}(\phi(x)) \quad \text{for all gauge transformations } \phi$$
 
@@ -109,7 +109,7 @@ This stabilization is a **topological transition** in the metric space. The spac
 
 **Reversibility as path inversion.** Another hallmark of the concrete operational stage is reversibility: the understanding that operations can be undone. "If I add 3 to 5 to get 8, I can subtract 3 from 8 to get back to 5." In the geometric framework, reversibility means that the manifold's paths are *invertible*: for every trajectory from state $A$ to state $B$, there exists a trajectory from $B$ back to $A$. The manifold is not just connected; it is navigable in both directions.
 
-**Definition 13.5** (Path Invertibility). *The manifold $\mathcal{M}_2$ is path-invertible if for every geodesic $\gamma: [0, T] \to \mathcal{M}_2$ with $\gamma(0) = A$ and $\gamma(T) = B$, there exists a geodesic $\gamma^{-1}: [0, T'] \to \mathcal{M}_2$ with $\gamma^{-1}(0) = B$ and $\gamma^{-1}(T') = A$.*
+**Definition 13.5** (Path Invertibility). *The manifold* $\mathcal{M}_2$ *is path-invertible if for every geodesic* $\gamma: [0, T] \to \mathcal{M}_2$ *with* $\gamma(0) = A$ *and* $\gamma(T) = B$*, there exists a geodesic* $\gamma^{-1}: [0, T'] \to \mathcal{M}_2$ *with* $\gamma^{-1}(0) = B$ *and* $\gamma^{-1}(T') = A$.
 
 The sensorimotor and pre-operational manifolds are not path-invertible. Actions in those stages are often irreversible in the child's cognitive representation: breaking a cookie into two pieces cannot be undone (in the child's representation, though not in physical reality). The concrete operational manifold adds path invertibility, enabling the child to reason about operations and their inverses --- a prerequisite for arithmetic, logical deduction, and systematic classification.
 
@@ -122,11 +122,11 @@ The sensorimotor and pre-operational manifolds are not path-invertible. Actions 
 
 The transition to the formal operational stage, typically beginning around age 11--12, is a topological event of a different kind from the previous transitions. The manifold does not gain many new dimensions, and the metric does not change qualitatively. Instead, the manifold becomes **topologically complete**: it is closed under the cognitive operations that the system can perform.
 
-**Definition 13.6** (Manifold Completion). *The formal operational manifold $\mathcal{M}_3$ is the completion of $\mathcal{M}_2$ under logical and hypothetical operations:*
+**Definition 13.6** (Manifold Completion). *The formal operational manifold* $\mathcal{M}_3$ *is the completion of* $\mathcal{M}_2$ *under logical and hypothetical operations:*
 
 $$\mathcal{M}_3 = \overline{\mathcal{M}_2}^{\mathcal{O}}$$
 
-*where $\overline{\cdot}^{\mathcal{O}}$ denotes closure under the operation set $\mathcal{O} = \{\text{negation}, \text{conjunction}, \text{disjunction}, \text{implication}, \text{quantification}, \text{hypothetical}\}$. Every cognitive state that can be reached by applying any finite sequence of operations in $\mathcal{O}$ to any state in $\mathcal{M}_2$ is included in $\mathcal{M}_3$.*
+*where* $\overline{\cdot}^{\mathcal{O}}$ *denotes closure under the operation set* $\mathcal{O} = \lbrace\text{negation}, \text{conjunction}, \text{disjunction}, \text{implication}, \text{quantification}, \text{hypothetical}\rbrace$*. Every cognitive state that can be reached by applying any finite sequence of operations in* $\mathcal{O}$ *to any state in* $\mathcal{M}_2$ *is included in* $\mathcal{M}_3$.
 
 This completion adds the following capabilities:
 
@@ -157,6 +157,15 @@ Each manifold is a submanifold of the next. The sequence is not arbitrary; each 
 
 This ordering constraint is the geometric explanation of Piaget's *invariant sequence*: the stages always occur in the same order because each topological transition requires the structure established by the previous transition. The ordering is not a contingent fact about human biology; it is a *logical necessity* of the topological sequence.
 
+```mermaid
+flowchart LR
+    M0["M0 sensorimotor, birth to about 2: low-dimensional patch"] -->|"dimension addition: symbols grounded in sensorimotor dimensions"| M1["M1 pre-operational, about 2 to 7"]
+    M1 -->|"metric stabilization on the dimensions just added"| M2["M2 concrete operational, about 7 to 11"]
+    M2 -->|"completion under logical operations, needing a stable metric"| M3["M3 formal operational, about 11 onward"]
+```
+
+*Figure 13.1 (diagram): the nested sequence of Section 13.6, with the transition that produces each stage and why it needs the one before.*
+
 
 ## 13.7 Transition Mechanisms: How the Topology Changes
 
@@ -166,11 +175,11 @@ Piaget proposed that development is driven by two complementary processes: **ass
 
 **Accommodation = topological modification of the manifold.** When a new experience cannot be represented on the existing manifold --- because the manifold lacks the dimension, the connectivity, or the metric structure needed to represent it --- the cognitive system must modify the manifold itself. This is the mechanism of stage transitions: the experience creates a pressure that the current topology cannot accommodate, and the system responds by adding dimensions, connecting patches, stabilizing the metric, or closing the manifold under new operations.
 
-**Definition 13.7** (Accommodation Pressure). *The accommodation pressure $P(x, \mathcal{M})$ at a cognitive state $x$ on manifold $\mathcal{M}$ is the discrepancy between the experience and the manifold's capacity to represent it:*
+**Definition 13.7** (Accommodation Pressure). *The accommodation pressure* $P(x, \mathcal{M})$ *at a cognitive state* $x$ *on manifold* $\mathcal{M}$ *is the discrepancy between the experience and the manifold's capacity to represent it:*
 
 $$P(x, \mathcal{M}) = \inf_{y \in \mathcal{M}} d_{\mathcal{A}}(x, y)$$
 
-*where $d_{\mathcal{A}}$ is the distance in the ambient activation space $\mathcal{A}$. If $x$ is on $\mathcal{M}$, $P = 0$ (the experience is assimilable). If $x$ is off $\mathcal{M}$, $P > 0$ (the experience requires accommodation --- the manifold must grow to include it).*
+*where* $d_{\mathcal{A}}$ *is the distance in the ambient activation space* $\mathcal{A}$*. If* $x$ *is on* $\mathcal{M}$, $P = 0$ *(the experience is assimilable). If* $x$ *is off* $\mathcal{M}$, $P > 0$ *(the experience requires accommodation --- the manifold must grow to include it).*
 
 A topological transition occurs when the accumulated accommodation pressure exceeds a threshold --- when the system has encountered sufficiently many experiences that the current manifold cannot represent. The transition is not gradual; it is a phase change. The manifold does not grow one dimension at a time; it undergoes a topological restructuring that adds multiple dimensions, connections, or invariances simultaneously. This is consistent with the empirical observation that developmental transitions are relatively rapid (occurring over weeks to months) compared to the long plateaus of within-stage learning (lasting years).
 
@@ -217,15 +226,15 @@ The two transitions --- metric stabilization at age 7 and operation closure at a
 
 ## 13.9 The Development of the Curvature Threshold
 
-Chapter 12 introduced the curvature threshold $\kappa^*$ as the parameter that governs the dual-process transition: when the local curvature exceeds $\kappa^*$, the cognitive system transitions from gradient following (System 1) to geodesic computation (System 2). The development of $\kappa^*$ across childhood is itself a developmental story.
+Chapter 12 introduced the curvature threshold $\kappa^{\ast}$ as the parameter that governs the dual-process transition: when the local curvature exceeds $\kappa^{\ast}$, the cognitive system transitions from gradient following (System 1) to geodesic computation (System 2). The development of $\kappa^{\ast}$ across childhood is itself a developmental story.
 
 **Infants are pure System 1.** The sensorimotor manifold has such low dimensionality that meaningful curvature is rare. Most of the manifold is flat --- the few dimensions do not conflict with each other in complex ways. The infant follows the gradient (reaching for the bright object, turning toward the sound) because the gradient is the only guide available, and it works well in the flat, low-dimensional sensorimotor manifold. There is no System 2 because there is no curvature to trigger it.
 
-**Pre-operational children have incipient System 2.** The addition of symbolic dimensions creates the first regions of significant curvature on the manifold. When the child's visual perception says "more pennies" (because they are spread out) but the count says "same number" (because none were added), the manifold has curvature: two dimensions of the manifold (spatial extent and numerosity) conflict. But the child's curvature detector has not developed yet. The curvature threshold $\kappa^*$ is effectively infinite: the child follows the gradient (the visual percept, which is more salient) regardless of the curvature. This is why pre-operational children fail conservation tasks: they follow System 1 through regions of curvature where System 2 is needed.
+**Pre-operational children have incipient System 2.** The addition of symbolic dimensions creates the first regions of significant curvature on the manifold. When the child's visual perception says "more pennies" (because they are spread out) but the count says "same number" (because none were added), the manifold has curvature: two dimensions of the manifold (spatial extent and numerosity) conflict. But the child's curvature detector has not developed yet. The curvature threshold $\kappa^{\ast}$ is effectively infinite: the child follows the gradient (the visual percept, which is more salient) regardless of the curvature. This is why pre-operational children fail conservation tasks: they follow System 1 through regions of curvature where System 2 is needed.
 
 **Concrete operational children develop the curvature detector.** The metric stabilization at age 7 is accompanied by the development of a curvature detection mechanism --- the ability to notice when two dimensions of the manifold conflict. "Wait, the pennies look like more, but I didn't add any" is curvature detection: the child notices that the gradient in one dimension (spatial extent suggests more) conflicts with a constraint in another dimension (quantity is conserved). This detection triggers the transition to geodesic computation: the child counts the pennies instead of relying on visual impression, computing the true geodesic (conservation) rather than following the misleading gradient (appearance).
 
-**Formal operational adolescents calibrate the curvature threshold.** The completion of the manifold brings metacognitive curvature detection: the ability to reason about curvature itself. "I know this problem is tricky because the intuitive answer feels wrong" is metacognitive curvature detection. The formal operational adolescent can set $\kappa^*$ adaptively --- lowering it for problems that are known to be tricky (like the bat-and-ball problem) and raising it for problems that are genuinely simple. This adaptive calibration of $\kappa^*$ is what the cognitive reflection test measures in adults: the ability to detect the curvature spike that separates the intuitive wrong answer from the correct geodesic.
+**Formal operational adolescents calibrate the curvature threshold.** The completion of the manifold brings metacognitive curvature detection: the ability to reason about curvature itself. "I know this problem is tricky because the intuitive answer feels wrong" is metacognitive curvature detection. The formal operational adolescent can set $\kappa^{\ast}$ adaptively --- lowering it for problems that are known to be tricky (like the bat-and-ball problem) and raising it for problems that are genuinely simple. This adaptive calibration of $\kappa^{\ast}$ is what the cognitive reflection test measures in adults: the ability to detect the curvature spike that separates the intuitive wrong answer from the correct geodesic.
 
 
 ## 13.10 Parallel with Artificial Development
@@ -258,7 +267,7 @@ Teaching formal logic to a pre-operational child is like asking someone to navig
 
 **Setup.** A 6-year-old child, currently at the pre-operational stage, is tested on conservation of number using a standard Piagetian protocol. Five pennies are arranged in two configurations: a compact row and a spread-out row. The child is asked whether the two rows have the same number of pennies.
 
-**Step 1: Characterize the current manifold topology.** The child's manifold $\mathcal{M}_1$ has approximately 8--9 dimensions, including a spatial extent dimension and a numerosity dimension. The metric on the numerosity dimension is inconsistent: $g_{\text{num,num}}$ varies with spatial configuration.
+**Step 1: Characterize the current manifold topology.** The child's manifold $\mathcal M_1$ has approximately 8--9 dimensions, including a spatial extent dimension and a numerosity dimension. The metric on the numerosity dimension is inconsistent: $g_{\text{num,num}}$ varies with spatial configuration.
 
 **Step 2: Identify the accommodation pressure.** The compact and spread-out rows have the same number (5) but different spatial extents. A consistent metric would assign the same distance between "5 pennies" and "6 pennies" regardless of spatial arrangement. The inconsistent metric assigns a smaller distance when the pennies are compact (5 "feels close to" 5 because the rows look similar) and a larger distance when the pennies are spread (5 in a spread row "feels close to" 6 or 7 because the row looks longer). The accommodation pressure is the discrepancy between the count (same) and the metric judgment (different).
 
@@ -289,29 +298,29 @@ Chapter 14 turns to cognitive pathology, examining what happens when the manifol
 
 ## Technical Appendix 13A: Topological Transitions --- Formal Framework
 
-**Definition** (Topological Type). *The topological type of a manifold $\mathcal{M}$ is the equivalence class of $\mathcal{M}$ under homeomorphism: $[\mathcal{M}]_{\text{top}} = \{\mathcal{N} : \mathcal{N} \cong_{\text{top}} \mathcal{M}\}$. Two manifolds have the same topological type if and only if there exists a continuous bijection with continuous inverse between them.*
+**Definition** (Topological Type). *The topological type of a manifold* $\mathcal{M}$ *is the equivalence class of* $\mathcal{M}$ *under homeomorphism:* $[\mathcal{M}]_ {\text{top}} = \lbrace\mathcal{N} : \mathcal{N} \cong_{\text{top}} \mathcal{M}\rbrace$*. Two manifolds have the same topological type if and only if there exists a continuous bijection with continuous inverse between them.*
 
 **Theorem** (Stage Transitions are Topological). *The Piagetian stage transitions change the topological type of the cognitive manifold. Specifically:*
 
-*1. $\mathcal{M}_0 \not\cong_{\text{top}} \mathcal{M}_1$ because $\dim(\mathcal{M}_1) > \dim(\mathcal{M}_0)$ (manifolds of different dimension are not homeomorphic).*
+*1.* $\mathcal M_0 \not\cong_{\text{top}} \mathcal M_1$ *because* $\dim(\mathcal{M}_1) > \dim(\mathcal{M}_0)$ *(manifolds of different dimension are not homeomorphic).*
 
-*2. $\mathcal{M}_1 \not\cong_{\text{top}} \mathcal{M}_2$ because $\mathcal{M}_2$ is a fiber bundle over $\mathcal{M}_1$ with fiber equal to the consistent-metric section, changing the homotopy type.*
+*2.* $\mathcal M_1 \not\cong_{\text{top}} \mathcal M_2$ *because* $\mathcal{M}_2$ *is a fiber bundle over* $\mathcal M_1$ *with fiber equal to the consistent-metric section, changing the homotopy type.*
 
-*3. $\mathcal{M}_2 \not\cong_{\text{top}} \mathcal{M}_3$ because $\mathcal{M}_3$ is the completion of $\mathcal{M}_2$, adding limit points that change the topological type (the completion of an incomplete metric space changes its topology).*
+*3.* $\mathcal M_2 \not\cong_{\text{top}} \mathcal M_3$ *because* $\mathcal{M}_3$ *is the completion of* $\mathcal{M}_2$*, adding limit points that change the topological type (the completion of an incomplete metric space changes its topology).*
 
 **Accommodation pressure as a measure.** The accommodation pressure $P(x, \mathcal{M})$ can be formalized as a measure on the activation space:
 
-$$\mu_P(A) = \int_A P(x, \mathcal{M}) \, dx$$
+$$\mu_P(A) = \int_A P(x, \mathcal{M}) \thinspace dx$$
 
 The total accommodation pressure experienced over time interval $[0, T]$ is:
 
-$$\Pi(T) = \int_0^T P(\gamma(t), \mathcal{M}(t)) \, dt$$
+$$\Pi(T) = \int_0^T P(\gamma(t), \mathcal{M}(t)) \thinspace dt$$
 
-where $\gamma(t)$ is the sequence of experienced cognitive states. The topological transition occurs when $\Pi(T)$ exceeds a critical threshold $\Pi^*$. The threshold $\Pi^*$ may vary across individuals and across transitions, but the transition mechanism is the same: accumulated pressure from experiences that the current manifold cannot represent.
+where $\gamma(t)$ is the sequence of experienced cognitive states. The topological transition occurs when $\Pi(T)$ exceeds a critical threshold $\Pi^{\ast}$. The threshold $\Pi^{\ast}$ may vary across individuals and across transitions, but the transition mechanism is the same: accumulated pressure from experiences that the current manifold cannot represent.
 
 **Dimensionality estimation.** Maya's dimensionality estimates use a battery of tasks that probe independent cognitive dimensions. For each pair of tasks, she computes the correlation between performance patterns across items. High correlation between two tasks suggests they tap the same manifold dimension; low correlation suggests different dimensions. The effective dimensionality is estimated as the number of eigenvalues of the task correlation matrix that exceed a threshold (analogous to PCA dimensionality estimation):
 
-$$d_{\text{eff}} = |\{i : \lambda_i > \lambda_{\text{threshold}}\}|$$
+$$d_{\text{eff}} = |\lbrace i : \lambda_i > \lambda_{\text{threshold}}\rbrace|$$
 
 where $\lambda_i$ are the eigenvalues of the $n_{\text{tasks}} \times n_{\text{tasks}}$ correlation matrix. This method provides a lower bound on the manifold dimensionality (it can only detect dimensions that are probed by at least one task in the battery) and is biased downward for young children (whose task battery is necessarily smaller).
 
