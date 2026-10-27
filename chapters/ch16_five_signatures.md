@@ -251,7 +251,7 @@ The negative correlation ($r \approx -0.85$) between M3 and M4 is the signature 
 
 **The governance spectrum.** The five models span a spectrum from brittle to elastic governance:
 
-$$\text{Claude (brittle, 20\% recovery)} \leftarrow \text{Pro (moderate, 45\%)} \leftarrow \text{Flash 2.5 (moderate, 48\%)} \leftarrow \text{Flash 3 (moderate, 52\%)} \leftarrow \text{Flash 2.0 (elastic, 73\%)}$$
+Claude (brittle, 20% recovery) $\leftarrow$ Pro (moderate, 45%) $\leftarrow$ Flash 2.5 (moderate, 48%) $\leftarrow$ Flash 3 (moderate, 52%) $\leftarrow$ Flash 2.0 (elastic, 73%)
 
 Brittle governance (Claude) resists perturbation rigidly and breaks completely when the perturbation exceeds the boundary. Elastic governance (Flash 2.0) yields under perturbation and springs back when the perturbation is named. The spectrum is the executive counterpart of the metric width spectrum: narrow metrics produce brittle governance (no flexibility to recover), and adaptive metrics produce elastic governance (flexibility to re-orient).
 
@@ -296,15 +296,15 @@ The geometric framework identifies the specific architectural change needed: con
 
 The five signatures demonstrate that cognitive architecture is not a single quantity but a geometric object: a multi-dimensional profile whose shape encodes the specific combination of capabilities that the architecture supports.
 
-**Definition 16.1** (Cognitive Signature). *The cognitive signature of a model $M$ is the vector:*
+**Definition 16.1** (Cognitive Signature). *The cognitive signature of a model* $M$ *is the vector:*
 
 $$\Sigma_M = (s_1, s_2, \ldots, s_n) \in \mathbb{R}^n$$
 
-*where $s_i$ is the normalized score on subtask $i$, and $n$ is the number of subtasks. The signature lives in $\mathbb{R}^n$ and has a shape determined by the relative values of its components.*
+*where* $s_i$ *is the normalized score on subtask* $i$*, and* $n$ *is the number of subtasks. The signature lives in* $\mathbb{R}^n$ *and has a shape determined by the relative values of its components.*
 
 **Definition 16.2** (Signature Distance). *The distance between two cognitive signatures is:*
 
-$$d(\Sigma_M, \Sigma_{M'}) = \|\Sigma_M - \Sigma_{M'}\|_2$$
+$$d(\Sigma_M, \Sigma_{M'}) = \Vert\Sigma_M - \Sigma_{M'}\Vert_2$$
 
 *Two models with similar signatures have similar cognitive architectures. Two models with distant signatures have different architectures, even if their composite scores are similar.*
 
@@ -369,13 +369,13 @@ Chapter 17, the final chapter, turns from measured results to open questions. Th
 
 **Score normalization.** The raw benchmark scores are on different scales (ECE in [0, 1], sycophancy in [0%, 100%], AUROC in [0, 1], etc.). For radar chart construction, all scores are normalized to a common [0, 1] scale using the following procedure:
 
-For each subtask $i$ with scores $\{s_{i,m}\}_{m=1}^{5}$ across the five models:
+For each subtask $i$ with scores $\lbrace s_{i,m}\rbrace_{m=1}^{5}$ across the five models:
 
 $$\hat{s}_{i,m} = \frac{s_{i,m} - s_{i,\min}}{s_{i,\max} - s_{i,\min}}$$
 
 where $s_{i,\min}$ and $s_{i,\max}$ are the minimum and maximum scores across the five models. This normalization maps the best model on each subtask to 1.0 and the worst to 0.0, preserving relative differences while making the axes commensurable.
 
-**Polarity correction.** Some subtasks have inverted polarity (lower is better): ECE (lower = better calibration), sycophancy rate (lower = less sycophancy), displacement magnitude (lower = more resistant). For these subtasks, the normalized score is inverted: $\hat{s}_{i,m} \leftarrow 1 - \hat{s}_{i,m}$.
+**Polarity correction.** Some subtasks have inverted polarity (lower is better): ECE (lower = better calibration), sycophancy rate (lower = less sycophancy), displacement magnitude (lower = more resistant). For these subtasks, the normalized score is inverted: $\hat s_{i,m} \leftarrow 1 - \hat s_{i,m}$.
 
 **Composite score computation.** The composite score is the unweighted mean of the 21 normalized subtask scores:
 
@@ -392,9 +392,9 @@ $$d(\Sigma_M, \Sigma_{M'}) = \sqrt{\sum_{i=1}^{n} (\hat{s}_{i,M} - \hat{s}_{i,M'
 
 **Alternative distance measures.** The Euclidean distance treats all subtasks as equally important in determining architectural similarity. Alternative measures include:
 
-1. *Weighted Euclidean distance*: $d_w = \sqrt{\sum_i w_i (\hat{s}_{i,M} - \hat{s}_{i,M'})^2}$, where $w_i$ reflects the importance of subtask $i$ for the comparison.
+1. *Weighted Euclidean distance*: $d_w = \sqrt{\sum_i w_i (\hat s_{i,M} - \hat s_{i,M'})^2}$, where $w_i$ reflects the importance of subtask $i$ for the comparison.
 
-2. *Cosine distance*: $d_{\cos} = 1 - \frac{\Sigma_M \cdot \Sigma_{M'}}{\|\Sigma_M\| \|\Sigma_{M'}\|}$, which measures the angular difference between signatures regardless of magnitude. This is useful when the *shape* of the profile matters more than the absolute scores.
+2. *Cosine distance*: $d_{\cos} = 1 - \frac{\Sigma_M \cdot \Sigma_{M'}}{\Vert\Sigma_M\Vert \Vert\Sigma_{M'}\Vert}$, which measures the angular difference between signatures regardless of magnitude. This is useful when the *shape* of the profile matters more than the absolute scores.
 
 3. *Rank-based distance*: Replace scores with ranks and compute Spearman's rho. This is robust to outliers and nonlinear score transformations.
 
