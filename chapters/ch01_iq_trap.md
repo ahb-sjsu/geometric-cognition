@@ -56,11 +56,11 @@ Consider a cognitive system---a human brain, a language model, anything that rea
 
 Each subtask produces a score between 0 and 1. The full profile of a model is therefore a point in a 21-dimensional space---a vector with 21 components, one per subtask. We can represent this profile as a tensor.
 
-**Definition 1.1** (Cognitive Profile Tensor). *For a cognitive system $S$, the cognitive profile tensor is the vector*
+**Definition 1.1** (Cognitive Profile Tensor). *For a cognitive system* $S$*, the cognitive profile tensor is the vector*
 
 $$\mathbf{C}(S) = (c_1, c_2, \ldots, c_{21}) \in [0, 1]^{21}$$
 
-*where each $c_i$ is the system's score on subtask $i$.*
+*where each* $c_i$ *is the system's score on subtask* $i$.
 
 This is, of course, a simplification. The true cognitive profile of any system is vastly higher-dimensional---the activation space of a human brain or a large language model has millions or billions of dimensions. But even this 21-dimensional simplification suffices to demonstrate the irrecoverability problem.
 
@@ -96,14 +96,28 @@ IQ is computed from *g* by normalization: $\text{IQ} = 100 + 15 \cdot z_g$, wher
 
 The composite score used in most AI benchmarks is the same operation with equal weights: accuracy averaged across tasks. The MMLU score, the HumanEval score, the "overall" score on any leaderboard---all are contractions of a profile tensor to a scalar.
 
-**Definition 1.2** (Scalar Contraction). *A scalar contraction is any function $\phi: [0,1]^n \to \mathbb{R}$ that maps a cognitive profile tensor to a single real number. A linear contraction is a scalar contraction of the form $\phi(\mathbf{C}) = \mathbf{w} \cdot \mathbf{C}$ for some weight vector $\mathbf{w}$.*
+**Definition 1.2** (Scalar Contraction). *A scalar contraction is any function* $\phi: [0,1]^n \to \mathbb{R}$ *that maps a cognitive profile tensor to a single real number. A linear contraction is a scalar contraction of the form* $\phi(\mathbf{C}) = \mathbf{w} \cdot \mathbf{C}$ *for some weight vector* $\mathbf{w}$.
 
 The g-factor is the linear contraction whose weights are the first principal component loadings. IQ is a monotonic rescaling of the g-factor. Benchmark accuracy is the linear contraction with uniform weights. All are scalar contractions. And all are irrecoverable.
+
+```mermaid
+flowchart LR
+    P["Cognitive profile tensor C of S: one score per subtask"] --> PHI["Scalar contraction phi"]
+    PHI --> G["g-factor: weights are the first principal component loadings"]
+    PHI --> B["Benchmark accuracy: uniform weights"]
+    G --> IQ["IQ: monotonic rescaling of g"]
+    G --> R["A single real number"]
+    IQ --> R
+    B --> R
+    R -.->|"no function psi recovers the profile"| P
+```
+
+*Figure 1.1 (diagram): the three familiar scores are all scalar contractions of the same profile tensor, and none of them can be inverted.*
 
 
 ## 1.4 The Scalar Irrecoverability Theorem
 
-**Theorem 1.1** (Scalar Irrecoverability). *Let $\phi: [0,1]^n \to \mathbb{R}$ be any scalar contraction with $n \geq 2$. Then for any value $v$ in the range of $\phi$, the preimage $\phi^{-1}(v)$ contains a continuum of distinct profile tensors. In particular, for any pair of profile tensors $\mathbf{C}_1 \neq \mathbf{C}_2$ with $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2)$, no function $\psi: \mathbb{R} \to [0,1]^n$ can satisfy $\psi(\phi(\mathbf{C}_1)) = \mathbf{C}_1$ and $\psi(\phi(\mathbf{C}_2)) = \mathbf{C}_2$ simultaneously.*
+**Theorem 1.1** (Scalar Irrecoverability). *Let* $\phi: [0,1]^n \to \mathbb{R}$ *be any scalar contraction with* $n \geq 2$*. Then for any value* $v$ *in the range of* $\phi$*, the preimage* $\phi^{-1}(v)$ *contains a continuum of distinct profile tensors. In particular, for any pair of profile tensors* $\mathbf{C}_1 \neq \mathbf{C}_2$ *with* $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2)$*, no function* $\psi: \mathbb{R} \to [0,1]^n$ *can satisfy* $\psi(\phi(\mathbf{C}_1)) = \mathbf{C}_1$ *and* $\psi(\phi(\mathbf{C}_2)) = \mathbf{C}_2$ *simultaneously.*
 
 *The contraction is not merely lossy. It is irrecoverable: the destroyed information cannot be reconstructed from the output, even in principle.*
 
@@ -194,7 +208,7 @@ If scalar measures are irrecoverable, what would a recoverable measure look like
 
 The answer follows from the theorem by negation. The contraction is irrecoverable because it maps a high-dimensional space to a low-dimensional one, and the reduction in dimensionality means that distinct profiles can produce identical outputs. To avoid this, we need a map that preserves enough dimensionality to distinguish the profiles we care about.
 
-**Definition 1.3** (Recoverable Representation). *A representation $\Phi: [0,1]^n \to \mathbb{R}^k$ is recoverable with respect to a set $\mathcal{S}$ of cognitive systems if there exists a left inverse $\Psi: \mathbb{R}^k \to [0,1]^n$ such that $\Psi(\Phi(\mathbf{C}(S))) = \mathbf{C}(S)$ for all $S \in \mathcal{S}$.*
+**Definition 1.3** (Recoverable Representation). *A representation* $\Phi: [0,1]^n \to \mathbb{R}^k$ *is recoverable with respect to a set* $\mathcal{S}$ *of cognitive systems if there exists a left inverse* $\Psi: \mathbb{R}^k \to [0,1]^n$ *such that* $\Psi(\Phi(\mathbf{C}(S))) = \mathbf{C}(S)$ *for all* $S \in \mathcal{S}$.
 
 For exact recoverability, we need $k \geq n$---the representation must have at least as many dimensions as the profile. But in practice, we do not need exact recoverability. We need *sufficient* recoverability: enough dimensions to distinguish the cognitive architectures that are functionally distinct.
 
@@ -327,21 +341,21 @@ We begin with Kahneman.
 
 ## Technical Appendix 1A: Formal Statement and Proof of the Scalar Irrecoverability Theorem
 
-**Theorem 1.1** (Scalar Irrecoverability, Formal Version). *Let $n \geq 2$ and let $\phi: [0,1]^n \to \mathbb{R}$ be a continuous surjection. Then:*
+**Theorem 1.1** (Scalar Irrecoverability, Formal Version). *Let* $n \geq 2$ *and let* $\phi: [0,1]^n \to \mathbb{R}$ *be a continuous surjection. Then:*
 
-*(i) For all $v$ in the interior of the range of $\phi$, the fiber $\phi^{-1}(v)$ has Hausdorff dimension at least $n - 1$.*
+*(i) For all* $v$ *in the interior of the range of* $\phi$*, the fiber* $\phi^{-1}(v)$ *has Hausdorff dimension at least* $n - 1$.
 
-*(ii) There exist $\mathbf{C}_1, \mathbf{C}_2 \in [0,1]^n$ with $\mathbf{C}_1 \neq \mathbf{C}_2$ and $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2)$ such that $\|\mathbf{C}_1 - \mathbf{C}_2\|_\infty$ is arbitrarily close to 1. That is, the collisions are not merely between "similar" profiles; maximally dissimilar profiles can be mapped to the same scalar.*
+*(ii) There exist* $\mathbf C_1, \mathbf C_2 \in [0,1]^n$ *with* $\mathbf C_1 \neq \mathbf C_2$ *and* $\phi(\mathbf C_1) = \phi(\mathbf C_2)$ *such that* $\Vert\mathbf C_1 - \mathbf C_2\Vert_\infty$ *is arbitrarily close to 1. That is, the collisions are not merely between "similar" profiles; maximally dissimilar profiles can be mapped to the same scalar.*
 
-*(iii) No function $\psi: \mathbb{R} \to [0,1]^n$ can satisfy $\psi \circ \phi = \text{id}$ on any subset of $[0,1]^n$ with more than one point per fiber.*
+*(iii) No function* $\psi: \mathbb{R} \to [0,1]^n$ *can satisfy* $\psi \circ \phi = \text{id}$ *on any subset of* $[0,1]^n$ *with more than one point per fiber.*
 
 *Proof.*
 
 *(i)* By the implicit function theorem (for smooth $\phi$) or by the topological dimension theory of level sets (for continuous $\phi$), the preimage of a regular value of a continuous function from an $n$-dimensional space to $\mathbb{R}$ is a topological manifold of dimension $n - 1$. For $n \geq 2$, this is at least 1-dimensional---a curve or higher-dimensional surface.
 
-*(ii)* For a linear contraction $\phi(\mathbf{C}) = \mathbf{w} \cdot \mathbf{C}$, consider the profiles $\mathbf{C}_1 = (1, 0, 0, \ldots, 0)$ and $\mathbf{C}_2 = (0, w_1/w_2, 0, \ldots, 0)$ when $w_2 > 0$. Then $\phi(\mathbf{C}_1) = w_1 = w_1/w_2 \cdot w_2 = \phi(\mathbf{C}_2)$, but $\|\mathbf{C}_1 - \mathbf{C}_2\|_\infty = 1$. For nonlinear $\phi$, the intermediate value theorem guarantees similar collisions.
+*(ii)* For a linear contraction $\phi(\mathbf{C}) = \mathbf{w} \cdot \mathbf{C}$, consider the profiles $\mathbf C_1 = (1, 0, 0, \ldots, 0)$ and $\mathbf C_2 = (0, w_1/w_2, 0, \ldots, 0)$ when $w_2 > 0$. Then $\phi(\mathbf C_1) = w_1 = w_1/w_2 \cdot w_2 = \phi(\mathbf C_2)$, but $\Vert\mathbf C_1 - \mathbf C_2\Vert_\infty = 1$. For nonlinear $\phi$, the intermediate value theorem guarantees similar collisions.
 
-*(iii)* Suppose $\psi: \mathbb{R} \to [0,1]^n$ satisfies $\psi(\phi(\mathbf{C})) = \mathbf{C}$ for all $\mathbf{C}$ in some subset $\mathcal{S}$ with more than one point per fiber of $\phi$. Let $\mathbf{C}_1, \mathbf{C}_2 \in \mathcal{S}$ with $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2) = v$ and $\mathbf{C}_1 \neq \mathbf{C}_2$. Then $\psi(v) = \mathbf{C}_1$ and $\psi(v) = \mathbf{C}_2$, which contradicts the assumption that $\psi$ is a function.  $\square$
+*(iii)* Suppose $\psi: \mathbb{R} \to [0,1]^n$ satisfies $\psi(\phi(\mathbf{C})) = \mathbf{C}$ for all $\mathbf{C}$ in some subset $\mathcal{S}$ with more than one point per fiber of $\phi$. Let $\mathbf{C}_1, \mathbf{C}_2 \in \mathcal{S}$ with $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2) = v$ and $\mathbf C_1 \neq \mathbf C_2$. Then $\psi(v) = \mathbf{C}_1$ and $\psi(v) = \mathbf{C}_2$, which contradicts the assumption that $\psi$ is a function.  $\square$
 
 
 ## Technical Appendix 1B: The g-Factor as Tensor Contraction in Index Notation
