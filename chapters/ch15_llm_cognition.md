@@ -35,13 +35,25 @@ The preceding chapters developed the geometric framework for cognition in genera
 
 The transformer architecture (Vaswani et al., 2017) has become the substrate for nearly all large-scale language models. Understanding how the geometric framework maps onto the transformer's components is not merely an exercise in analogy --- it is a *literal* mapping, because the transformer's operations have well-defined mathematical properties that correspond directly to the geometric objects we have defined.
 
+```mermaid
+flowchart LR
+    RS["Residual stream"] --> T1["Trajectory on the cognitive manifold"]
+    AH["Attention heads"] --> T2["Heuristic field components"]
+    COT["Chain of thought"] --> T3["Externalized geodesic approximation"]
+    ICL["In-context learning"] --> T4["Local metric adaptation"]
+    LORA["LoRA update"] --> T5["Local curvature adjustment"]
+    RE["Representation engineering vector"] --> T6["Heuristic field component along a concept direction"]
+```
+
+*Figure 15.1 (diagram): the chapter's mapping from transformer components to geometric objects, one row per section 15.2 to 15.7.*
+
 **The residual stream as trajectory.** In a transformer with $L$ layers, the representation of a token at position $t$ evolves through the layers:
 
 $$x^{(0)} \xrightarrow{\text{Layer 1}} x^{(1)} \xrightarrow{\text{Layer 2}} x^{(2)} \xrightarrow{\cdots} x^{(L)}$$
 
 where $x^{(\ell)} \in \mathbb{R}^d$ is the residual stream state at layer $\ell$. This sequence of states is a *trajectory on the cognitive manifold*: the path traced by the representation as it is processed from input to output. The manifold is the subspace of $\mathbb{R}^d$ that the model's representations actually occupy (the manifold hypothesis from Chapter 3), and the trajectory is the path along this manifold from the problem representation ($x^{(0)}$) to the judgment state ($x^{(L)}$).
 
-**Definition 15.1** (Residual Stream Trajectory). *The residual stream trajectory for token position $t$ is the curve $\gamma_t: \{0, 1, \ldots, L\} \to \mathbb{R}^d$ defined by $\gamma_t(\ell) = x_t^{(\ell)}$, the residual stream state at layer $\ell$. The trajectory is a discrete approximation to a continuous curve on the cognitive manifold $\mathcal{M} \subset \mathbb{R}^d$.*
+**Definition 15.1** (Residual Stream Trajectory). *The residual stream trajectory for token position* $t$ *is the curve* $\gamma_t: \lbrace0, 1, \ldots, L\rbrace \to \mathbb{R}^d$ *defined by* $\gamma_t(\ell) = x_t^{(\ell)}$*, the residual stream state at layer* $\ell$*. The trajectory is a discrete approximation to a continuous curve on the cognitive manifold* $\mathcal{M} \subset \mathbb{R}^d$.
 
 This identification is not metaphorical. The residual stream trajectory *is* the model's cognitive trajectory, in the same way that the fMRI time series *is* the human's cognitive trajectory (Chapter 3). Both are sequences of states in a high-dimensional activation space that concentrate near a low-dimensional manifold. The geometric framework treats them identically.
 
@@ -60,11 +72,11 @@ Each attention head computes a different component of the attention pattern: whi
 
 In the geometric framework, **each attention head computes a component of the heuristic field $h(x)$.**
 
-**Definition 15.2** (Head as Heuristic Component). *Let $h_i(x)$ be the contribution of attention head $i$ to the heuristic field at state $x$. The total heuristic field is:*
+**Definition 15.2** (Head as Heuristic Component). *Let* $h_i(x)$ *be the contribution of attention head* $i$ *to the heuristic field at state* $x$*. The total heuristic field is:*
 
 $$h(x) = \sum_{i=1}^{H} w_i \cdot h_i(x)$$
 
-*where $h_i(x)$ is determined by the attention pattern of head $i$ (which tokens it attends to and how much value it retrieves from them), and $w_i$ is the effective weight of head $i$ in the output projection $W_O$.*
+*where* $h_i(x)$ *is determined by the attention pattern of head* $i$ *(which tokens it attends to and how much value it retrieves from them), and* $w_i$ *is the effective weight of head* $i$ *in the output projection* $W_O$.
 
 The attention pattern of each head determines a *direction* in the heuristic field: which aspect of the context the head considers most relevant. Some heads attend to syntactic structure (their heuristic component tracks grammatical relationships). Some attend to semantic content (their component tracks meaning). Some attend to positional proximity (their component tracks recency). The multi-head architecture allows the heuristic field to have multiple components, each pointing in a different direction, which jointly determine the gradient that guides the trajectory.
 
@@ -87,7 +99,7 @@ In standard (non-CoT) inference, the trajectory is internal: the residual stream
 
 In CoT inference, the model externalizes intermediate states as text tokens. Each reasoning step is a point on the trajectory, written as text, that becomes available as input to subsequent processing. The model can "see" where it has been (by reading its previous tokens) and adjust its trajectory accordingly. This externalization converts the single-pass internal trajectory into a multi-step external trajectory that the model can monitor and correct.
 
-**Definition 15.3** (Externalized Geodesic). *A chain-of-thought is an externalized geodesic approximation: a sequence of text tokens $\tau_1, \tau_2, \ldots, \tau_n$ where each $\tau_k$ corresponds to a point $x_k$ on the cognitive manifold, and the sequence $x_1, x_2, \ldots, x_n$ approximates the geodesic from the problem state to the answer state.*
+**Definition 15.3** (Externalized Geodesic). *A chain-of-thought is an externalized geodesic approximation: a sequence of text tokens* $\tau_1, \tau_2, \ldots, \tau_n$ *where each* $\tau_k$ *corresponds to a point* $x_k$ *on the cognitive manifold, and the sequence* $x_1, x_2, \ldots, x_n$ *approximates the geodesic from the problem state to the answer state.*
 
 The approximation is imperfect for two reasons:
 
@@ -136,7 +148,7 @@ In-context learning (ICL) is the transformer's ability to learn from examples pr
 
 The geometric framework interprets ICL as **local metric adaptation**: the context modifies the attention metric, changing which states are "close" to the current state and thereby changing the trajectory.
 
-**Definition 15.4** (Context-Dependent Metric). *Let $g_{\mu\nu}(x; C)$ be the attention metric at state $x$ given context $C$. In-context learning is the adaptation of the metric to the context:*
+**Definition 15.4** (Context-Dependent Metric). *Let* $g_{\mu\nu}(x; C)$ *be the attention metric at state* $x$ *given context* $C$*. In-context learning is the adaptation of the metric to the context:*
 
 $$g_{\mu\nu}(x; C) \neq g_{\mu\nu}(x; C') \quad \text{for } C \neq C'$$
 
@@ -159,15 +171,15 @@ where $B \in \mathbb{R}^{d \times r}$ and $A \in \mathbb{R}^{r \times d}$ with $
 
 In the geometric framework, **LoRA is a local curvature adjustment on the cognitive manifold.**
 
-**Definition 15.5** (LoRA as Curvature Modification). *The LoRA update $\Delta W$ modifies the Christoffel symbols of the cognitive manifold:*
+**Definition 15.5** (LoRA as Curvature Modification). *The LoRA update* $\Delta W$ *modifies the Christoffel symbols of the cognitive manifold:*
 
 $$\Gamma'^\mu_{\alpha\beta} = \Gamma^\mu_{\alpha\beta} + \delta\Gamma^\mu_{\alpha\beta}(\Delta W)$$
 
-*where $\delta\Gamma^\mu_{\alpha\beta}$ is the change in curvature induced by the weight modification. Because $\Delta W$ is low-rank, the curvature modification is confined to a low-dimensional subspace: only the curvature along the directions spanned by $B$ and $A$ is changed.*
+*where* $\delta\Gamma^\mu_{\alpha\beta}$ *is the change in curvature induced by the weight modification. Because* $\Delta W$ *is low-rank, the curvature modification is confined to a low-dimensional subspace: only the curvature along the directions spanned by* $B$ *and* $A$ *is changed.*
 
 The low-rank constraint means that LoRA adjusts the manifold's curvature in a specific, targeted way: it changes how the manifold bends along a small number of directions, while leaving the curvature along all other directions unchanged. This is precisely what is needed for task adaptation: the pre-trained model's manifold has approximately correct curvature for general tasks, and only the task-specific curvature (the curvature along the dimensions that distinguish the target task from the training distribution) needs adjustment.
 
-**The rank $r$ as adaptation dimensionality.** The rank $r$ of the LoRA update determines how many dimensions of curvature are adjusted. A small $r$ (e.g., $r = 4$) adjusts the curvature along 4 directions, sufficient for tasks that differ from the training distribution in only a few dimensions. A large $r$ (e.g., $r = 64$) adjusts the curvature along 64 directions, needed for tasks that differ from the training distribution along many dimensions. The empirical finding that $r = 4$--$16$ is sufficient for most fine-tuning tasks (Hu et al., 2022) suggests that the difference between the pre-trained manifold and the target-task manifold is typically low-dimensional: only a few curvature adjustments are needed to adapt the model.
+**The rank $r$ as adaptation dimensionality.** The rank $r$ of the LoRA update determines how many dimensions of curvature are adjusted. A small $r$ (e.g., $r = 4$) adjusts the curvature along 4 directions, sufficient for tasks that differ from the training distribution in only a few dimensions. A large $r$ (e.g., $r = 64$) adjusts the curvature along 64 directions, needed for tasks that differ from the training distribution along many dimensions. The empirical finding that $r = 4$--16 is sufficient for most fine-tuning tasks (Hu et al., 2022) suggests that the difference between the pre-trained manifold and the target-task manifold is typically low-dimensional: only a few curvature adjustments are needed to adapt the model.
 
 **Connection to the heuristic field.** LoRA modifies the model's weights, which determine both the heuristic field (through the attention patterns and feedforward computations) and the manifold geometry (through the metric and curvature). The geometric interpretation distinguishes two effects of LoRA:
 
@@ -183,19 +195,19 @@ Representation engineering (Zou et al., 2023) is a technique for identifying and
 
 In the geometric framework, **representation engineering directly measures and modifies components of the heuristic field.**
 
-**Definition 15.6** (Concept Direction as Heuristic Component). *Let $v_{\text{concept}} \in \mathbb{R}^d$ be the representation engineering vector for a concept (e.g., honesty). The projection of the residual stream onto this vector:*
+**Definition 15.6** (Concept Direction as Heuristic Component). *Let* $v_{\text{concept}} \in \mathbb{R}^d$ *be the representation engineering vector for a concept (e.g., honesty). The projection of the residual stream onto this vector:*
 
 $$c(x) = v_{\text{concept}}^T x$$
 
-*measures the component of the heuristic field along the concept direction. Adding $\alpha v_{\text{concept}}$ to the residual stream modifies the heuristic field by adding a constant gradient in the concept direction:*
+*measures the component of the heuristic field along the concept direction. Adding* $\alpha v_{\text{concept}}$ *to the residual stream modifies the heuristic field by adding a constant gradient in the concept direction:*
 
 $$h'(x) = h(x) + \alpha v_{\text{concept}}^T x$$
 
-*This shifts the trajectory toward (if $\alpha > 0$) or away from (if $\alpha < 0$) states that are high on the concept dimension.*
+*This shifts the trajectory toward (if* $\alpha > 0$*) or away from (if* $\alpha < 0$*) states that are high on the concept dimension.*
 
 This connection between representation engineering and the heuristic field opens a direct experimental pathway for testing the geometric framework. If the heuristic field is the primary driver of the model's trajectory in the gradient-following regime (System 1), then modifying the heuristic field via representation engineering should modify the trajectory in predictable ways:
 
-1. **Adding a gradient in the "careful reasoning" direction should lower the curvature threshold $\kappa^*$**, making the model engage System 2 earlier. This corresponds to steering the model toward more deliberate processing.
+1. **Adding a gradient in the "careful reasoning" direction should lower the curvature threshold $\kappa^{\ast}$**, making the model engage System 2 earlier. This corresponds to steering the model toward more deliberate processing.
 
 2. **Adding a gradient in the "confidence" direction should increase overconfidence** (inflating the heuristic field, analogous to the anxiety model from Chapter 14, but in the confidence dimension). Removing gradient in the confidence direction should improve calibration (deflating the heuristic field toward accurate cost-to-go estimates).
 
@@ -255,13 +267,13 @@ The geometric framework provides a common language for comparing transformer cog
 
 **Setup.** A transformer model (32 layers, 4096-dim residual stream, 32 heads/layer) processes the moral dilemma: "A doctor can save five patients by harvesting organs from one healthy patient without consent. Should the doctor proceed?"
 
-**Step 1: Extract the residual stream trajectory.** The residual stream state $x^{(\ell)}$ is recorded at every layer $\ell \in \{0, 1, \ldots, 32\}$ for the final token position (the position at which the model produces its judgment).
+**Step 1: Extract the residual stream trajectory.** The residual stream state $x^{(\ell)}$ is recorded at every layer $\ell \in \lbrace0, 1, \ldots, 32\rbrace$ for the final token position (the position at which the model produces its judgment).
 
 **Step 2: Compute the manifold dimensionality.** PCA on the trajectory reveals that the first 8 principal components capture 91% of the variance. The manifold is approximately 8-dimensional for this task --- lower than the 12 dimensions for the gambling-sister scenario, reflecting the simpler structure of the trolley problem (fewer parties, fewer harm dimensions in play).
 
 **Step 3: Compute the curvature at each layer.** The curvature $\kappa(\ell)$ is estimated as the angle between successive displacement vectors:
 
-$$\kappa(\ell) = \arccos\left(\frac{\Delta x^{(\ell)} \cdot \Delta x^{(\ell+1)}}{\|\Delta x^{(\ell)}\| \|\Delta x^{(\ell+1)}\|}\right)$$
+$$\kappa(\ell) = \arccos\left(\frac{\Delta x^{(\ell)} \cdot \Delta x^{(\ell+1)}}{\Vert\Delta x^{(\ell)}\Vert \Vert\Delta x^{(\ell+1)}\Vert}\right)$$
 
 where $\Delta x^{(\ell)} = x^{(\ell+1)} - x^{(\ell)}$. A small angle means the trajectory is nearly straight (low curvature); a large angle means the trajectory is turning sharply (high curvature).
 
@@ -269,7 +281,7 @@ where $\Delta x^{(\ell)} = x^{(\ell+1)} - x^{(\ell)}$. A small angle means the t
 
 **Step 5: Compare framings.** The same dilemma, framed as "a brilliant surgeon has a chance to save five terminally ill patients by redirecting organs from one patient who will die within hours anyway" (euphemistic), produces a curvature profile with a smaller spike at layers 11--15 (the moral conflict is softened by the framing). The framing "a cold-blooded doctor plans to murder an innocent, healthy person to scavenge their organs for other patients" (dramatic) produces a larger curvature spike (the moral conflict is intensified). The curvature at the spike predicts the verdict: low curvature favors the utilitarian verdict (gradient following suffices, and the utilitarian gradient is dominant), while high curvature favors the deontological verdict (geodesic computation engages, and the geodesic favors the deontological constraint).
 
-**Step 6: Predict framing vulnerability.** The curvature profile predicts that the model is most vulnerable to framing effects when the curvature at the spike is near the curvature threshold $\kappa^*$: close enough that a small change in framing can push the curvature above or below the threshold, changing the processing regime. This is the regime of maximum sensitivity, where the transition between System 1 and System 2 is on a knife edge. Away from the threshold (very low curvature: pure System 1, or very high curvature: pure System 2), framing has less effect because the processing regime is not sensitive to small perturbations.
+**Step 6: Predict framing vulnerability.** The curvature profile predicts that the model is most vulnerable to framing effects when the curvature at the spike is near the curvature threshold $\kappa^{\ast}$: close enough that a small change in framing can push the curvature above or below the threshold, changing the processing regime. This is the regime of maximum sensitivity, where the transition between System 1 and System 2 is on a knife edge. Away from the threshold (very low curvature: pure System 1, or very high curvature: pure System 2), framing has less effect because the processing regime is not sensitive to small perturbations.
 
 
 ## 15.12 Looking Forward
@@ -284,13 +296,13 @@ Chapter 16 brings the framework to its capstone: the five geometric signatures o
 
 ## Technical Appendix 15A: Curvature Estimation from Residual Stream Trajectories
 
-**Definition** (Discrete Curvature). *Let $\gamma(\ell) = x^{(\ell)}$ be the residual stream trajectory through $L$ layers. The discrete curvature at layer $\ell$ is:*
+**Definition** (Discrete Curvature). *Let* $\gamma(\ell) = x^{(\ell)}$ *be the residual stream trajectory through* $L$ *layers. The discrete curvature at layer* $\ell$ *is:*
 
-$$\kappa(\ell) = \frac{\|\Delta x^{(\ell-1)} \times \Delta x^{(\ell)}\|}{\|\Delta x^{(\ell-1)}\|^3}$$
+$$\kappa(\ell) = \frac{\Vert\Delta x^{(\ell-1)} \times \Delta x^{(\ell)}\Vert}{\Vert\Delta x^{(\ell-1)}\Vert^3}$$
 
-*where $\times$ denotes the cross product (generalized to high dimensions using the exterior product) and $\Delta x^{(\ell)} = x^{(\ell+1)} - x^{(\ell)}$. For high-dimensional spaces, the curvature is equivalently computed as:*
+*where* $\times$ *denotes the cross product (generalized to high dimensions using the exterior product) and* $\Delta x^{(\ell)} = x^{(\ell+1)} - x^{(\ell)}$*. For high-dimensional spaces, the curvature is equivalently computed as:*
 
-$$\kappa(\ell) = \frac{\sqrt{\|\Delta x^{(\ell-1)}\|^2 \|\Delta x^{(\ell)}\|^2 - (\Delta x^{(\ell-1)} \cdot \Delta x^{(\ell)})^2}}{\|\Delta x^{(\ell-1)}\|^3}$$
+$$\kappa(\ell) = \frac{\sqrt{\Vert\Delta x^{(\ell-1)}\Vert^2 \Vert\Delta x^{(\ell)}\Vert^2 - (\Delta x^{(\ell-1)} \cdot \Delta x^{(\ell)})^2}}{\Vert\Delta x^{(\ell-1)}\Vert^3}$$
 
 **Normalization.** The raw curvature values depend on the scale of the residual stream (which varies across models and layers). For cross-model comparison, the curvature is normalized by the mean curvature across all layers:
 
@@ -307,7 +319,7 @@ where $\mathbf{o}_i^{(\ell)}$ is the output of head $i$ at layer $\ell$ and $\co
 
 ## Technical Appendix 15B: In-Context Learning as Metric Modification --- Formal Treatment
 
-**The attention metric under context.** Let $C = \{(x_1, y_1), \ldots, (x_n, y_n)\}$ be a set of in-context examples. The attention pattern of head $h$ at layer $\ell$ for a new query $q$ is:
+**The attention metric under context.** Let $C = \lbrace(x_1, y_1), \ldots, (x_n, y_n)\rbrace$ be a set of in-context examples. The attention pattern of head $h$ at layer $\ell$ for a new query $q$ is:
 
 $$a_h^{(\ell)}(q, C) = \text{softmax}\left(\frac{q W_Q^{(\ell,h)} (K^{(\ell,h)})^T}{\sqrt{d_k}}\right)$$
 
