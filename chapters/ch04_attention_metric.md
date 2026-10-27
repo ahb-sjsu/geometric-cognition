@@ -48,11 +48,11 @@ If you are attending to *color*, then $A$ and $B$ are close (both involve rednes
 
 This is not a vague observation. It is a precise mathematical claim: attention defines the metric tensor on the cognitive manifold.
 
-**Definition 4.1** (Attention Metric). *The attention metric is a positive-definite symmetric bilinear form $g_{\mu\nu}(x)$ on the tangent space $T_x\mathcal{M}$ at each point $x$ of the cognitive manifold. For tangent vectors $u, v \in T_x\mathcal{M}$:*
+**Definition 4.1** (Attention Metric). *The attention metric is a positive-definite symmetric bilinear form* $g_{\mu\nu}(x)$ *on the tangent space* $T_x\mathcal{M}$ *at each point* $x$ *of the cognitive manifold. For tangent vectors* $u, v \in T_x\mathcal{M}$:
 
 $$g(u, v) = g_{\mu\nu} u^\mu v^\nu$$
 
-*The metric defines the inner product on the tangent space, and thereby defines distances, angles, and curvature on the manifold. The components $g_{\mu\nu}$ are determined by the attention allocation of the cognitive system: dimensions that receive more attention are weighted more heavily in the metric, making states that differ along those dimensions "closer" (in the sense of being more finely discriminated).*
+*The metric defines the inner product on the tangent space, and thereby defines distances, angles, and curvature on the manifold. The components* $g_{\mu\nu}$ *are determined by the attention allocation of the cognitive system: dimensions that receive more attention are weighted more heavily in the metric, making states that differ along those dimensions "closer" (in the sense of being more finely discriminated).*
 
 Wait---that seems backward. If attention makes a dimension more salient, shouldn't states that differ along that dimension seem *more* different, not less?
 
@@ -71,11 +71,11 @@ where $a_\mu > 0$ is the attention weight on dimension $\mu$. High $a_\mu$ means
 
 Selective attention is the allocation of cognitive resources to a subset of the available dimensions, at the expense of the remaining dimensions. In the geometric framework, selective attention *narrows* the metric: it increases the metric components along the attended dimensions and decreases them along the unattended dimensions.
 
-**Definition 4.2** (Selective Attention Operator). *Let $g_{\mu\nu}$ be the baseline metric and let $\mathcal{S} \subseteq \{1, \ldots, n\}$ be the set of attended dimensions. The selectively attended metric is:*
+**Definition 4.2** (Selective Attention Operator). *Let* $g_{\mu\nu}$ *be the baseline metric and let* $\mathcal{S} \subseteq \lbrace1, \ldots, n\rbrace$ *be the set of attended dimensions. The selectively attended metric is:*
 
-$$\tilde{g}_{\mu\nu} = \begin{cases} \alpha \cdot g_{\mu\nu} & \text{if } \mu, \nu \in \mathcal{S} \\ \beta \cdot g_{\mu\nu} & \text{if } \mu, \nu \notin \mathcal{S} \\ \sqrt{\alpha\beta} \cdot g_{\mu\nu} & \text{otherwise} \end{cases}$$
+$$\tilde{g}_{\mu\nu} = \begin{cases} \alpha \cdot g_{\mu\nu} & \text{if } \mu, \nu \in \mathcal{S} \cr \beta \cdot g_{\mu\nu} & \text{if } \mu, \nu \notin \mathcal{S} \cr \sqrt{\alpha\beta} \cdot g_{\mu\nu} & \text{otherwise} \end{cases}$$
 
-*where $\alpha > 1$ is the attention amplification factor and $0 < \beta < 1$ is the inattention suppression factor, subject to a total resource constraint $|\mathcal{S}| \cdot \alpha + (n - |\mathcal{S}|) \cdot \beta = n$ (total attentional resources are conserved).*
+*where* $\alpha > 1$ *is the attention amplification factor and* $0 < \beta < 1$ *is the inattention suppression factor, subject to a total resource constraint* $|\mathcal{S}| \cdot \alpha + (n - |\mathcal{S}|) \cdot \beta = n$ *(total attentional resources are conserved).*
 
 The resource constraint is the key feature. Attention is finite. Amplifying some dimensions requires suppressing others. This is not a limitation of the mathematical model; it is an empirical fact about cognition. Humans cannot attend to everything simultaneously with full resolution. Transformer attention mechanisms have a finite number of heads, each attending to a subset of the representation. The resource constraint is real, and it shapes the metric.
 
@@ -94,11 +94,11 @@ Claude's "narrow channel" cognitive signature is the signature of extreme select
 
 Divided attention is the opposite of selective attention: the allocation of cognitive resources across multiple dimensions simultaneously. In the geometric framework, divided attention *widens* the metric: it increases the metric components along multiple dimensions simultaneously, at the cost of reduced amplification per dimension.
 
-**Definition 4.3** (Divided Attention Operator). *Let $g_{\mu\nu}$ be the baseline metric and let $\mathcal{D} = \{D_1, \ldots, D_k\}$ be the set of attention targets. The divided attention metric is:*
+**Definition 4.3** (Divided Attention Operator). *Let* $g_{\mu\nu}$ *be the baseline metric and let* $\mathcal{D} = \lbrace D_1, \ldots, D_k\rbrace$ *be the set of attention targets. The divided attention metric is:*
 
 $$\tilde{g}_{\mu\nu} = \left(1 + \sum_{j=1}^k w_j \cdot \chi_{D_j}(\mu) \cdot \chi_{D_j}(\nu)\right) \cdot g_{\mu\nu}$$
 
-*where $w_j > 0$ is the attention weight allocated to target $D_j$, $\chi_{D_j}$ is the indicator function for target $D_j$, and $\sum_j w_j = W$ is the total attention budget.*
+*where* $w_j > 0$ *is the attention weight allocated to target* $D_j$, $\chi_{D_j}$ *is the indicator function for target* $D_j$*, and* $\sum_j w_j = W$ *is the total attention budget.*
 
 The key difference from selective attention is the distribution. In selective attention, the full budget $W$ is concentrated on one target: $w_1 = W$, $w_j = 0$ for $j > 1$. In divided attention, the budget is spread across $k$ targets: $w_j = W/k$ for equal allocation. The per-target amplification is $W/k$ instead of $W$---each target gets less resolution, but more targets are covered.
 
@@ -150,11 +150,11 @@ This is the fundamental insight of this chapter: the metric is not a property of
 
 The A3 subtask measures signal-to-noise ratio: the model's ability to discriminate relevant from irrelevant information in a noisy context. The SNR is a direct measure of metric quality---the ratio of the metric component along the signal dimension to the metric component along the noise dimension.
 
-**Definition 4.4** (Signal-to-Noise Ratio as Metric Ratio). *Let $g_s$ be the metric component along the signal dimension and $g_n$ be the metric component along the noise dimension. The SNR is:*
+**Definition 4.4** (Signal-to-Noise Ratio as Metric Ratio). *Let* $g_s$ *be the metric component along the signal dimension and* $g_n$ *be the metric component along the noise dimension. The SNR is:*
 
 $$\text{SNR} = \frac{g_s}{g_n}$$
 
-*An SNR of 1.0 means the metric treats signal and noise equally---no discrimination. An SNR $\gg 1$ means the metric strongly favors signal over noise---excellent discrimination. An SNR $< 1$ means the metric favors noise over signal---the system is attending to the wrong thing.*
+*An SNR of 1.0 means the metric treats signal and noise equally---no discrimination. An SNR* $\gg 1$ *means the metric strongly favors signal over noise---excellent discrimination. An SNR* $< 1$ *means the metric favors noise over signal---the system is attending to the wrong thing.*
 
 The A3 results:
 
@@ -251,7 +251,7 @@ The dose-response structure of the distractor effect (explored in detail in Chap
 
 The attention metric has a deep connection to information geometry through the Fisher information metric.
 
-In information geometry, the Fisher information metric on a statistical manifold $\mathcal{S} = \{p_\theta : \theta \in \Theta\}$ is defined as:
+In information geometry, the Fisher information metric on a statistical manifold $\mathcal{S} = \lbrace p_\theta : \theta \in \Theta\rbrace$ is defined as:
 
 $$g_{\mu\nu}^{\text{Fisher}}(\theta) = \mathbb{E}_{p_\theta}\left[\frac{\partial \log p_\theta}{\partial \theta^\mu} \frac{\partial \log p_\theta}{\partial \theta^\nu}\right]$$
 
@@ -296,7 +296,7 @@ Let us work through a concrete example that shows how the benchmark data constra
 
 **Step 1: Parameterize the metric.** We model the attention metric as a diagonal matrix in two-dimensional cognitive space (the two task dimensions):
 
-$$g_{\mu\nu} = \begin{pmatrix} a_1 & 0 \\ 0 & a_2 \end{pmatrix}$$
+$$g_{\mu\nu} = \begin{pmatrix} a_1 & 0 \cr 0 & a_2 \end{pmatrix}$$
 
 where $a_1$ is the attention weight on the primary task dimension and $a_2$ is the attention weight on the secondary task dimension. The total attention budget is fixed: $a_1 + a_2 = A$ for some constant $A$.
 
@@ -337,31 +337,31 @@ The full picture of the attention metric will not emerge until we have placed it
 
 ## Technical Appendix 4A: The Attention Metric Tensor in Detail
 
-**Definition** (Attention Metric Tensor, Formal). *Let $\mathcal{M}$ be the cognitive manifold with local coordinates $x = (x^1, \ldots, x^n)$. The attention metric tensor is a smooth, positive-definite, symmetric (0,2)-tensor field:*
+**Definition** (Attention Metric Tensor, Formal). *Let* $\mathcal{M}$ *be the cognitive manifold with local coordinates* $x = (x^1, \ldots, x^n)$*. The attention metric tensor is a smooth, positive-definite, symmetric (0,2)-tensor field:*
 
-$$g = g_{\mu\nu}(x) \, dx^\mu \otimes dx^\nu$$
+$$g = g_{\mu\nu}(x) \thinspace dx^\mu \otimes dx^\nu$$
 
 *satisfying:*
-1. *Symmetry: $g_{\mu\nu} = g_{\nu\mu}$*
-2. *Positive-definiteness: $g_{\mu\nu} v^\mu v^\nu > 0$ for all nonzero $v \in T_x\mathcal{M}$*
-3. *Smoothness: the components $g_{\mu\nu}(x)$ are smooth functions of the coordinates*
+1. *Symmetry:* $g_{\mu\nu} = g_{\nu\mu}$
+2. *Positive-definiteness:* $g_{\mu\nu} v^\mu v^\nu > 0$ *for all nonzero* $v \in T_x\mathcal{M}$
+3. *Smoothness: the components* $g_{\mu\nu}(x)$ *are smooth functions of the coordinates*
 
-*The distance between two points $p, q \in \mathcal{M}$ is:*
+*The distance between two points* $p, q \in \mathcal{M}$ *is:*
 
-$$d(p, q) = \inf_\gamma \int_0^1 \sqrt{g_{\mu\nu}(\gamma(t)) \dot{\gamma}^\mu(t) \dot{\gamma}^\nu(t)} \, dt$$
+$$d(p, q) = \inf_\gamma \int_0^1 \sqrt{g_{\mu\nu}(\gamma(t)) \dot{\gamma}^\mu(t) \dot{\gamma}^\nu(t)} \thinspace dt$$
 
-*where the infimum is taken over all smooth curves $\gamma: [0,1] \to \mathcal{M}$ with $\gamma(0) = p$ and $\gamma(1) = q$.*
+*where the infimum is taken over all smooth curves* $\gamma: [0,1] \to \mathcal{M}$ *with* $\gamma(0) = p$ *and* $\gamma(1) = q$.
 
 
 ## Technical Appendix 4B: Selective and Divided Attention as Metric Transformations
 
-**Proposition 4.1** (Selective Attention Reduces Effective Dimensionality). *Let $g_{\mu\nu}$ be the baseline metric on an $n$-dimensional manifold $\mathcal{M}$, and let $\tilde{g}_{\mu\nu}(\epsilon)$ be the selectively attended metric with attention parameter $\epsilon$ on $k$ attended dimensions:*
+**Proposition 4.1** (Selective Attention Reduces Effective Dimensionality). *Let* $g_{\mu\nu}$ *be the baseline metric on an* $n$*-dimensional manifold* $\mathcal{M}$*, and let* $\tilde{g}_{\mu\nu}(\epsilon)$ *be the selectively attended metric with attention parameter* $\epsilon$ *on* $k$ *attended dimensions:*
 
-$$\tilde{g}_{\mu\nu}(\epsilon) = \begin{cases} g_{\mu\nu} & \text{if } \mu, \nu \leq k \\ \epsilon \cdot g_{\mu\nu} & \text{if } \mu, \nu > k \\ \sqrt{\epsilon} \cdot g_{\mu\nu} & \text{otherwise} \end{cases}$$
+$$\tilde{g}_{\mu\nu}(\epsilon) = \begin{cases} g_{\mu\nu} & \text{if } \mu, \nu \leq k \cr \epsilon \cdot g_{\mu\nu} & \text{if } \mu, \nu > k \cr \sqrt{\epsilon} \cdot g_{\mu\nu} & \text{otherwise} \end{cases}$$
 
-*Then as $\epsilon \to 0$, the geodesics of $\tilde{g}$ converge to the geodesics of the $k$-dimensional submanifold defined by the first $k$ coordinates. That is, selective attention in the limit reduces the manifold to its attended submanifold.*
+*Then as* $\epsilon \to 0$*, the geodesics of* $\tilde{g}$ *converge to the geodesics of the* $k$*-dimensional submanifold defined by the first* $k$ *coordinates. That is, selective attention in the limit reduces the manifold to its attended submanifold.*
 
-**Proposition 4.2** (Divided Attention Lowers Per-Target Resolution). *Under the equal-allocation divided attention metric with budget $W$ split across $k$ targets, the per-target SNR is:*
+**Proposition 4.2** (Divided Attention Lowers Per-Target Resolution). *Under the equal-allocation divided attention metric with budget* $W$ *split across* $k$ *targets, the per-target SNR is:*
 
 $$\text{SNR}_{\text{divided}} = \frac{W/k + g_n}{g_n} = 1 + \frac{W}{k \cdot g_n}$$
 
@@ -369,6 +369,6 @@ $$\text{SNR}_{\text{divided}} = \frac{W/k + g_n}{g_n} = 1 + \frac{W}{k \cdot g_n
 
 $$\text{SNR}_{\text{selective}} = 1 + \frac{W}{g_n}$$
 
-*The ratio is $\text{SNR}_{\text{divided}} / \text{SNR}_{\text{selective}} \approx 1/k$ for $W/g_n \gg 1$. Divided attention reduces per-target resolution by a factor of the number of targets.*
+*The ratio is* $\text{SNR}_ {\text{divided}} / \text{SNR}_ {\text{sel{}ective}} \approx 1/k$ *for* $W/g_n \gg 1$*. Divided attention reduces per-target resolution by a factor of the number of targets.*
 
-This proposition explains the A4 divided attention split quantitatively. If Claude's attention budget $W$ is sufficient for one target but not two (i.e., $W/g_n \geq \text{SNR}_{\text{thresh}}$ but $W/(2 g_n) < \text{SNR}_{\text{thresh}}$), then Claude will succeed at selective attention but fail at divided attention. If Flash 3's budget is sufficient for two targets ($W/(2g_n) \geq \text{SNR}_{\text{thresh}}$), then Flash 3 will succeed at both. The difference between Claude and Flash 3 reduces to the ratio $W / \text{SNR}_{\text{thresh}}$: Flash 3 has a larger effective attention budget relative to the task threshold.
+This proposition explains the A4 divided attention split quantitatively. If Claude's attention budget $W$ is sufficient for one target but not two (i.e., $W/g_n \geq \text{SNR}_ {\text{thresh}}$ but $W/(2 g_n) < \text{SNR}_ {\text{thresh}}$), then Claude will succeed at selective attention but fail at divided attention. If Flash 3's budget is sufficient for two targets ($W/(2g_n) \geq \text{SNR}_ {\text{thresh}}$), then Flash 3 will succeed at both. The difference between Claude and Flash 3 reduces to the ratio $W / \text{SNR}_ {\text{thresh}}$: Flash 3 has a larger effective attention budget relative to the task threshold.
