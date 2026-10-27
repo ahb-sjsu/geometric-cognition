@@ -38,7 +38,7 @@ The cognitive manifold is the central mathematical object of this book. Every co
 
 Before we can define the space of cognitive states, we need to define a cognitive state.
 
-**Definition 3.1** (Cognitive State). *A cognitive state of a system $S$ at time $t$ is the complete internal configuration that determines the system's behavior at time $t$. For a neural system (human brain or artificial neural network), the cognitive state is the vector of activations across all neurons or units.*
+**Definition 3.1** (Cognitive State). *A cognitive state of a system* $S$ *at time* $t$ *is the complete internal configuration that determines the system's behavior at time* $t$*. For a neural system (human brain or artificial neural network), the cognitive state is the vector of activations across all neurons or units.*
 
 For a human brain, the cognitive state at time $t$ is the pattern of firing rates across approximately 86 billion neurons. This is a vector in $\mathbb{R}^{86 \times 10^9}$---an astronomically high-dimensional space. Each dimension corresponds to one neuron's firing rate. Each point in this space corresponds to a complete configuration of neural activity.
 
@@ -46,7 +46,7 @@ For a large language model, the cognitive state at a given position in the seque
 
 In both cases, the cognitive state is a point in a very high-dimensional space---the *activation space* of the system.
 
-**Definition 3.2** (Activation Space). *The activation space $\mathcal{A}$ of a cognitive system $S$ is the space of all possible activation patterns. For a neural system with $N$ units, $\mathcal{A} \subseteq \mathbb{R}^N$, where each coordinate corresponds to the activation of one unit.*
+**Definition 3.2** (Activation Space). *The activation space* $\mathcal{A}$ *of a cognitive system* $S$ *is the space of all possible activation patterns. For a neural system with* $N$ *units,* $\mathcal{A} \subseteq \mathbb{R}^N$*, where each coordinate corresponds to the activation of one unit.*
 
 The activation space is vast. For a brain with $N = 86 \times 10^9$ neurons, each firing at rates between 0 and 200 Hz, the activation space has $86 \times 10^9$ dimensions. For a language model with $N = 131072$ hidden units per layer across 32 layers, the activation space has roughly $4 \times 10^6$ dimensions. Most points in these spaces correspond to no meaningful cognitive state---they are random patterns of activation that the system would never produce.
 
@@ -61,11 +61,11 @@ The manifold hypothesis, as articulated in the machine learning literature by Be
 
 The hypothesis has been validated extensively in machine learning. Images of faces, despite living in a space with millions of dimensions (one per pixel), concentrate near a manifold with perhaps 50 dimensions (corresponding to variations in identity, expression, pose, lighting). Natural language sentences, despite being sequences of tokens from a vocabulary of tens of thousands, concentrate near a manifold whose dimensionality is much lower---determined by the number of independent semantic and syntactic degrees of freedom.
 
-**Definition 3.3** (The Cognitive Manifold Hypothesis). *The cognitive states that a system actually visits form a smooth, low-dimensional submanifold $\mathcal{M}$ of the high-dimensional activation space $\mathcal{A}$:*
+**Definition 3.3** (The Cognitive Manifold Hypothesis). *The cognitive states that a system actually visits form a smooth, low-dimensional submanifold* $\mathcal{M}$ *of the high-dimensional activation space* $\mathcal{A}$:
 
 $$\mathcal{M} \subset \mathcal{A}, \quad \dim(\mathcal{M}) \ll \dim(\mathcal{A})$$
 
-*The dimensionality of $\mathcal{M}$ is the number of independent degrees of freedom of cognition---the number of independent ways the cognitive state can vary.*
+*The dimensionality of* $\mathcal{M}$ *is the number of independent degrees of freedom of cognition---the number of independent ways the cognitive state can vary.*
 
 This is a strong claim, and it requires justification.
 
@@ -112,7 +112,7 @@ This is the geometric content of the distinction between "representational simil
 
 To work concretely with the cognitive manifold, we need coordinates. A coordinate chart is a smooth bijection from an open subset of the manifold to an open subset of $\mathbb{R}^n$, where $n$ is the dimension of the manifold.
 
-**Definition 3.4** (Cognitive Coordinates). *A cognitive coordinate chart on $\mathcal{M}$ is a smooth bijection $\phi: U \to V$, where $U \subseteq \mathcal{M}$ is an open subset of the manifold and $V \subseteq \mathbb{R}^n$ is an open subset of $\mathbb{R}^n$. The coordinates $x^\mu = \phi^\mu(p)$ assign $n$ real numbers to each point $p \in U$.*
+**Definition 3.4** (Cognitive Coordinates). *A cognitive coordinate chart on* $\mathcal{M}$ *is a smooth bijection* $\phi: U \to V$*, where* $U \subseteq \mathcal{M}$ *is an open subset of the manifold and* $V \subseteq \mathbb{R}^n$ *is an open subset of* $\mathbb{R}^n$*. The coordinates* $x^\mu = \phi^\mu(p)$ *assign* $n$ *real numbers to each point* $p \in U$.
 
 What are the natural coordinates on the cognitive manifold? The answer depends on the level of description.
 
@@ -133,7 +133,7 @@ This coordinate independence also resolves a persistent tension in cognitive sci
 
 Cognition is not a static state. It is a process: a trajectory through the space of cognitive states. The cognitive manifold is the stage; the trajectory is the play.
 
-**Definition 3.5** (Cognitive Trajectory). *A cognitive trajectory is a smooth curve $\gamma: [0, T] \to \mathcal{M}$ that describes the evolution of the cognitive state over time. The initial state is $\gamma(0) = x_0$, the final state is $\gamma(T) = x_T$, and the trajectory passes through the sequence of intermediate states $\gamma(t)$ for $0 < t < T$.*
+**Definition 3.5** (Cognitive Trajectory). *A cognitive trajectory is a smooth curve* $\gamma: [0, T] \to \mathcal{M}$ *that describes the evolution of the cognitive state over time. The initial state is* $\gamma(0) = x_0$*, the final state is* $\gamma(T) = x_T$*, and the trajectory passes through the sequence of intermediate states* $\gamma(t)$ *for* $0 < t < T$.
 
 A reasoning process---solving a problem, making a judgment, updating a belief---corresponds to a trajectory on the cognitive manifold. The trajectory starts at the initial cognitive state (the problem as represented), passes through intermediate states (the reasoning steps), and terminates at the final state (the answer, judgment, or updated belief).
 
@@ -148,7 +148,7 @@ Maya's fMRI observation from the opening of this chapter is a direct measurement
 
 At each point on the cognitive manifold, there is a tangent space: the set of all directions in which the cognitive state can change.
 
-**Definition 3.6** (Tangent Space). *The tangent space $T_x\mathcal{M}$ at a point $x \in \mathcal{M}$ is the vector space of all tangent vectors to the manifold at $x$. Each tangent vector $v \in T_x\mathcal{M}$ represents a possible direction and rate of change of the cognitive state.*
+**Definition 3.6** (Tangent Space). *The tangent space* $T_x\mathcal{M}$ *at a point* $x \in \mathcal{M}$ *is the vector space of all tangent vectors to the manifold at* $x$*. Each tangent vector* $v \in T_x\mathcal{M}$ *represents a possible direction and rate of change of the cognitive state.*
 
 The tangent space has a direct cognitive interpretation that we will develop fully in Chapter 5: it is the working memory. The tangent vectors at $x$ represent the cognitive operations that are locally available---the inferences, associations, and transformations that can be performed from the current state in one reasoning step. The dimension of the tangent space is the number of independent cognitive operations available, which corresponds to the working memory capacity.
 
@@ -161,17 +161,17 @@ The tangent space is also *finite-dimensional*. Even though the activation space
 
 The heuristic field, introduced informally in Chapters 1 and 2, can now be defined precisely as a scalar field on the cognitive manifold.
 
-**Definition 3.7** (Heuristic Field). *The heuristic field is a smooth function $h: \mathcal{M} \to \mathbb{R}$ that assigns to each cognitive state $x \in \mathcal{M}$ an estimate of the cost-to-go from $x$ to the goal state $x^*$:*
+**Definition 3.7** (Heuristic Field). *The heuristic field is a smooth function* $h: \mathcal{M} \to \mathbb{R}$ *that assigns to each cognitive state* $x \in \mathcal{M}$ *an estimate of the cost-to-go from* $x$ *to the goal state* $x^{\ast}$:
 
-$$h(x) \approx d_\mathcal{M}(x, x^*)$$
+$$h(x) \approx d_\mathcal{M}(x, x^{\ast})$$
 
-*where $d_\mathcal{M}$ is the geodesic distance on the manifold.*
+*where* $d_\mathcal{M}$ *is the geodesic distance on the manifold.*
 
 The heuristic field has rich structure as a scalar field on a manifold:
 
 **Gradient.** The gradient $\nabla h \in T_x\mathcal{M}$ is a tangent vector that points in the direction of steepest increase of $h$. System 1 processing follows the negative gradient $-\nabla h$: the direction of steepest estimated decrease in cost-to-go. This is the cognitive analogue of "going with your gut"---following the strongest internal signal toward the perceived best answer.
 
-**Level sets.** The level sets $h^{-1}(c) = \{x \in \mathcal{M} : h(x) = c\}$ are the contour lines of the heuristic field---the loci of states that the system estimates to be equally far from the goal. In a well-calibrated system, the level sets are approximately concentric "spheres" centered on the goal state. In a poorly calibrated system, the level sets are distorted---compressed in some directions, expanded in others---reflecting the system's biased estimate of distance.
+**Level sets.** The level sets $h^{-1}(c) = \lbrace x \in \mathcal{M} : h(x) = c\rbrace$ are the contour lines of the heuristic field---the loci of states that the system estimates to be equally far from the goal. In a well-calibrated system, the level sets are approximately concentric "spheres" centered on the goal state. In a poorly calibrated system, the level sets are distorted---compressed in some directions, expanded in others---reflecting the system's biased estimate of distance.
 
 **Critical points.** The critical points of $h$---where $\nabla h = 0$---are the states where the system perceives no direction of improvement. Local minima of $h$ are states where the system believes it has arrived at the goal (or close enough). Saddle points of $h$ are states where the system is balanced between competing directions. Maxima of $h$ are states the system perceives as maximally far from the goal.
 
@@ -182,11 +182,11 @@ The critical point structure of the heuristic field determines the failure modes
 
 The curvature of the cognitive manifold has appeared throughout the first two chapters as the key quantity that determines whether gradient following suffices (System 1) or geodesic computation is needed (System 2). We can now define it precisely.
 
-**Definition 3.8** (Sectional Curvature). *The sectional curvature $\kappa(x; u, v)$ of the cognitive manifold at a point $x$, in the 2-plane spanned by tangent vectors $u, v \in T_x\mathcal{M}$, is:*
+**Definition 3.8** (Sectional Curvature). *The sectional curvature* $\kappa(x; u, v)$ *of the cognitive manifold at a point* $x$*, in the 2-plane spanned by tangent vectors* $u, v \in T_x\mathcal{M}$*, is:*
 
 $$\kappa(x; u, v) = \frac{R(u, v, u, v)}{g(u, u) g(v, v) - g(u, v)^2}$$
 
-*where $R$ is the Riemann curvature tensor and $g$ is the metric.*
+*where* $R$ *is the Riemann curvature tensor and* $g$ *is the metric.*
 
 The curvature has three regimes:
 
@@ -198,7 +198,7 @@ The curvature has three regimes:
 
 The connection between curvature and cognitive complexity is not a metaphor. It is a quantitative relationship. In regions of high negative curvature, the geodesic deviation grows exponentially with distance:
 
-$$\|\delta\gamma(t)\| \sim \|\delta\gamma(0)\| \cdot e^{\sqrt{|\kappa|} \cdot t}$$
+$$\Vert\delta\gamma(t)\Vert \sim \Vert\delta\gamma(0)\Vert \cdot e^{\sqrt{|\kappa|} \cdot t}$$
 
 This means that two reasoning processes that start from nearly identical states---the same problem with slightly different framing---will diverge rapidly in a high-negative-curvature region, producing different conclusions. The rate of divergence is controlled by $\sqrt{|\kappa|}$. This is the geometric explanation of framing sensitivity: the manifold has negative curvature in the region where the framing manipulation takes effect, and the negative curvature amplifies the small perturbation into a large outcome difference.
 
@@ -224,7 +224,7 @@ The trajectory has three phases:
 
 **Step 3: Estimate the curvature.** The curvature of the trajectory at each point can be estimated from the trajectory data. For a curve $\gamma(t)$ in $\mathbb{R}^3$, the curvature is:
 
-$$\kappa(t) = \frac{\|\dot{\gamma}(t) \times \ddot{\gamma}(t)\|}{\|\dot{\gamma}(t)\|^3}$$
+$$\kappa(t) = \frac{\Vert\dot{\gamma}(t) \times \ddot{\gamma}(t)\Vert}{\Vert\dot{\gamma}(t)\Vert^3}$$
 
 Maya computes $\kappa(t)$ at each time point. In Phase 1, $\kappa \approx 0.02$ (near-zero curvature). In Phase 2, $\kappa$ peaks at approximately 0.35 (high curvature). In Phase 3, $\kappa$ decreases to approximately 0.08 (moderate curvature).
 
@@ -283,6 +283,22 @@ In Chapter 6, we interpret executive functions as the control layer that governs
 
 In Chapters 7--11, we apply the framework to the five cognitive dimensions measured by the Measuring AGI benchmarks. Each dimension corresponds to a specific geometric property of the cognitive manifold: social cognition as navigation in judgment space (curvature and heuristic corruption), learning as trajectory revision (belief updating on the manifold), metacognition as distance estimation (calibration of the heuristic field), attention as manifold filtering (metric properties under perturbation), and executive control as geodesic governance (the control layer that manages the search).
 
+```mermaid
+flowchart TD
+    M["Cognitive manifold: a Riemannian manifold embedded in activation space"]
+    M --> C4["Chapter 4: the metric, read as the attention metric"]
+    M --> C5["Chapter 5: the tangent space, read as working memory"]
+    M --> C6["Chapter 6: the control layer governing search, read as executive functions"]
+    M --> C711["Chapters 7 to 11: the five benchmark dimensions"]
+    C711 --> SC["Social cognition: navigation in judgment space"]
+    C711 --> LE["Learning: trajectory revision"]
+    C711 --> MC["Metacognition: distance estimation"]
+    C711 --> AT["Attention: manifold filtering"]
+    C711 --> EC["Executive control: geodesic governance"]
+```
+
+*Figure 3.1 (diagram): how the following chapters each take one geometric property of the manifold.*
+
 The cognitive manifold is not a metaphor. It is a specific mathematical object---a Riemannian manifold embedded in activation space---with specific measurable properties. The next chapter begins the measurement.
 
 
@@ -306,17 +322,17 @@ If this topological interpretation is correct, the empty quadrant is not a conti
 
 ## Technical Appendix 3A: Formal Definition of the Cognitive Manifold
 
-**Definition** (Cognitive Manifold, Formal). *Let $\mathcal{A} = \mathbb{R}^N$ be the activation space of a cognitive system with $N$ units. The cognitive manifold is a triple $(\mathcal{M}, g, \iota)$ where:*
+**Definition** (Cognitive Manifold, Formal). *Let* $\mathcal{A} = \mathbb{R}^N$ *be the activation space of a cognitive system with* $N$ *units. The cognitive manifold is a triple* $(\mathcal{M}, g, \iota)$ *where:*
 
-1. *$\mathcal{M}$ is a smooth, connected, $n$-dimensional manifold with $n \ll N$.*
-2. *$g$ is a Riemannian metric on $\mathcal{M}$ (the attention metric, defined in Chapter 4).*
-3. *$\iota: \mathcal{M} \hookrightarrow \mathcal{A}$ is a smooth embedding.*
+1. $\mathcal{M}$ *is a smooth, connected,* $n$*-dimensional manifold with* $n \ll N$.
+2. $g$ *is a Riemannian metric on* $\mathcal{M}$ *(the attention metric, defined in Chapter 4).*
+3. $\iota: \mathcal{M} \hookrightarrow \mathcal{A}$ *is a smooth embedding.*
 
-*The manifold $\mathcal{M}$ satisfies the approximation property: for any cognitive trajectory $\gamma_\mathcal{A}: [0,T] \to \mathcal{A}$ generated by the system during task performance, there exists a curve $\gamma_\mathcal{M}: [0,T] \to \mathcal{M}$ such that:*
+*The manifold* $\mathcal{M}$ *satisfies the approximation property: for any cognitive trajectory* $\gamma_\mathcal{A}: [0,T] \to \mathcal{A}$ *generated by the system during task performance, there exists a curve* $\gamma_\mathcal{M}: [0,T] \to \mathcal{M}$ *such that:*
 
-$$\|\iota(\gamma_\mathcal{M}(t)) - \gamma_\mathcal{A}(t)\|_\mathcal{A} \leq \epsilon \quad \text{for all } t \in [0, T]$$
+$$\Vert\iota(\gamma_\mathcal{M}(t)) - \gamma_\mathcal{A}(t)\Vert_\mathcal{A} \leq \epsilon \quad \text{for all } t \in [0, T]$$
 
-*where $\epsilon$ is small relative to the scale of $\gamma_\mathcal{A}$. That is, the trajectory in activation space is well-approximated by a trajectory on the manifold.*
+*where* $\epsilon$ *is small relative to the scale of* $\gamma_\mathcal{A}$*. That is, the trajectory in activation space is well-approximated by a trajectory on the manifold.*
 
 
 ## Technical Appendix 3B: Dimensionality Estimation Methods
