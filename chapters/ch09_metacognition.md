@@ -465,7 +465,7 @@ The crossing is large on both dimensions. The difference in M3 exceeds the noise
 | III | No | No | (none with both below 0.25) |
 | IV | No | Yes | Flash 2.0, Flash 2.5, Flash 3 |
 
-Quadrant I contains no models regardless of the specific threshold chosen, as long as the threshold is between Pro's M4 (0.000) and Flash 2.0's M3 (0.042).
+Quadrant I contains no models regardless of the specific threshold chosen, as long as the threshold is at least Flash 3's M3 (0.149) and below Pro's M3 (0.500).
 
 
 ## Technical Appendix 9C: Information-Geometric Interpretation of Calibration

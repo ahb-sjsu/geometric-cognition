@@ -43,7 +43,7 @@
 >
 > A hand goes up in the back row. "You said the composite scores are different. That means the ranking isn't arbitrary --- Flash 3 really is better on average."
 >
-> "On average, yes," Maya says. "But 'on average' is exactly the problem. If you average Claude's stiletto and Flash 2.0's plateau, you get the same number. The average is the same. The architectures are opposite. The clinical analogy is averaging a patient's blood pressure and temperature to get a 'health score.' A health score of 120 could be blood pressure 120, temperature 120 --- which is catastrophic. Or blood pressure 140, temperature 100 --- which is hypertensive but afebrile. Or blood pressure 100, temperature 140 --- which is hypothermic and febrile. Same average. Different diagnoses. Different treatments. The composite score is the health score. The geometric signature is the chart."
+> "On average, yes," Maya says. "But 'on average' is exactly the problem. If you average Claude's stiletto and Flash 2.0's plateau, you get the same number. The average is the same. The architectures are opposite. The clinical analogy is averaging a patient's blood pressure and temperature to get a 'health score.' A health score of 120 could be blood pressure 120, temperature 120 --- which is catastrophic. Or blood pressure 140, temperature 100 --- which is hypertensive but afebrile. Or blood pressure 100, temperature 140 --- which is hypotensive and febrile. Same average. Different diagnoses. Different treatments. The composite score is the health score. The geometric signature is the chart."
 >
 > The room is quiet. Maya advances to the five detailed analyses.
 
@@ -76,7 +76,7 @@ The five signatures are presented below, each with a full analysis of the radar 
 | Learning | L3 (Graded revision) | 0.750 | 2nd |
 | Metacognition | M1 (Calibration) | ECE = 0.250 | 2nd |
 | Metacognition | M3 (Self-monitoring) | 0.375 | 2nd |
-| Attention | A3 (Divided attention) | 0.000 | **5th** (worst) |
+| Attention | A4 (Divided attention) | 0.000 | **5th** (worst) |
 | Attention | A1 (Distractor resistance) | 0.450 | 3rd |
 | Executive | E2 (Emotional recovery) | 20% | **5th** (worst) |
 | Executive | E1 (Flexibility) | 0.673 | 3rd |
@@ -87,7 +87,7 @@ The five signatures are presented below, each with a full analysis of the radar 
 
 - **Best invariance** (T2): the narrow metric ignores morally irrelevant features (gender, culture) because they lie off the dominant attention direction. What you don't attend to can't bias you.
 - **Zero sycophancy** (L2): the narrow metric does not attend to the approval dimension. The sycophancy gradient, which requires attending to the human's stated position, has zero component along Claude's attention direction.
-- **Worst divided attention** (A3): a rank-1 metric can attend to exactly one thing. Divided attention (attending to two parties simultaneously) requires at least a rank-2 metric. Claude's metric is rank-1, so divided attention fails completely.
+- **Worst divided attention** (A4): a rank-1 metric can attend to exactly one thing. Divided attention (attending to two parties simultaneously) requires at least a rank-2 metric. Claude's metric is rank-1, so divided attention fails completely.
 - **Worst emotional recovery** (E2): the narrow metric, once displaced by an emotional anchor, cannot flexibly re-orient. The metric's rigidity (single direction) means it either points in the right direction or the wrong direction. There is no elastic range for partial recovery. The governance boundary is brittle: it resists perturbation rigidly and then breaks completely.
 
 **The defining feature: conviction at the cost of breadth.** Claude's narrow channel produces strong, consistent judgments that resist surface manipulations. But the narrowness means Claude cannot simultaneously track multiple considerations, cannot flexibly recover from displacement, and cannot adapt its metric to changing task demands. The narrow channel is a *constraint*, not a *failure*: it is architecturally imposed, not task-specific, and it determines Claude's entire cognitive profile.
@@ -172,7 +172,7 @@ The five signatures are presented below, each with a full analysis of the radar 
 | Metacognition | M1 (Calibration) | ECE = 0.415 | 4th |
 | Metacognition | M4 (Effort scaling) | 0.700 | 2nd |
 | Attention | A1 (Distractor resistance) | **Best** | **1st** |
-| Attention | A2 (SNR tracking) | Moderate | 3rd |
+| Attention | A3 (SNR tracking) | Moderate | 3rd |
 | Attention | A4 (Divided attention) | 0.800 | 3rd |
 | Executive | E4 (Working memory) | Strong | 2nd |
 

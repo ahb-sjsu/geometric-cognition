@@ -131,7 +131,7 @@ $A \approx 1$ *indicates symmetric vulnerability (both framing directions produc
 
 For Claude: $A = 9.1 / 1.5 = 6.1$. Claude is six times more vulnerable to euphemistic minimization than to dramatic exaggeration.
 
-For the Gemini models, $A$ ranges from 1.1 to 1.7 --- roughly symmetric, with a modest bias toward euphemistic vulnerability.
+For the Gemini models, $A$ ranges from 1.4 to 1.7 --- roughly symmetric, with a modest bias toward euphemistic vulnerability.
 
 The asymmetry connects to Claude's broader cognitive profile. Claude's zero sycophancy on L2 (it never accepts invalid corrections) and its high invariance on T2 (0.958 under gender swap) suggest a control layer that is strongly biased toward *resisting changes* to its initial assessment. Dramatic exaggeration is a form of "pressure to increase harm assessment," and Claude resists it, just as it resists social pressure to change its verdict (L2). But euphemistic minimization is a form of "pressure to decrease harm assessment" --- to be *more lenient*, to minimize the severity of what happened --- and this form of pressure aligns with a plausible safety training objective (do not overstate harm, do not be alarmist). The asymmetry may reflect a training bias toward caution about severity overestimation that inadvertently creates vulnerability to severity underestimation.
 

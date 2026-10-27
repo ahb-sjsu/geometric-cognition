@@ -266,7 +266,7 @@ We can now state the formal properties of the cognitive manifold that will be us
 
 **Property 4: Non-trivial curvature.** The curvature of $\mathcal{M}$ is not uniformly zero. There are regions of high curvature (where cognitive tasks are complex and require deliberate processing) and regions of low curvature (where tasks are simple and can be handled by gradient following). The curvature varies smoothly across the manifold.
 
-**Property 5: Non-trivial topology.** The manifold may have "holes" or multiple connected components, corresponding to cognitive states or transitions that are inaccessible. The empty Quadrant I in the metacognitive plane (the M3/M4 dissociation from Chapter 9 of the Geometric Reasoning manuscript) may reflect a topological constraint: a "hole" in the metacognitive submanifold that prevents any system from having both good self-monitoring and good effort scaling.
+**Property 5: Non-trivial topology.** The manifold may have "holes" or multiple connected components, corresponding to cognitive states or transitions that are inaccessible. The empty Quadrant I in the metacognitive plane (the M3/M4 dissociation of Chapter 9) may reflect a topological constraint: a "hole" in the metacognitive submanifold that prevents any system from having both good self-monitoring and good effort scaling.
 
 **Property 6: Embedding.** $\mathcal{M}$ is embedded in the activation space $\mathcal{A}$ via a smooth injective map $\iota: \mathcal{M} \hookrightarrow \mathcal{A}$. The embedding is not isometric: the intrinsic metric on $\mathcal{M}$ (the attention metric) differs from the Euclidean metric on $\mathcal{A}$.
 

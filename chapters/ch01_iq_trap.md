@@ -286,7 +286,7 @@ The geometric alternative is to evaluate models by their *cognitive profile*---t
 This is what the cognitive manifold makes precise. Each model occupies a different point on the manifold. The distance between points is measured by the attention metric. The local neighborhood of each point---the tangent space---determines what the model can do in one reasoning step. The heuristic field at each point determines where the model's search will go next. The full geometric picture replaces the leaderboard with a map.
 
 
-## 1.11 Implications for Cognitive Science
+## 1.13 Implications for Cognitive Science
 
 The implications extend beyond AI evaluation to cognitive science itself.
 
@@ -324,7 +324,7 @@ The cognitive tensor distinguishes them immediately. The five-component profile 
 This is not a hypothetical. It is the actual structure of the problem in AI-assisted healthcare, AI-assisted legal analysis, AI-assisted education, and every other domain where the *pattern* of capabilities matters more than the *average*. The Scalar Irrecoverability Theorem says that this problem is not fixable by better averaging. It is fixable only by preserving the profile---by replacing the scalar with the tensor, the leaderboard with the manifold, the ranking with the map.
 
 
-## 1.16 Looking Forward: From Trap to Manifold
+## 1.15 Looking Forward: From Trap to Manifold
 
 We have shown that scalar intelligence measures---IQ, g-factor, composite accuracy---are geometrically irrecoverable contractions of a multi-dimensional cognitive profile. The contraction destroys the profile shape, the failure mode signature, and the interaction structure that jointly determine how a system reasons.
 

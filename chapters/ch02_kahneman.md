@@ -244,7 +244,7 @@ Geodesic computation uses global information: the curvature of the manifold, whi
 
 This prediction aligns with what Maya observes in the fMRI. The simple moral dilemma (low curvature, gradient following) produces a concentrated, low-dimensional activation pattern. The complex moral dilemma (high curvature, geodesic computation) produces a distributed, high-dimensional activation pattern. The transition from low to high dimensionality corresponds to the transition from System 1 to System 2---and it is the dimensionality, not merely the intensity, that tracks the computational mode.
 
-This prediction can be tested quantitatively. The effective dimensionality of the fMRI activation pattern can be measured using principal component analysis or participatory ratio analysis. The geometric framework predicts:
+This prediction can be tested quantitatively. The effective dimensionality of the fMRI activation pattern can be measured using principal component analysis or participation ratio analysis. The geometric framework predicts:
 
 1. Effective dimensionality increases with task difficulty (curvature).
 2. The increase is non-linear: it is sharp at the transition threshold and saturates at high curvature.

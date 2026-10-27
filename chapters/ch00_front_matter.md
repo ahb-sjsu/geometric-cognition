@@ -122,6 +122,7 @@ A. Mathematical Prerequisites (Riemannian Geometry, Tensor Calculus)
 B. Benchmark Methodology and Raw Data
 C. Proofs of Main Theorems
 D. Connections to Information Geometry and Gauge Theory
+E. Machine Validation Record
 
 ---
 

@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{title}} &mdash; {{book_title}}</title>
   <meta name="description" content="{{title}} from {{book_title}}: {{book_subtitle}}, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../book/book.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">{{extra_head}}
 </head>
 
-<body data-book-slug="{{book_slug}}">
+<body data-book-slug="{{book_slug}}" data-chapter-id="{{chapter_id}}">
   <nav id="main-nav">
     <div class="nav-inner">
       <a href="../index.html" class="nav-brand">
@@ -36,14 +37,13 @@
         <span class="breadcrumb-sep">&rsaquo;</span>
         <span class="breadcrumb-current">{{title}}</span>
       </nav>
+      {{nav_top}}
 
       <div class="chapter-content">
 {{content}}
       </div>
 
-      <div class="chapter-nav-bottom">
-        <a href="index.html" class="nav-toc">&larr; Contents</a>
-      </div>
+      {{nav_bottom}}
     </div>
   </article>
 
@@ -70,7 +70,8 @@
         {left: '\\\\(', right: '\\\\)', display: false},
         {left: '\\\\[', right: '\\\\]', display: true}
       ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
       throwOnError: false
-    });"></script>
+    });"></script>{{extra_scripts}}
 </body>
 </html>

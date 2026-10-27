@@ -86,7 +86,7 @@ In the tangent space model, capacity is the dimension $n$ of the manifold at the
 
 $$n_{\text{eff}}(x) = \frac{\left(\sum_{\mu=1}^{n} \lambda_\mu(x)\right)^2}{\sum_{\mu=1}^{n} \lambda_\mu(x)^2}$$
 
-*where* $\lambda_1(x) \geq \lambda_2(x) \geq \cdots \geq \lambda_n(x) > 0$ *are the eigenvalues of the metric tensor* $g_{\mu\nu}(x)$*. This is the participatory ratio of the metric eigenvalues, measuring how many dimensions carry significant attentional weight.*
+*where* $\lambda_1(x) \geq \lambda_2(x) \geq \cdots \geq \lambda_n(x) > 0$ *are the eigenvalues of the metric tensor* $g_{\mu\nu}(x)$*. This is the participation ratio of the metric eigenvalues, measuring how many dimensions carry significant attentional weight.*
 
 The effective dimension $n_{\text{eff}}$ is bounded above by $n$ (when all eigenvalues are equal, meaning attention is uniformly distributed) and below by 1 (when one eigenvalue dominates, meaning attention is concentrated on a single dimension). The connection to Chapter 4 is direct: selective attention reduces $n_{\text{eff}}$ by concentrating the metric eigenvalues, while divided attention increases $n_{\text{eff}}$ by distributing them.
 
@@ -283,7 +283,7 @@ The geometric picture is hierarchical. The manifold provides the space. The metr
 
 The tangent space model of working memory generates several testable predictions.
 
-**Prediction 1: E4 scores should correlate with the intrinsic dimensionality of model representations.** If working memory capacity is the effective tangent space dimension, and if the tangent space dimension is related to the intrinsic dimensionality of the model's internal representations, then models with higher intrinsic dimensionality should have higher E4 scores. This can be tested by computing the intrinsic dimensionality of the residual stream (using the participatory ratio or maximum likelihood estimator from Appendix 3B) and correlating it with E4 performance across models.
+**Prediction 1: E4 scores should correlate with the intrinsic dimensionality of model representations.** If working memory capacity is the effective tangent space dimension, and if the tangent space dimension is related to the intrinsic dimensionality of the model's internal representations, then models with higher intrinsic dimensionality should have higher E4 scores. This can be tested by computing the intrinsic dimensionality of the residual stream (using the participation ratio or maximum likelihood estimator from Appendix 3B) and correlating it with E4 performance across models.
 
 **Prediction 2: Working memory degradation under overload should follow the metric eigenvalue ordering.** When a model drops information under working memory overload, it should preferentially drop the information associated with the smallest metric eigenvalues (the least-attended tangent dimensions). This can be tested by analyzing which parties are lost in failed E4 scenarios and correlating with measures of input salience.
 
