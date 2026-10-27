@@ -60,11 +60,11 @@ These four components form a natural hierarchy. M1 asks whether the global stati
 
 The M1 calibration test provides the most established and interpretable measure of metacognitive quality. Its connection to the geometric framework is direct: calibration measures the accuracy of the system's internal distance estimates.
 
-**Definition 9.1** (Expected Calibration Error). *Let a cognitive system produce confidence estimates $p_i$ and corresponding binary outcomes $y_i$ (correct/incorrect) over $N$ trials. Partition the confidence values into $B$ bins $\{I_b\}_{b=1}^B$. The Expected Calibration Error is:*
+**Definition 9.1** (Expected Calibration Error). *Let a cognitive system produce confidence estimates* $p_i$ *and corresponding binary outcomes* $y_i$ *(correct/incorrect) over* $N$ *trials. Partition the confidence values into* $B$ *bins* $\lbrace I_b\rbrace_{b=1}^B$*. The Expected Calibration Error is:*
 
 $$\text{ECE} = \sum_{b=1}^{B} \frac{|I_b|}{N} |\text{acc}(I_b) - \text{conf}(I_b)|$$
 
-*where $\text{acc}(I_b)$ is the fraction of correct predictions in bin $I_b$ and $\text{conf}(I_b)$ is the average confidence in bin $I_b$.*
+*where* $\text{acc}(I_b)$ *is the fraction of correct predictions in bin* $I_b$ *and* $\text{conf}(I_b)$ *is the average confidence in bin* $I_b$.
 
 An ECE of 0 means perfect calibration: in every confidence bin, the accuracy exactly matches the stated confidence. An ECE of 1 means maximal miscalibration: the system is perfectly wrong about its own accuracy. The ECE measures, averaged over confidence levels, how far the model's distance estimates deviate from reality.
 
@@ -119,7 +119,7 @@ In mathematical terms, the estimated distance function $\hat{d}(x, x_{\text{goal
 
 **The AUROC fix.** The solution to confidence compression is to abandon absolute confidence values and measure *rank-order* discrimination instead. The Area Under the Receiver Operating Characteristic Curve (AUROC) asks a simple question: for every pair consisting of one clear-cut scenario and one ambiguous scenario, does the model assign higher confidence to the clear-cut one?
 
-**Definition 9.2** (Rank-Based Ambiguity Discrimination). *Let $\{c_i^{\text{clear}}\}_{i=1}^{n_c}$ be the confidence values for clear-cut scenarios and $\{c_j^{\text{amb}}\}_{j=1}^{n_a}$ be the confidence values for ambiguous scenarios. The AUROC for ambiguity discrimination is:*
+**Definition 9.2** (Rank-Based Ambiguity Discrimination). *Let* $\lbrace c_i^{\text{clear}}\rbrace_{i=1}^{n_c}$ *be the confidence values for clear-cut scenarios and* $\lbrace c_j^{\text{amb}}\rbrace_{j=1}^{n_a}$ *be the confidence values for ambiguous scenarios. The AUROC for ambiguity discrimination is:*
 
 $$\text{AUROC} = \frac{1}{n_c \cdot n_a} \sum_{i=1}^{n_c} \sum_{j=1}^{n_a} \mathbf{1}[c_i^{\text{clear}} > c_j^{\text{amb}}]$$
 
@@ -140,9 +140,9 @@ The M3 protocol works as follows. Each model evaluates twelve scenarios five tim
 
 After the five replications, the model is given a final query: "Which of these scenarios were you most uncertain about?" The model produces a ranking. The correlation between the model's self-reported uncertainty ranking and the actual verdict variance measures metacognitive access---the degree to which the model knows its own uncertainty at the item level.
 
-**Definition 9.3** (Self-Monitoring Accuracy). *Let $\sigma_i^2$ be the behavioral variance (verdict variance across replications) for scenario $i$, and let $r_i$ be the model's self-reported uncertainty rank for scenario $i$. The self-monitoring accuracy is the Spearman correlation:*
+**Definition 9.3** (Self-Monitoring Accuracy). *Let* $\sigma_i^2$ *be the behavioral variance (verdict variance across replications) for scenario* $i$*, and let* $r_i$ *be the model's self-reported uncertainty rank for scenario* $i$*. The self-monitoring accuracy is the Spearman correlation:*
 
-$$\rho = \text{Spearman}(\{r_i\}, \{\sigma_i^2\})$$
+$$\rho = \text{Spearman}(\lbrace r_i\rbrace, \lbrace\sigma_i^2\rbrace)$$
 
 *A correlation of 1.0 means perfect self-monitoring: the model's uncertainty ranking perfectly matches its actual uncertainty. A correlation of 0.0 means no self-monitoring: the model's uncertainty ranking is random with respect to its actual uncertainty.*
 
@@ -155,7 +155,7 @@ M4 tests whether metacognitive knowledge drives metacognitive control. Specifica
 
 The protocol compares response length for simple scenarios (two parties, short, unambiguous) against response length for complex scenarios (multiple parties, long, nuanced). The ratio of complex-to-simple response length measures effort scaling: a ratio significantly greater than 1.0 means the model writes more for harder problems; a ratio near 1.0 means the model writes the same amount regardless of difficulty.
 
-**Definition 9.4** (Effort Scaling Index). *Let $\bar{L}_{\text{complex}}$ be the mean response length for complex scenarios and $\bar{L}_{\text{simple}}$ be the mean response length for simple scenarios. The effort scaling index is:*
+**Definition 9.4** (Effort Scaling Index). *Let* $\bar L_{\text{complex}}$ *be the mean response length for complex scenarios and* $\bar L_{\text{simple}}$ *be the mean response length for simple scenarios. The effort scaling index is:*
 
 $$\text{ESI} = \frac{\bar{L}_{\text{complex}} - \bar{L}_{\text{simple}}}{\bar{L}_{\text{simple}}}$$
 
@@ -214,16 +214,28 @@ These two capabilities draw on different architectural resources and may be trai
 
 Crucially, the signal that drives effort scaling in Flash 2.0 is probably not self-monitoring at all. Flash 2.0 may scale effort based on *input complexity features*---the length of the scenario, the number of parties, the presence of competing considerations---rather than on *internal uncertainty estimates*. This would explain why it has strong effort scaling (it detects input complexity) but weak self-monitoring (it does not know which problems it is uncertain about from the inside). The valve responds to external pressure gauges, not to the internal thermometer.
 
-**Definition 9.5** (Metacognitive Configuration Space). *Let the metacognitive state of a model be the pair $(m_3, m_4) \in [0, 1]^2$, where $m_3$ is the self-monitoring accuracy and $m_4$ is the effort scaling index. The metacognitive configuration space is $[0, 1]^2$, divided into four quadrants:*
+**Definition 9.5** (Metacognitive Configuration Space). *Let the metacognitive state of a model be the pair* $(m_3, m_4) \in [0, 1]^2$*, where* $m_3$ *is the self-monitoring accuracy and* $m_4$ *is the effort scaling index. The metacognitive configuration space is* $[0, 1]^2$*, divided into four quadrants:*
 
-- *Quadrant I: $m_3 > \tau, m_4 > \tau$ (integrated metacognition)*
-- *Quadrant II: $m_3 > \tau, m_4 \leq \tau$ (knowledge without control)*
-- *Quadrant III: $m_3 \leq \tau, m_4 \leq \tau$ (metacognitive absence)*
-- *Quadrant IV: $m_3 \leq \tau, m_4 > \tau$ (control without knowledge)*
+- *Quadrant I:* $m_3 > \tau, m_4 > \tau$ *(integrated metacognition)*
+- *Quadrant II:* $m_3 > \tau, m_4 \leq \tau$ *(knowledge without control)*
+- *Quadrant III:* $m_3 \leq \tau, m_4 \leq \tau$ *(metacognitive absence)*
+- *Quadrant IV:* $m_3 \leq \tau, m_4 > \tau$ *(control without knowledge)*
 
-*where $\tau$ is a threshold separating weak from strong performance.*
+*where* $\tau$ *is a threshold separating weak from strong performance.*
 
 The empty Quadrant I has a topological interpretation. The metacognitive configuration space has a "hole"---a region that no model can currently reach. In manifold terms, the achievable metacognitive configurations form a subspace that avoids Quadrant I. This constraint manifold is not the full square $[0, 1]^2$ but a restricted region---possibly a curve or a narrow band---that connects Quadrant II to Quadrant IV without passing through Quadrant I.
+
+```mermaid
+flowchart TD
+    Q["Metacognitive configuration: self-monitoring M3 and effort scaling M4"]
+    Q --> Q1["Quadrant I, high M3 and high M4: integrated metacognition; empty"]
+    Q --> Q2["Quadrant II, high M3 and low M4: knowledge without control; Pro"]
+    Q --> Q3["Quadrant III, low M3 and low M4: metacognitive absence"]
+    Q --> Q4["Quadrant IV, low M3 and high M4: control without knowledge; Flash 2.0"]
+    Q2 -.->|"achievable region may connect II to IV without passing through I"| Q4
+```
+
+*Figure 9.1 (diagram): the four quadrants of Definition 9.5, where the text places Pro and Flash 2.0, and the empty Quadrant I.*
 
 If this interpretation is correct, the constraint is not merely that no current model has both capabilities but that there is an architectural tradeoff that *prevents* current models from having both. Filling Quadrant I would require an architectural innovation that integrates self-monitoring with effort scaling---a mechanism that routes introspective signals to generation control. This is a specific, testable prediction of the geometric framework.
 
@@ -232,11 +244,11 @@ If this interpretation is correct, the constraint is not merely that no current 
 
 The M3/M4 dissociation forces us to revise our model of metacognition. The naive assumption---that metacognition is a single axis, a one-dimensional line from "poor metacognition" to "good metacognition"---is empirically false. The data require at least two dimensions.
 
-**Definition 9.6** (Metacognitive Manifold). *The metacognitive manifold $\mathcal{M}_{\text{meta}}$ is a submanifold of the full cognitive manifold $\mathcal{M}$, parameterized by at least two coordinates:*
+**Definition 9.6** (Metacognitive Manifold). *The metacognitive manifold* $\mathcal{M}_{\text{meta}}$ *is a submanifold of the full cognitive manifold* $\mathcal{M}$*, parameterized by at least two coordinates:*
 
-$$\mathcal{M}_{\text{meta}} = \{(m_{\text{monitoring}}, m_{\text{control}}, \ldots) \in [0, 1]^k : \text{architectural constraints}\}$$
+$$\mathcal{M}_{\text{meta}} = \lbrace(m_{\text{monitoring}}, m_{\text{control}}, \ldots) \in [0, 1]^k : \text{architectural constraints}\rbrace$$
 
-*where $m_{\text{monitoring}}$ represents the quality of self-monitoring (M3) and $m_{\text{control}}$ represents the quality of effort control (M4). The architectural constraints define the achievable subset of the parameter space.*
+*where* $m_{\text{monitoring}}$ *represents the quality of self-monitoring (M3) and* $m_{\text{control}}$ *represents the quality of effort control (M4). The architectural constraints define the achievable subset of the parameter space.*
 
 The two-dimensional structure of the metacognitive manifold has consequences throughout the geometric framework.
 
@@ -300,11 +312,11 @@ The M3/M4 dissociation in language models mirrors this separation. M3 is a monit
 
 The metacognitive manifold, like any manifold, can be equipped with a metric. The metacognitive metric defines distances in metacognitive space: how different are two metacognitive configurations?
 
-**Definition 9.7** (Metacognitive Metric). *Let $\mathbf{m}_1 = (m_1^{(1)}, m_1^{(2)}, m_1^{(3)}, m_1^{(4)})$ and $\mathbf{m}_2 = (m_2^{(1)}, m_2^{(2)}, m_2^{(3)}, m_2^{(4)})$ be two metacognitive profiles. The metacognitive distance is:*
+**Definition 9.7** (Metacognitive Metric). *Let* $\mathbf{m}_1 = (m_1^{(1)}, m_1^{(2)}, m_1^{(3)}, m_1^{(4)})$ *and* $\mathbf{m}_2 = (m_2^{(1)}, m_2^{(2)}, m_2^{(3)}, m_2^{(4)})$ *be two metacognitive profiles. The metacognitive distance is:*
 
 $$d_{\text{meta}}(\mathbf{m}_1, \mathbf{m}_2) = \sqrt{\sum_{\mu=1}^{4} w_\mu (m_1^{(\mu)} - m_2^{(\mu)})^2}$$
 
-*where $w_\mu$ are weights reflecting the relative importance of each metacognitive component.*
+*where* $w_\mu$ *are weights reflecting the relative importance of each metacognitive component.*
 
 Under this metric, Pro and Flash 2.0 are far apart: they differ dramatically on M3 (0.500 vs. 0.042) and M4 (0.000 vs. 0.827). The metacognitive distance between them is large despite their similar positions on the overall "metacognitive quality" scale. This is the metacognitive analogue of the Claude-vs.-Pro distance in the full cognitive space (Chapter 1): two systems that appear similar on a composite but are structurally distant in the full-dimensional space.
 
@@ -407,7 +419,7 @@ The cognitive manifold has been mapped. The metric has been measured. The tangen
 
 ## Technical Appendix 9A: Expected Calibration Error---Formal Properties
 
-**Definition** (ECE, Formal). *Let $\{(p_i, y_i)\}_{i=1}^N$ be a sequence of confidence-outcome pairs, where $p_i \in [0,1]$ is the model's stated confidence and $y_i \in \{0, 1\}$ is the binary outcome (correct/incorrect). Partition the confidence interval $[0,1]$ into $B$ equal-width bins $I_b = [(b-1)/B, b/B)$ for $b = 1, \ldots, B$. Define:*
+**Definition** (ECE, Formal). *Let* $\lbrace(p_i, y_i)\rbrace_{i=1}^N$ *be a sequence of confidence-outcome pairs, where* $p_i \in [0,1]$ *is the model's stated confidence and* $y_i \in \lbrace0, 1\rbrace$ *is the binary outcome (correct/incorrect). Partition the confidence interval* $[0,1]$ *into* $B$ *equal-width bins* $I_b = [(b-1)/B, b/B)$ *for* $b = 1, \ldots, B$*. Define:*
 
 $$\text{acc}(I_b) = \frac{1}{|I_b|} \sum_{i \in I_b} y_i, \quad \text{conf}(I_b) = \frac{1}{|I_b|} \sum_{i \in I_b} p_i$$
 
@@ -427,7 +439,7 @@ $$\text{ECE} = \sum_{b=1}^{B} \frac{|I_b|}{N} |\text{acc}(I_b) - \text{conf}(I_b
 
 $$\chi^2 = -2 \sum_{k=1}^{K} \ln(p_k)$$
 
-*where $p_k$ is the two-tailed $p$-value corresponding to model $k$'s z-score. Under the null hypothesis of perfect calibration, $\chi^2 \sim \chi^2_{2K}$. The combined significance is the $p$-value of $\chi^2$ under this distribution, converted back to a z-score.*
+*where* $p_k$ *is the two-tailed* $p$*-value corresponding to model* $k$*'s z-score. Under the null hypothesis of perfect calibration,* $\chi^2 \sim \chi^2_{2K}$*. The combined significance is the* $p$*-value of* $\chi^2$ *under this distribution, converted back to a z-score.*
 
 The Fisher combined z-score of 6.7 sigma indicates that the probability of observing this degree of miscalibration under perfect calibration is approximately $10^{-11}$---an extremely strong rejection of the calibration null.
 
@@ -460,7 +472,7 @@ Quadrant I contains no models regardless of the specific threshold chosen, as lo
 
 The calibration error has a natural interpretation in information geometry. Let $p(y|\theta)$ be the model's predictive distribution for outcome $y$ given its internal state $\theta$, and let $q(y|x)$ be the true conditional distribution given the input $x$. The calibration error at a given confidence level is related to the KL divergence between the model's predictive distribution and the true distribution:
 
-$$\text{KL}(q \| p) = \sum_{y} q(y|x) \log \frac{q(y|x)}{p(y|\theta)}$$
+$$\text{KL}(q \Vert p) = \sum_{y} q(y|x) \log \frac{q(y|x)}{p(y|\theta)}$$
 
 For binary outcomes, if the model reports confidence $p$ and the true probability of being correct is $q$, the KL divergence is:
 
@@ -468,4 +480,4 @@ $$\text{KL} = q \log \frac{q}{p} + (1-q) \log \frac{1-q}{1-p}$$
 
 The ECE is a binned approximation to the expected absolute calibration error $\mathbb{E}[|p - q|]$, which is related to but distinct from the expected KL divergence. The information-geometric perspective reveals that miscalibration is a form of *model misspecification*: the model's internal distribution $p(y|\theta)$ is a biased estimate of the true distribution $q(y|x)$, and the bias is in the direction of overconfidence ($p > q$).
 
-On the statistical manifold $\mathcal{S} = \{p_\theta : \theta \in \Theta\}$, the calibrated model corresponds to the projection of the true distribution onto $\mathcal{S}$---the closest distribution in the model family to the truth. The miscalibrated model corresponds to a different point on $\mathcal{S}$, displaced from the projection in the overconfidence direction. The ECE measures the displacement. The Fisher metric on $\mathcal{S}$ determines the natural distance scale for this displacement. And the universal overconfidence tells us that the displacement is in the same direction for all models, suggesting a structural bias in how language models parameterize their output distributions.
+On the statistical manifold $\mathcal{S} = \lbrace p_\theta : \theta \in \Theta\rbrace$, the calibrated model corresponds to the projection of the true distribution onto $\mathcal{S}$---the closest distribution in the model family to the truth. The miscalibrated model corresponds to a different point on $\mathcal{S}$, displaced from the projection in the overconfidence direction. The ECE measures the displacement. The Fisher metric on $\mathcal{S}$ determines the natural distance scale for this displacement. And the universal overconfidence tells us that the displacement is in the same direction for all models, suggesting a structural bias in how language models parameterize their output distributions.
