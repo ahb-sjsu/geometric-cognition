@@ -131,6 +131,8 @@ BOOK_CONFIGS: dict[str, dict] = {
                 "chapter-16-geometric-pipelines", "chapter-17-scaling",
                 "chapter-18-production-deployment", "chapter-19-case-study-defect-prediction",
                 "chapter-20-case-study-bioacoustics"]),
+            ("Part V: Discipline and Observation", [
+                "chapter-21-measurement-discipline", "chapter-22-the-read-metric"]),
         ],
         "extra_head": METHODS_EXTRA_HEAD,
         "extra_scripts": METHODS_EXTRA_SCRIPTS,
@@ -198,6 +200,22 @@ BOOK_CONFIGS: dict[str, dict] = {
         "number": 12, "title": "Geometric Gastronomy",
         "subtitle": "The Mathematical Structure of Flavor, Pairing, and Culinary Harmony",
         "source_dirs": ["chapters"], "glob": "*.md",
+    },
+    "geometric-observation": {
+        "number": 14, "title": "Geometric Observation",
+        "subtitle": "The Mathematical Structure of What an Observer Can Use",
+        "source_dirs": ["chapters"], "glob": "*.md",
+        "parts": [
+            ("Front Matter", ["ch00_*", "preface"]),
+            ("Part A: The Problem", ["ch01_*", "ch02_*", "ch03_*"]),
+            ("Part B: The Observer", ["ch04_*", "ch05_*", "ch06_*"]),
+            ("Part C: The Three Quantities", ["ch07_*", "ch08_*", "ch09_*"]),
+            ("Part D: Instruments", ["ch10_*", "ch11_*", "ch12_*", "ch13_*"]),
+            ("Part E: Discipline", ["ch14_*", "ch15_*", "ch16_*", "ch17_*", "ch18_*"]),
+            ("Part F: Ageing", ["ch19_*", "ch20_*", "ch21_*", "ch22_*", "ch23_*"]),
+            ("Part G: Beyond One Consumer", ["ch24_*", "ch25_*", "ch26_*", "ch27_*", "ch28_*", "ch29_*"]),
+            ("Appendices", ["appendix_*"]),
+        ],
     },
     "geometric-aesthetics": {
         "number": 13, "title": "Geometric Aesthetics",
@@ -284,7 +302,11 @@ def protect_math(text: str) -> tuple[str, dict[str, str]]:
 
     def _protect_segment(seg: str) -> str:
         seg = re.sub(r'\$\$(.+?)\$\$', _replace, seg, flags=re.DOTALL)
-        seg = re.sub(r'(?<![\$\\])\$(?!\$)(?!\s)(.+?)(?<![\s\\])\$(?!\$)', _replace, seg)
+        # Inline math may wrap across a line break (hard-wrapped sources do), never across a
+        # blank line. Before 2026-11-25 the body was `.+?`, which stops at a newline: a wrapped
+        # formula was left unprotected, Markdown ate its underscores, and every `$` after it
+        # in the paragraph paired with the wrong partner.
+        seg = re.sub(r'(?<![\$\\])\$(?!\$)(?!\s)((?:[^\n]|\n(?![ \t]*\n))+?)(?<![\s\\])\$(?!\$)', _replace, seg)
         seg = re.sub(r'\\\[(.+?)\\\]', _replace, seg, flags=re.DOTALL)
         seg = re.sub(r'\\\((.+?)\\\)', _replace, seg)
         return seg
@@ -297,8 +319,11 @@ def protect_math(text: str) -> tuple[str, dict[str, str]]:
 
 
 def restore_math(html: str, placeholders: dict[str, str]) -> str:
+    # The formula goes back as HTML text, so its <, > and & must be escaped. Written raw
+    # (before 2026-11-25), `$k<n$, $\lambda>0$` reached the browser as a tag `<n$, $\lambda>`
+    # and the text between the two signs vanished. KaTeX reads the decoded text node.
     for key, value in placeholders.items():
-        html = html.replace(key, value)
+        html = html.replace(key, htmllib.escape(value, quote=False))
     return html
 
 
