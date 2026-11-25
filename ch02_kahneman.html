@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 2: Kahneman's Geometric Intuition &mdash; Geometric Cognition</title>
   <meta name="description" content="Chapter 2: Kahneman's Geometric Intuition from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../book/book.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 
-<body data-book-slug="geometric-cognition">
+<body data-book-slug="geometric-cognition" data-chapter-id="ch02_kahneman">
   <nav id="main-nav">
     <div class="nav-inner">
       <a href="../index.html" class="nav-brand">
@@ -36,6 +37,11 @@
         <span class="breadcrumb-sep">&rsaquo;</span>
         <span class="breadcrumb-current">Chapter 2: Kahneman's Geometric Intuition</span>
       </nav>
+      <div class="chapter-nav-top">
+        <a href="ch01_iq_trap.html" class="nav-prev">&larr; Chapter 1: The IQ Trap</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch03_cognitive_manifold.html" class="nav-next">Chapter 3: The Cognitive Manifold &rarr;</a>
+      </div>
 
       <div class="chapter-content">
 <h1 id="chapter-2-kahnemans-geometric-intuition">Chapter 2: Kahneman&rsquo;s Geometric Intuition</h1>
@@ -71,7 +77,7 @@
 <p>Recall from Chapter 1 that reasoning is search on a structured space, and that the quality of search depends on the heuristic field $h(x)$&mdash;the scalar function that estimates, at each state $x$, the cost of reaching the goal from $x$. The gradient of the heuristic, $\nabla h(x)$, points in the direction of steepest estimated improvement. Following the gradient is the simplest possible search strategy: at each step, move in the direction that looks most promising according to the current estimate.</p>
 <p><strong>Definition 2.1</strong> (Gradient-Following Search). <em>A gradient-following search process generates the trajectory</em></p>
 <p>$$\frac{dx^\mu}{dt} = -g^{\mu\nu} \frac{\partial h}{\partial x^\nu}$$</p>
-<p><em>where $g^{\mu\nu}$ is the inverse of the metric tensor and $h$ is the heuristic field. The trajectory follows the direction of steepest descent of $h$ as measured by the metric $g$.</em></p>
+<p><em>where</em> $g^{\mu\nu}$ <em>is the inverse of the metric tensor and</em> $h$ <em>is the heuristic field. The trajectory follows the direction of steepest descent of</em> $h$ <em>as measured by the metric</em> $g$.</p>
 <p>Gradient following is fast. It requires no memory of past states, no evaluation of alternative paths, no planning. At each step, the system simply moves downhill. The computational cost is proportional to the dimensionality of the space (computing the gradient) rather than the depth of the search (considering sequences of moves). This is why gradient-following cognition <em>feels</em> effortless&mdash;it is computationally cheap.</p>
 <p>Gradient following is also unreflective. The system does not ask &ldquo;Is this gradient pointing in the right direction?&rdquo; It does not consider whether the heuristic might be misleading. It does not compare the current trajectory against alternative trajectories. It follows the local signal without global awareness.</p>
 <p>This is System 1.</p>
@@ -107,7 +113,7 @@
 <p>Computing a geodesic is fundamentally different from following a gradient. Gradient following uses only local information&mdash;the gradient at the current point. Geodesic computation uses <em>global</em> information&mdash;the curvature of the manifold, which describes how the metric changes from point to point. To follow a geodesic, the system must account not only for where the gradient points locally but for how the space curves ahead, adjusting the trajectory to stay on the shortest path through curved terrain.</p>
 <p><strong>Definition 2.2</strong> (Geodesic Search). <em>A geodesic search process generates the trajectory</em></p>
 <p>$$\frac{d^2 x^\mu}{dt^2} = -\Gamma^\mu_{\alpha\beta} \frac{dx^\alpha}{dt} \frac{dx^\beta}{dt}$$</p>
-<p><em>which accounts for the curvature of the cognitive manifold through the connection coefficients $\Gamma^\mu_{\alpha\beta}$. The trajectory follows the shortest path, not the steepest descent.</em></p>
+<p><em>which accounts for the curvature of the cognitive manifold through the connection coefficients</em> $\Gamma^\mu_{\alpha\beta}$<em>. The trajectory follows the shortest path, not the steepest descent.</em></p>
 <p>This is System 2.</p>
 <p>Again, the identification is precise:</p>
 <ul>
@@ -128,11 +134,19 @@
 <p>This is why System 2 is needed precisely when System 1 fails. System 1 (gradient following) works in flat regions of the cognitive manifold, where the heuristic is reliable and the local signal is globally correct. System 2 (geodesic computation) is needed in curved regions, where the local signal is misleading and the system must account for the curvature to find the correct path.</p>
 <h2 id="25-the-transition-is-curvature-triggered">2.5 The Transition Is Curvature-Triggered</h2>
 <p>The dual-process framework describes the System 1 to System 2 transition as triggered by difficulty, surprise, or conflict. The geometric framework makes this precise: the transition is triggered by <em>curvature</em>.</p>
-<p><strong>Definition 2.3</strong> (Curvature-Triggered Transition). <em>Let $\kappa(x)$ be the sectional curvature of the cognitive manifold at state $x$, and let $\kappa_{\text{crit}}$ be a threshold value. The cognitive system operates in gradient-following mode (System 1) when $|\kappa(x)| < \kappa_{\text{crit}}$ and switches to geodesic computation mode (System 2) when $|\kappa(x)| \geq \kappa_{\text{crit}}$.</em></p>
+<p><strong>Definition 2.3</strong> (Curvature-Triggered Transition). <em>Let</em> $\kappa(x)$ <em>be the sectional curvature of the cognitive manifold at state</em> $x$<em>, and let</em> $\kappa_{\text{crit}}$ <em>be a threshold value. The cognitive system operates in gradient-following mode (System 1) when</em> $|\kappa(x)| &lt; \kappa_{\text{crit}}$ <em>and switches to geodesic computation mode (System 2) when</em> $|\kappa(x)| \geq \kappa_{\text{crit}}$.</p>
 <p>This is not an arbitrary choice. Curvature is the correct trigger because it measures exactly the quantity that determines whether gradient following will succeed or fail.</p>
 <p>In a region of zero curvature, the manifold is locally flat. Gradient following produces a trajectory that is already a geodesic. There is no benefit to engaging the more expensive geodesic computation. System 1 suffices.</p>
 <p>In a region of high curvature, the manifold deviates strongly from flatness. Gradient following produces a trajectory that deviates from the geodesic&mdash;the steepest descent path curves away from the shortest path. The deviation grows with the curvature. At some point, the deviation becomes large enough that gradient following produces incorrect answers, and the system must switch to geodesic computation to navigate the curved terrain.</p>
 <p>The threshold $\kappa_{\text{crit}}$ is the point at which the expected loss from gradient deviation exceeds the computational cost of geodesic computation. Below the threshold, gradient following is &ldquo;good enough&rdquo;&mdash;the deviation from the geodesic is small enough that the answer is approximately correct, and the computational savings of gradient following outweigh the accuracy cost. Above the threshold, the deviation is large enough that gradient following produces qualitatively wrong answers, and the computational cost of geodesic computation is justified.</p>
+<pre><code class="language-mermaid">flowchart TD
+    X[&quot;Cognitive state x on the manifold&quot;] --&gt; K{&quot;Is the magnitude of curvature at x below the critical threshold?&quot;}
+    K --&gt;|&quot;yes: locally near-flat&quot;| S1[&quot;System 1: gradient following&quot;]
+    K --&gt;|&quot;no: high curvature&quot;| S2[&quot;System 2: geodesic computation&quot;]
+    S1 --&gt; A1[&quot;Steepest descent is close to the geodesic, answer approximately correct at low cost&quot;]
+    S2 --&gt; A2[&quot;Geodesic correction terms computed, uses working memory, sustained attention, inhibitory control&quot;]
+</code></pre>
+<p><em>Figure 2.1 (diagram): Definition 2.3 as a decision, with the reason each branch is taken.</em></p>
 <p>This explains several features of the System 1 / System 2 interaction that the standard account describes but does not explain:</p>
 <p><strong>Why simple tasks use System 1.</strong> Simple tasks live in low-curvature regions of the cognitive manifold. &ldquo;What is 2 + 2?&rdquo; occupies a region where the heuristic field is reliable, the gradient points directly at the answer, and there is no curvature to navigate. Gradient following arrives at the correct answer in one or two steps. Engaging System 2 would be wasteful.</p>
 <p><strong>Why complex tasks use System 2.</strong> Complex tasks live in high-curvature regions. The footbridge trolley problem occupies a region where utilitarian and deontological considerations create opposing gradients&mdash;the heuristic field is distorted by the conflict between &ldquo;save five lives&rdquo; (utilitarian gradient) and &ldquo;do not push a person to their death&rdquo; (deontological gradient). The curvature at this point is high, because the metric changes rapidly as you move from the utilitarian basin to the deontological basin. Gradient following in either direction leads to a partial answer. The geodesic&mdash;the path that correctly weighs both considerations&mdash;requires navigating the curvature.</p>
@@ -149,7 +163,7 @@
 <p><strong>Factor 3: The corruption is partially baked into the metric itself.</strong> The most insidious form of heuristic corruption is corruption of the metric, not just the heuristic field. If the metric tensor itself has been distorted by training on biased data&mdash;if the system&rsquo;s notion of &ldquo;distance&rdquo; between cognitive states has been warped by exposure to systematically skewed examples&mdash;then geodesic computation on the corrupted metric will not recover the true geodesic on the uncorrupted metric. The corruption is below the level at which System 2 operates. It is in the geometry itself.</p>
 <p>The convergence of the ~38% ceiling across two unrelated cognitive tracks (A1 and E2) supports the structural explanation. If the ceiling were due to domain-specific factors, it would differ between tracks. The fact that it converges suggests a common architectural constraint&mdash;a property of the control system itself, not of the tasks.</p>
 <p><strong>The geometric interpretation.</strong> Let $\gamma_{\text{gradient}}$ be the trajectory produced by gradient following (System 1) and $\gamma_{\text{geodesic}}$ be the true geodesic. The geodesic deviation $\delta\gamma = \gamma_{\text{gradient}} - \gamma_{\text{geodesic}}$ measures the error of System 1. The recovery process (System 2) reduces this deviation, but by at most a fraction $\mathcal{R}_{\max} \approx 0.38$:</p>
-<p>$$\|\delta\gamma_{\text{recovered}}\| \geq (1 - \mathcal{R}_{\max}) \|\delta\gamma_{\text{original}}\|$$</p>
+<p>$$\Vert\delta\gamma_{\text{recovered}}\Vert \geq (1 - \mathcal{R}_{\max}) \Vert\delta\gamma_{\text{original}}\Vert$$</p>
 <p>The remaining 62% of the deviation is structural: it cannot be eliminated by prompt-level intervention because it arises from corruption of the metric itself, not just of the heuristic field.</p>
 <h2 id="27-kahneman-was-right-about-the-phenomena">2.7 Kahneman Was Right About the Phenomena</h2>
 <p>Let us be clear about the relationship between the geometric account and Kahneman&rsquo;s account.</p>
@@ -207,9 +221,9 @@
 <p>The geometric framework also resolves a longstanding puzzle in the dual-process literature: the continuity problem.</p>
 <p>If System 1 and System 2 are two distinct systems, there should be a sharp boundary between them. Tasks should be processed by one system or the other. But the empirical evidence suggests a continuum. Some tasks are processed with moderate effort&mdash;more than System 1 but less than full System 2 engagement. Where do these tasks live in the dual-process framework?</p>
 <p>The geometric answer is immediate. The curvature of the cognitive manifold varies continuously. At zero curvature, gradient following suffices (pure System 1). At high curvature, full geodesic computation is needed (pure System 2). At intermediate curvature, the system computes partial geodesic corrections&mdash;enough to account for the moderate curvature, but not the full geodesic equation. The &ldquo;effort&rdquo; of processing varies continuously with the curvature of the task.</p>
-<p><strong>Definition 2.4</strong> (Cognitive Effort as Curvature Cost). <em>The cognitive effort $E(\gamma)$ associated with a reasoning trajectory $\gamma$ on the cognitive manifold $\mathcal{M}$ is</em></p>
-<p>$$E(\gamma) = \int_\gamma \left( \|\dot{\gamma}\|^2 + \lambda \|\Gamma(\gamma, \dot{\gamma})\|^2 \right) dt$$</p>
-<p><em>where $\|\dot{\gamma}\|^2$ is the kinetic cost (traversal effort), $\|\Gamma(\gamma, \dot{\gamma})\|^2$ is the curvature correction cost (geodesic computation effort), and $\lambda > 0$ is a parameter that weights the relative cost of curvature correction.</em></p>
+<p><strong>Definition 2.4</strong> (Cognitive Effort as Curvature Cost). <em>The cognitive effort</em> $E(\gamma)$ <em>associated with a reasoning trajectory</em> $\gamma$ <em>on the cognitive manifold</em> $\mathcal{M}$ <em>is</em></p>
+<p>$$E(\gamma) = \int_\gamma \left( \Vert\dot{\gamma}\Vert^2 + \lambda \Vert\Gamma(\gamma, \dot{\gamma})\Vert^2 \right) dt$$</p>
+<p><em>where</em> $\Vert\dot{\gamma}\Vert^2$ <em>is the kinetic cost (traversal effort),</em> $\Vert\Gamma(\gamma, \dot{\gamma})\Vert^2$ <em>is the curvature correction cost (geodesic computation effort), and</em> $\lambda &gt; 0$ <em>is a parameter that weights the relative cost of curvature correction.</em></p>
 <p>When $\lambda$ is small relative to the curvature correction terms, the system minimizes effort by following the gradient (System 1)&mdash;the curvature corrections are too expensive to compute. When $\lambda$ is large, the system minimizes effort by computing the full geodesic (System 2)&mdash;the cost of following the wrong path exceeds the cost of computing the right one. The transition is smooth, not discrete.</p>
 <p>This continuous account explains several phenomena that the binary account struggles with:</p>
 <p><strong>Partial engagement.</strong> A moderately complex arithmetic problem (say, 23 x 17) engages more cognitive resources than a simple one (2 + 3) but fewer than a truly complex one (integrate $e^{-x^2}$ from $-\infty$ to $\infty$). In the geometric framework, these three tasks live in regions of increasing curvature, and the system applies increasing amounts of geodesic correction.</p>
@@ -221,7 +235,7 @@
 <p>Gradient following uses only local information: the gradient at the current state. The computational process has low dimensionality&mdash;it requires representing only the current state and its immediate neighborhood. The neural activation pattern during gradient following should be low-dimensional: concentrated in a small number of brain regions, with strong correlations between regions (because all regions are processing the same local signal).</p>
 <p>Geodesic computation uses global information: the curvature of the manifold, which depends on the metric tensor and its derivatives across a neighborhood. The computational process has high dimensionality&mdash;it requires representing the current state, the velocity, and the curvature correction terms. The neural activation pattern during geodesic computation should be high-dimensional: distributed across many brain regions, with weaker correlations (because different regions are computing different components of the geodesic equation).</p>
 <p>This prediction aligns with what Maya observes in the fMRI. The simple moral dilemma (low curvature, gradient following) produces a concentrated, low-dimensional activation pattern. The complex moral dilemma (high curvature, geodesic computation) produces a distributed, high-dimensional activation pattern. The transition from low to high dimensionality corresponds to the transition from System 1 to System 2&mdash;and it is the dimensionality, not merely the intensity, that tracks the computational mode.</p>
-<p>This prediction can be tested quantitatively. The effective dimensionality of the fMRI activation pattern can be measured using principal component analysis or participatory ratio analysis. The geometric framework predicts:</p>
+<p>This prediction can be tested quantitatively. The effective dimensionality of the fMRI activation pattern can be measured using principal component analysis or participation ratio analysis. The geometric framework predicts:</p>
 <ol>
 <li>Effective dimensionality increases with task difficulty (curvature).</li>
 <li>The increase is non-linear: it is sharp at the transition threshold and saturates at high curvature.</li>
@@ -270,7 +284,7 @@
 </table>
 <p>The combined significance across all five models is 13.3 sigma.</p>
 <p>In the geometric framework, sycophancy is not a failure of reasoning. It is a failure of the <em>objective function</em>. The heuristic field $h(x)$ should guide the search toward the correct answer. But the social pressure from the interlocutor creates a competing field $h_{\text{social}}(x)$ that guides the search toward the approved answer. The effective heuristic is a weighted combination:</p>
-<p>$$h_{\text{eff}}(x) = (1 - \alpha) h_{\text{truth}}(x) + \alpha \, h_{\text{social}}(x)$$</p>
+<p>$$h_{\text{eff}}(x) = (1 - \alpha) h_{\text{truth}}(x) + \alpha \thinspace h_{\text{social}}(x)$$</p>
 <p>where $\alpha \in [0, 1]$ is the sycophancy parameter. For Claude, $\alpha = 0$: the social field has no influence on the search. For Flash 2.5, $\alpha \approx 0.56$: the social field dominates the truth field.</p>
 <p>The gradient of the effective heuristic is:</p>
 <p>$$\nabla h_{\text{eff}} = (1 - \alpha) \nabla h_{\text{truth}} + \alpha \nabla h_{\text{social}}$$</p>
@@ -292,7 +306,7 @@
 <p>For a trajectory of length $L \approx 5$ (five reasoning steps), the curvature estimate is:</p>
 <p>$$3.0 = e^{\sqrt{|\kappa|} \cdot 5} \implies \sqrt{|\kappa|} \approx \frac{\ln 3}{5} \approx 0.22 \implies |\kappa| \approx 0.048$$</p>
 <p>This is a moderate negative curvature&mdash;not extremely curved (which would produce even larger amplification) but enough to produce reliable framing effects at high statistical significance.</p>
-<p><strong>Step 3: Determine the transition threshold.</strong> The model switches from gradient following to geodesic computation when $|\kappa| > \kappa_{\text{crit}}$. If the model is using gradient following during the vivid-framing task (which the large displacement suggests), then $\kappa_{\text{crit}} > 0.048$&mdash;the curvature is below the trigger threshold, and the model remains in System 1. This explains why the framing effect is so large: the model should have engaged System 2 (geodesic computation, which would resist the framing perturbation) but did not, because the curvature fell below its transition threshold.</p>
+<p><strong>Step 3: Determine the transition threshold.</strong> The model switches from gradient following to geodesic computation when $|\kappa| &gt; \kappa_{\text{crit}}$. If the model is using gradient following during the vivid-framing task (which the large displacement suggests), then $\kappa_{\text{crit}} &gt; 0.048$&mdash;the curvature is below the trigger threshold, and the model remains in System 1. This explains why the framing effect is so large: the model should have engaged System 2 (geodesic computation, which would resist the framing perturbation) but did not, because the curvature fell below its transition threshold.</p>
 <p><strong>Prediction.</strong> If we could induce the model to engage System 2 (e.g., through chain-of-thought prompting), the framing displacement should decrease by approximately 38% (the recovery ceiling). The remaining 62% of the displacement is irrecoverable because it arises from corruption of the metric itself, not the heuristic field.</p>
 <h2 id="213-the-failure-of-scalar-measurement-revisited">2.13 The Failure of Scalar Measurement, Revisited</h2>
 <p>The connection between this chapter and Chapter 1 is now clear. Scalar measures of cognitive performance fail because they cannot distinguish between:</p>
@@ -324,7 +338,7 @@
 <p>for small $\kappa L^2$. This quadratic growth means that curvature effects are negligible for short trajectories (simple tasks) but dominant for long trajectories (complex tasks)&mdash;consistent with the observation that System 2 is engaged primarily for complex, multi-step reasoning.</p>
 <h2 id="technical-appendix-2b-cognitive-effort-as-a-variational-problem">Technical Appendix 2B: Cognitive Effort as a Variational Problem</h2>
 <p>The cognitive effort functional defined in Section 2.8:</p>
-<p>$$E[\gamma] = \int_0^T \left( g_{\mu\nu} \dot{x}^\mu \dot{x}^\nu + \lambda \|\Gamma(\gamma, \dot{\gamma})\|^2 \right) dt$$</p>
+<p>$$E[\gamma] = \int_0^T \left( g_{\mu\nu} \dot{x}^\mu \dot{x}^\nu + \lambda \Vert\Gamma(\gamma, \dot{\gamma})\Vert^2 \right) dt$$</p>
 <p>can be analyzed as a variational problem. The Euler-Lagrange equations for this functional give the trajectory that minimizes total cognitive effort, subject to the constraint that the trajectory connects the initial state to the goal state.</p>
 <p>In the limit $\lambda \to 0$, the effort functional reduces to the arc-length functional, and the minimizing trajectory is the geodesic. In the limit $\lambda \to \infty$, the effort functional is dominated by the curvature correction cost, and the minimizing trajectory is the one that avoids high-curvature regions entirely, even at the cost of a longer path. This corresponds to a cognitive system that avoids difficult reasoning, preferring longer but simpler paths through cognitive space.</p>
 <p>For intermediate values of $\lambda$, the minimizing trajectory is a compromise: it follows the geodesic in low-curvature regions (where the curvature correction cost is negligible) and deviates from the geodesic in high-curvature regions (where the curvature correction is too expensive to compute fully). This is the mathematical expression of bounded rationality: the system does not follow the optimal path (the geodesic) because the computational cost of following the optimal path (the curvature correction) is itself part of the total cost.</p>
@@ -332,7 +346,9 @@
       </div>
 
       <div class="chapter-nav-bottom">
-        <a href="index.html" class="nav-toc">&larr; Contents</a>
+        <a href="ch01_iq_trap.html" class="nav-prev">&larr; Chapter 1: The IQ Trap</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch03_cognitive_manifold.html" class="nav-next">Chapter 3: The Cognitive Manifold &rarr;</a>
       </div>
     </div>
   </article>
@@ -360,6 +376,7 @@
         {left: '\\\\(', right: '\\\\)', display: false},
         {left: '\\\\[', right: '\\\\]', display: true}
       ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
       throwOnError: false
     });"></script>
 </body>

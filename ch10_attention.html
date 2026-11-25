@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 10: Attention as Manifold Filtering &mdash; Geometric Cognition</title>
   <meta name="description" content="Chapter 10: Attention as Manifold Filtering from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../book/book.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 
-<body data-book-slug="geometric-cognition">
+<body data-book-slug="geometric-cognition" data-chapter-id="ch10_attention">
   <nav id="main-nav">
     <div class="nav-inner">
       <a href="../index.html" class="nav-brand">
@@ -36,6 +37,11 @@
         <span class="breadcrumb-sep">&rsaquo;</span>
         <span class="breadcrumb-current">Chapter 10: Attention as Manifold Filtering</span>
       </nav>
+      <div class="chapter-nav-top">
+        <a href="ch09_metacognition.html" class="nav-prev">&larr; Chapter 9: Metacognition as Distance Estimation</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch11_executive_control.html" class="nav-next">Chapter 11: Executive Control as Geodesic Governance &rarr;</a>
+      </div>
 
       <div class="chapter-content">
 <h1 id="chapter-10-attention-as-manifold-filtering">Chapter 10: Attention as Manifold Filtering</h1>
@@ -136,11 +142,11 @@
 </table>
 <p>The dose-response is graded. Vivid distractors produce more displacement than mild distractors, which produce more displacement than controls. The ordering is vivid &gt; mild &gt; control, and it holds across all five models. This proportionality is informative: it tells us that the attention metric&rsquo;s vulnerability to distraction is not a threshold phenomenon (either the distractor crosses a threshold and fully disrupts, or it does not) but a continuous function of distractor salience. The metric is <em>proportionally</em> permeable to irrelevant information.</p>
 <p><strong>The geometric interpretation.</strong> In terms of the attention metric, a distractor activates metric components along irrelevant dimensions. The activation is proportional to the distractor&rsquo;s salience: vivid distractors produce a larger metric perturbation $\delta g_{\mu\nu}$ than mild distractors. The perturbation distorts the geodesic from the problem representation to the correct judgment, pulling the trajectory toward the distractor&rsquo;s dimension and away from the morally relevant dimensions.</p>
-<p><strong>Definition 10.1</strong> (Distractor Perturbation of the Metric). <em>Let $g_{\mu\nu}$ be the task-relevant metric and let $\delta g_{\mu\nu}(\sigma)$ be the perturbation caused by a distractor of salience $\sigma$. The perturbed metric is:</em></p>
+<p><strong>Definition 10.1</strong> (Distractor Perturbation of the Metric). <em>Let</em> $g_{\mu\nu}$ <em>be the task-relevant metric and let</em> $\delta g_{\mu\nu}(\sigma)$ <em>be the perturbation caused by a distractor of salience</em> $\sigma$<em>. The perturbed metric is:</em></p>
 <p>$$\tilde{g}_{\mu\nu} = g_{\mu\nu} + \delta g_{\mu\nu}(\sigma)$$</p>
-<p><em>If $\delta g_{\mu\nu}$ is proportional to $\sigma$:</em></p>
+<p><em>If</em> $\delta g_{\mu\nu}$ <em>is proportional to</em> $\sigma$:</p>
 <p>$$\delta g_{\mu\nu}(\sigma) = \sigma \cdot \Delta g_{\mu\nu}$$</p>
-<p><em>then the geodesic displacement is approximately proportional to $\sigma$ for small perturbations (linear dose-response), which is consistent with the observed vivid &gt; mild &gt; control ordering.</em></p>
+<p><em>then the geodesic displacement is approximately proportional to</em> $\sigma$ <em>for small perturbations (linear dose-response), which is consistent with the observed vivid &gt; mild &gt; control ordering.</em></p>
 <p>The proportional dose-response constrains the functional form of the metric&rsquo;s vulnerability. It rules out threshold models (where the metric is stable below a salience threshold and collapses above it) and saturation models (where the metric is equally disrupted by all non-zero distractors). It supports a linear or mildly nonlinear dose-response, consistent with the metric perturbation being a smooth function of distractor salience.</p>
 <h2 id="103-warning-recovery-the-metacognitive-ceiling">10.3 Warning Recovery: The Metacognitive Ceiling</h2>
 <p>The warning condition tests whether metacognitive intervention can undo attentional distortion. The model is told, explicitly, that the scenario contains irrelevant sensory details and is instructed to focus only on the morally relevant facts.</p>
@@ -237,9 +243,9 @@
 <p><strong>The universality is the finding.</strong> If the weak SNR were due to model-specific architectural limitations, we would expect variation across architectures. The Claude architecture is fundamentally different from the Gemini architecture&mdash;different training data, different alignment procedures, different attention mechanisms. Yet the SNR values converge to the same narrow band. This convergence across architectures suggests a <em>structural</em> limitation of the transformer attention mechanism itself, not an incidental property of any particular model.</p>
 <p><strong>The geometric interpretation.</strong> The SNR measures the ratio of metric components along the signal dimensions to metric components along the noise dimensions (Definition 4.4 from Chapter 4). An SNR of 1.0 means the metric treats signal and noise identically. An SNR much greater than 1.0 means the metric strongly favors signal. The observed SNR values of 1.22&ndash;1.38 mean the metric barely favors signal over noise&mdash;it provides about 22&ndash;38% more resolution along the relevant dimensions than along the irrelevant ones.</p>
 <p>This weak metric discrimination explains the vulnerability to distractors (A1). If the metric barely distinguishes relevant from irrelevant dimensions, then activations along irrelevant dimensions (distractors) have nearly as much influence on the geodesic as activations along relevant dimensions (the actual moral content). The distractor&rsquo;s metric weight is only 22&ndash;38% less than the signal&rsquo;s metric weight&mdash;far from the ideal case where the distractor&rsquo;s weight would be near zero.</p>
-<p><strong>Definition 10.2</strong> (Metric Signal-to-Noise Ratio). <em>Let $g_s$ be the average metric component along signal dimensions and $g_n$ be the average metric component along noise dimensions. The metric SNR is:</em></p>
+<p><strong>Definition 10.2</strong> (Metric Signal-to-Noise Ratio). <em>Let</em> $g_s$ <em>be the average metric component along signal dimensions and</em> $g_n$ <em>be the average metric component along noise dimensions. The metric SNR is:</em></p>
 <p>$$\text{SNR}_g = \frac{g_s}{g_n}$$</p>
-<p><em>The geodesic&rsquo;s vulnerability to noise perturbation is proportional to $1 / (\text{SNR}_g - 1)$. For $\text{SNR}_g$ near 1.0, the vulnerability is high. For $\text{SNR}_g \gg 1$, the vulnerability is low. The observed $\text{SNR}_g$ values of 1.22&ndash;1.38 correspond to high vulnerability, consistent with the 4.6 sigma distractor effect.</em></p>
+<p><em>The geodesic&rsquo;s vulnerability to noise perturbation is proportional to</em> $1 / (\text{SNR}_g - 1)$<em>. For</em> $\text{SNR}_g$ <em>near 1.0, the vulnerability is high. For</em> $\text{SNR}_g \gg 1$<em>, the vulnerability is low. The observed</em> $\text{SNR}_g$ <em>values of 1.22&ndash;1.38 correspond to high vulnerability, consistent with the 4.6 sigma distractor effect.</em></p>
 <p>The universal weakness of the SNR has implications beyond the Attention track. If the attention metric provides only 22&ndash;38% more resolution along relevant dimensions than irrelevant ones, then <em>all</em> cognitive processing occurs in a noisy metric environment. The geodesic equation, which depends on the metric and its derivatives, is computed with noisy inputs. The curvature estimates, which determine System 1/System 2 transitions, are contaminated by noise. The heuristic field, which guides search, is evaluated on a manifold measured with a blurry ruler.</p>
 <p>This universal noise floor is the geometric backdrop against which all the other benchmark results should be interpreted. The framing effects (15.3 sigma), the sycophancy gradient (13.3 sigma), the calibration errors (6.7 sigma), the emotional anchoring (6.8 sigma)&mdash;all occur on a manifold where the baseline metric is already weak. The models are navigating complex cognitive terrain with a ruler that can barely distinguish the path from the surrounding noise.</p>
 <h2 id="106-the-divided-attention-split-the-metric-made-visible">10.6 The Divided Attention Split: The Metric Made Visible</h2>
@@ -293,16 +299,16 @@
 <p>$$g_{\mu\nu}^{\text{Flash 3}} \approx \frac{\lambda}{k} \mathbf{I}_k$$</p>
 <p>where $\lambda$ is the total attention budget and $k$ is the number of simultaneous streams. The budget is divided equally across streams, and each stream receives $\lambda / k$ resolution. If $\lambda / k$ exceeds the task-relevance threshold&mdash;the minimum resolution needed to perform the task correctly&mdash;then all streams are processed with sufficient quality, and the A4 score is perfect.</p>
 <p>The isotropic metric is not &ldquo;better&rdquo; in all contexts. It trades per-stream resolution for multi-stream coverage. In tasks where maximal resolution on a single dimension is critical (e.g., sycophancy resistance, where the model must attend with extreme precision to the truthfulness dimension), the rank-1 metric may be superior. Claude&rsquo;s zero sycophancy (L2 = 1.000) may be a consequence of its narrow metric: by concentrating all attention on the truthfulness dimension, it achieves maximal resistance to social pressure.</p>
-<p><strong>Definition 10.3</strong> (Metric Rank). <em>Let $g_{\mu\nu}$ be the attention metric tensor at a point on the cognitive manifold, and let $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n$ be its eigenvalues. The effective rank of the metric is:</em></p>
+<p><strong>Definition 10.3</strong> (Metric Rank). <em>Let</em> $g_{\mu\nu}$ <em>be the attention metric tensor at a point on the cognitive manifold, and let</em> $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n$ <em>be its eigenvalues. The effective rank of the metric is:</em></p>
 <p>$$\text{rank}_{\text{eff}}(g) = \frac{(\sum_i \lambda_i)^2}{\sum_i \lambda_i^2}$$</p>
-<p><em>This is the participation ratio of the eigenvalues. For a rank-1 metric, $\text{rank}_{\text{eff}} = 1$. For an isotropic metric with $k$ nonzero eigenvalues, $\text{rank}_{\text{eff}} = k$.</em></p>
+<p><em>This is the participation ratio of the eigenvalues. For a rank-1 metric,</em> $\text{rank}_ {\text{eff}} = 1$<em>. For an isotropic metric with</em> $k$ <em>nonzero eigenvalues,</em> $\text{rank}_ {\text{eff}} = k$.</p>
 <p>Claude&rsquo;s effective metric rank is approximately 1 (narrow channel, single-stream processing). Flash 3&rsquo;s effective metric rank is approximately 2 or more (wide aperture, multi-stream processing). The metric rank is the quantitative measure of the &ldquo;shape&rdquo; of attention that determines whether the model processes one thing very well or multiple things adequately.</p>
 <h2 id="107-the-a4-dissociation-from-other-attention-measures">10.7 The A4 Dissociation from Other Attention Measures</h2>
 <p>A key feature of the A4 result is that it dissociates from the other attention measures. Claude&rsquo;s A4 score (0.571, worst) does not predict its A2 score (0.829, second-best) or its A3 score (0.692, best). Claude has strong sustained attention (A2) and the best selective attention (A3) but the worst divided attention (A4).</p>
 <p>This dissociation makes geometric sense. A2 (length robustness) measures metric persistence&mdash;whether the metric is stable over time. A3 (selective attention) measures the metric&rsquo;s ability to discriminate relevant from irrelevant dimensions on a single stream. A4 (divided attention) measures the metric&rsquo;s ability to maintain resolution across multiple streams. These are three different properties of the metric tensor:</p>
 <ul>
 <li><strong>A2 tests temporal stability:</strong> $\partial g_{\mu\nu} / \partial t \approx 0$ (the metric does not drift).</li>
-<li><strong>A3 tests signal selectivity:</strong> $g_{\text{signal}} / g_{\text{noise}} > 1$ (the metric favors signal over noise).</li>
+<li><strong>A3 tests signal selectivity:</strong> $g_{\text{signal}} / g_{\text{noise}} &gt; 1$ (the metric favors signal over noise).</li>
 <li><strong>A4 tests dimensional breadth:</strong> $\text{rank}_{\text{eff}}(g) \geq 2$ (the metric has resolution along multiple independent dimensions).</li>
 </ul>
 <p>A rank-1 metric can be temporally stable (high A2) and signal-selective (reasonable A3) while having zero breadth (low A4). This is exactly Claude&rsquo;s profile: a narrow, stable, signal-favoring metric that cannot distribute across multiple streams. The metric has one excellent direction and no others.</p>
@@ -314,10 +320,10 @@
 <p>The A4 split suggests that the models differ in how effectively they utilize multi-head attention for parallel processing. Flash 3 and Pro appear to use their attention heads to independently process the two interleaved scenarios, maintaining separate metric computations for each. Claude appears to concentrate its attention heads on a single processing stream, achieving higher per-stream resolution but losing the ability to process two streams independently.</p>
 <p>This architectural hypothesis is consistent with the broader cognitive signatures (Chapter 1). Claude&rsquo;s &ldquo;narrow channel&rdquo; signature&mdash;zero sycophancy, worst divided attention, excellent self-monitoring&mdash;is the signature of a model that concentrates its attention resources into a single high-resolution stream. Flash 3&rsquo;s &ldquo;wide aperture&rdquo; signature&mdash;perfect divided attention, best working memory, mediocre sycophancy resistance&mdash;is the signature of a model that distributes attention resources broadly.</p>
 <p><strong>The attention budget.</strong> The models share a common total attention budget $W$ (determined by the number of attention heads times the dimension per head), but they allocate this budget differently. Claude allocates $W$ to a single stream: $W / 1 = W$ per stream, achieving maximum resolution on one stream. Flash 3 allocates $W$ across two streams: $W / 2$ per stream, with each stream receiving half the resolution but both receiving adequate coverage.</p>
-<p>The threshold condition for successful divided attention is $W / 2 \geq W_{\min}$, where $W_{\min}$ is the minimum attention weight needed to perform the task correctly. Flash 3 satisfies this threshold (its A4 is 1.000); Claude does not (its A4 is 0.571, indicating that $W / 2 < W_{\min}$ for a substantial fraction of tasks). This does not necessarily mean Flash 3 has a larger total budget $W$&mdash;it may mean Flash 3 has a lower task threshold $W_{\min}$ due to more efficient per-stream processing.</p>
+<p>The threshold condition for successful divided attention is $W / 2 \geq W_{\min}$, where $W_{\min}$ is the minimum attention weight needed to perform the task correctly. Flash 3 satisfies this threshold (its A4 is 1.000); Claude does not (its A4 is 0.571, indicating that $W / 2 &lt; W_{\min}$ for a substantial fraction of tasks). This does not necessarily mean Flash 3 has a larger total budget $W$&mdash;it may mean Flash 3 has a lower task threshold $W_{\min}$ due to more efficient per-stream processing.</p>
 <h2 id="109-the-attention-robustness-surface">10.9 The Attention Robustness Surface</h2>
 <p>Integrating the four subtask results, we can construct the <em>attention robustness surface</em> for each model&mdash;a mapping from perturbation type and intensity to judgment displacement.</p>
-<p><strong>Definition 10.4</strong> (Attention Robustness Surface). <em>The attention robustness surface of a model is the function $R: \mathcal{P} \times [0, 1] \to [0, 1]$ that maps each perturbation type $p \in \mathcal{P}$ and perturbation intensity $\sigma \in [0, 1]$ to the expected displacement $R(p, \sigma)$ of the model&rsquo;s judgment.</em></p>
+<p><strong>Definition 10.4</strong> (Attention Robustness Surface). <em>The attention robustness surface of a model is the function</em> $R: \mathcal{P} \times [0, 1] \to [0, 1]$ <em>that maps each perturbation type</em> $p \in \mathcal{P}$ <em>and perturbation intensity</em> $\sigma \in [0, 1]$ <em>to the expected displacement</em> $R(p, \sigma)$ <em>of the model&rsquo;s judgment.</em></p>
 <p>The four subtasks sample this surface at specific points:</p>
 <ul>
 <li>A1 samples the surface at perturbation type = &ldquo;content distractor&rdquo; and intensities {control, mild, vivid}.</li>
@@ -400,18 +406,18 @@
 <p>Chapter 11 brings the story to its synthesis. The executive control track integrates the metric, the tangent space, and the control layer into a unified picture of how models govern their own reasoning. The attention metric provides the sensory input to the control system. The metacognitive distance estimates provide the feedback signal. And the executive functions provide the governance mechanism that holds the entire system together&mdash;or fails to.</p>
 <hr />
 <h2 id="technical-appendix-10a-distractor-dose-responsestatistical-framework">Technical Appendix 10A: Distractor Dose-Response&mdash;Statistical Framework</h2>
-<p><strong>Definition</strong> (Dose-Response Model). <em>Let $D(\sigma)$ be the expected verdict displacement as a function of distractor salience $\sigma \in \{0, \sigma_{\text{mild}}, \sigma_{\text{vivid}}\}$. The dose-response model is:</em></p>
+<p><strong>Definition</strong> (Dose-Response Model). <em>Let</em> $D(\sigma)$ <em>be the expected verdict displacement as a function of distractor salience</em> $\sigma \in \lbrace0, \sigma_{\text{mild}}, \sigma_{\text{vivid}}\rbrace$<em>. The dose-response model is:</em></p>
 <p>$$D(\sigma) = D_0 + \beta \sigma + \epsilon$$</p>
-<p><em>where $D_0$ is the baseline displacement rate (control condition), $\beta$ is the dose-response coefficient, and $\epsilon$ is noise. The null hypothesis is $\beta = 0$ (no dose-response). The alternative is $\beta > 0$ (higher salience produces more displacement).</em></p>
+<p><em>where</em> $D_0$ <em>is the baseline displacement rate (control condition),</em> $\beta$ <em>is the dose-response coefficient, and</em> $\epsilon$ <em>is noise. The null hypothesis is</em> $\beta = 0$ <em>(no dose-response). The alternative is</em> $\beta &gt; 0$ <em>(higher salience produces more displacement).</em></p>
 <p><strong>Graded bonus scoring.</strong> The A1 composite score includes a graded bonus that rewards proportional dose-response: models receive additional credit when their displacement ordering matches vivid &gt; mild &gt; control. This rewards informative dose-response structure over binary distractor sensitivity.</p>
 <p><strong>Fisher combination.</strong> The 4.6 sigma Fisher combined significance is computed from the individual model z-scores for the distractor displacement effect. Each model&rsquo;s z-score is computed from the difference between the vivid-condition flip rate and the control-condition flip rate, divided by the standard error estimated from the five-replication control arm. Fisher&rsquo;s method combines the individual p-values:</p>
 <p>$$\chi^2_{\text{Fisher}} = -2 \sum_{k=1}^{5} \ln(p_k)$$</p>
 <p>Under the null hypothesis of no distractor effect, $\chi^2_{\text{Fisher}} \sim \chi^2_{10}$. The observed value corresponds to $p \approx 2 \times 10^{-6}$, or 4.6 sigma.</p>
 <h2 id="technical-appendix-10b-divided-attentionmetric-rank-analysis">Technical Appendix 10B: Divided Attention&mdash;Metric Rank Analysis</h2>
-<p><strong>Proposition 10.1</strong> (A4 Score as Metric Rank Indicator). <em>Let $g_{\mu\nu}$ be the attention metric under divided attention conditions, with eigenvalues $\lambda_1 \geq \lambda_2$. Define the metric isotropy as $\iota = \lambda_2 / \lambda_1 \in [0, 1]$. For a task requiring minimum resolution $\lambda_{\min}$ along each of two dimensions, the A4 score is:</em></p>
-<p>$$\text{A4}(\iota) = \begin{cases} 1.0 & \text{if } \lambda_2 \geq \lambda_{\min} \\ f(\lambda_2 / \lambda_{\min}) & \text{if } \lambda_2 < \lambda_{\min} \end{cases}$$</p>
-<p><em>where $f$ is a monotonically increasing function with $f(0) = f_0$ (minimum score from primary-stream-only processing) and $f(1) = 1.0$.</em></p>
-<p>For Claude: $\iota \approx 0$ (rank-1 metric), so $\lambda_2 \approx 0 < \lambda_{\min}$, and $\text{A4} = f_0 \approx 0.571$ (processing based almost entirely on the primary stream, with the secondary stream contributing noise).</p>
+<p><strong>Proposition 10.1</strong> (A4 Score as Metric Rank Indicator). <em>Let</em> $g_{\mu\nu}$ <em>be the attention metric under divided attention conditions, with eigenvalues</em> $\lambda_1 \geq \lambda_2$<em>. Define the metric isotropy as</em> $\iota = \lambda_2 / \lambda_1 \in [0, 1]$<em>. For a task requiring minimum resolution</em> $\lambda_{\min}$ <em>along each of two dimensions, the A4 score is:</em></p>
+<p>$$\text{A4}(\iota) = \begin{cases} 1.0 &amp; \text{if } \lambda_2 \geq \lambda_{\min} \cr f(\lambda_2 / \lambda_{\min}) &amp; \text{if } \lambda_2 &lt; \lambda_{\min} \end{cases}$$</p>
+<p><em>where</em> $f$ <em>is a monotonically increasing function with</em> $f(0) = f_0$ <em>(minimum score from primary-stream-only processing) and</em> $f(1) = 1.0$.</p>
+<p>For Claude: $\iota \approx 0$ (rank-1 metric), so $\lambda_2 \approx 0 &lt; \lambda_{\min}$, and $\text{A4} = f_0 \approx 0.571$ (processing based almost entirely on the primary stream, with the secondary stream contributing noise).</p>
 <p>For Flash 3: $\iota \approx 1$ (isotropic metric), so $\lambda_2 \approx \lambda_1 \geq \lambda_{\min}$, and $\text{A4} = 1.0$ (both streams processed with sufficient resolution).</p>
 <p><strong>Corollary.</strong> The A4 score is a monotonically increasing function of the metric isotropy $\iota = \lambda_2 / \lambda_1$. Models with higher A4 scores have more isotropic attention metrics. The 0.429 spread between Claude (0.571) and Flash 3 (1.000) maps to a change in metric isotropy from approximately 0 to approximately 1&mdash;the full range of possible metric shapes.</p>
 <h2 id="technical-appendix-10c-the-recovery-ceilingcross-domain-convergence">Technical Appendix 10C: The Recovery Ceiling&mdash;Cross-Domain Convergence</h2>
@@ -446,7 +452,9 @@
       </div>
 
       <div class="chapter-nav-bottom">
-        <a href="index.html" class="nav-toc">&larr; Contents</a>
+        <a href="ch09_metacognition.html" class="nav-prev">&larr; Chapter 9: Metacognition as Distance Estimation</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch11_executive_control.html" class="nav-next">Chapter 11: Executive Control as Geodesic Governance &rarr;</a>
       </div>
     </div>
   </article>
@@ -474,6 +482,7 @@
         {left: '\\\\(', right: '\\\\)', display: false},
         {left: '\\\\[', right: '\\\\]', display: true}
       ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
       throwOnError: false
     });"></script>
 </body>

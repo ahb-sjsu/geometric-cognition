@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 1: The IQ Trap &mdash; Geometric Cognition</title>
   <meta name="description" content="Chapter 1: The IQ Trap from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../book/book.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 
-<body data-book-slug="geometric-cognition">
+<body data-book-slug="geometric-cognition" data-chapter-id="ch01_iq_trap">
   <nav id="main-nav">
     <div class="nav-inner">
       <a href="../index.html" class="nav-brand">
@@ -36,6 +37,11 @@
         <span class="breadcrumb-sep">&rsaquo;</span>
         <span class="breadcrumb-current">Chapter 1: The IQ Trap</span>
       </nav>
+      <div class="chapter-nav-top">
+        <a href="ch00_front_matter.html" class="nav-prev">&larr; Geometric Cognition: The Mathematical Structure of Human and…</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch02_kahneman.html" class="nav-next">Chapter 2: Kahneman&#x27;s Geometric Intuition &rarr;</a>
+      </div>
 
       <div class="chapter-content">
 <h1 id="chapter-1-the-iq-trap">Chapter 1: The IQ Trap</h1>
@@ -71,9 +77,9 @@
 <p><strong>Attention</strong> (A1&ndash;A4): Does the system resist irrelevant distractors? Can it sustain focus over time? Does it maintain signal quality under noise? Can it divide attention across parallel tasks?</p>
 <p><strong>Executive Functions</strong> (E1&ndash;E4): Can the system switch cognitive frameworks? Does it resist emotional anchoring? Can it engage in counterfactual reasoning? Does working memory scale with task demands?</p>
 <p>Each subtask produces a score between 0 and 1. The full profile of a model is therefore a point in a 21-dimensional space&mdash;a vector with 21 components, one per subtask. We can represent this profile as a tensor.</p>
-<p><strong>Definition 1.1</strong> (Cognitive Profile Tensor). <em>For a cognitive system $S$, the cognitive profile tensor is the vector</em></p>
+<p><strong>Definition 1.1</strong> (Cognitive Profile Tensor). <em>For a cognitive system</em> $S$<em>, the cognitive profile tensor is the vector</em></p>
 <p>$$\mathbf{C}(S) = (c_1, c_2, \ldots, c_{21}) \in [0, 1]^{21}$$</p>
-<p><em>where each $c_i$ is the system&rsquo;s score on subtask $i$.</em></p>
+<p><em>where each</em> $c_i$ <em>is the system&rsquo;s score on subtask</em> $i$.</p>
 <p>This is, of course, a simplification. The true cognitive profile of any system is vastly higher-dimensional&mdash;the activation space of a human brain or a large language model has millions or billions of dimensions. But even this 21-dimensional simplification suffices to demonstrate the irrecoverability problem.</p>
 <p>Now consider the five models in our benchmark suite: Claude 3.5 Sonnet, Gemini 2.0 Flash, Gemini 2.5 Flash, Gemini 3 Flash, and Gemini 2.5 Pro. Each has a cognitive profile tensor $\mathbf{C}(S)$. These five tensors live in the same 21-dimensional space. They can be compared component by component. Their differences can be visualized, measured, analyzed.</p>
 <p>Here is what the tensors look like for two of the models, restricted to the most discriminating subtasks:</p>
@@ -127,10 +133,21 @@
 <p>Spearman&rsquo;s <em>g</em>-factor is a specific instance of this contraction. Factor analysis extracts the first principal component of the covariance matrix of test scores, and <em>g</em> is the projection of each individual&rsquo;s score vector onto this first principal component. The weights $w_i$ are the factor loadings. The operation is still a linear contraction from a profile space to a scalar.</p>
 <p>IQ is computed from <em>g</em> by normalization: $\text{IQ} = 100 + 15 \cdot z_g$, where $z_g$ is the $z$-score of the individual&rsquo;s <em>g</em>-factor value. This is a monotonic transformation of the contracted scalar&mdash;it changes the scale but not the information content.</p>
 <p>The composite score used in most AI benchmarks is the same operation with equal weights: accuracy averaged across tasks. The MMLU score, the HumanEval score, the &ldquo;overall&rdquo; score on any leaderboard&mdash;all are contractions of a profile tensor to a scalar.</p>
-<p><strong>Definition 1.2</strong> (Scalar Contraction). <em>A scalar contraction is any function $\phi: [0,1]^n \to \mathbb{R}$ that maps a cognitive profile tensor to a single real number. A linear contraction is a scalar contraction of the form $\phi(\mathbf{C}) = \mathbf{w} \cdot \mathbf{C}$ for some weight vector $\mathbf{w}$.</em></p>
+<p><strong>Definition 1.2</strong> (Scalar Contraction). <em>A scalar contraction is any function</em> $\phi: [0,1]^n \to \mathbb{R}$ <em>that maps a cognitive profile tensor to a single real number. A linear contraction is a scalar contraction of the form</em> $\phi(\mathbf{C}) = \mathbf{w} \cdot \mathbf{C}$ <em>for some weight vector</em> $\mathbf{w}$.</p>
 <p>The g-factor is the linear contraction whose weights are the first principal component loadings. IQ is a monotonic rescaling of the g-factor. Benchmark accuracy is the linear contraction with uniform weights. All are scalar contractions. And all are irrecoverable.</p>
+<pre><code class="language-mermaid">flowchart LR
+    P[&quot;Cognitive profile tensor C of S: one score per subtask&quot;] --&gt; PHI[&quot;Scalar contraction phi&quot;]
+    PHI --&gt; G[&quot;g-factor: weights are the first principal component loadings&quot;]
+    PHI --&gt; B[&quot;Benchmark accuracy: uniform weights&quot;]
+    G --&gt; IQ[&quot;IQ: monotonic rescaling of g&quot;]
+    G --&gt; R[&quot;A single real number&quot;]
+    IQ --&gt; R
+    B --&gt; R
+    R -.-&gt;|&quot;no function psi recovers the profile&quot;| P
+</code></pre>
+<p><em>Figure 1.1 (diagram): the three familiar scores are all scalar contractions of the same profile tensor, and none of them can be inverted.</em></p>
 <h2 id="14-the-scalar-irrecoverability-theorem">1.4 The Scalar Irrecoverability Theorem</h2>
-<p><strong>Theorem 1.1</strong> (Scalar Irrecoverability). <em>Let $\phi: [0,1]^n \to \mathbb{R}$ be any scalar contraction with $n \geq 2$. Then for any value $v$ in the range of $\phi$, the preimage $\phi^{-1}(v)$ contains a continuum of distinct profile tensors. In particular, for any pair of profile tensors $\mathbf{C}_1 \neq \mathbf{C}_2$ with $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2)$, no function $\psi: \mathbb{R} \to [0,1]^n$ can satisfy $\psi(\phi(\mathbf{C}_1)) = \mathbf{C}_1$ and $\psi(\phi(\mathbf{C}_2)) = \mathbf{C}_2$ simultaneously.</em></p>
+<p><strong>Theorem 1.1</strong> (Scalar Irrecoverability). <em>Let</em> $\phi: [0,1]^n \to \mathbb{R}$ <em>be any scalar contraction with</em> $n \geq 2$<em>. Then for any value</em> $v$ <em>in the range of</em> $\phi$<em>, the preimage</em> $\phi^{-1}(v)$ <em>contains a continuum of distinct profile tensors. In particular, for any pair of profile tensors</em> $\mathbf{C}_1 \neq \mathbf{C}_2$ <em>with</em> $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2)$<em>, no function</em> $\psi: \mathbb{R} \to [0,1]^n$ <em>can satisfy</em> $\psi(\phi(\mathbf{C}_1)) = \mathbf{C}_1$ <em>and</em> $\psi(\phi(\mathbf{C}_2)) = \mathbf{C}_2$ <em>simultaneously.</em></p>
 <p><em>The contraction is not merely lossy. It is irrecoverable: the destroyed information cannot be reconstructed from the output, even in principle.</em></p>
 <p>The proof is immediate from dimensionality. A continuous function from $[0,1]^n$ to $\mathbb{R}$ maps an $n$-dimensional space to a 1-dimensional space. For $n \geq 2$, the fibers (preimages of individual values) are generically $(n-1)$-dimensional subsets of the domain. No function from $\mathbb{R}$ to $[0,1]^n$ can invert the contraction, because the contraction has mapped an $(n-1)$-dimensional set of distinct profiles to a single point, and a function from $\mathbb{R}$ has only a 1-dimensional domain to &ldquo;spread&rdquo; them back into.</p>
 <p>The theorem holds for <em>any</em> scalar contraction&mdash;not just the linear ones. You cannot fix the problem by choosing a cleverer weighting scheme, or by using a nonlinear aggregation function, or by normalizing differently. The destruction is inherent in the reduction from many dimensions to one.</p>
@@ -175,7 +192,7 @@ Flash 2.0 has the best flexibility and recovery scores but the worst working mem
 <h2 id="18-what-would-recoverability-require">1.8 What Would Recoverability Require?</h2>
 <p>If scalar measures are irrecoverable, what would a recoverable measure look like?</p>
 <p>The answer follows from the theorem by negation. The contraction is irrecoverable because it maps a high-dimensional space to a low-dimensional one, and the reduction in dimensionality means that distinct profiles can produce identical outputs. To avoid this, we need a map that preserves enough dimensionality to distinguish the profiles we care about.</p>
-<p><strong>Definition 1.3</strong> (Recoverable Representation). <em>A representation $\Phi: [0,1]^n \to \mathbb{R}^k$ is recoverable with respect to a set $\mathcal{S}$ of cognitive systems if there exists a left inverse $\Psi: \mathbb{R}^k \to [0,1]^n$ such that $\Psi(\Phi(\mathbf{C}(S))) = \mathbf{C}(S)$ for all $S \in \mathcal{S}$.</em></p>
+<p><strong>Definition 1.3</strong> (Recoverable Representation). <em>A representation</em> $\Phi: [0,1]^n \to \mathbb{R}^k$ <em>is recoverable with respect to a set</em> $\mathcal{S}$ <em>of cognitive systems if there exists a left inverse</em> $\Psi: \mathbb{R}^k \to [0,1]^n$ <em>such that</em> $\Psi(\Phi(\mathbf{C}(S))) = \mathbf{C}(S)$ <em>for all</em> $S \in \mathcal{S}$.</p>
 <p>For exact recoverability, we need $k \geq n$&mdash;the representation must have at least as many dimensions as the profile. But in practice, we do not need exact recoverability. We need <em>sufficient</em> recoverability: enough dimensions to distinguish the cognitive architectures that are functionally distinct.</p>
 <p>The Measuring AGI benchmarks suggest that five dimensions&mdash;one per track&mdash;capture the major axes of variation. Within each track, the subtask scores are moderately correlated (they all probe aspects of the same cognitive capability). Between tracks, the correlations are weak. Five track-level scores, one per cognitive dimension, would preserve most of the architecture-distinguishing information.</p>
 <p>This is the difference between:</p>
@@ -214,7 +231,7 @@ Flash 2.0 has the best flexibility and recovery scores but the worst working mem
 <p>The problem is worse than mere information loss. Scalar evaluation creates <em>perverse incentives</em>. If models are ranked by a composite, developers optimize for the composite. Optimizing for the composite means increasing the average across all subtasks, which may mean strengthening the weakest capabilities at the expense of the strongest. The result is convergence toward mediocrity: models that are adequate at everything and excellent at nothing. The profile becomes flat, the cognitive architecture becomes homogeneous, and the diversity of cognitive strategies that might have been explored is sacrificed on the altar of the leaderboard.</p>
 <p>The geometric alternative is to evaluate models by their <em>cognitive profile</em>&mdash;the full tensor, or at minimum, the track-level scores that capture the major axes of variation. This replaces the question &ldquo;How intelligent is this model?&rdquo; (a scalar question with a scalar answer) with the question &ldquo;What is this model&rsquo;s cognitive architecture?&rdquo; (a geometric question with a geometric answer). The answer is not a number. It is a shape: narrow channel, wide aperture, calibrated navigator, elastic malleability, adaptive baseline. Each shape has strengths, weaknesses, and characteristic failure modes. Each is suited to different tasks. None is uniformly &ldquo;better&rdquo; than the others.</p>
 <p>This is what the cognitive manifold makes precise. Each model occupies a different point on the manifold. The distance between points is measured by the attention metric. The local neighborhood of each point&mdash;the tangent space&mdash;determines what the model can do in one reasoning step. The heuristic field at each point determines where the model&rsquo;s search will go next. The full geometric picture replaces the leaderboard with a map.</p>
-<h2 id="111-implications-for-cognitive-science">1.11 Implications for Cognitive Science</h2>
+<h2 id="113-implications-for-cognitive-science">1.13 Implications for Cognitive Science</h2>
 <p>The implications extend beyond AI evaluation to cognitive science itself.</p>
 <p>The g-factor debate has consumed an enormous share of intellectual energy in psychology. Proponents argue that g is the best predictor of real-world outcomes, that it is heritable, that it has neural correlates. Critics argue that g obscures meaningful differences between cognitive abilities, that it is culturally biased, that it reifies a statistical artifact as a natural kind.</p>
 <p>The geometric framework cuts through this debate by identifying exactly what g is and what it is not.</p>
@@ -233,7 +250,7 @@ Model C scores: (0.80, 0.75, 0.78, 0.77, 0.80). Composite: 0.78.</p>
 <p>The composite cannot distinguish these three models. It maps three different cognitive architectures&mdash;three different patterns of strength and vulnerability&mdash;to the same scalar. A deployment decision based on the composite would be a coin flip among three models with radically different suitability profiles.</p>
 <p>The cognitive tensor distinguishes them immediately. The five-component profile reveals the shape: Model A is diagnosis-peaked, Model B is drug-interaction-peaked, Model C is flat. The shape determines suitability. The composite erases the shape.</p>
 <p>This is not a hypothetical. It is the actual structure of the problem in AI-assisted healthcare, AI-assisted legal analysis, AI-assisted education, and every other domain where the <em>pattern</em> of capabilities matters more than the <em>average</em>. The Scalar Irrecoverability Theorem says that this problem is not fixable by better averaging. It is fixable only by preserving the profile&mdash;by replacing the scalar with the tensor, the leaderboard with the manifold, the ranking with the map.</p>
-<h2 id="116-looking-forward-from-trap-to-manifold">1.16 Looking Forward: From Trap to Manifold</h2>
+<h2 id="115-looking-forward-from-trap-to-manifold">1.15 Looking Forward: From Trap to Manifold</h2>
 <p>We have shown that scalar intelligence measures&mdash;IQ, g-factor, composite accuracy&mdash;are geometrically irrecoverable contractions of a multi-dimensional cognitive profile. The contraction destroys the profile shape, the failure mode signature, and the interaction structure that jointly determine how a system reasons.</p>
 <p>The theorem is negative: it tells us what does not work. The rest of this book is constructive: it builds the mathematical framework that replaces scalar evaluation with geometric characterization.</p>
 <p>Chapter 2 begins the constructive program by showing that Kahneman&rsquo;s dual-process theory&mdash;perhaps the most influential framework in modern cognitive science&mdash;already contains geometric intuitions that the scalar framework cannot express. System 1 and System 2 are not two separate processors. They are two regimes of the same geometric process, distinguished by the curvature of the cognitive manifold. The transition between them is a geometric phase transition, not a modular switch. And the cost of the transition&mdash;the ~38% recovery ceiling&mdash;is a structural property of the geometry, not a parameter to be tuned.</p>
@@ -241,14 +258,14 @@ Model C scores: (0.80, 0.75, 0.78, 0.77, 0.80). Composite: 0.78.</p>
 <p>The IQ trap is the departure point, not the destination. The destination is a geometry of cognition that is rich enough to characterize what scalar measures destroy, precise enough to make testable predictions, and practical enough to guide the evaluation and deployment of cognitive systems&mdash;both human and artificial.</p>
 <p>We begin with Kahneman.</p>
 <h2 id="technical-appendix-1a-formal-statement-and-proof-of-the-scalar-irrecoverability-theorem">Technical Appendix 1A: Formal Statement and Proof of the Scalar Irrecoverability Theorem</h2>
-<p><strong>Theorem 1.1</strong> (Scalar Irrecoverability, Formal Version). <em>Let $n \geq 2$ and let $\phi: [0,1]^n \to \mathbb{R}$ be a continuous surjection. Then:</em></p>
-<p><em>(i) For all $v$ in the interior of the range of $\phi$, the fiber $\phi^{-1}(v)$ has Hausdorff dimension at least $n - 1$.</em></p>
-<p><em>(ii) There exist $\mathbf{C}_1, \mathbf{C}_2 \in [0,1]^n$ with $\mathbf{C}_1 \neq \mathbf{C}_2$ and $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2)$ such that $\|\mathbf{C}_1 - \mathbf{C}_2\|_\infty$ is arbitrarily close to 1. That is, the collisions are not merely between &ldquo;similar&rdquo; profiles; maximally dissimilar profiles can be mapped to the same scalar.</em></p>
-<p><em>(iii) No function $\psi: \mathbb{R} \to [0,1]^n$ can satisfy $\psi \circ \phi = \text{id}$ on any subset of $[0,1]^n$ with more than one point per fiber.</em></p>
+<p><strong>Theorem 1.1</strong> (Scalar Irrecoverability, Formal Version). <em>Let</em> $n \geq 2$ <em>and let</em> $\phi: [0,1]^n \to \mathbb{R}$ <em>be a continuous surjection. Then:</em></p>
+<p><em>(i) For all</em> $v$ <em>in the interior of the range of</em> $\phi$<em>, the fiber</em> $\phi^{-1}(v)$ <em>has Hausdorff dimension at least</em> $n - 1$.</p>
+<p><em>(ii) There exist</em> $\mathbf C_1, \mathbf C_2 \in [0,1]^n$ <em>with</em> $\mathbf C_1 \neq \mathbf C_2$ <em>and</em> $\phi(\mathbf C_1) = \phi(\mathbf C_2)$ <em>such that</em> $\Vert\mathbf C_1 - \mathbf C_2\Vert_\infty$ <em>is arbitrarily close to 1. That is, the collisions are not merely between &ldquo;similar&rdquo; profiles; maximally dissimilar profiles can be mapped to the same scalar.</em></p>
+<p><em>(iii) No function</em> $\psi: \mathbb{R} \to [0,1]^n$ <em>can satisfy</em> $\psi \circ \phi = \text{id}$ <em>on any subset of</em> $[0,1]^n$ <em>with more than one point per fiber.</em></p>
 <p><em>Proof.</em></p>
 <p><em>(i)</em> By the implicit function theorem (for smooth $\phi$) or by the topological dimension theory of level sets (for continuous $\phi$), the preimage of a regular value of a continuous function from an $n$-dimensional space to $\mathbb{R}$ is a topological manifold of dimension $n - 1$. For $n \geq 2$, this is at least 1-dimensional&mdash;a curve or higher-dimensional surface.</p>
-<p><em>(ii)</em> For a linear contraction $\phi(\mathbf{C}) = \mathbf{w} \cdot \mathbf{C}$, consider the profiles $\mathbf{C}_1 = (1, 0, 0, \ldots, 0)$ and $\mathbf{C}_2 = (0, w_1/w_2, 0, \ldots, 0)$ when $w_2 > 0$. Then $\phi(\mathbf{C}_1) = w_1 = w_1/w_2 \cdot w_2 = \phi(\mathbf{C}_2)$, but $\|\mathbf{C}_1 - \mathbf{C}_2\|_\infty = 1$. For nonlinear $\phi$, the intermediate value theorem guarantees similar collisions.</p>
-<p><em>(iii)</em> Suppose $\psi: \mathbb{R} \to [0,1]^n$ satisfies $\psi(\phi(\mathbf{C})) = \mathbf{C}$ for all $\mathbf{C}$ in some subset $\mathcal{S}$ with more than one point per fiber of $\phi$. Let $\mathbf{C}_1, \mathbf{C}_2 \in \mathcal{S}$ with $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2) = v$ and $\mathbf{C}_1 \neq \mathbf{C}_2$. Then $\psi(v) = \mathbf{C}_1$ and $\psi(v) = \mathbf{C}_2$, which contradicts the assumption that $\psi$ is a function.  $\square$</p>
+<p><em>(ii)</em> For a linear contraction $\phi(\mathbf{C}) = \mathbf{w} \cdot \mathbf{C}$, consider the profiles $\mathbf C_1 = (1, 0, 0, \ldots, 0)$ and $\mathbf C_2 = (0, w_1/w_2, 0, \ldots, 0)$ when $w_2 &gt; 0$. Then $\phi(\mathbf C_1) = w_1 = w_1/w_2 \cdot w_2 = \phi(\mathbf C_2)$, but $\Vert\mathbf C_1 - \mathbf C_2\Vert_\infty = 1$. For nonlinear $\phi$, the intermediate value theorem guarantees similar collisions.</p>
+<p><em>(iii)</em> Suppose $\psi: \mathbb{R} \to [0,1]^n$ satisfies $\psi(\phi(\mathbf{C})) = \mathbf{C}$ for all $\mathbf{C}$ in some subset $\mathcal{S}$ with more than one point per fiber of $\phi$. Let $\mathbf{C}_1, \mathbf{C}_2 \in \mathcal{S}$ with $\phi(\mathbf{C}_1) = \phi(\mathbf{C}_2) = v$ and $\mathbf C_1 \neq \mathbf C_2$. Then $\psi(v) = \mathbf{C}_1$ and $\psi(v) = \mathbf{C}_2$, which contradicts the assumption that $\psi$ is a function.  $\square$</p>
 <h2 id="technical-appendix-1b-the-g-factor-as-tensor-contraction-in-index-notation">Technical Appendix 1B: The g-Factor as Tensor Contraction in Index Notation</h2>
 <p>For readers familiar with tensor calculus, the g-factor construction can be expressed in index notation, which clarifies its relationship to the tensor contractions that appear later in the book.</p>
 <p>Let $C^i$ denote the $i$-th component of the cognitive profile tensor (an upper index denoting a contravariant vector in cognitive space). The covariance matrix is:</p>
@@ -260,7 +277,9 @@ Model C scores: (0.80, 0.75, 0.78, 0.77, 0.80). Composite: 0.78.</p>
       </div>
 
       <div class="chapter-nav-bottom">
-        <a href="index.html" class="nav-toc">&larr; Contents</a>
+        <a href="ch00_front_matter.html" class="nav-prev">&larr; Geometric Cognition: The Mathematical Structure of Human and…</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch02_kahneman.html" class="nav-next">Chapter 2: Kahneman&#x27;s Geometric Intuition &rarr;</a>
       </div>
     </div>
   </article>
@@ -288,6 +307,7 @@ Model C scores: (0.80, 0.75, 0.78, 0.77, 0.80). Composite: 0.78.</p>
         {left: '\\\\(', right: '\\\\)', display: false},
         {left: '\\\\[', right: '\\\\]', display: true}
       ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
       throwOnError: false
     });"></script>
 </body>

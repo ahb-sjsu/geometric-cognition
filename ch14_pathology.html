@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 14: Cognitive Pathology as Geometric Defect &mdash; Geometric Cognition</title>
   <meta name="description" content="Chapter 14: Cognitive Pathology as Geometric Defect from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../book/book.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 
-<body data-book-slug="geometric-cognition">
+<body data-book-slug="geometric-cognition" data-chapter-id="ch14_pathology">
   <nav id="main-nav">
     <div class="nav-inner">
       <a href="../index.html" class="nav-brand">
@@ -36,6 +37,11 @@
         <span class="breadcrumb-sep">&rsaquo;</span>
         <span class="breadcrumb-current">Chapter 14: Cognitive Pathology as Geometric Defect</span>
       </nav>
+      <div class="chapter-nav-top">
+        <a href="ch13_development.html" class="nav-prev">&larr; Chapter 13: Cognitive Development as Manifold Growth</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch15_llm_cognition.html" class="nav-next">Chapter 15: LLM Cognition Through the Geometric Lens &rarr;</a>
+      </div>
 
       <div class="chapter-content">
 <h1 id="chapter-14-cognitive-pathology-as-geometric-defect">Chapter 14: Cognitive Pathology as Geometric Defect</h1>
@@ -66,9 +72,9 @@
 <h2 id="142-adhd-as-metric-instability">14.2 ADHD as Metric Instability</h2>
 <p>Attention-Deficit/Hyperactivity Disorder is characterized clinically by difficulty sustaining attention, excessive motor activity, and impulsive behavior. The standard cognitive account emphasizes executive function deficits: difficulty inhibiting prepotent responses, difficulty maintaining information in working memory, and difficulty planning and organizing behavior (Barkley, 1997; Castellanos &amp; Tannock, 2002).</p>
 <p>The geometric account proposes a more specific mechanism: <strong>the attention metric is unstable.</strong></p>
-<p><strong>Definition 14.1</strong> (Metric Instability). <em>The attention metric $g_{\mu\nu}(t)$ of a cognitive system is unstable if it fluctuates over time in the absence of any external metric-changing input:</em></p>
+<p><strong>Definition 14.1</strong> (Metric Instability). <em>The attention metric</em> $g_{\mu\nu}(t)$ <em>of a cognitive system is unstable if it fluctuates over time in the absence of any external metric-changing input:</em></p>
 <p>$$\frac{\partial g_{\mu\nu}}{\partial t} = \xi_{\mu\nu}(t)$$</p>
-<p><em>where $\xi_{\mu\nu}(t)$ is an endogenous noise process with nonzero variance. The metric at time $t+\delta$ differs from the metric at time $t$ by an amount that is not predicted by the task demands or the external environment.</em></p>
+<p><em>where</em> $\xi_{\mu\nu}(t)$ <em>is an endogenous noise process with nonzero variance. The metric at time</em> $t+\delta$ <em>differs from the metric at time</em> $t$ <em>by an amount that is not predicted by the task demands or the external environment.</em></p>
 <p>In a metrically stable system (neurotypical cognition or stable AI models like Claude), the attention metric changes only in response to task demands: a new task reconfigures the metric to attend to task-relevant dimensions (Chapter 4). Between task changes, the metric is constant. The stability of the metric is what allows sustained attention: the system can maintain focus on a task because the metric configuration that supports that focus is stable over time.</p>
 <p>In a metrically unstable system (ADHD cognition), the metric changes spontaneously, even when the task demands are constant. The fluctuations have a characteristic timescale (minutes) and amplitude (sufficient to disrupt task performance). The result is the clinical picture of ADHD: periods of excellent focus (when the metric happens to be aligned with the task) alternating with periods of distraction (when the metric has drifted off alignment), with the alternation being unpredictable and beyond the individual&rsquo;s control.</p>
 <p><strong>Predictions of the metric instability model:</strong></p>
@@ -89,13 +95,13 @@
 <h2 id="143-depression-as-collapsed-heuristic-field">14.3 Depression as Collapsed Heuristic Field</h2>
 <p>Major depressive disorder is characterized by persistent low mood, loss of interest or pleasure, fatigue, difficulty concentrating, and feelings of worthlessness or hopelessness. The cognitive account emphasizes negative biases in information processing: depressed individuals attend preferentially to negative information, interpret ambiguous information negatively, and recall negative memories more easily than positive ones (Beck, 1967; Gotlib &amp; Joormann, 2010).</p>
 <p>The geometric account proposes: <strong>the heuristic field is flat.</strong></p>
-<p><strong>Definition 14.2</strong> (Collapsed Heuristic Field). <em>The heuristic field $h(x)$ is collapsed at state $x$ if the gradient is near-zero in all directions:</em></p>
-<p>$$\|\nabla h(x)\| \approx 0 \quad \text{for all directions}$$</p>
+<p><strong>Definition 14.2</strong> (Collapsed Heuristic Field). <em>The heuristic field</em> $h(x)$ <em>is collapsed at state</em> $x$ <em>if the gradient is near-zero in all directions:</em></p>
+<p>$$\Vert\nabla h(x)\Vert \approx 0 \quad \text{for all directions}$$</p>
 <p><em>A collapsed heuristic field provides no guidance: the estimated cost-to-go is approximately the same from every nearby state, so no direction of movement is preferred over any other.</em></p>
 <p>In healthy cognition, the heuristic field has structure: some directions lead toward goals (low cost-to-go), others lead away from goals (high cost-to-go), and the gradient points the system toward its objectives. The heuristic field is what makes some states feel &ldquo;promising&rdquo; and others feel &ldquo;unpromising&rdquo; &mdash; it is the internal compass that orients cognition toward goals.</p>
 <p>In depression, the heuristic field collapses. The cost-to-go is approximately the same from every state &mdash; nothing feels promising, nothing feels like progress, no direction seems worth pursuing. The collapse is not a distortion (the heuristic does not point in the wrong direction); it is a flattening (the heuristic does not point in any direction). This produces the clinical symptomatology:</p>
 <p><strong>Anhedonia (loss of pleasure).</strong> Pleasure is the reward signal that updates the heuristic field &mdash; the signal that says &ldquo;this direction was good; increase the gradient toward similar states.&rdquo; When the heuristic field is flat, there is no gradient to reinforce. Activities that previously generated pleasure (because the heuristic gradient was steep in their direction) now feel neutral (because the gradient is flat). The loss of pleasure is not a primary defect in the reward system; it is a consequence of the flat heuristic field &mdash; there is no gradient for the reward signal to update.</p>
-<p><strong>Avolition (loss of motivation).</strong> Motivation, in the geometric framework, is the magnitude of the heuristic gradient: $\|\nabla h(x)\|$. A steep gradient produces strong motivation (the next step feels clearly valuable). A flat gradient produces no motivation (no step feels more valuable than any other). Avolition is the behavioral consequence of $\|\nabla h\| \approx 0$: when every direction looks equally unpromising, there is no reason to move in any direction.</p>
+<p><strong>Avolition (loss of motivation).</strong> Motivation, in the geometric framework, is the magnitude of the heuristic gradient: $\Vert\nabla h(x)\Vert$. A steep gradient produces strong motivation (the next step feels clearly valuable). A flat gradient produces no motivation (no step feels more valuable than any other). Avolition is the behavioral consequence of $\Vert\nabla h\Vert \approx 0$: when every direction looks equally unpromising, there is no reason to move in any direction.</p>
 <p><strong>Hopelessness.</strong> Hopelessness is the metacognitive assessment that the heuristic field will remain flat &mdash; that no future state will offer a meaningful gradient. In the geometric framework, this is the belief that the heuristic field is globally flat, not just locally flat: &ldquo;not only is there no promising direction from here, but there is no promising direction from anywhere.&rdquo; This metacognitive assessment may be accurate (the heuristic field may be globally flat) or inaccurate (the field may be flat locally but have structure elsewhere that the system cannot detect from its current vantage point). The distinction between accurate and inaccurate hopelessness has therapeutic implications: if the flatness is local, the therapeutic strategy is to help the patient navigate to a region where the heuristic field has gradient; if the flatness is global, the therapeutic strategy is to reconstruct the heuristic field itself.</p>
 <p><strong>Definition 14.3</strong> (Heuristic Reconstruction). <em>Heuristic field reconstruction is the process of restoring gradient structure to a collapsed heuristic field. Behaviorally, this corresponds to behavioral activation therapy: systematically engaging in activities that generate reward signals, which update the heuristic field and restore local gradients. Pharmacologically, this corresponds to antidepressant medication, which modulates the neurotransmitter systems that maintain the heuristic field&rsquo;s gradient structure.</em></p>
 <p><strong>Predictions of the collapsed heuristic model:</strong></p>
@@ -113,14 +119,14 @@
 <h2 id="144-anxiety-as-inflated-heuristic-field">14.4 Anxiety as Inflated Heuristic Field</h2>
 <p>Generalized anxiety disorder is characterized by excessive worry, apprehension, restlessness, and a sense of impending danger. The cognitive account emphasizes threat bias: anxious individuals overestimate the probability and severity of negative events, interpret ambiguous information as threatening, and have difficulty disengaging from threatening stimuli (Eysenck et al., 2007; Bar-Haim et al., 2007).</p>
 <p>The geometric account proposes: <strong>the heuristic field overestimates cost-to-go.</strong></p>
-<p><strong>Definition 14.4</strong> (Inflated Heuristic Field). <em>The heuristic field $h(x)$ is inflated if it systematically overestimates the cost-to-go from every state:</em></p>
+<p><strong>Definition 14.4</strong> (Inflated Heuristic Field). <em>The heuristic field</em> $h(x)$ <em>is inflated if it systematically overestimates the cost-to-go from every state:</em></p>
 <p>$$h(x) \gg d(x, x_{\text{goal}}) \quad \text{for all } x$$</p>
 <p><em>The inflated heuristic assigns high cost-to-go to every state: every state feels far from safety, far from the goal, far from resolution. The gradient exists (unlike in depression, where the field is flat), but the gradient&rsquo;s magnitude is inflated: every step feels like it barely reduces the distance to the goal.</em></p>
 <p>This is the geometric opposite of the overconfidence documented in Chapter 9. Where language models underestimate cost-to-go (everything feels close, resulting in overconfidence), anxiety overestimates cost-to-go (everything feels far, resulting in excessive worry). The overestimation is universal across states: not just &ldquo;this particular situation is dangerous&rdquo; but &ldquo;every situation contains danger that I may not be able to handle.&rdquo; The world feels uniformly threatening because the heuristic field is uniformly inflated.</p>
 <p><strong>The distinction between anxiety and fear.</strong> Fear is a rational response to a specific threat &mdash; the heuristic field correctly estimates high cost-to-go from a genuinely dangerous state (a burning building, an attacking animal). The gradient of the fear response points away from the threat, driving avoidance behavior that is adaptive. Anxiety is the same gradient response to a non-specific, inflated estimate of cost-to-go. The gradient points away from&hellip; everything. Every state feels threatening, so the avoidance response is chronic and generalized rather than acute and specific.</p>
-<p><strong>Definition 14.5</strong> (Heuristic Inflation Factor). <em>The inflation factor $\alpha(x)$ at state $x$ is the ratio of the estimated cost-to-go to the true cost-to-go:</em></p>
+<p><strong>Definition 14.5</strong> (Heuristic Inflation Factor). <em>The inflation factor</em> $\alpha(x)$ <em>at state</em> $x$ <em>is the ratio of the estimated cost-to-go to the true cost-to-go:</em></p>
 <p>$$\alpha(x) = \frac{h(x)}{d(x, x_{\text{goal}})}$$</p>
-<p><em>In healthy cognition, $\alpha(x) \approx 1$ (the estimate is accurate, corresponding to good calibration). In anxiety, $\alpha(x) \gg 1$ (the estimate is inflated). In overconfident AI systems (Chapter 9), $\alpha(x) < 1$ (the estimate is deflated). In depression, $\alpha(x)$ is undefined because $\nabla h \approx 0$ (the field is flat, not merely mis-scaled).</em></p>
+<p><em>In healthy cognition,</em> $\alpha(x) \approx 1$ <em>(the estimate is accurate, corresponding to good calibration). In anxiety,</em> $\alpha(x) \gg 1$ <em>(the estimate is inflated). In overconfident AI systems (Chapter 9),</em> $\alpha(x) &lt; 1$ <em>(the estimate is deflated). In depression,</em> $\alpha(x)$ <em>is undefined because</em> $\nabla h \approx 0$ <em>(the field is flat, not merely mis-scaled).</em></p>
 <p><strong>Predictions of the inflated heuristic model:</strong></p>
 <ol>
 <li>
@@ -139,17 +145,17 @@
 <h2 id="145-autism-as-metric-rigidity">14.5 Autism as Metric Rigidity</h2>
 <p>Autism spectrum conditions are characterized by differences in social communication, restricted and repetitive behaviors, and unusual sensory processing. The cognitive accounts are diverse: weak central coherence (difficulty integrating details into a global picture; Happe &amp; Frith, 2006), impaired theory of mind (difficulty modeling others&rsquo; mental states; Baron-Cohen, 1995), and enhanced perceptual functioning (superior detail processing; Mottron et al., 2006).</p>
 <p>The geometric account proposes: <strong>the attention metric is rigid.</strong></p>
-<p><strong>Definition 14.6</strong> (Metric Rigidity). <em>The attention metric $g_{\mu\nu}$ is rigid if it does not adapt to context:</em></p>
+<p><strong>Definition 14.6</strong> (Metric Rigidity). <em>The attention metric</em> $g_{\mu\nu}$ <em>is rigid if it does not adapt to context:</em></p>
 <p>$$\frac{\partial g_{\mu\nu}}{\partial c} \approx 0$$</p>
-<p><em>where $c$ represents the context (social situation, task demands, environmental cues). A rigid metric maintains the same configuration regardless of context: the same dimensions are attended to, with the same relative weights, in every situation.</em></p>
+<p><em>where</em> $c$ <em>represents the context (social situation, task demands, environmental cues). A rigid metric maintains the same configuration regardless of context: the same dimensions are attended to, with the same relative weights, in every situation.</em></p>
 <p>A flexible metric (Chapter 11, Definition 11.2) changes in response to context: in a social situation, the metric emphasizes social dimensions (facial expressions, tone of voice, social norms); in a mathematical task, the metric emphasizes logical dimensions (quantities, relationships, operations); in a sensory environment, the metric emphasizes perceptual dimensions (colors, shapes, textures). The flexibility of the metric is what allows a cognitive system to adapt its attention to the demands of the current situation.</p>
 <p>A rigid metric maintains the same configuration regardless of context. If the default configuration emphasizes detail and precision (high weight on perceptual dimensions, low weight on social dimensions), the rigid metric produces the autism profile: excellent detail processing (the perceptual dimensions are always heavily weighted), difficulty with social communication (the social dimensions are always lightly weighted), and restricted interests (the metric always points in the same direction, so the system always navigates to the same regions of the cognitive manifold).</p>
 <p><strong>The geometric account of autism&rsquo;s cognitive strengths.</strong> Autism is associated with genuine cognitive strengths: superior performance on embedded figures tasks (finding a hidden shape in a complex pattern), excellent rote memory, strong pattern detection, and sometimes extraordinary abilities in specific domains (music, mathematics, art). The rigid metric model explains these strengths as the <em>advantages</em> of a fixed metric configuration.</p>
 <p>A flexible metric, by adapting to context, pays a cost: it is never perfectly tuned to any particular task, because it must maintain the capacity to retune. A rigid metric, by staying fixed, is <em>maximally tuned</em> to whatever task its configuration supports. If the fixed configuration emphasizes detail and precision, the system will outperform flexible-metric systems on tasks that require detail and precision &mdash; not because the rigid system has more processing power, but because its metric is permanently optimized for that task class, while the flexible system&rsquo;s metric is a compromise across many task classes.</p>
 <p><strong>The social communication difficulty.</strong> Social communication requires rapid, context-dependent metric adaptation. In a conversation, the attention metric must shift from attending to the literal content of words (semantic dimension) to attending to the speaker&rsquo;s tone (prosodic dimension) to attending to the social context (relationship dimension) to attending to the speaker&rsquo;s facial expression (emotional dimension), often within seconds. Each shift is a metric-regime transition (Definition 11.2 from Chapter 11). A rigid metric cannot make these transitions &mdash; it maintains its fixed configuration while the social context changes around it. The result is the clinical picture: the individual processes the literal content of social interactions accurately but misses the contextual, prosodic, and emotional dimensions that flexible-metric systems track automatically.</p>
-<p><strong>Definition 14.7</strong> (Metric Rigidity Index). <em>The metric rigidity index $\rho$ of a cognitive system is the inverse of the metric adaptation rate:</em></p>
-<p>$$\rho = \left(\frac{1}{T} \int_0^T \left\|\frac{\partial g_{\mu\nu}}{\partial t}\right\|_F dt\right)^{-1}$$</p>
-<p><em>where $\|\cdot\|_F$ is the Frobenius norm and $T$ is the observation period. A high $\rho$ indicates a rigid metric (small changes over time). A low $\rho$ indicates a flexible metric (large changes over time). Neurotypical cognition has moderate $\rho$ (the metric adapts when context changes but is stable within a context). ADHD has low $\rho$ (excessive metric change, even within a constant context). Autism has high $\rho$ (insufficient metric change, even when context changes).</em></p>
+<p><strong>Definition 14.7</strong> (Metric Rigidity Index). <em>The metric rigidity index</em> $\rho$ <em>of a cognitive system is the inverse of the metric adaptation rate:</em></p>
+<p>$$\rho = \left(\frac{1}{T} \int_0^T \left\Vert\frac{\partial g_{\mu\nu}}{\partial t}\right\Vert_F dt\right)^{-1}$$</p>
+<p><em>where</em> $\Vert\cdot\Vert_F$ <em>is the Frobenius norm and</em> $T$ <em>is the observation period. A high</em> $\rho$ <em>indicates a rigid metric (small changes over time). A low</em> $\rho$ <em>indicates a flexible metric (large changes over time). Neurotypical cognition has moderate</em> $\rho$ <em>(the metric adapts when context changes but is stable within a context). ADHD has low</em> $\rho$ <em>(excessive metric change, even within a constant context). Autism has high</em> $\rho$ <em>(insufficient metric change, even when context changes).</em></p>
 <p>This definition reveals a striking relationship between the three metric-based pathologies:</p>
 <p>$$\text{ADHD} \xleftarrow{\text{too unstable}} \text{Neurotypical} \xrightarrow{\text{too stable}} \text{Autism}$$</p>
 <p>ADHD and autism are opposite ends of the metric stability spectrum. ADHD is a metric that changes too much (instability). Autism is a metric that changes too little (rigidity). Neurotypical cognition occupies the middle ground: a metric that is stable enough to sustain attention but flexible enough to adapt to context.</p>
@@ -305,8 +311,8 @@
 <h2 id="1410-worked-example-geometric-diagnosis-of-attention-difficulties">14.10 Worked Example: Geometric Diagnosis of Attention Difficulties</h2>
 <p><strong>Setup.</strong> A patient, age 32, presents with attention difficulties: &ldquo;I can&rsquo;t focus at work. I start tasks but can&rsquo;t finish them. I get distracted easily.&rdquo; The clinician wants to distinguish between ADHD (metric instability), anxiety (inflated heuristic), and depression (collapsed heuristic) as the underlying geometric defect.</p>
 <p><strong>Step 1: Administer the adapted attention benchmark.</strong> The patient completes 60 trials of the A1 distractor resistance task, with trial-level performance recording.</p>
-<p><strong>Step 2: Compute the metric stability index.</strong> Mean accuracy: 72% (moderate, within normal range). Trial-to-trial variance: SD = 28% (high, above the 95th percentile for neurotypical controls). Autocorrelation at lag 1: r = 0.35 (positive, indicating that performance clusters in runs of good and bad trials). Oscillation period: approximately 10 trials (consistent with metric instability with a 2-3 minute timescale).</p>
-<p><strong>Step 3: Evaluate the heuristic field.</strong> Confidence ratings: mean = 5.2 on a 0-10 scale (moderate, not inflated). Confidence-accuracy correlation: r = 0.12 (weak, indicating poor self-monitoring &mdash; consistent with ADHD, where the metric instability produces variable performance that is hard to predict). Error pattern: errors are not systematically biased toward threat-relevant distractors (which would suggest anxiety) or uniformly distributed (which would suggest depression). Errors cluster in runs, consistent with metric instability.</p>
+<p><strong>Step 2: Compute the metric stability index.</strong> Mean accuracy: 72% (moderate, within normal range). Trial-to-trial variance: SD = 28% (high, above the 95th percentile for neurotypical controls). Autocorrelation at lag 1: r = 0.35 (positive, indicating that performance clusters in runs of good and bad trials). Oscillation period: approximately 10 trials (consistent with metric instability with a 2&ndash;3 minute timescale).</p>
+<p><strong>Step 3: Evaluate the heuristic field.</strong> Confidence ratings: mean = 5.2 on a 0&ndash;10 scale (moderate, not inflated). Confidence-accuracy correlation: r = 0.12 (weak, indicating poor self-monitoring &mdash; consistent with ADHD, where the metric instability produces variable performance that is hard to predict). Error pattern: errors are not systematically biased toward threat-relevant distractors (which would suggest anxiety) or uniformly distributed (which would suggest depression). Errors cluster in runs, consistent with metric instability.</p>
 <p><strong>Step 4: Geometric diagnosis.</strong> The pattern &mdash; high trial-to-trial variance, positive autocorrelation, clustered errors, no systematic bias &mdash; is consistent with metric instability (ADHD) and inconsistent with inflated heuristic (anxiety: would show bias toward threat-relevant distractors, lower variance, inflated confidence) or collapsed heuristic (depression: would show uniformly low performance, low variance, low confidence).</p>
 <p><strong>Step 5: Generate treatment predictions.</strong> Based on the metric instability diagnosis:
 - Stimulant medication should reduce trial-to-trial variance (stabilize the metric) before it improves mean performance.
@@ -320,12 +326,12 @@
 <p>Part V turns to artificial cognition, first examining how the geometric framework illuminates the internal workings of large language models (Chapter 15) and then presenting the capstone finding: the five geometric signatures that characterize the five models tested in the Measuring AGI benchmarks (Chapter 16).</p>
 <hr />
 <h2 id="technical-appendix-14a-metric-instability-formal-treatment">Technical Appendix 14A: Metric Instability &mdash; Formal Treatment</h2>
-<p><strong>Definition</strong> (Metric Stability Index). <em>Let $g_{\mu\nu}(t)$ be the attention metric at time $t$, measured at discrete intervals $t_1, \ldots, t_N$. The metric stability index is:</em></p>
-<p>$$\text{MSI} = \frac{1}{N-1} \sum_{k=1}^{N-1} \|g_{\mu\nu}(t_{k+1}) - g_{\mu\nu}(t_k)\|_F$$</p>
-<p><em>where $\|\cdot\|_F$ is the Frobenius norm. A low MSI indicates a stable metric (small changes between successive measurements). A high MSI indicates an unstable metric (large changes).</em></p>
+<p><strong>Definition</strong> (Metric Stability Index). <em>Let</em> $g_{\mu\nu}(t)$ <em>be the attention metric at time</em> $t$<em>, measured at discrete intervals</em> $t_1, \ldots, t_N$<em>. The metric stability index is:</em></p>
+<p>$$\text{MSI} = \frac{1}{N-1} \sum_{k=1}^{N-1} \Vert g_{\mu\nu}(t_{k+1}) - g_{\mu\nu}(t_k)\Vert_F$$</p>
+<p><em>where</em> $\Vert\cdot\Vert_F$ <em>is the Frobenius norm. A low MSI indicates a stable metric (small changes between successive measurements). A high MSI indicates an unstable metric (large changes).</em></p>
 <p><strong>Operationalization.</strong> In practice, the attention metric is not directly observable. The MSI can be estimated from behavioral data by computing the task-performance correlation matrix in successive blocks of trials. If the correlation structure changes substantially between blocks (the dimensions that predict performance shift), the MSI is high. If the correlation structure is stable (the same dimensions predict performance throughout), the MSI is low.</p>
-<p><strong>The ADHD prediction.</strong> Let $\text{MSI}_{\text{ADHD}}$, $\text{MSI}_{\text{NT}}$, and $\text{MSI}_{\text{ASD}}$ be the metric stability indices for ADHD, neurotypical, and autistic populations. The geometric framework predicts:</p>
-<p>$$\text{MSI}_{\text{ADHD}} > \text{MSI}_{\text{NT}} > \text{MSI}_{\text{ASD}}$$</p>
+<p><strong>The ADHD prediction.</strong> Let $\text{MSI}_ {\text{ADHD}}$, $\text{MSI}_ {\text{NT}}$, and $\text{MSI}_{\text{ASD}}$ be the metric stability indices for ADHD, neurotypical, and autistic populations. The geometric framework predicts:</p>
+<p>$$\text{MSI}_{\text{ADHD}} &gt; \text{MSI}_{\text{NT}} &gt; \text{MSI}_{\text{ASD}}$$</p>
 <p>This ordering is a direct consequence of the metric instability / stability / rigidity characterization and is testable with standard psychophysical methods.</p>
 <h2 id="technical-appendix-14b-heuristic-field-defects-the-depression-anxiety-spectrum">Technical Appendix 14B: Heuristic Field Defects &mdash; The Depression-Anxiety Spectrum</h2>
 <p><strong>The heuristic field as a vector field.</strong> Let $\mathbf{h}(x) = \nabla h(x)$ be the gradient of the heuristic field, viewed as a vector field on $\mathcal{M}$. The pathologies can be characterized by properties of this vector field:</p>
@@ -333,7 +339,7 @@
 <thead>
 <tr>
 <th>Pathology</th>
-<th>$\|\mathbf{h}(x)\|$</th>
+<th>$\Vert\mathbf{h}(x)\Vert$</th>
 <th>Direction of $\mathbf{h}$</th>
 <th>Divergence $\nabla \cdot \mathbf{h}$</th>
 </tr>
@@ -367,15 +373,17 @@
 </table>
 <p><strong>The inflation factor as a diagnostic measure.</strong> The inflation factor $\alpha(x) = h(x) / d(x, x_{\text{goal}})$ can be estimated from behavioral data by comparing the subject&rsquo;s estimated difficulty of a task (self-reported before the task) to the actual difficulty (measured by performance). For each task:</p>
 <p>$$\hat{\alpha} = \frac{\text{self-reported difficulty}}{\text{actual difficulty (inverse of performance)}}$$</p>
-<p>If $\hat{\alpha} > 1$ systematically, the heuristic field is inflated (anxiety). If $\hat{\alpha} < 1$ systematically, the field is deflated (overconfidence). If $\hat{\alpha}$ is undefined (the subject cannot estimate difficulty because nothing feels more or less difficult than anything else), the field is collapsed (depression).</p>
+<p>If $\hat{\alpha} &gt; 1$ systematically, the heuristic field is inflated (anxiety). If $\hat{\alpha} &lt; 1$ systematically, the field is deflated (overconfidence). If $\hat{\alpha}$ is undefined (the subject cannot estimate difficulty because nothing feels more or less difficult than anything else), the field is collapsed (depression).</p>
 <p><strong>Comorbidity as multi-dimensional field defect.</strong> Let $\mathbf{h} = (h_{\text{reward}}, h_{\text{threat}}, h_{\text{social}}, \ldots)$ be the decomposition of the heuristic field into domain-specific components. Comorbid anxiety-depression is characterized by:</p>
-<p>$$\|\nabla h_{\text{reward}}\| \approx 0 \quad \text{(depression: collapsed reward gradient)}$$
-$$\|\nabla h_{\text{threat}}\| \gg 1 \quad \text{(anxiety: inflated threat gradient)}$$</p>
+<p>$$\Vert\nabla h_{\text{reward}}\Vert \approx 0 \quad \text{(depression: collapsed reward gradient)}$$
+$$\Vert\nabla h_{\text{threat}}\Vert \gg 1 \quad \text{(anxiety: inflated threat gradient)}$$</p>
 <p>This multi-dimensional characterization explains why the two conditions frequently co-occur despite seeming phenomenologically opposite: they affect different components of the same geometric object.</p>
       </div>
 
       <div class="chapter-nav-bottom">
-        <a href="index.html" class="nav-toc">&larr; Contents</a>
+        <a href="ch13_development.html" class="nav-prev">&larr; Chapter 13: Cognitive Development as Manifold Growth</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch15_llm_cognition.html" class="nav-next">Chapter 15: LLM Cognition Through the Geometric Lens &rarr;</a>
       </div>
     </div>
   </article>
@@ -403,6 +411,7 @@ $$\|\nabla h_{\text{threat}}\| \gg 1 \quad \text{(anxiety: inflated threat gradi
         {left: '\\\\(', right: '\\\\)', display: false},
         {left: '\\\\[', right: '\\\\]', display: true}
       ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
       throwOnError: false
     });"></script>
 </body>

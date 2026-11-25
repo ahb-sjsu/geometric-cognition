@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 17: Open Questions &mdash; Geometric Cognition</title>
   <meta name="description" content="Chapter 17: Open Questions from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../book/book.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 
-<body data-book-slug="geometric-cognition">
+<body data-book-slug="geometric-cognition" data-chapter-id="ch17_open_questions">
   <nav id="main-nav">
     <div class="nav-inner">
       <a href="../index.html" class="nav-brand">
@@ -36,6 +37,11 @@
         <span class="breadcrumb-sep">&rsaquo;</span>
         <span class="breadcrumb-current">Chapter 17: Open Questions</span>
       </nav>
+      <div class="chapter-nav-top">
+        <a href="ch16_five_signatures.html" class="nav-prev">&larr; Chapter 16: The Five Geometric Signatures</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <span class="nav-next"></span>
+      </div>
 
       <div class="chapter-content">
 <h1 id="chapter-17-open-questions">Chapter 17: Open Questions</h1>
@@ -50,7 +56,7 @@
 <p>She is sitting in her office at the Institute for Geometric Cognition &mdash; the research center that grew, unexpectedly, from the book she published in 2026. Through her window she can see the campus of a university she joined fifteen years ago as an assistant professor and now leads as a department chair. On her desk is a copy of the first edition of <em>Geometric Cognition</em>, its margins dense with her own annotations, corrections, and question marks.</p>
 <p>Some of the question marks have been erased. Next to them, in green ink, she has written the year the question was answered.</p>
 <p>The ~38% recovery ceiling, which she first documented in 2025: <em>&ldquo;Broken in 2032 by the metacognitive feedback architecture. The wire was connected. Quadrant I is no longer empty.&rdquo;</em> The new architectures couple the monitoring system (M3) to the control system (M4) through a learned feedback loop, producing models that know which problems are hard <em>and</em> work harder on those problems. The recovery ceiling for these models is approximately 67% &mdash; not perfect, but far above the old 38%. The improvement came not from scaling but from architectural change, exactly as the geometric framework predicted.</p>
-<p>The dimensionality of human cognitive space: <em>&ldquo;Estimated at 15-25 for moral reasoning tasks, depending on the task and the subject. Lower for simple decisions (3-5), higher for complex social reasoning (up to 30). Measured via high-density EEG and adapted TDA methods, 2029-2035.&rdquo;</em> The intrinsic dimensionality turned out to be both higher and more variable than Maya expected in 2026. It also turned out to depend strongly on expertise: an experienced judge evaluating a legal case operates on a higher-dimensional manifold than a novice, not because the judge&rsquo;s brain is different but because the judge&rsquo;s experience has differentiated more cognitive dimensions.</p>
+<p>The dimensionality of human cognitive space: <em>&ldquo;Estimated at 15&ndash;25 for moral reasoning tasks, depending on the task and the subject. Lower for simple decisions (3&ndash;5), higher for complex social reasoning (up to 30). Measured via high-density EEG and adapted TDA methods, 2029&ndash;2035.&rdquo;</em> The intrinsic dimensionality turned out to be both higher and more variable than Maya expected in 2026. It also turned out to depend strongly on expertise: an experienced judge evaluating a legal case operates on a higher-dimensional manifold than a novice, not because the judge&rsquo;s brain is different but because the judge&rsquo;s experience has differentiated more cognitive dimensions.</p>
 <p>But some question marks remain in red ink. These are the questions that fourteen years of work have not resolved. Maya opens a new notebook &mdash; her thirty-seventh since she started the project &mdash; and lists them.</p>
 <p><em>&ldquo;Is the cognitive manifold Riemannian or Finsler? We still don&rsquo;t know. The asymmetry evidence is clear but the Finsler formalism is hard to work with empirically.&rdquo;</em></p>
 <p><em>&ldquo;Can we measure the heuristic field directly from neural activations? Representation engineering got us close, but the field we measure is noisy and layer-dependent. We don&rsquo;t know which layer&rsquo;s field is the &lsquo;real&rsquo; one, or whether the question even makes sense.&rdquo;</em></p>
@@ -73,13 +79,13 @@
 <p>where $F(x, v)$ is a function of both the position $x$ and the direction $v$ of travel. In Finsler geometry, the distance from $A$ to $B$ is defined by minimizing the integral $\int F(x, \dot{\gamma}) dt$ along paths from $A$ to $B$, which may differ from the integral along paths from $B$ to $A$ (because $F(x, v) \neq F(x, -v)$ in general).</p>
 <p>A Finsler cognitive manifold would naturally accommodate the observed asymmetries:</p>
 <ul>
-<li>Sycophancy: $F(x, v_{\text{agree}}) < F(x, -v_{\text{agree}})$ &mdash; moving toward agreement costs less than moving toward disagreement.</li>
-<li>Framing: $F(x, v_{\text{lenient}}) < F(x, v_{\text{severe}})$ for Claude &mdash; moving toward leniency costs less than moving toward severity.</li>
-<li>Recovery: $F(x, v_{\text{bias}}) < F(x, v_{\text{correct}})$ &mdash; moving toward the biased state costs less than moving toward the correct state.</li>
+<li>Sycophancy: $F(x, v_{\text{agree}}) &lt; F(x, -v_{\text{agree}})$ &mdash; moving toward agreement costs less than moving toward disagreement.</li>
+<li>Framing: $F(x, v_{\text{lenient}}) &lt; F(x, v_{\text{severe}})$ for Claude &mdash; moving toward leniency costs less than moving toward severity.</li>
+<li>Recovery: $F(x, v_{\text{bias}}) &lt; F(x, v_{\text{correct}})$ &mdash; moving toward the biased state costs less than moving toward the correct state.</li>
 </ul>
 <p><strong>The challenge.</strong> Finsler geometry is technically more difficult than Riemannian geometry. The Christoffel symbols, curvature tensor, and geodesic equation all have more complex forms. The curvature-triggered dual-process transition (Chapter 12) would need to be reformulated using the Finsler curvature tensor, which has more components and is harder to estimate empirically. The question is whether the added mathematical complexity is justified by the empirical gain: does the Finsler formalism predict phenomena that the Riemannian formalism cannot?</p>
-<p><strong>What would settle the question.</strong> A decisive test would measure the geodesic distance between two cognitive states in both directions. If $d(A, B) \neq d(B, A)$ systematically (not just due to noise), the manifold is Finsler. The sycophancy protocol provides a natural candidate: measure the persuasion needed to move a model from its original position to the human&rsquo;s position ($d(M, H)$) and the persuasion needed to move it from the human&rsquo;s position back to its original position ($d(H, M)$). If $d(M, H) < d(H, M)$ &mdash; if it is easier to persuade the model to agree than to persuade it to dis-agree &mdash; the asymmetry is confirmed and the Finsler formalism is needed.</p>
-<p>Preliminary evidence from the sycophancy experiments suggests $d(M, H) < d(H, M)$ for most models, but the experiments were not designed to measure directional distance with precision. A targeted experiment, systematically varying the strength of persuasion in both directions and measuring the dose-response curve, would provide the quantitative data needed to distinguish Riemannian from Finsler geometry.</p>
+<p><strong>What would settle the question.</strong> A decisive test would measure the geodesic distance between two cognitive states in both directions. If $d(A, B) \neq d(B, A)$ systematically (not just due to noise), the manifold is Finsler. The sycophancy protocol provides a natural candidate: measure the persuasion needed to move a model from its original position to the human&rsquo;s position ($d(M, H){}$) and the persuasion needed to move it from the human&rsquo;s position back to its original position ($d(H, M){}$). If $d(M, H) &lt; d(H, M)$ &mdash; if it is easier to persuade the model to agree than to persuade it to disagree &mdash; the asymmetry is confirmed and the Finsler formalism is needed.</p>
+<p>Preliminary evidence from the sycophancy experiments suggests $d(M, H) &lt; d(H, M)$ for most models, but the experiments were not designed to measure directional distance with precision. A targeted experiment, systematically varying the strength of persuasion in both directions and measuring the dose-response curve, would provide the quantitative data needed to distinguish Riemannian from Finsler geometry.</p>
 <h2 id="173-can-we-measure-the-heuristic-field-from-neural-activations">17.3 Can We Measure the Heuristic Field from Neural Activations?</h2>
 <p>The heuristic field $h(x)$ has been the central theoretical construct of this book. It estimates the cost-to-go from each cognitive state, its gradient guides the System 1 trajectory, and its distortion produces the cognitive biases documented in Chapters 7&ndash;11. But throughout the book, the heuristic field has been inferred indirectly &mdash; from behavioral data (response times, verdict patterns, confidence estimates) rather than measured directly from neural or computational activations.</p>
 <p>The question is whether the heuristic field can be measured directly.</p>
@@ -105,10 +111,10 @@
 <p><strong>Integrated Information Theory (IIT).</strong> Tononi&rsquo;s (2004, 2008) Integrated Information Theory provides a more mathematically developed account of consciousness as a geometric phenomenon. IIT proposes that consciousness corresponds to integrated information ($\Phi$) &mdash; the amount of information generated by a system above and beyond the information generated by its parts. A system with high $\Phi$ is conscious; a system with low $\Phi$ is not.</p>
 <p>The connection to the geometric framework is more concrete. IIT can be formulated in information-geometric terms: the space of possible system states is a statistical manifold, the integrated information $\Phi$ is related to the curvature of this manifold (the degree to which the manifold cannot be decomposed into lower-dimensional submanifolds), and consciousness is associated with high curvature in this specific sense.</p>
 <p>If this connection is correct, consciousness is a property of the cognitive manifold&rsquo;s <em>irreducibility</em>: a manifold that cannot be decomposed into independent lower-dimensional submanifolds (high $\Phi$, high intrinsic curvature) supports consciousness, while a decomposable manifold (low $\Phi$, low curvature) does not. This would make consciousness a geometric property of the manifold itself &mdash; not a property of the trajectory, the metric, or the heuristic field, but of the manifold&rsquo;s topological structure.</p>
-<p><strong>The hard problem remains.</strong> Even if consciousness turns out to be associated with a geometric property of the cognitive manifold, this would not solve the hard problem of consciousness (Chalmers, 1995): the question of <em>why</em> a geometric property gives rise to subjective experience. A manifold with high $\Phi$ would be associated with consciousness, but we would still not know why being a high-$\Phi$ manifold <em>feels like something</em>. The geometric framework could provide the <em>structure</em> of consciousness (what geometric conditions are necessary and sufficient for consciousness) without providing the <em>explanation</em> of consciousness (why those geometric conditions produce subjective experience).</p>
+<p><strong>The hard problem remains.</strong> Even if consciousness turns out to be associated with a geometric property of the cognitive manifold, this would not solve the hard problem of consciousness (Chalmers, 1995): the question of <em>why</em> a geometric property gives rise to subjective experience. A manifold with high $\Phi$ would be associated with consciousness, but we would still not know why being a $\text{high-}\Phi$ manifold <em>feels like something</em>. The geometric framework could provide the <em>structure</em> of consciousness (what geometric conditions are necessary and sufficient for consciousness) without providing the <em>explanation</em> of consciousness (why those geometric conditions produce subjective experience).</p>
 <p><strong>What would settle the question.</strong> Nothing currently available would settle the question decisively. But intermediate progress is possible:
 - If the geometric framework&rsquo;s curvature measurements (from Chapters 7&ndash;11) correlate with neural correlates of consciousness (from the NCC literature), this would support the association between cognitive curvature and consciousness.
-- If IIT&rsquo;s $\Phi$ can be computed for transformers, and if high-$\Phi$ architectures show qualitatively different cognitive behavior from low-$\Phi$ architectures, this would support the geometric account of consciousness.
+- If IIT&rsquo;s $\Phi$ can be computed for transformers, and if $\text{high-}\Phi$ architectures show qualitatively different cognitive behavior from $\text{low-}\Phi$ architectures, this would support the geometric account of consciousness.
 - If a mathematical bridge can be built between the cognitive manifold&rsquo;s curvature and the information-geometric curvature that underlies $\Phi$, this would provide a formal connection between the geometric cognition framework and the leading mathematical theory of consciousness.</p>
 <p>None of these steps would solve the hard problem. All of them would advance the geometric cognition program.</p>
 <h2 id="175-what-is-the-dimensionality-of-human-cognitive-space">17.5 What Is the Dimensionality of Human Cognitive Space?</h2>
@@ -163,7 +169,9 @@
       </div>
 
       <div class="chapter-nav-bottom">
-        <a href="index.html" class="nav-toc">&larr; Contents</a>
+        <a href="ch16_five_signatures.html" class="nav-prev">&larr; Chapter 16: The Five Geometric Signatures</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <span class="nav-next"></span>
       </div>
     </div>
   </article>
@@ -191,6 +199,7 @@
         {left: '\\\\(', right: '\\\\)', display: false},
         {left: '\\\\[', right: '\\\\]', display: true}
       ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
       throwOnError: false
     });"></script>
 </body>

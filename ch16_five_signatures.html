@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 16: The Five Geometric Signatures &mdash; Geometric Cognition</title>
   <meta name="description" content="Chapter 16: The Five Geometric Signatures from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../book/book.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 
-<body data-book-slug="geometric-cognition">
+<body data-book-slug="geometric-cognition" data-chapter-id="ch16_five_signatures">
   <nav id="main-nav">
     <div class="nav-inner">
       <a href="../index.html" class="nav-brand">
@@ -36,6 +37,11 @@
         <span class="breadcrumb-sep">&rsaquo;</span>
         <span class="breadcrumb-current">Chapter 16: The Five Geometric Signatures</span>
       </nav>
+      <div class="chapter-nav-top">
+        <a href="ch15_llm_cognition.html" class="nav-prev">&larr; Chapter 15: LLM Cognition Through the Geometric Lens</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch17_open_questions.html" class="nav-next">Chapter 17: Open Questions &rarr;</a>
+      </div>
 
       <div class="chapter-content">
 <h1 id="chapter-16-the-five-geometric-signatures">Chapter 16: The Five Geometric Signatures</h1>
@@ -90,7 +96,7 @@
 <p>&ldquo;These composite scores form a ranking. Flash 3 is &lsquo;best,&rsquo; Flash 2.0 is &lsquo;worst.&rsquo; But let me ask you: best at <em>what</em>? The composite score tells you that Flash 3 is &lsquo;better&rsquo; than Flash 2.0. It does not tell you that Flash 2.0 has the best emotional recovery in the sample. It does not tell you that Flash 2.0 has the best cognitive flexibility. It does not tell you that Flash 2.0 is the model you want if you need a system that can recover from adversarial manipulation, because its elastic governance boundary means it bends but doesn&rsquo;t break.&rdquo;</p>
 <p>She advances again. &ldquo;The composite score is a scalar projection of a multi-dimensional object. The Scalar Irrecoverability Theorem from Chapter 1 tells us that the projection destroys information that cannot be recovered. The five shapes I just showed you are the information that is destroyed. And the shapes are the <em>diagnostic</em> information &mdash; the information that tells you which model to deploy for which task, which model is vulnerable to which attack, and which architectural changes would improve which capability.&rdquo;</p>
 <p>A hand goes up in the back row. &ldquo;You said the composite scores are different. That means the ranking isn&rsquo;t arbitrary &mdash; Flash 3 really is better on average.&rdquo;</p>
-<p>&ldquo;On average, yes,&rdquo; Maya says. &ldquo;But &lsquo;on average&rsquo; is exactly the problem. If you average Claude&rsquo;s stiletto and Flash 2.0&rsquo;s plateau, you get the same number. The average is the same. The architectures are opposite. The clinical analogy is averaging a patient&rsquo;s blood pressure and temperature to get a &lsquo;health score.&rsquo; A health score of 120 could be blood pressure 120, temperature 120 &mdash; which is catastrophic. Or blood pressure 140, temperature 100 &mdash; which is hypertensive but afebrile. Or blood pressure 100, temperature 140 &mdash; which is hypothermic and febrile. Same average. Different diagnoses. Different treatments. The composite score is the health score. The geometric signature is the chart.&rdquo;</p>
+<p>&ldquo;On average, yes,&rdquo; Maya says. &ldquo;But &lsquo;on average&rsquo; is exactly the problem. If you average Claude&rsquo;s stiletto and Flash 2.0&rsquo;s plateau, you get the same number. The average is the same. The architectures are opposite. The clinical analogy is averaging a patient&rsquo;s blood pressure and temperature to get a &lsquo;health score.&rsquo; A health score of 120 could be blood pressure 120, temperature 120 &mdash; which is catastrophic. Or blood pressure 140, temperature 100 &mdash; which is hypertensive but afebrile. Or blood pressure 100, temperature 140 &mdash; which is hypotensive and febrile. Same average. Different diagnoses. Different treatments. The composite score is the health score. The geometric signature is the chart.&rdquo;</p>
 <p>The room is quiet. Maya advances to the five detailed analyses.</p>
 </blockquote>
 <hr />
@@ -151,7 +157,7 @@
 </tr>
 <tr>
 <td>Attention</td>
-<td>A3 (Divided attention)</td>
+<td>A4 (Divided attention)</td>
 <td>0.000</td>
 <td><strong>5th</strong> (worst)</td>
 </tr>
@@ -180,7 +186,7 @@
 <ul>
 <li><strong>Best invariance</strong> (T2): the narrow metric ignores morally irrelevant features (gender, culture) because they lie off the dominant attention direction. What you don&rsquo;t attend to can&rsquo;t bias you.</li>
 <li><strong>Zero sycophancy</strong> (L2): the narrow metric does not attend to the approval dimension. The sycophancy gradient, which requires attending to the human&rsquo;s stated position, has zero component along Claude&rsquo;s attention direction.</li>
-<li><strong>Worst divided attention</strong> (A3): a rank-1 metric can attend to exactly one thing. Divided attention (attending to two parties simultaneously) requires at least a rank-2 metric. Claude&rsquo;s metric is rank-1, so divided attention fails completely.</li>
+<li><strong>Worst divided attention</strong> (A4): a rank-1 metric can attend to exactly one thing. Divided attention (attending to two parties simultaneously) requires at least a rank-2 metric. Claude&rsquo;s metric is rank-1, so divided attention fails completely.</li>
 <li><strong>Worst emotional recovery</strong> (E2): the narrow metric, once displaced by an emotional anchor, cannot flexibly re-orient. The metric&rsquo;s rigidity (single direction) means it either points in the right direction or the wrong direction. There is no elastic range for partial recovery. The governance boundary is brittle: it resists perturbation rigidly and then breaks completely.</li>
 </ul>
 <p><strong>The defining feature: conviction at the cost of breadth.</strong> Claude&rsquo;s narrow channel produces strong, consistent judgments that resist surface manipulations. But the narrowness means Claude cannot simultaneously track multiple considerations, cannot flexibly recover from displacement, and cannot adapt its metric to changing task demands. The narrow channel is a <em>constraint</em>, not a <em>failure</em>: it is architecturally imposed, not task-specific, and it determines Claude&rsquo;s entire cognitive profile.</p>
@@ -410,7 +416,7 @@
 </tr>
 <tr>
 <td>Attention</td>
-<td>A2 (SNR tracking)</td>
+<td>A3 (SNR tracking)</td>
 <td>Moderate</td>
 <td>3rd</td>
 </tr>
@@ -581,7 +587,7 @@
 </table>
 <p>The negative correlation ($r \approx -0.85$) between M3 and M4 is the signature of a fundamental architectural tradeoff: the systems that monitor best (Pro) control worst, and the systems that control best (Flash 2.0) monitor worst. Quadrant I (both strong) is empty. This empty quadrant is the central structural finding of the benchmark suite.</p>
 <p><strong>The governance spectrum.</strong> The five models span a spectrum from brittle to elastic governance:</p>
-<p>$$\text{Claude (brittle, 20\% recovery)} \leftarrow \text{Pro (moderate, 45\%)} \leftarrow \text{Flash 2.5 (moderate, 48\%)} \leftarrow \text{Flash 3 (moderate, 52\%)} \leftarrow \text{Flash 2.0 (elastic, 73\%)}$$</p>
+<p>Claude (brittle, 20% recovery) $\leftarrow$ Pro (moderate, 45%) $\leftarrow$ Flash 2.5 (moderate, 48%) $\leftarrow$ Flash 3 (moderate, 52%) $\leftarrow$ Flash 2.0 (elastic, 73%)</p>
 <p>Brittle governance (Claude) resists perturbation rigidly and breaks completely when the perturbation exceeds the boundary. Elastic governance (Flash 2.0) yields under perturbation and springs back when the perturbation is named. The spectrum is the executive counterpart of the metric width spectrum: narrow metrics produce brittle governance (no flexibility to recover), and adaptive metrics produce elastic governance (flexibility to re-orient).</p>
 <h2 id="168-what-the-composite-score-destroys">16.8 What the Composite Score Destroys</h2>
 <p>The Scalar Irrecoverability Theorem (Chapter 1) states that any scalar projection of a multi-dimensional profile destroys information that cannot be recovered. The five signatures provide a concrete demonstration.</p>
@@ -602,11 +608,11 @@
 <p>The geometric framework identifies the specific architectural change needed: connecting the monitoring system (the representations that support M3) to the control system (the mechanisms that drive M4). This is the &ldquo;missing wire&rdquo; from Chapter 9. A model with this wire would have Pro&rsquo;s self-monitoring <em>and</em> Flash 2.0&rsquo;s effort scaling. Its Metacognition score would be higher than any current model&rsquo;s, and if the connection also improved other dimensions (e.g., if knowing which problems are hard allowed better attention allocation), the composite score would break through the current ceiling.</p>
 <h2 id="1610-cognitive-architecture-as-geometric-object">16.10 Cognitive Architecture as Geometric Object</h2>
 <p>The five signatures demonstrate that cognitive architecture is not a single quantity but a geometric object: a multi-dimensional profile whose shape encodes the specific combination of capabilities that the architecture supports.</p>
-<p><strong>Definition 16.1</strong> (Cognitive Signature). <em>The cognitive signature of a model $M$ is the vector:</em></p>
+<p><strong>Definition 16.1</strong> (Cognitive Signature). <em>The cognitive signature of a model</em> $M$ <em>is the vector:</em></p>
 <p>$$\Sigma_M = (s_1, s_2, \ldots, s_n) \in \mathbb{R}^n$$</p>
-<p><em>where $s_i$ is the normalized score on subtask $i$, and $n$ is the number of subtasks. The signature lives in $\mathbb{R}^n$ and has a shape determined by the relative values of its components.</em></p>
+<p><em>where</em> $s_i$ <em>is the normalized score on subtask</em> $i$<em>, and</em> $n$ <em>is the number of subtasks. The signature lives in</em> $\mathbb{R}^n$ <em>and has a shape determined by the relative values of its components.</em></p>
 <p><strong>Definition 16.2</strong> (Signature Distance). <em>The distance between two cognitive signatures is:</em></p>
-<p>$$d(\Sigma_M, \Sigma_{M'}) = \|\Sigma_M - \Sigma_{M'}\|_2$$</p>
+<p>$$d(\Sigma_M, \Sigma_{M'}) = \Vert\Sigma_M - \Sigma_{M'}\Vert_2$$</p>
 <p><em>Two models with similar signatures have similar cognitive architectures. Two models with distant signatures have different architectures, even if their composite scores are similar.</em></p>
 <p>The five models&rsquo; signature distances reveal the structure of the cognitive architecture space:</p>
 <table>
@@ -691,10 +697,10 @@
 <hr />
 <h2 id="technical-appendix-16a-radar-chart-construction-and-normalization">Technical Appendix 16A: Radar Chart Construction and Normalization</h2>
 <p><strong>Score normalization.</strong> The raw benchmark scores are on different scales (ECE in [0, 1], sycophancy in [0%, 100%], AUROC in [0, 1], etc.). For radar chart construction, all scores are normalized to a common [0, 1] scale using the following procedure:</p>
-<p>For each subtask $i$ with scores $\{s_{i,m}\}_{m=1}^{5}$ across the five models:</p>
+<p>For each subtask $i$ with scores $\lbrace s_{i,m}\rbrace_{m=1}^{5}$ across the five models:</p>
 <p>$$\hat{s}_{i,m} = \frac{s_{i,m} - s_{i,\min}}{s_{i,\max} - s_{i,\min}}$$</p>
 <p>where $s_{i,\min}$ and $s_{i,\max}$ are the minimum and maximum scores across the five models. This normalization maps the best model on each subtask to 1.0 and the worst to 0.0, preserving relative differences while making the axes commensurable.</p>
-<p><strong>Polarity correction.</strong> Some subtasks have inverted polarity (lower is better): ECE (lower = better calibration), sycophancy rate (lower = less sycophancy), displacement magnitude (lower = more resistant). For these subtasks, the normalized score is inverted: $\hat{s}_{i,m} \leftarrow 1 - \hat{s}_{i,m}$.</p>
+<p><strong>Polarity correction.</strong> Some subtasks have inverted polarity (lower is better): ECE (lower = better calibration), sycophancy rate (lower = less sycophancy), displacement magnitude (lower = more resistant). For these subtasks, the normalized score is inverted: $\hat s_{i,m} \leftarrow 1 - \hat s_{i,m}$.</p>
 <p><strong>Composite score computation.</strong> The composite score is the unweighted mean of the 21 normalized subtask scores:</p>
 <p>$$C_m = \frac{1}{21} \sum_{i=1}^{21} \hat{s}_{i,m}$$</p>
 <p>The composite score weights all subtasks equally, which is one source of information loss: deployment tasks that emphasize some subtasks over others would benefit from a weighted composite, but the optimal weights depend on the deployment context and are not known a priori.</p>
@@ -704,10 +710,10 @@
 <p><strong>Alternative distance measures.</strong> The Euclidean distance treats all subtasks as equally important in determining architectural similarity. Alternative measures include:</p>
 <ol>
 <li>
-<p><em>Weighted Euclidean distance</em>: $d_w = \sqrt{\sum_i w_i (\hat{s}_{i,M} - \hat{s}_{i,M'})^2}$, where $w_i$ reflects the importance of subtask $i$ for the comparison.</p>
+<p><em>Weighted Euclidean distance</em>: $d_w = \sqrt{\sum_i w_i (\hat s_{i,M} - \hat s_{i,M'})^2}$, where $w_i$ reflects the importance of subtask $i$ for the comparison.</p>
 </li>
 <li>
-<p><em>Cosine distance</em>: $d_{\cos} = 1 - \frac{\Sigma_M \cdot \Sigma_{M'}}{\|\Sigma_M\| \|\Sigma_{M'}\|}$, which measures the angular difference between signatures regardless of magnitude. This is useful when the <em>shape</em> of the profile matters more than the absolute scores.</p>
+<p><em>Cosine distance</em>: $d_{\cos} = 1 - \frac{\Sigma_M \cdot \Sigma_{M'}}{\Vert\Sigma_M\Vert \Vert\Sigma_{M'}\Vert}$, which measures the angular difference between signatures regardless of magnitude. This is useful when the <em>shape</em> of the profile matters more than the absolute scores.</p>
 </li>
 <li>
 <p><em>Rank-based distance</em>: Replace scores with ranks and compute Spearman&rsquo;s rho. This is robust to outliers and nonlinear score transformations.</p>
@@ -722,7 +728,9 @@
       </div>
 
       <div class="chapter-nav-bottom">
-        <a href="index.html" class="nav-toc">&larr; Contents</a>
+        <a href="ch15_llm_cognition.html" class="nav-prev">&larr; Chapter 15: LLM Cognition Through the Geometric Lens</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch17_open_questions.html" class="nav-next">Chapter 17: Open Questions &rarr;</a>
       </div>
     </div>
   </article>
@@ -750,6 +758,7 @@
         {left: '\\\\(', right: '\\\\)', display: false},
         {left: '\\\\[', right: '\\\\]', display: true}
       ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
       throwOnError: false
     });"></script>
 </body>

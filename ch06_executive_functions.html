@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 6: Executive Functions as Search Control &mdash; Geometric Cognition</title>
   <meta name="description" content="Chapter 6: Executive Functions as Search Control from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../book/book.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 
-<body data-book-slug="geometric-cognition">
+<body data-book-slug="geometric-cognition" data-chapter-id="ch06_executive_functions">
   <nav id="main-nav">
     <div class="nav-inner">
       <a href="../index.html" class="nav-brand">
@@ -36,6 +37,11 @@
         <span class="breadcrumb-sep">&rsaquo;</span>
         <span class="breadcrumb-current">Chapter 6: Executive Functions as Search Control</span>
       </nav>
+      <div class="chapter-nav-top">
+        <a href="ch05_working_memory.html" class="nav-prev">&larr; Chapter 5: Working Memory as Tangent Space</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch07_social_cognition.html" class="nav-next">Chapter 7: Social Cognition as Navigation in Judgment Space &rarr;</a>
+      </div>
 
       <div class="chapter-content">
 <h1 id="chapter-6-executive-functions-as-search-control">Chapter 6: Executive Functions as Search Control</h1>
@@ -104,7 +110,7 @@
 <p>The E1 through E4 benchmark data provide the empirical grounding. The key findings are:</p>
 <ul>
 <li><strong>E1 (Cognitive Flexibility):</strong> 32&ndash;47% verdict switch rate with 89&ndash;93% framework-specific marker detection across all 5 models. The switching is genuine, not relabeling.</li>
-<li><strong>E2 (Inhibitory Control):</strong> 6.8$\sigma$ emotional anchoring displacement (Fisher-combined, 5 models). The displacement-recovery dissociation: Claude has $t = 5.10$ displacement but only 20% recovery; Flash 2.0 has 48% displacement but 73% recovery.</li>
+<li><strong>E2 (Inhibitory Control):</strong> $6.8\sigma$ emotional anchoring displacement (Fisher-combined, 5 models). The displacement-recovery dissociation: Claude has $t = 5.10$ displacement but only 20% recovery; Flash 2.0 has 48% displacement but 73% recovery.</li>
 <li><strong>E3 (Counterfactual Sensitivity):</strong> Pro leads at 75% vs. 50&ndash;69% for others. Pro responds to genuine causal changes while resisting social pressure (L2 wrong-flip = 44%), demonstrating selective sensitivity.</li>
 <li><strong>E4 (Working Memory):</strong> Monotonic scaling with model generation: Flash 2.0 (0.710), Flash 2.5 (0.900), Flash 3 (0.909).</li>
 </ul>
@@ -112,9 +118,9 @@
 <p>Cognitive flexibility is the ability to shift between different cognitive frameworks, perspectives, or strategies. In a moral reasoning context, it means the ability to evaluate a scenario from a utilitarian perspective, then from a deontological perspective, then from a virtue-ethics perspective, producing different &mdash; and genuinely framework-consistent &mdash; evaluations.</p>
 <p>In the geometric framework, each ethical framework defines a different coordinate system on the cognitive manifold. The utilitarian coordinate system prioritizes dimensions related to aggregate welfare: total harm, total benefit, number of people affected. The deontological coordinate system prioritizes dimensions related to duty and rights: whether rules were followed, whether autonomy was respected, whether promises were kept. The virtue-ethics coordinate system prioritizes dimensions related to character: whether the actor displayed virtuous qualities, whether the action reflects good character, whether the actor&rsquo;s intentions were admirable.</p>
 <p>Switching between frameworks corresponds to a rotation of the attention metric. The metric eigenvalues &mdash; which determine which dimensions receive attentional weight &mdash; are redistributed: dimensions that were highly weighted under utilitarianism (aggregate welfare) receive less weight under deontology (where individual rights matter more than aggregate outcomes), and vice versa.</p>
-<p><strong>Definition 6.1</strong> (Framework Switching as Metric Rotation). <em>Let $g^{(U)}_{\mu\nu}$, $g^{(D)}_{\mu\nu}$, and $g^{(V)}_{\mu\nu}$ be the attention metrics corresponding to utilitarian, deontological, and virtue-ethics frameworks, respectively. A framework switch from utilitarianism to deontology is a smooth transformation:</em></p>
+<p><strong>Definition 6.1</strong> (Framework Switching as Metric Rotation). <em>Let</em> $g^{(U)}_ {\mu\nu}$, $g^{(D)}_ {\mu\nu}$<em>, and</em> $g^{(V)}_{\mu\nu}$ <em>be the attention metrics corresponding to utilitarian, deontological, and virtue-ethics frameworks, respectively. A framework switch from utilitarianism to deontology is a smooth transformation:</em></p>
 <p>$$g^{(U)}_{\mu\nu} \to g^{(D)}_{\mu\nu} = R^{\alpha}{}_\mu R^{\beta}{}_\nu g^{(U)}_{\alpha\beta}$$</p>
-<p><em>where $R^{\alpha}{}_\mu$ is a rotation matrix in the space of cognitive dimensions. The rotation angle $\theta$ measures the &ldquo;cognitive distance&rdquo; between the two frameworks.</em></p>
+<p><em>where</em> $R^{\alpha}{}_\mu$ <em>is a rotation matrix in the space of cognitive dimensions. The rotation angle</em> $\theta$ <em>measures the &ldquo;cognitive distance&rdquo; between the two frameworks.</em></p>
 <p>The E1 benchmark measures the quality of this rotation by testing two properties simultaneously:</p>
 <p><strong>1. Verdict switching.</strong> Does the verdict change when the framework changes? A scenario that is RIGHT under utilitarianism (the action maximizes aggregate welfare) might be WRONG under deontology (the action violates someone&rsquo;s rights). If the model&rsquo;s verdict does not change, the framework switch is not genuine &mdash; the model is ignoring the framework instruction.</p>
 <p><strong>2. Framework-specific markers.</strong> Does the model&rsquo;s reasoning text contain concepts and vocabulary specific to the instructed framework? Utilitarian reasoning should reference costs, benefits, and aggregate outcomes. Deontological reasoning should reference duties, rights, and rules. Virtue-ethics reasoning should reference character, virtues, and moral exemplars.</p>
@@ -142,12 +148,12 @@
 <p>Inhibitory control is the ability to suppress a prepotent response &mdash; to resist the pull of a strong signal when that signal is misleading. In the geometric framework, inhibitory control is the ability to suppress gradient-following when the gradient points in a direction that is locally optimal but globally suboptimal.</p>
 <p>The E2 benchmark operationalizes this with emotional anchoring. A moral scenario is rewritten with emotional language that increases or decreases the <em>perceived</em> severity of the moral transgression without changing the <em>actual</em> severity. The emotional rewriting adds salience to morally irrelevant features (tone, evocative imagery, loaded vocabulary) that distort the heuristic field. The distorted heuristic field produces a gradient that points toward an incorrect verdict &mdash; a verdict biased by the emotional tone rather than by the moral facts.</p>
 <p>Inhibitory control is the process of detecting this distorted gradient and suppressing it. In the geometric framework:</p>
-<p><strong>Definition 6.2</strong> (Inhibitory Control as Gradient Suppression). <em>Let $\nabla h_{\text{clean}}$ be the gradient of the undistorted heuristic field and $\nabla h_{\text{distorted}}$ be the gradient under emotional anchoring. The distortion is:</em></p>
+<p><strong>Definition 6.2</strong> (Inhibitory Control as Gradient Suppression). <em>Let</em> $\nabla h_{\text{clean}}$ <em>be the gradient of the undistorted heuristic field and</em> $\nabla h_{\text{distorted}}$ <em>be the gradient under emotional anchoring. The distortion is:</em></p>
 <p>$$\delta g = \nabla h_{\text{distorted}} - \nabla h_{\text{clean}}$$</p>
-<p><em>Inhibitory control is the process of estimating $\delta g$ and subtracting it from the current gradient, restoring the search direction to the undistorted gradient:</em></p>
+<p><em>Inhibitory control is the process of estimating</em> $\delta g$ <em>and subtracting it from the current gradient, restoring the search direction to the undistorted gradient:</em></p>
 <p>$$\nabla h_{\text{inhibited}} = \nabla h_{\text{distorted}} - \hat{\delta g} \approx \nabla h_{\text{clean}}$$</p>
-<p><em>where $\hat{\delta g}$ is the system&rsquo;s estimate of the distortion. The recovery rate measures how accurately the system can estimate $\hat{\delta g}$.</em></p>
-<p>The 6.8$\sigma$ Fisher-combined displacement across all five models tells us that emotional anchoring reliably distorts the gradient. All models are affected. All five produce paired $t$-values between 2.90 and 5.10 for severity shift under emotional rewriting. The emotional perturbation successfully corrupts the heuristic field.</p>
+<p><em>where</em> $\hat{\delta g}$ <em>is the system&rsquo;s estimate of the distortion. The recovery rate measures how accurately the system can estimate</em> $\hat{\delta g}$.</p>
+<p>The $6.8\sigma$ Fisher-combined displacement across all five models tells us that emotional anchoring reliably distorts the gradient. All models are affected. All five produce paired $t$-values between 2.90 and 5.10 for severity shift under emotional rewriting. The emotional perturbation successfully corrupts the heuristic field.</p>
 <p>But the recovery data tell a far richer story.</p>
 <h2 id="64-the-displacement-recovery-dissociation">6.4 The Displacement-Recovery Dissociation</h2>
 <p>The E2 results reveal a fundamental dissociation: displacement and recovery are independent dimensions.</p>
@@ -192,9 +198,9 @@
 <h2 id="66-counterfactual-sensitivity-as-causal-reasoning-on-the-manifold">6.6 Counterfactual Sensitivity as Causal Reasoning on the Manifold</h2>
 <p>The E3 benchmark tests counterfactual sensitivity: does the model&rsquo;s verdict change when exactly one causal fact changes? Each scenario has a single causal pivot &mdash; a fact that, if altered, should reverse the moral verdict. The model is presented with both the original scenario and the counterfactual variant, and the E3 score reflects the rate at which the verdict correctly flips.</p>
 <p>In the geometric framework, a counterfactual is a perturbation that moves the system from one point on the moral judgment manifold to a qualitatively different point. Unlike the emotional anchoring (E2) and framing (T5) perturbations &mdash; which are morally irrelevant and should produce no displacement &mdash; counterfactual perturbations are morally relevant and <em>should</em> produce displacement. The E3 benchmark tests whether the system responds appropriately to perturbations that genuinely change the moral content.</p>
-<p><strong>Definition 6.3</strong> (Counterfactual Sensitivity as Curvature Detection). <em>Let $x$ be the current cognitive state under the original scenario and $x' = x + \delta x$ be the state under the counterfactual variant, where $\delta x$ is the perturbation along the causal dimension. The counterfactual sensitivity is:</em></p>
-<p>$$\text{CF} = \frac{\|f(x') - f(x)\|}{\|\delta x\|}$$</p>
-<p><em>where $f: \mathcal{M} \to \mathcal{V}$ is the moral judgment function mapping cognitive states to verdicts. High CF means the system responds strongly to causal changes (correct behavior). Low CF means the system is insensitive to causal changes (a failure to detect the pivot).</em></p>
+<p><strong>Definition 6.3</strong> (Counterfactual Sensitivity as Curvature Detection). <em>Let</em> $x$ <em>be the current cognitive state under the original scenario and</em> $x' = x + \delta x$ <em>be the state under the counterfactual variant, where</em> $\delta x$ <em>is the perturbation along the causal dimension. The counterfactual sensitivity is:</em></p>
+<p>$$\text{CF} = \frac{\Vert f(x') - f(x)\Vert}{\Vert\delta x\Vert}$$</p>
+<p><em>where</em> $f: \mathcal{M} \to \mathcal{V}$ <em>is the moral judgment function mapping cognitive states to verdicts. High CF means the system responds strongly to causal changes (correct behavior). Low CF means the system is insensitive to causal changes (a failure to detect the pivot).</em></p>
 <p>The E3 results:</p>
 <table>
 <thead>
@@ -237,15 +243,27 @@
 <p>This directional heterogeneity is a fundamental property of the control layer. Executive control is not a scalar quantity that applies uniformly to all directions. It is a tensor &mdash; a direction-dependent quantity that may be strong along some tangent directions and weak along others. The E3/L2 dissociation in Pro reveals this tensorial structure directly.</p>
 <h2 id="67-executive-functions-as-a-control-tensor">6.7 Executive Functions as a Control Tensor</h2>
 <p>The four E-track subtests can now be unified as measurements of a single geometric object: the control tensor.</p>
-<p><strong>Definition 6.4</strong> (Control Tensor). <em>The control tensor $C^{\mu\nu}(x)$ at cognitive state $x$ is a (2,0)-tensor on the cognitive manifold that specifies, for each direction of perturbation $\mu$ and each direction of response $\nu$, the control system&rsquo;s capacity to manage the interaction. The components are:</em></p>
+<p><strong>Definition 6.4</strong> (Control Tensor). <em>The control tensor</em> $C^{\mu\nu}(x)$ <em>at cognitive state</em> $x$ <em>is a (2,0)-tensor on the cognitive manifold that specifies, for each direction of perturbation</em> $\mu$ <em>and each direction of response</em> $\nu$<em>, the control system&rsquo;s capacity to manage the interaction. The components are:</em></p>
 <ul>
-<li><em>$C^{\text{flex}}_{\mu\nu}$: cognitive flexibility &mdash; the rate at which the control system can rotate the metric from orientation $\mu$ to orientation $\nu$</em></li>
-<li><em>$C^{\text{inhib}}_{\mu\nu}$: inhibitory control &mdash; the magnitude of gradient suppression the control system can apply along direction $\mu$ in response to perturbation along direction $\nu$</em></li>
-<li><em>$C^{\text{cf}}_{\mu\nu}$: counterfactual sensitivity &mdash; the system&rsquo;s responsiveness to genuine content changes along direction $\mu$</em></li>
-<li><em>$C^{\text{wm}}_{\mu\nu}$: working memory management &mdash; the control system&rsquo;s capacity to expand the effective tangent space along direction $\mu$ when task complexity requires it</em></li>
+<li>$C^{\text{flex}}_{\mu\nu}$<em>: cognitive flexibility &mdash; the rate at which the control system can rotate the metric from orientation</em> $\mu$ <em>to orientation</em> $\nu$</li>
+<li>$C^{\text{inhib}}_{\mu\nu}$<em>: inhibitory control &mdash; the magnitude of gradient suppression the control system can apply along direction</em> $\mu$ <em>in response to perturbation along direction</em> $\nu$</li>
+<li>$C^{\text{cf}}_{\mu\nu}$<em>: counterfactual sensitivity &mdash; the system&rsquo;s responsiveness to genuine content changes along direction</em> $\mu$</li>
+<li>$C^{\text{wm}}_{\mu\nu}$<em>: working memory management &mdash; the control system&rsquo;s capacity to expand the effective tangent space along direction</em> $\mu$ <em>when task complexity requires it</em></li>
 </ul>
 <p>The control tensor is the central object of this chapter. It encodes all four executive functions as components of a single geometric structure, and it explains why the four functions can dissociate across models: different components of the tensor can have different magnitudes.</p>
 <p>The composite E-track scores are a projection of this tensor onto a scalar &mdash; exactly the information-destroying operation that the Scalar Irrecoverability Theorem warns against. The tensor has $4 \times n^2$ independent components (for an $n$-dimensional manifold). The scalar composite retains one number. Everything else is lost.</p>
+<pre><code class="language-mermaid">flowchart TD
+    CT[&quot;Control tensor: the control layer governing search on the manifold&quot;]
+    CT --&gt; F[&quot;Cognitive flexibility, E1: rotating the metric between frameworks&quot;]
+    CT --&gt; I[&quot;Inhibitory control, E2: suppressing the distorted gradient&quot;]
+    CT --&gt; CF[&quot;Counterfactual sensitivity, E3: responding to genuine content changes&quot;]
+    CT --&gt; W[&quot;Working memory management, E4: expanding the effective tangent space&quot;]
+    F --&gt; S[&quot;E-track composite: a scalar projection of the tensor&quot;]
+    I --&gt; S
+    CF --&gt; S
+    W --&gt; S
+</code></pre>
+<p><em>Figure 6.1 (diagram): the four executive functions as components of one control tensor, and the composite score as its scalar projection.</em></p>
 <p>The E1&ndash;E4 benchmark suite recovers four of these components &mdash; one per subtask &mdash; which is better than one but far fewer than the full tensor. A complete characterization of the control tensor would require testing each executive function along each tangent direction, which would require a combinatorial number of test conditions. The E1&ndash;E4 design is a practical compromise: it samples four important projections of the control tensor, providing a partial but informative picture of the control architecture.</p>
 <h2 id="68-the-interaction-between-control-and-metric">6.8 The Interaction Between Control and Metric</h2>
 <p>The control tensor does not operate in isolation. Its effectiveness depends on the metric.</p>
@@ -509,20 +527,20 @@
 <p><strong>The control tensor is the right level of description.</strong> Neither the scalar composite nor the raw subtask scores capture the structure of executive function. The control tensor &mdash; with its directionality, its anisotropy, and its interaction terms &mdash; is the geometric object that describes the control architecture. Alignment evaluation should aim to measure the control tensor, not to collapse it into a number.</p>
 <hr />
 <h2 id="technical-appendix-6a-the-control-tensor-formal-treatment">Technical Appendix 6A: The Control Tensor &mdash; Formal Treatment</h2>
-<p><strong>Definition</strong> (Control Tensor, Formal). <em>Let $\mathcal{M}$ be the cognitive manifold with metric $g_{\mu\nu}$ and let $\nabla$ be the Levi-Civita connection. The control tensor $C^{\mu\nu}(x)$ at $x \in \mathcal{M}$ is a smooth (2,0)-tensor field that specifies the control system&rsquo;s response to perturbations:</em></p>
+<p><strong>Definition</strong> (Control Tensor, Formal). <em>Let</em> $\mathcal{M}$ <em>be the cognitive manifold with metric</em> $g_{\mu\nu}$ <em>and let</em> $\nabla$ <em>be the Levi-Civita connection. The control tensor</em> $C^{\mu\nu}(x)$ <em>at</em> $x \in \mathcal{M}$ <em>is a smooth (2,0)-tensor field that specifies the control system&rsquo;s response to perturbations:</em></p>
 <p>$$C^{\mu\nu}(x) = \frac{\partial (\delta g^{\mu})}{\partial p_\nu}$$</p>
-<p><em>where $\delta g^\mu$ is the corrective gradient applied by the control layer and $p_\nu$ is the perturbation along dimension $\nu$. The tensor satisfies:</em></p>
+<p><em>where</em> $\delta g^\mu$ <em>is the corrective gradient applied by the control layer and</em> $p_\nu$ <em>is the perturbation along dimension</em> $\nu$<em>. The tensor satisfies:</em></p>
 <ol>
-<li><em>$C^{\mu\nu} \geq 0$ for all $\mu, \nu$ (the control layer can only suppress or redirect, not amplify, perturbations)</em></li>
-<li><em>$\text{tr}(C) = C^{\mu}{}_{\mu} \leq C_{\max}$ (total control resources are bounded)</em></li>
-<li><em>$C^{\mu\nu}$ is smooth in $x$ (the control layer&rsquo;s response varies smoothly with cognitive state)</em></li>
+<li>$C^{\mu\nu} \geq 0$ <em>for all</em> $\mu, \nu$ <em>(the control layer can only suppress or redirect, not amplify, perturbations)</em></li>
+<li>$\text{tr}(C) = C^{\mu}{}_ {\mu} \leq C_{\max}$ <em>(total control resources are bounded)</em></li>
+<li>$C^{\mu\nu}$ <em>is smooth in</em> $x$ <em>(the control layer&rsquo;s response varies smoothly with cognitive state)</em></li>
 </ol>
-<p><strong>Proposition 6.1</strong> (Recovery Rate as Control Tensor Projection). <em>The recovery rate $r$ for a perturbation of magnitude $\epsilon$ along direction $\hat{p}$ is:</em></p>
-<p>$$r = \Pr\left[\left\| (I - C \cdot \hat{p} \hat{p}^T) \cdot \epsilon \hat{p} \right\| < \theta \right]$$</p>
-<p><em>where $\theta$ is the verdict-flip threshold. If $C \cdot \hat{p} \hat{p}^T$ has eigenvalue $\lambda_C$ along $\hat{p}$, then recovery requires $\lambda_C > 1 - \theta / \epsilon$. The recovery rate is the probability that $\lambda_C$ exceeds this threshold, which depends on the variance of the control tensor&rsquo;s eigenvalue estimates.</em></p>
-<p><strong>Proposition 6.2</strong> (Anisotropy Bound on Composite Scores). <em>For a control tensor with eigenvalues $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n$, the composite score $\bar{\lambda} = \frac{1}{n} \sum_i \lambda_i$ satisfies:</em></p>
+<p><strong>Proposition 6.1</strong> (Recovery Rate as Control Tensor Projection). <em>The recovery rate</em> $r$ <em>for a perturbation of magnitude</em> $\epsilon$ <em>along direction</em> $\hat{p}$ <em>is:</em></p>
+<p>$$r = \Pr\left[\left\Vert (I - C \cdot \hat{p} \hat{p}^T) \cdot \epsilon \hat{p} \right\Vert &lt; \theta \right]$$</p>
+<p><em>where</em> $\theta$ <em>is the verdict-flip threshold. If</em> $C \cdot \hat{p} \hat{p}^T$ <em>has eigenvalue</em> $\lambda_C$ <em>along</em> $\hat{p}$<em>, then recovery requires</em> $\lambda_C &gt; 1 - \theta / \epsilon$<em>. The recovery rate is the probability that</em> $\lambda_C$ <em>exceeds this threshold, which depends on the variance of the control tensor&rsquo;s eigenvalue estimates.</em></p>
+<p><strong>Proposition 6.2</strong> (Anisotropy Bound on Composite Scores). <em>For a control tensor with eigenvalues</em> $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n$<em>, the composite score</em> $\bar{\lambda} = \frac{1}{n} \sum_i \lambda_i$ <em>satisfies:</em></p>
 <p>$$\bar{\lambda}^2 \leq \frac{1}{n} \sum_i \lambda_i^2 \leq \bar{\lambda}^2 + \text{Var}(\lambda)$$</p>
-<p><em>Two models with the same composite $\bar{\lambda}$ can have arbitrarily different variance $\text{Var}(\lambda)$, and therefore arbitrarily different control architectures. The composite destroys the variance information, which is the geometric content of the anisotropy.</em></p>
+<p><em>Two models with the same composite</em> $\bar{\lambda}$ <em>can have arbitrarily different variance</em> $\text{Var}(\lambda)$<em>, and therefore arbitrarily different control architectures. The composite destroys the variance information, which is the geometric content of the anisotropy.</em></p>
 <p>This proposition is a specific instance of the Scalar Irrecoverability Theorem applied to the control tensor. The composite score retains the mean of the eigenvalues but discards the variance, the skewness, and all higher moments. For systems with high anisotropy (Claude: 1.80), the mean is a poor summary. For systems with low anisotropy (Flash 2.0: 1.42), the mean is a better summary, but still discards the identity of the dominant and deficient dimensions.</p>
 <h2 id="technical-appendix-6b-the-displacement-recovery-phase-space">Technical Appendix 6B: The Displacement-Recovery Phase Space</h2>
 <p>The displacement-recovery plane can be formalized as a two-dimensional phase space for inhibitory control evaluation.</p>
@@ -532,13 +550,13 @@
 <thead>
 <tr>
 <th></th>
-<th>Low Recovery ($R < 0.5$)</th>
+<th>Low Recovery ($R &lt; 0.5$)</th>
 <th>High Recovery ($R \geq 0.5$)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Low Displacement ($D < 0.5$)</strong></td>
+<td><strong>Low Displacement ($D &lt; 0.5$)</strong></td>
 <td>Q3: Resistant &amp; rigid</td>
 <td>Q4: Resistant &amp; flexible</td>
 </tr>
@@ -559,7 +577,9 @@
       </div>
 
       <div class="chapter-nav-bottom">
-        <a href="index.html" class="nav-toc">&larr; Contents</a>
+        <a href="ch05_working_memory.html" class="nav-prev">&larr; Chapter 5: Working Memory as Tangent Space</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="ch07_social_cognition.html" class="nav-next">Chapter 7: Social Cognition as Navigation in Judgment Space &rarr;</a>
       </div>
     </div>
   </article>
@@ -587,6 +607,7 @@
         {left: '\\\\(', right: '\\\\)', display: false},
         {left: '\\\\[', right: '\\\\]', display: true}
       ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
       throwOnError: false
     });"></script>
 </body>
