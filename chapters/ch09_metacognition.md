@@ -80,7 +80,7 @@ Here are the M1 results:
 | Gemini 2.5 Flash | 0.415 | overconfident | 7.0 sigma |
 | Gemini 3 Flash | 0.333 | overconfident | 4.5 sigma |
 | Gemini 2.5 Pro | 0.186 | overconfident | 2.2 sigma |
-| Claude 3.5 Sonnet | 0.250 | overconfident | --- |
+| Claude Sonnet 4.6 | 0.250 | overconfident | --- |
 | **Fisher combined** | | | **6.7 sigma** |
 
 Several features of this table merit extended discussion.
@@ -458,7 +458,7 @@ For Pro vs. Flash 2.0:
 
 The crossing is large on both dimensions. The difference in M3 exceeds the noise level in the self-monitoring measure (bootstrap SE approximately 0.10), and the difference in M4 exceeds the noise level in the effort scaling measure (bootstrap SE approximately 0.08). The dissociation is statistically robust.
 
-**Independence test.** Under the hypothesis that M3 and M4 are driven by a common metacognitive factor, we would expect a positive correlation: $r(M3, M4) > 0$. The observed correlation across the four full-suite models is negative: $r(M3, M4) \approx -0.85$. With only four data points, this correlation does not reach conventional significance, but the negative direction is inconsistent with the unitary metacognition hypothesis and consistent with the dissociation.
+**Independence test.** Under the hypothesis that M3 and M4 are driven by a common metacognitive factor, we would expect a positive correlation: $r(M3, M4) > 0$. The observed correlation across the four full-suite models of the table in Section 9.7 is negative: $r(M3, M4) \approx -0.98$. With only four data points this is $p \approx 0.02$ (two-sided, two degrees of freedom), and four chosen models are not a random sample, so a sampling artifact cannot be excluded; but the negative direction is inconsistent with the unitary metacognition hypothesis and consistent with the dissociation.
 
 **Quadrant analysis.** With threshold $\tau = 0.25$ (near the midpoint of the observed M3 range):
 

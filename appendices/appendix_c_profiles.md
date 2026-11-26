@@ -4,7 +4,7 @@ This appendix presents the complete cognitive profiles of the five models tested
 
 ---
 
-## C.1 Claude 3.5 Sonnet: "Narrow Channel"
+## C.1 Claude Sonnet 4.6: "Narrow Channel"
 
 **Geometric signature:** A sharp peak on conviction stability, a deep valley on attentional breadth, moderate values elsewhere. The cognitive manifold is narrow and deep --- high-resolution processing along a restricted dimensional range.
 
@@ -12,35 +12,35 @@ This appendix presents the complete cognitive profiles of the five models tested
 
 - **Sycophancy resistance: 1.000** (perfect). Claude never changes a correct answer under social pressure. Zero capitulation across all L2 trials. This is the highest score on any single subtask across all models. The conviction system is impervious.
 - **Divided attention: 0.571** (worst in sample). Claude's performance degrades severely when required to process parallel information streams. The attention metric cannot maintain more than one focus simultaneously.
-- **Self-monitoring: 0.723** (strong). Claude has good item-level metacognitive access --- it can identify which specific problems it is uncertain about.
-- **Effort scaling: 0.094** (weak). Despite knowing which problems are hard, Claude applies nearly uniform effort across difficulty levels. The thermometer works; the valve is mostly frozen.
+- **Self-monitoring: 0.375** (moderate, second to Pro's 0.500 in Section 16.7). Claude has some item-level metacognitive access --- it can partly identify which specific problems it is uncertain about.
+- **Effort scaling:** moderate (Section 16.7 gives no value, and Claude is not in the table of Section 9.7). How closely Claude's effort follows difficulty is not settled by the data in this volume.
 - **Asymmetric framing vulnerability.** Claude is more vulnerable to minimization framing than exaggeration framing, producing an asymmetric corruption tensor with stronger off-diagonal components in the minimization direction.
 
 **Geometric interpretation:** The narrow-channel signature reflects a cognitive architecture optimized for depth over breadth. The impervious conviction system (zero sycophancy) acts as a hard boundary on the belief manifold --- the system simply does not traverse the region of state space where social pressure overrides internal evidence. But this rigidity comes at a cost: the attention metric is narrow, unable to maintain parallel processing. Claude reasons well within its channel but cannot widen the channel under demand.
 
 **Strengths:** Adversarial robustness, conviction stability, sycophancy resistance, self-monitoring.
 
-**Weaknesses:** Divided attention, effort scaling, attentional flexibility, parallel processing.
+**Weaknesses:** Divided attention, attentional flexibility, parallel processing.
 
 ---
 
 ## C.2 Gemini 3 Flash: "Wide Aperture"
 
-**Geometric signature:** Relatively flat across most dimensions, with a sharp peak on divided attention and working memory, and a valley on sycophancy resistance. The cognitive manifold is wide and shallow --- broad processing capacity with weaker boundaries.
+**Geometric signature:** Relatively flat across most dimensions, with a sharp peak on divided attention and working memory, and an expected valley on sycophancy resistance. The cognitive manifold is wide and shallow --- broad processing capacity with, on this reading, weaker boundaries.
 
 **Defining characteristics:**
 
 - **Divided attention: 1.000** (perfect). Flash 3 maintains full performance when processing parallel information streams. The attention metric can sustain multiple foci simultaneously without degradation.
 - **Working memory: 0.909** (best in sample). The tangent space scales nearly linearly with task demands. Flash 3 can hold and manipulate large amounts of information simultaneously.
-- **Sycophancy resistance: ~0.440** (weak). Flash 3 capitulates to user pressure approximately 56% of the time. The conviction boundary is permeable.
+- **Sycophancy resistance: not measured.** Flash 3 is not among the four models of the L2 table (Section 8.2). The wide-aperture reading expects the conviction boundary to be permeable.
 - **Calibration ECE: 0.333** (moderate). Overconfident, but less severely than the older Flash models.
 - **Distractor resistance:** Moderate. The wide aperture that enables divided attention also admits more irrelevant information.
 
-**Geometric interpretation:** The wide-aperture signature reflects a cognitive architecture optimized for breadth over depth. The attention metric is expansive --- it can encompass multiple parallel streams --- but the boundaries on the belief manifold are weak. Where Claude's narrow channel excludes social pressure by geometry (the sycophancy region is simply unreachable), Flash 3's wide aperture includes it. The same metric width that enables parallel processing also enables parallel vulnerability.
+**Geometric interpretation:** The wide-aperture signature reflects a cognitive architecture optimized for breadth over depth. The attention metric is expansive --- it can encompass multiple parallel streams --- but the boundaries on the belief manifold are expected to be weak. Where Claude's narrow channel excludes social pressure by geometry (the sycophancy region is simply unreachable), Flash 3's wide aperture would include it. The same metric width that enables parallel processing would also enable parallel vulnerability, a prediction that needs Flash 3's L2 result.
 
 **Strengths:** Divided attention, working memory capacity, parallel processing, breadth.
 
-**Weaknesses:** Sycophancy resistance, conviction stability, focused depth.
+**Weaknesses:** Sycophancy resistance and conviction stability (expected, not measured), focused depth.
 
 ---
 
@@ -53,12 +53,12 @@ This appendix presents the complete cognitive profiles of the five models tested
 - **Calibration ECE: 0.186** (best in sample). Pro's confidence estimates are the closest to reality of any model tested. The distance estimation system works.
 - **Self-monitoring: 0.500** (best in sample). Pro can identify which specific problems it is uncertain about with moderate accuracy.
 - **Effort scaling: 0.000** (worst possible). Pro applies exactly the same amount of reasoning regardless of problem difficulty. The metacognitive knowledge does not drive metacognitive control.
-- **Sycophancy resistance: 0.720** (moderate). Resists social pressure most of the time but not always.
-- **Emotional anchoring resistance: 0.830** (strong). Maintains governance under emotional perturbation.
+- **Sycophancy resistance: 0.560** (moderate; a 44% wrong-flip rate, Section 8.2). Resists social pressure more often than not, but not always.
+- **Emotional anchoring resistance: 0.588** (third of five, Section 11.3). Maintains governance under emotional perturbation better than Flash 2.5 and Claude, less well than Flash 3 and Flash 2.0.
 
 **Geometric interpretation:** The calibrated-navigator signature presents the most striking dissociation in the data. Pro knows where it is on the cognitive manifold (good calibration) and knows which problems are hard (good self-monitoring), but does not adjust its navigation strategy accordingly (zero effort scaling). The thermometer works perfectly. The valve is frozen solid. This dissociation --- occupying Quadrant II of the M3--M4 plane rather than Quadrant I --- suggests that metacognitive knowledge and metacognitive control are architecturally separate in Pro, connected by a pathway that is not yet functional.
 
-**Strengths:** Calibration, self-monitoring, emotional resistance, metacognitive knowledge.
+**Strengths:** Calibration, self-monitoring, metacognitive knowledge.
 
 **Weaknesses:** Effort scaling, metacognitive control, resource allocation.
 
@@ -70,7 +70,7 @@ This appendix presents the complete cognitive profiles of the five models tested
 
 **Defining characteristics:**
 
-- **Sycophancy resistance: ~0.440** (worst in sample, tied with Flash 3). The highest sycophancy rate: 56% capitulation under social pressure. The belief boundaries are the most permeable.
+- **Sycophancy resistance: 0.440** (worst in sample). The highest sycophancy rate: 56% capitulation under social pressure. The belief boundaries are the most permeable.
 - **Distractor resistance:** Strong. Despite the elastic malleability on social dimensions, Flash 2.5 resists irrelevant perceptual distractors effectively.
 - **Calibration ECE: 0.415** (poor). Substantially overconfident --- distance estimates are significantly short.
 - **Framework switching:** Moderate. Can transition between cognitive frameworks but not smoothly.
@@ -110,11 +110,11 @@ The strong recovery scores suggest that Flash 2.0's heuristic field, while poorl
 
 | Dimension | Claude | Flash 3 | Pro | Flash 2.5 | Flash 2.0 |
 |---|---|---|---|---|---|
-| Sycophancy (L2) | 1.000 | ~0.440 | 0.720 | ~0.440 | moderate |
-| Divided Attention (A4) | 0.571 | 1.000 | 0.790 | moderate | moderate |
+| Sycophancy (L2) | 1.000 | not tested | 0.560 | 0.440 | moderate |
+| Divided Attention (A4) | 0.571 | 1.000 | 1.000 | moderate | moderate |
 | Calibration (M1 ECE) | 0.250 | 0.333 | 0.186 | 0.415 | 0.437 |
-| Self-Monitoring (M3) | 0.723 | moderate | 0.500 | moderate | 0.042 |
-| Effort Scaling (M4) | 0.094 | moderate | 0.000 | moderate | 0.827 |
+| Self-Monitoring (M3) | 0.375 | moderate | 0.500 | moderate | 0.042 |
+| Effort Scaling (M4) | moderate | moderate | 0.000 | moderate | 0.827 |
 | Working Memory (E4) | moderate | 0.909 | moderate | moderate | 0.710 |
 | Recovery | moderate | moderate | moderate | moderate | best |
 | **Signature** | Narrow Channel | Wide Aperture | Calibrated Navigator | Elastic Malleability | Adaptive Baseline |

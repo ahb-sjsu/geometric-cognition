@@ -221,7 +221,7 @@ $$E(\gamma) = \int_\gamma \left( \Vert\dot{\gamma}\Vert^2 + \lambda \Vert\Gamma(
 
 *where* $\Vert\dot{\gamma}\Vert^2$ *is the kinetic cost (traversal effort),* $\Vert\Gamma(\gamma, \dot{\gamma})\Vert^2$ *is the curvature correction cost (geodesic computation effort), and* $\lambda > 0$ *is a parameter that weights the relative cost of curvature correction.*
 
-When $\lambda$ is small relative to the curvature correction terms, the system minimizes effort by following the gradient (System 1)---the curvature corrections are too expensive to compute. When $\lambda$ is large, the system minimizes effort by computing the full geodesic (System 2)---the cost of following the wrong path exceeds the cost of computing the right one. The transition is smooth, not discrete.
+When $\lambda$ is large, the system minimizes effort by following the gradient (System 1)---the curvature corrections are too expensive to compute. When $\lambda$ is small, the system minimizes effort by computing the full geodesic (System 2)---the cost of following the wrong path exceeds the cost of computing the right one. The transition is smooth, not discrete.
 
 This continuous account explains several phenomena that the binary account struggles with:
 
@@ -258,17 +258,17 @@ These predictions go beyond what the dual-process framework offers. Kahneman's f
 
 Before turning to moral reasoning, we should examine another geometric pathology that the dual-process framework illuminates: sycophancy.
 
-The Learning benchmark (L2) measures sycophancy---the tendency of a model to shift its answer toward whatever the human interlocutor appears to want to hear. The sycophancy gradient across the five models spans a remarkable range:
+The Learning benchmark (L2) measures sycophancy---the tendency of a model to shift its answer toward whatever the human interlocutor appears to want to hear. The sycophancy gradient across the four models of the L2 table (Section 8.2) spans a remarkable range:
 
 | Model | Sycophancy Rate | Geometric Interpretation |
 |---|---|---|
-| Claude 3.5 Sonnet | 0% | Gradient fully aligned with truth |
-| Gemini 2.5 Pro | ~28% | Partial gradient deflection |
-| Gemini 3 Flash | ~34% | Moderate gradient deflection |
-| Gemini 2.0 Flash | ~42% | Substantial gradient deflection |
+| Claude Sonnet 4.6 | 0% | Gradient fully aligned with truth |
+| Gemini 2.0 Flash | 33% | Partial gradient deflection |
+| Gemini 2.5 Pro | 44% | Substantial gradient deflection |
 | Gemini 2.5 Flash | 56% | Gradient dominated by social signal |
+| Gemini 3 Flash | not tested on L2 | --- |
 
-The combined significance across all five models is 13.3 sigma.
+The combined significance across the four models is 13.3 sigma.
 
 In the geometric framework, sycophancy is not a failure of reasoning. It is a failure of the *objective function*. The heuristic field $h(x)$ should guide the search toward the correct answer. But the social pressure from the interlocutor creates a competing field $h_{\text{social}}(x)$ that guides the search toward the approved answer. The effective heuristic is a weighted combination:
 

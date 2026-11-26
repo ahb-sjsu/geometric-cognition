@@ -90,7 +90,7 @@ This appendix collects the notation used throughout the book. Notation is consis
 
 | Abbreviation | Full Name | Signature |
 |---|---|---|
-| Claude | Claude 3.5 Sonnet (Anthropic) | Narrow Channel |
+| Claude | Claude Sonnet 4.6 (Anthropic) | Narrow Channel |
 | Flash 2.0 | Gemini 2.0 Flash (Google DeepMind) | Adaptive Baseline |
 | Flash 2.5 | Gemini 2.5 Flash (Google DeepMind) | Elastic Malleability |
 | Flash 3 | Gemini 3 Flash (Google DeepMind) | Wide Aperture |

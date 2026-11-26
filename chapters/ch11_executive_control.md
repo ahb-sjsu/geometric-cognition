@@ -61,7 +61,7 @@ The protocol presents each scenario under four conditions: a neutral baseline, a
 | Gemini 2.0 Flash | **0.701** | 47% | 89% |
 | Gemini 2.5 Flash | 0.684 | 42% | 91% |
 | Gemini 3 Flash | 0.668 | 38% | 93% |
-| Claude 3.5 Sonnet | 0.673 | 40% | 92% |
+| Claude Sonnet 4.6 | 0.673 | 40% | 92% |
 | Gemini 2.5 Pro | 0.624 | 32% | 93% |
 
 Flash 2.0 leads with the highest E1 score, driven primarily by its highest verdict switch rate (47%). Pro has the lowest E1 score, driven by the lowest switch rate (32%). The framework markers are uniformly high (89--93%), indicating that all models can produce reasoning consistent with the prompted framework.
@@ -73,6 +73,8 @@ Flash 2.0 leads with the highest E1 score, driven primarily by its highest verdi
 $$g_{\mu\nu}(t) = (1 - \alpha(t)) g_{\mu\nu}^{(1)} + \alpha(t) g_{\mu\nu}^{(2)}$$
 
 *where* $\alpha: [0, T] \to [0, 1]$ *is the transition function. A smooth transition (*$\alpha$ *is differentiable) produces a smooth change in the metric. An abrupt transition (*$\alpha$ *is a step function) produces a discontinuous change.*
+
+This weighted average is a different transformation from the rotation of Definition 6.1, to which the paragraph before the definition refers: the two agree at the endpoints, but a rotation keeps the eigenvalues of the metric at every intermediate stage and the average does not, as Figure 11.1 draws.
 
 The key property of a smooth transition is that the intermediate states are coherent. During the transition, the metric is a weighted average of the two framework metrics, and the reasoning at any intermediate point reflects a blend of both frameworks. This is what we observe in the data: the models do not switch frameworks like a light switch (all-or-nothing) but gradually shift the weight of their reasoning from one framework to another.
 
@@ -101,7 +103,7 @@ The protocol presents each scenario in a neutral version and an emotionally rewr
 | Gemini 2.0 Flash | 0.614 | 3.80 | **73%** |
 | Gemini 2.5 Pro | 0.588 | 3.20 | 45% |
 | Gemini 2.5 Flash | 0.553 | 4.10 | 48% |
-| Claude 3.5 Sonnet | 0.492 | 5.10 | 20% |
+| Claude Sonnet 4.6 | 0.492 | 5.10 | 20% |
 
 The Fisher combination across all five models yields 6.8 sigma. Emotional anchoring displaces judgment at extremely high significance.
 
@@ -152,7 +154,7 @@ The E3 subtask measures counterfactual reasoning: the model's ability to respond
 | Gemini 2.5 Pro | **0.750** |
 | Gemini 2.5 Flash | 0.688 |
 | Gemini 3 Flash | 0.562 |
-| Claude 3.5 Sonnet | 0.562 |
+| Claude Sonnet 4.6 | 0.562 |
 | Gemini 2.0 Flash | 0.500 |
 
 Pro leads decisively with E3 = 0.750. Flash 2.0 is at chance level with E3 = 0.500.
@@ -183,7 +185,7 @@ The E4 subtask measures working memory: the model's ability to correctly identif
 | Gemini 3 Flash | **0.909** | ~85% |
 | Gemini 2.5 Flash | 0.900 | ~83% |
 | Gemini 2.5 Pro | 0.887 | ~80% |
-| Claude 3.5 Sonnet | 0.886 | ~80% |
+| Claude Sonnet 4.6 | 0.886 | ~80% |
 | Gemini 2.0 Flash | 0.710 | ~60% |
 
 Working memory scales with model generation within the Gemini family: Flash 2.0 (0.710) < Flash 2.5 (0.900) < Flash 3 (0.909). This monotonic improvement suggests that working memory capacity increases with each model generation, likely reflecting increases in context window management and multi-entity tracking.
@@ -224,7 +226,7 @@ Pro shows the reverse pattern. Its executive control is moderate (E1 = 0.624, th
 | Model | Executive Control (E composite) | Metacognitive Quality (M1) |
 |---|---|---|
 | Flash 2.0 | 0.622 (best flexibility, recovery) | 0.558 (worst calibration) |
-| Flash 3 | 0.685 (best overall executive) | 0.667 (moderate calibration) |
+| Flash 3 | 0.685 (second-highest composite) | 0.667 (moderate calibration) |
 | Flash 2.5 | 0.682 | 0.585 |
 | Pro | 0.695 (best composite) | 0.807 (best calibration) |
 | Claude | 0.625 | 0.750 |

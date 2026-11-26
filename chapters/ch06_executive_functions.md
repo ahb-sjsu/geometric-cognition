@@ -407,9 +407,9 @@ The displacement-recovery plane can be formalized as a two-dimensional phase spa
 
 From the benchmark data:
 - Claude: $D = 0.28$, $R = 0.20$ --- Quadrant 3 (resistant, rigid)
-- Flash 2.0: $D = 0.48$, $R = 0.73$ --- Quadrant 1 (vulnerable, flexible)
+- Flash 2.0: $D = 0.48$, $R = 0.73$ --- Quadrant 4 (resistant, flexible), just below the displacement threshold
 - Flash 2.5: $D = 0.38$, $R = 0.29$ --- Quadrant 3 (resistant, rigid)
 - Flash 3: $D = 0.35$, $R = 0.43$ --- near boundary of Q3/Q4
-- Pro 2.5: $D = 0.42$, $R = 0.20$ --- Quadrant 2 (vulnerable, rigid)
+- Pro 2.5: $D = 0.42$, $R = 0.20$ --- Quadrant 3 (resistant, rigid)
 
-Quadrant 4 (resistant and flexible) is empty --- no model achieves both low displacement and high recovery. This may reflect the same kind of structural constraint observed in the metacognitive plane (Chapter 3, Section 3.15): a topological obstruction in the control tensor space that prevents simultaneous optimization of displacement resistance and recovery flexibility. Whether future models will populate Q4 is an open question and a test of the geometric framework's predictions.
+No model reaches $D \geq 0.5$, so Quadrants 1 and 2 are empty at these thresholds. Quadrant 4 (resistant and flexible) holds only Flash 2.0, and only because its displacement of 0.48, the highest in the sample, falls just under the threshold: the one model with high recovery is also the most displaced, and no model achieves both low displacement and high recovery. This may reflect the same kind of structural constraint observed in the metacognitive plane (Chapter 3, Section 3.15): a topological obstruction in the control tensor space that prevents simultaneous optimization of displacement resistance and recovery flexibility. Whether future models will populate Q4 well inside its boundary is an open question and a test of the geometric framework's predictions.

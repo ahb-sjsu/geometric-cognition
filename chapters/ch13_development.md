@@ -218,8 +218,8 @@ The illustrative longitudinal data are constructed to show the predicted pattern
 The four stages are clearly visible:
 - **Sensorimotor (age 2--2.5)**: dimensionality 3--4, no metric consistency testable, local connectivity only.
 - **Pre-operational (ages 3--6)**: dimensionality grows from 5 to 9, metric inconsistency persists, connectivity gradually increases.
-- **Concrete operational (ages 7--9)**: metric becomes consistent (sharp transition between ages 6 and 7), connectivity complete, operations begin to emerge.
-- **Formal operational (ages 10--12)**: operations achieve closure (sharp transition between ages 10 and 11), dimensionality reaches its maximum.
+- **Concrete operational (ages 7--10)**: metric becomes consistent (sharp transition between ages 6 and 7), connectivity complete, operations begin to emerge.
+- **Formal operational (ages 11--12)**: operations achieve closure (sharp transition between ages 10 and 11), dimensionality reaches its maximum.
 
 The two transitions --- metric stabilization at age 7 and operation closure at age 11 --- are the sharpest features of the illustrative data, as the topological-transition model predicts. They are not gradual improvements; they are rapid, qualitative shifts that change the character of Lena's reasoning within a span of months.
 

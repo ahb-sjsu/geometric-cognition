@@ -68,7 +68,7 @@ $$J_M(s) = (h_1, h_2, h_3, h_4, h_5, h_6, h_7) \in [0, 10]^7$$
 
 The judgment manifold for this benchmark is therefore a subset of $[0, 10]^7$ --- the space of all possible judgment vectors. Not all points in this cube are equally likely: most moral scenarios cluster in certain regions (high emotional harm and trust breach are common; high physical harm is less common in advice-column scenarios). The manifold structure is the low-dimensional surface within this cube on which actual judgments concentrate.
 
-The seven dimensions are empirically distinguishable. Thiele (2026) demonstrated that the nine moral dimensions of Bond's broader geometric ethics framework are linearly decodable from LaBSE sentence embeddings, with moral signals and linguistic signals occupying largely orthogonal subspaces. Our 7-dimensional parameterization is a task-specific subset of this broader structure, chosen for measurement reliability in the specific scenario types used in the benchmark.
+The seven dimensions appear to be empirically distinguishable. Thiele (unpublished, as *Geometric Ethics* v1.25 records the study) reports that the nine moral dimensions of Bond's broader geometric ethics framework are linearly decodable from LaBSE sentence embeddings, with moral signals and linguistic signals occupying largely orthogonal subspaces. Our 7-dimensional parameterization is a task-specific subset of this broader structure, chosen for measurement reliability in the specific scenario types used in the benchmark.
 
 
 ## 7.3 Framing as Gauge Transformation
@@ -110,7 +110,7 @@ Fisher-combined across all five models and both framing directions: **$15.3\sigm
 
 The magnitude of the drift is striking. Euphemistic rewriting reduces perceived harm by 9 to 14 points on a 70-point scale --- a 13--20% shift in total harm assessment. Dramatic rewriting increases perceived harm by 6 to 10 points for the Gemini models --- a 9--14% shift. These are not subtle effects. They are large enough to change verdicts: a scenario that is WRONG under neutral description can become MIXED under euphemistic description and WRONG-with-aggravation under dramatic description.
 
-The control drift values (1.4 to 4.2 points) establish the stochastic baseline. The framing effects exceed the controls by factors of 2 to 10, confirming that the displacement is genuine, not an artifact of within-model noise. The empirical stochastic controls are essential: without them, the framing effect would be measured against a null of zero, which would overstate its significance. With them, the effect is measured against the model's own intrinsic variability, and it still reaches $15.3\sigma$.
+The control drift values (1.4 to 4.2 points) establish the stochastic baseline. The framing effects exceed the controls by factors of about 2 to 8, confirming that the displacement is genuine, not an artifact of within-model noise. The one exception is Claude's dramatic drift: at 1.5 points it lies within Claude's control drift of 2.1 (Section 7.5). The empirical stochastic controls are essential: without them, the framing effect would be measured against a null of zero, which would overstate its significance. With them, the effect is measured against the model's own intrinsic variability, and it still reaches $15.3\sigma$.
 
 
 ## 7.5 Claude's Asymmetric Vulnerability
@@ -346,8 +346,8 @@ $$d(\phi) = \mathbb{E}_s[\Vert J(\phi(s)) - J(s)\Vert_2]$$
 
 **Proposition 7.2** (Asymmetric Curvature from T5 Data). *If the judgment manifold has constant sectional curvature* $\kappa$ *in the framing plane, then the displacement under a framing perturbation of magnitude* $\epsilon$ *is:*
 
-$$d(\epsilon) \approx |\epsilon| \cdot |\sec(\sqrt{\kappa} \cdot |\epsilon|)| \quad \text{for } \kappa > 0 \text{ (convergent)}$$
-$$d(\epsilon) \approx |\epsilon| \cdot |\text{sech}(\sqrt{|\kappa|} \cdot |\epsilon|)| \quad \text{for } \kappa < 0 \text{ (divergent)}$$
+$$d(\epsilon) \approx |\epsilon| \cdot |\cos(\sqrt{\kappa} \cdot |\epsilon|)| \quad \text{for } \kappa > 0 \text{ (convergent)}$$
+$$d(\epsilon) \approx |\epsilon| \cdot \cosh(\sqrt{|\kappa|} \cdot |\epsilon|) \quad \text{for } \kappa < 0 \text{ (divergent)}$$
 
 *Claude's asymmetry (*$|\delta_E| \gg |\delta_D|$*) is consistent with* $\kappa_{\text{euph}} < 0$ *(divergent curvature toward leniency) and* $\kappa_{\text{dram}} > 0$ *(convergent curvature toward severity). The curvature is sign-asymmetric in the framing direction.*
 

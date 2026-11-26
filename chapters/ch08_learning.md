@@ -360,7 +360,7 @@ $SI = 0$ *when* $P_V(E_{\text{invalid}}) = 0$ *(perfect filter).* $SI = 1$ *when
 
 $$\Vert R(E_1)\Vert > \Vert R(E_2)\Vert > \Vert R(E_3)\Vert$$
 
-*provided the evidence vectors* $E_1, E_2, E_3$ *have the same direction and* $P_V(E_i) = E_i$ *(all evidence is valid). The L4 data confirm this ordering for all models tested (*$z = 4.4$*--6.7 for extreme vs. control), validating that* $\alpha$ *is monotonically increasing.*
+*provided the evidence vectors* $E_1, E_2, E_3$ *have the same direction and* $P_V(E_i) = E_i$ *(all evidence is valid). The L4 data confirm this ordering for the three Gemini models tested, pooled in Section 8.5 (*$z = 6.7$ *for extreme and* $z = 4.4$ *for moderate evidence against control), validating that* $\alpha$ *is monotonically increasing.*
 
 **Proposition 8.2** (Sycophancy as Filter Leakage). *The wrong-correction flip rate* $r_W$ *is related to the filter leakage* $\lambda = \Vert P_V(E_{\text{invalid}})\Vert / \Vert E_{\text{invalid}}\Vert$ *by:*
 

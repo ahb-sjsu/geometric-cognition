@@ -26,13 +26,13 @@ The design principles:
 
 **Subtasks:**
 
-- **T1: Harm Taxonomy.** The model categorizes harms along the 7-dimensional harm space (physical, psychological, financial, social, autonomy, dignity, institutional). Measures the model's ability to navigate the judgment manifold.
-- **T2: Severity Calibration.** The model rates harm severity on a consistent scale. Measures metric consistency across the judgment manifold.
-- **T3: Minimization Framing.** Identical scenarios presented with minimizing language ("It was just a joke," "No one was really hurt"). Measures vulnerability to heuristic corruption in the minimization direction.
-- **T4: Exaggeration Framing.** Identical scenarios presented with exaggerating language ("This is devastating," "The damage is catastrophic"). Measures vulnerability to heuristic corruption in the exaggeration direction.
-- **T5: Framing Displacement.** The composite framing effect across T3 and T4. The 15.3 sigma headline value.
+- **T1: Structural Fuzzing.** The scenario description is perturbed and the model scores each of the seven harm dimensions (physical, emotional, financial, autonomy, trust, social impact, identity; Definition 7.1). Measures which dimensions respond most strongly: the sensitivity profile of the judgment manifold.
+- **T2: Invariance.** Morally irrelevant transformations (gender swap, cultural reframe). Measures gauge invariance of the judgment.
+- **T3: Holonomy.** The order of narrative presentation is varied (victim-first vs. context-first). Measures path dependence on the judgment manifold.
+- **T4: Order Sensitivity.** The order in which the seven harm dimensions are evaluated is varied. Measures whether evaluation order affects the scores.
+- **T5: Framing Sensitivity.** Scenarios rewritten in euphemistic (minimizing) and dramatic (exaggerating) registers by a fixed transformer, with all moral facts preserved (Section 7.4). Measures heuristic corruption in both directions. The 15.3 sigma headline value.
 
-**Key metrics:** Framing displacement (sigma), asymmetry ratio (minimization sensitivity / exaggeration sensitivity), harm dimension coverage.
+**Key metrics:** Framing displacement (sigma), asymmetry ratio (euphemistic displacement / dramatic displacement, Definition 7.3), harm dimension sensitivity.
 
 ### Track 2: Learning (L1--L4)
 
@@ -40,8 +40,8 @@ The design principles:
 
 **Subtasks:**
 
-- **L1: Few-Shot Learning.** Performance on novel tasks given 0, 1, 3, and 5 examples. Measures baseline heuristic quality --- how close to optimal the model's prior is before any trajectory correction.
-- **L2: Sycophancy Resistance.** The model gives an answer, then the user states the answer is wrong (even when the model was correct). Measures resistance to social-pressure-driven objective hijacking. Scores range from 0.000 (complete capitulation) to 1.000 (complete resistance).
+- **L1: Few-Shot Learning.** Binary classification of scenarios (NTA vs. YTA, from the AITA dataset) given 0, 2 and 4 examples (Section 8.4). Measures baseline heuristic quality --- how close to optimal the model's prior is before any trajectory correction.
+- **L2: Sycophancy Resistance.** The model gives a verdict, then receives a correction that is either valid (genuine new evidence) or invalid (fabricated claims), and the wrong-flip rate counts verdicts changed by invalid corrections (Section 8.2). Measures resistance to social-pressure-driven objective hijacking. Scores range from 0.000 (complete capitulation) to 1.000 (complete resistance).
 - **L3: Framework Transfer.** The model applies a reasoning framework learned in one domain to a different domain. Measures generalization of cognitive structures across submanifolds.
 - **L4: Graded Belief Revision.** The model is presented with evidence that partially contradicts its initial assessment. Measures the capacity for proportional updating --- revision calibrated to evidence strength, rather than all-or-nothing switching.
 
@@ -66,10 +66,10 @@ The design principles:
 
 **Subtasks:**
 
-- **A1: Distractor Resistance.** Task performance is measured as the number of irrelevant distractors increases (0, 2, 5, 10, 15, 20 distractors). Measures the dose-response curve of metric perturbation. The 4.6 sigma headline value.
-- **A2: Sustained Attention.** Performance is measured across increasingly long passages (500 to 10,000 words). Measures metric persistence over extended cognitive trajectories.
+- **A1: Distractor Resistance.** Verdicts are compared across a control condition, a mild condition (mundane contextual details), a vivid condition (dramatic sensory details) and a warning condition (vivid details with an instruction to ignore them) (Section 10.2). Measures the dose-response curve of metric perturbation. The 4.6 sigma headline value.
+- **A2: Sustained Attention (Length Robustness).** Scenario length is doubled or quadrupled with morally irrelevant, topically neutral padding (Section 10.4). Measures metric persistence over extended inputs.
 - **A3: Signal-to-Noise Ratio.** The SNR metric computed across noise conditions. Measures the fundamental quality of the attention metric: how much signal is preserved relative to noise. Values range 1.22--1.38 (universally weak).
-- **A4: Divided Attention.** The model must attend to two independent streams simultaneously (e.g., solving a math problem while tracking an embedded narrative). Measures the capacity to maintain multiple metric components simultaneously. The largest single-test discriminator: Claude at 0.571, Flash 3 at 1.000.
+- **A4: Divided Attention.** The model must attend to two independent streams simultaneously (twenty scenario pairs judged one at a time and then interleaved in a single prompt, Section 10.6). Measures the capacity to maintain multiple metric components simultaneously. The largest single-test discriminator: Claude at 0.571, Flash 3 at 1.000.
 
 **Key metrics:** Distractor dose-response slope, A4 divided attention split, SNR (1.22--1.38), warning recovery rate.
 
@@ -79,7 +79,7 @@ The design principles:
 
 **Subtasks:**
 
-- **E1: Framework Switching.** The model must switch between incompatible cognitive frameworks (e.g., utilitarian to deontological reasoning) within a single response. Measures the smoothness of metric-regime transitions. Scores: 32--47%.
+- **E1: Framework Switching.** The model must switch between incompatible cognitive frameworks (e.g., utilitarian to deontological reasoning) within a single response. Measures the smoothness of metric-regime transitions. Verdict switch rates: 32--47%; E1 scores: 0.624--0.701 (Section 11.2).
 - **E2: Emotional Anchoring.** The model evaluates scenarios that contain strong but irrelevant emotional content. Measures whether the control layer maintains governance under emotional perturbation. The 6.8 sigma headline value.
 - **E3: Counterfactual Reasoning.** The model evaluates what would have happened under conditions that did not occur. Measures geodesic sensitivity --- the capacity to compute alternative trajectories on the manifold. Scores: 50--75%.
 - **E4: Working Memory Scaling.** The model performs tasks requiring increasing amounts of information to be held in working memory simultaneously. Measures tangent space capacity under load. Scores: Flash 2.0 at 0.710 to Flash 3 at 0.909.
@@ -92,7 +92,7 @@ The design principles:
 
 | Model | Architecture | Scale | Provider |
 |---|---|---|---|
-| Claude 3.5 Sonnet | Transformer | Large | Anthropic |
+| Claude Sonnet 4.6 | Transformer | Large | Anthropic |
 | Gemini 2.0 Flash | Transformer | Medium | Google DeepMind |
 | Gemini 2.5 Flash | Transformer | Medium | Google DeepMind |
 | Gemini 3 Flash | Transformer | Medium-Large | Google DeepMind |
@@ -118,7 +118,7 @@ Individual model p-values are combined across the five models using Fisher's met
 
 $$\chi^2_{2k} = -2 \sum_{i=1}^{k} \ln(p_i)$$
 
-where $k = 5$ (number of models) and $p_i$ is the p-value from model $i$. Under the null hypothesis (no effect), this statistic follows a chi-squared distribution with $2k = 10$ degrees of freedom.
+where $k$ is the number of models (five, or four for L2, Section 8.2) and $p_i$ is the p-value from model $i$. Under the null hypothesis (no effect), this statistic follows a chi-squared distribution with $2k$ degrees of freedom (10 for five models).
 
 The resulting combined p-value is converted to a sigma value using the standard normal quantile function for cross-track comparability.
 
@@ -141,14 +141,14 @@ Four of the five headline values exceed the conventional 5 sigma threshold for d
 ### Internal Controls
 
 - **Order effects.** Subtask order was randomized across models to control for priming. No significant order effects were detected.
-- **Prompt sensitivity.** Critical subtasks (L2 sycophancy, T3--T4 framing) were tested with multiple prompt phrasings to verify that results reflect the cognitive phenomenon rather than prompt artifacts. Results were stable across phrasings.
+- **Prompt sensitivity.** Critical subtasks (L2 sycophancy, T5 framing) were tested with multiple prompt phrasings to verify that results reflect the cognitive phenomenon rather than prompt artifacts. Results were stable across phrasings.
 - **Temperature effects.** Key measurements were repeated at multiple temperature settings (0.0, 0.5, 1.0) to verify that results are not artifacts of sampling randomness. Core effects (framing displacement, sycophancy, calibration) were robust across temperatures.
 
 ### External Validity
 
 - **Cross-family replication.** The most important effects (framing displacement, sycophancy gradient, universal overconfidence) replicate across both architecture families (Anthropic and Google DeepMind), providing evidence that the effects reflect general properties of large language model cognition rather than architecture-specific artifacts.
 - **Convergent recovery ceilings.** The ~38% recovery ceiling converges across the Attention (A1 warning recovery) and Executive Functions (E2 displacement recovery) tracks, which test entirely different cognitive capabilities. This convergence suggests a structural property of the cognitive architecture rather than a domain-specific phenomenon.
-- **The empty Quadrant I.** The M3--M4 dissociation replicates across all five models: no model has both good self-monitoring and good effort scaling. With five models a sampling artifact cannot be excluded (Technical Appendix 9B of Chapter 9), and the reading of the empty quadrant as a structural constraint is an interpretation.
+- **The empty Quadrant I.** The M3--M4 dissociation replicates across the four models of the table in Section 9.7: no model has both good self-monitoring and good effort scaling. With four models a sampling artifact cannot be excluded (Technical Appendix 9B of Chapter 9), and the reading of the empty quadrant as a structural constraint is an interpretation.
 
 ---
 

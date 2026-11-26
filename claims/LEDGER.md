@@ -90,7 +90,7 @@ record here can show, which is less than the manuscript states.
 | GC-16 | Five models occupy five distinct profile shapes rather than one shape at five scales | `[exploratory]` | Ch 16 | GC-1 |
 | GC-17 | Composite scores converge in 0.63 to 0.72, and that band is a capability frontier rather than a coincidence | `[posited]` | Ch 16.9 | GC-1, GC-16 |
 | GC-18 | The frontier is a surface rather than a point, because dimensions trade against one another | `[posited]` | Ch 16.9 | GC-17 |
-| GC-19 | A divided-attention ceiling near 38 percent | `[exploratory]` | Ch 10 | GC-1 |
+| GC-19 | A recovery ceiling near 38 percent (prompt-level recovery after A1 distractors and E2 anchoring; corrected 2026-11-26, the row first said "divided-attention ceiling") | `[exploratory]` | Ch 10 | GC-1 |
 | GC-20 | Metacognitive Quadrant I is empty, no model both monitors and controls well | `[exploratory]` | Ch 9 | GC-1 |
 | GC-21 | A model's signature is predictable from its architecture | `[open]` | Ch 16.12 | GC-16 |
 
@@ -133,9 +133,12 @@ rows cannot borrow their strength silently.
 `GC-34` is Phase I and is the first row in this ledger that can fail. Its
 registration is drafted at
 [`experiments/C1/PREREG-C1-DRAFT.md`](../experiments/C1/PREREG-C1-DRAFT.md) and
-is **not sealed**. It is `[predicted]` rather than `[demonstrated]` because no
-self-test, probe or pilot has run and no hash has been recorded in
-`CAMPAIGN.md`.
+is **not sealed**. It is `[predicted]` rather than `[demonstrated]` because the gate has
+not been sealed and no hash has been recorded in `CAMPAIGN.md`.
+(Corrected 2026-11-26. This sentence first said that no self-test, probe or
+pilot had run. `CAMPAIGN.md` records C1's self-test as passed, its order probe
+as passed on the pinned hosted evaluator after earlier misses, its pilot as
+complete, and the cold reread that found the registration not sealable.)
 
 `GC-34` does not use `GC-29`. The gate as drafted runs on an artificial
 evaluator, so it needs no claim about human budgets, and a pass leaves `GC-29`

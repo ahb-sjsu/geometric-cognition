@@ -1,14 +1,15 @@
 """Figures for Geometric Cognition, Chapters 1 to 17 (2026-11-26).
 
-Every figure is drawn from a formula, a definition or numbers printed in its chapter. Chapters
-1, 2, 3, 5, 6, 8, 9, 12, 13 and 15 already hold a diagram captioned "Figure N.1 (diagram)", so
-the figures here continue from N.2 in those chapters.
+Every figure is drawn from a formula, a definition or numbers printed in its chapter. Some
+chapters also hold a hand-made diagram captioned "Figure N.M (diagram)"; figures and diagrams are
+numbered together in reading order.
 
-Not drawn, on purpose: any benchmark score on the "Unresolved" list of
-CORRECTIONS-2026-11-26.md (E2 recovery and displacement, A4, M3 and M4 of Flash 3, Flash 2.5 and
-Claude, the L2 sycophancy rates, E1 scores, the composites, the 38 percent recovery ceiling),
-and the A1 flip rates of Section 10.2, whose ordering Chapters 1 and 16 contradict.
-The Anthropic model is labelled "Claude" only, because its version name is unresolved.
+Not drawn, on purpose, when the figures were made (2026-11-26): the benchmark scores the
+corrections record then listed as unsettled (E2 recovery and displacement, A4, M3 and M4, the L2
+sycophancy rates, E1, the composites, the 38 percent recovery ceiling) and the A1 flip rates of
+Section 10.2. The survey of the same day settled several of them (the Anthropic model is Claude
+Sonnet 4.6; A4, E2, L2 and the composites agree across chapters); see CORRECTIONS-2026-11-26.md
+before drawing any of them.
 """
 
 import math

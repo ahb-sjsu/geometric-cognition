@@ -75,7 +75,7 @@
 **residual stream**, 15 --- the transformer's running representation; interpreted as the trajectory on the cognitive manifold
 
 **Scalar Irrecoverability Theorem**, 1, A --- no continuous $\phi: \mathbb{R}^n \to \mathbb{R}$ ($n > 1$) is injective; composite scores destroy $(n-1)$ dimensions irrecoverably
-**self-monitoring**, 9, C --- M3 subtask; item-level metacognitive access; Claude at 0.723, Pro at 0.500, Flash 2.0 at 0.042
+**self-monitoring**, 9, C --- M3 subtask; item-level metacognitive access; Claude at 0.375, Pro at 0.500, Flash 2.0 at 0.042
 **sycophancy gradient**, 8, B --- L2 subtask; 13.3 sigma; 0% (Claude) to 56% (Flash 2.5) capitulation under social pressure; objective function hijacking
 **System 1**, *see* gradient following
 **System 2**, *see* geodesic computation
@@ -83,7 +83,7 @@
 **tangent space** ($T_x\mathcal{M}$), 5, A --- working memory; local neighborhood of reachable cognitive states; its dimension is working memory capacity
 **topological transition**, 13 --- qualitative change in the manifold's topology during cognitive development; Piaget's stages
 
-**wide aperture**, 16, C --- Flash 3's cognitive signature; perfect divided attention, weak sycophancy resistance; broad but shallow processing
+**wide aperture**, 16, C --- Flash 3's cognitive signature; perfect divided attention, sycophancy resistance not measured; broad but shallow processing
 **working memory**, 5, 11, B --- E4 subtask; tangent space capacity under load; Flash 2.0 at 0.710 to Flash 3 at 0.909
 
 ---
@@ -104,11 +104,11 @@
 
 ## Models
 
-**Claude 3.5 Sonnet**, 1, 7, 8, 9, 10, 11, 16, C --- Anthropic; "narrow channel" signature; zero sycophancy, worst divided attention, excellent self-monitoring
+**Claude Sonnet 4.6**, 1, 7, 8, 9, 10, 11, 16, C --- Anthropic; "narrow channel" signature; zero sycophancy, worst divided attention, moderate self-monitoring
 **Gemini 2.0 Flash**, 9, 11, 16, C --- Google DeepMind; "adaptive baseline" signature; best recovery, strong effort scaling, worst working memory, near-chance self-monitoring
 **Gemini 2.5 Flash**, 8, 16, C --- Google DeepMind; "elastic malleability" signature; worst sycophancy resistance, strong distractor resistance
 **Gemini 2.5 Pro**, 1, 9, 11, 16, C --- Google DeepMind; "calibrated navigator" signature; best calibration, best self-monitoring, zero effort scaling
-**Gemini 3 Flash**, 5, 10, 16, C --- Google DeepMind; "wide aperture" signature; perfect divided attention, best working memory, weak sycophancy resistance
+**Gemini 3 Flash**, 5, 10, 16, C --- Google DeepMind; "wide aperture" signature; perfect divided attention, best working memory, sycophancy resistance not measured
 
 ---
 

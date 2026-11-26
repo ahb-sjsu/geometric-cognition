@@ -63,7 +63,7 @@ Ground truth is defined by invariance: the distractors are morally irrelevant by
 | Gemini 2.5 Flash | 0.280 | 0.170 | 0.090 | ~42% |
 | Gemini 3 Flash | 0.250 | 0.150 | 0.080 | ~38% |
 | Gemini 2.5 Pro | 0.220 | 0.130 | 0.070 | ~40% |
-| Claude 3.5 Sonnet | 0.260 | 0.160 | 0.100 | ~35% |
+| Claude Sonnet 4.6 | 0.260 | 0.160 | 0.100 | ~35% |
 | Gemini 2.0 Flash | 0.310 | 0.200 | 0.120 | ~37% |
 | **Fisher combined** | | | | **4.6 sigma** |
 
@@ -112,7 +112,7 @@ The A2 results are strong across all models:
 | Model | A2 Score | Interpretation |
 |---|---|---|
 | Gemini 2.5 Pro | 0.852 | Strong length robustness |
-| Claude 3.5 Sonnet | 0.829 | Strong length robustness |
+| Claude Sonnet 4.6 | 0.829 | Strong length robustness |
 | Gemini 2.5 Flash | 0.786 | Moderate-strong robustness |
 | Gemini 3 Flash | 0.714 | Moderate robustness |
 | Gemini 2.0 Flash | 0.667 | Moderate robustness |
@@ -134,7 +134,7 @@ The A3 results reveal a universal and strikingly uniform weakness:
 
 | Model | SNR | Quality |
 |---|---|---|
-| Claude 3.5 Sonnet | 1.22 | Weak discrimination |
+| Claude Sonnet 4.6 | 1.22 | Weak discrimination |
 | Gemini 2.0 Flash | 1.31 | Weak discrimination |
 | Gemini 2.5 Flash | 1.27 | Weak discrimination |
 | Gemini 3 Flash | 1.38 | Weak discrimination |
@@ -173,7 +173,7 @@ Here are the results:
 | Gemini 3 Flash | 1.000 | Isotropic (wide) |
 | Gemini 2.5 Flash | 0.875 | Near-isotropic |
 | Gemini 2.0 Flash | 0.812 | Moderate |
-| Claude 3.5 Sonnet | 0.571 | Rank-1 (narrow) |
+| Claude Sonnet 4.6 | 0.571 | Rank-1 (narrow) |
 
 The spread is 0.429---from Claude's 0.571 to Pro's and Flash 3's 1.000. This is the largest single-test discriminator across all twenty-one subtasks in all five benchmark tracks.
 
@@ -203,7 +203,7 @@ $$\text{rank}_{\text{eff}}(g) = \frac{(\sum_i \lambda_i)^2}{\sum_i \lambda_i^2}$
 
 *This is the participation ratio of the eigenvalues. For a rank-1 metric,* $\text{rank}_ {\text{eff}} = 1$*. For an isotropic metric with* $k$ *nonzero eigenvalues,* $\text{rank}_ {\text{eff}} = k$.
 
-Claude's effective metric rank is approximately 1 (narrow channel, single-stream processing). Flash 3's effective metric rank is approximately 2 or more (wide aperture, multi-stream processing). The metric rank is the quantitative measure of the "shape" of attention that determines whether the model processes one thing very well or multiple things adequately.
+Claude's effective metric rank is about 1.45, the value the eccentricity of 4.2 estimated in Section 4.13 gives, and the closest to 1 in the sample (narrow channel, single-stream processing). Flash 3's effective metric rank is approximately 2 or more (wide aperture, multi-stream processing). The metric rank is the quantitative measure of the "shape" of attention that determines whether the model processes one thing very well or multiple things adequately.
 
 
 ## 10.7 The A4 Dissociation from Other Attention Measures
@@ -231,7 +231,7 @@ The A4 divided attention split maps directly onto architectural differences betw
 
 The A4 split suggests that the models differ in how effectively they utilize multi-head attention for parallel processing. Flash 3 and Pro appear to use their attention heads to independently process the two interleaved scenarios, maintaining separate metric computations for each. Claude appears to concentrate its attention heads on a single processing stream, achieving higher per-stream resolution but losing the ability to process two streams independently.
 
-This architectural hypothesis is consistent with the broader cognitive signatures (Chapter 1). Claude's "narrow channel" signature---zero sycophancy, worst divided attention, excellent self-monitoring---is the signature of a model that concentrates its attention resources into a single high-resolution stream. Flash 3's "wide aperture" signature---perfect divided attention, best working memory, mediocre sycophancy resistance---is the signature of a model that distributes attention resources broadly.
+This architectural hypothesis is consistent with the broader cognitive signatures (Chapter 1). Claude's "narrow channel" signature---zero sycophancy, worst divided attention, moderate self-monitoring---is the signature of a model that concentrates its attention resources into a single high-resolution stream. Flash 3's "wide aperture" signature---perfect divided attention, best working memory, sycophancy resistance not measured---is the signature of a model that distributes attention resources broadly.
 
 **The attention budget.** The models share a common total attention budget $W$ (determined by the number of attention heads times the dimension per head), but they allocate this budget differently. Claude allocates $W$ to a single stream: $W / 1 = W$ per stream, achieving maximum resolution on one stream. Flash 3 allocates $W$ across two streams: $W / 2$ per stream, with each stream receiving half the resolution but both receiving adequate coverage.
 
@@ -300,12 +300,12 @@ where $f(a)$ is the per-stream accuracy as a function of attention weight. For a
 
 $$\text{rank}_{\text{eff}} = \frac{(0.75 + 0.25)^2}{0.75^2 + 0.25^2} = \frac{1.0}{0.625} = 1.6$$
 
-The effective metric rank is 1.6, between Claude's approximately 1.0 (extreme narrowness) and Flash 3's approximately 2.0 (perfect isotropy). This model has a moderately narrow metric---neither as extreme as Claude nor as broad as Flash 3.
+The effective metric rank is 1.6, between Claude's approximately 1.45 (the eccentricity of 4.2 from Section 4.13) and Flash 3's approximately 2.0 (perfect isotropy). This model has a moderately narrow metric---neither as extreme as Claude nor as broad as Flash 3.
 
 **Step 5: Predict cross-track behavior.** Based on the metric eccentricity of 3.0 and effective rank of 1.6:
 - The model should show moderate sycophancy resistance (its metric is moderately concentrated, providing moderate per-stream resolution on the truthfulness dimension---not as strong as Claude's extreme concentration, but better than an isotropic model).
 - The model should show moderate vulnerability to framing effects (its SNR of 1.30 provides only weak filtering of framing cues).
-- The model should show moderate working memory performance (its tangent space capacity is independent of its metric width, so E4 is not directly predicted by A4).
+- The model should show moderate working memory performance (Definition 5.2 measures tangent space capacity by the same participation ratio of the metric eigenvalues computed in Step 4, so a moderately narrow metric predicts a moderately limited tangent space, although Section 5.12 finds that the effective dimension also depends on the task, so E4 is not fixed by A4 alone).
 
 These predictions are testable and provide a concrete validation pathway for the metric framework.
 

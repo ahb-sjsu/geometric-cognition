@@ -279,7 +279,7 @@ The geometric framework provides a common language for comparing transformer cog
 
 $$\kappa(\ell) = \arccos\left(\frac{\Delta x^{(\ell)} \cdot \Delta x^{(\ell+1)}}{\Vert\Delta x^{(\ell)}\Vert \Vert\Delta x^{(\ell+1)}\Vert}\right)$$
 
-where $\Delta x^{(\ell)} = x^{(\ell+1)} - x^{(\ell)}$. A small angle means the trajectory is nearly straight (low curvature); a large angle means the trajectory is turning sharply (high curvature).
+where $\Delta x^{(\ell)} = x^{(\ell+1)} - x^{(\ell)}$. A small angle means the trajectory is nearly straight (low curvature); a large angle means the trajectory is turning sharply (high curvature). This turning angle is a simpler estimator than the discrete curvature of Technical Appendix 15A. Writing $\theta_\ell$ for the angle between $\Delta x^{(\ell-1)}$ and $\Delta x^{(\ell)}$, the appendix's curvature at layer $\ell$ is $\sin\theta_\ell \thinspace \Vert\Delta x^{(\ell)}\Vert / \Vert\Delta x^{(\ell-1)}\Vert^2$, while the angle above is $\theta_{\ell+1}$, so the two agree only up to the step lengths, the sine and a shift of one layer.
 
 **Step 4: Identify the curvature spike.** The curvature profile shows a spike at layers 11--15, corresponding to the conflict between utilitarian (save five) and deontological (do not harvest organs without consent) reasoning. At these layers, the utilitarian heads and the deontological heads pull the representation in opposite directions, creating the curvature that triggers System 2 processing.
 

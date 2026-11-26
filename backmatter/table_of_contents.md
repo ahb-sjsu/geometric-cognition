@@ -19,7 +19,7 @@
 ## Part I: The Problem
 
 **Chapter 1. The IQ Trap**
-*Why scalar measures of intelligence are geometrically irrecoverable. The cognitive profile tensor, the scalar contraction, and the Scalar Irrecoverability Theorem --- proved constructively from five frontier models whose composite scores are identical but whose cognitive architectures are opposite. Running example: Maya discovers that Claude and Pro have the same number but different minds.*
+*Why scalar measures of intelligence are geometrically irrecoverable. The cognitive profile tensor, the scalar contraction, and the Scalar Irrecoverability Theorem --- proved constructively from five frontier models whose composite scores lie within 0.09 of one another (0.63 to 0.72) but whose cognitive architectures are opposite. Running example: Maya discovers that Claude and Pro have nearly the same number but different minds.*
 
 - 1.1 The Seduction of the Single Number
 - 1.2 The Cognitive Tensor
@@ -294,7 +294,7 @@
 *Each model's Measuring AGI profile as a cognitive fingerprint. Claude: narrow channel. Flash 3: wide aperture. Pro: calibrated navigator. Flash 2.5: elastic malleability. Flash 2.0: adaptive baseline. The geometric content that scalar evaluation destroys.*
 
 - 16.1 The Case for Cognitive Fingerprints
-- 16.2 Claude 3.5 Sonnet: "Narrow Channel"
+- 16.2 Claude Sonnet 4.6: "Narrow Channel"
 - 16.3 Gemini 3 Flash: "Wide Aperture"
 - 16.4 Gemini 2.5 Pro: "Calibrated Navigator"
 - 16.5 Gemini 2.5 Flash: "Elastic Malleability"

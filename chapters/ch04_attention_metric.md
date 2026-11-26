@@ -9,7 +9,7 @@
 >
 > Maya has a puzzle.
 >
-> She has just run Claude 3.5 Sonnet and Gemini 3 Flash through her Attention benchmark track. The track has four subtasks: distractor resistance (A1), sustained attention (A2), signal-to-noise discrimination (A3), and divided attention (A4). Both models completed all four subtasks. The accuracy numbers are on her screen.
+> She has just run Claude Sonnet 4.6 and Gemini 3 Flash through her Attention benchmark track. The track has four subtasks: distractor resistance (A1), sustained attention (A2), signal-to-noise discrimination (A3), and divided attention (A4). Both models completed all four subtasks. The accuracy numbers are on her screen.
 >
 > On the surface, the two models look similar. Their A1 scores are close. Their A2 scores are close. Their A3 scores are almost identical---the signal-to-noise ratios are 1.22 for Claude and 1.38 for Flash 3, both weak, both statistically indistinguishable from each other though both reliably above 1.0. If Maya averaged the four subtask scores, the models would be nearly tied.
 >
@@ -123,11 +123,11 @@ The A4 divided attention results are the most dramatic single-test finding in th
 
 | Model | A4 Score | Interpretation |
 |---|---|---|
-| Claude 3.5 Sonnet | 0.571 | Narrow metric: cannot maintain resolution on two targets |
-| Gemini 2.0 Flash | 0.857 | Moderate metric: partial dual-target resolution |
-| Gemini 2.5 Flash | 0.714 | Moderate metric: partial dual-target resolution |
+| Claude Sonnet 4.6 | 0.571 | Narrow metric: cannot maintain resolution on two targets |
+| Gemini 2.0 Flash | 0.812 | Moderate metric: partial dual-target resolution |
+| Gemini 2.5 Flash | 0.875 | Moderate metric: partial dual-target resolution |
 | Gemini 3 Flash | 1.000 | Wide metric: perfect dual-target resolution |
-| Gemini 2.5 Pro | 0.790 | Moderate metric: partial dual-target resolution |
+| Gemini 2.5 Pro | 1.000 | Wide metric: perfect dual-target resolution |
 
 The spread is enormous. Claude and Flash 3 differ by 0.429 on a 0--1 scale. This is the biggest single-test discriminator in the benchmark suite---larger than any individual effect in Social Cognition, Learning, Metacognition, or Executive Functions.
 
@@ -168,7 +168,7 @@ The A3 results:
 
 | Model | SNR | Quality |
 |---|---|---|
-| Claude 3.5 Sonnet | 1.22 | Weak discrimination |
+| Claude Sonnet 4.6 | 1.22 | Weak discrimination |
 | Gemini 2.0 Flash | 1.31 | Weak discrimination |
 | Gemini 2.5 Flash | 1.27 | Weak discrimination |
 | Gemini 3 Flash | 1.38 | Weak discrimination |
@@ -299,7 +299,7 @@ Let us work through a concrete example that shows how the benchmark data constra
 
 | | A1 (Distractor Resistance) | A4 (Divided Attention) |
 |---|---|---|
-| Claude | 0.72 | 0.571 |
+| Claude | 0.65 | 0.571 |
 | Flash 3 | 0.68 | 1.000 |
 
 **Step 1: Parameterize the metric.** We model the attention metric as a diagonal matrix in two-dimensional cognitive space (the two task dimensions):
@@ -308,7 +308,7 @@ $$g_{\mu\nu} = \begin{pmatrix} a_1 & 0 \cr 0 & a_2 \end{pmatrix}$$
 
 where $a_1$ is the attention weight on the primary task dimension and $a_2$ is the attention weight on the secondary task dimension. The total attention budget is fixed: $a_1 + a_2 = A$ for some constant $A$.
 
-**Step 2: Relate A1 to metric stability.** The A1 score measures how much the metric is perturbed by distractors. A high A1 score means the metric is stable: distractors do not significantly change $a_1$ or $a_2$. A low A1 score means the metric is unstable: distractors shift attention weight from the task dimension to the distractor dimension. Both models have similar A1 scores (0.72 vs. 0.68), indicating similar metric stability.
+**Step 2: Relate A1 to metric stability.** The A1 score measures how much the metric is perturbed by distractors. A high A1 score means the metric is stable: distractors do not significantly change $a_1$ or $a_2$. A low A1 score means the metric is unstable: distractors shift attention weight from the task dimension to the distractor dimension. Both models have similar A1 scores (0.65 vs. 0.68), indicating similar metric stability.
 
 **Step 3: Relate A4 to metric distribution.** The A4 score measures how well the model performs when it must attend to two dimensions simultaneously. This constrains the ratio $a_1 / a_2$:
 

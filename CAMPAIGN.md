@@ -14,7 +14,7 @@ is summarised in `README.md`.
 | Gate | Claim | Registration | Sealed | Verdict |
 |---|---|---|---|---|
 | C1 | `GC-34`, reversals concentrate on pairs trading a resolved direction against an unresolved one | [`experiments/C1/PREREG-C1-DRAFT.md`](experiments/C1/PREREG-C1-DRAFT.md) | **no** | not run |
-| H1 | `GC-DRH-1`, the deliberation peak sits at the identified resolution boundary and moves with the role of the probe's attribute (human, two-budget fuzz) | [`experiments/H1/PREREG-H1-DRAFT.md`](experiments/H1/PREREG-H1-DRAFT.md) | **no** | not run, drafted 2026-09-18, awaits ethics, self-test, probe, pilot |
+| H1 | `GC-DRH-1`, the deliberation peak sits at the identified resolution boundary and moves with the role of the probe's attribute (human, two-budget fuzz) | [`experiments/H1/PREREG-H1-DRAFT.md`](experiments/H1/PREREG-H1-DRAFT.md) | **no** | not run, drafted 2026-09-18, self-test passed 2026-09-18, awaits ethics, probe, pilot |
 
 ## H1, self-test
 
@@ -353,11 +353,16 @@ C1 does not answer it.
 
 | | count |
 |---|---|
-| gates drafted | 1 |
+| gates drafted | 2 |
 | gates sealed | 0 |
 | gates run | 0 |
-| pre-sealing stages passed | 1 of 3 |
+| pre-sealing stages passed | C1: self-test and order probe passed, pilot complete; H1: self-test passed, probe and pilot not run |
 | claims raised by a sealed pass | 0 |
+
+(Corrected 2026-11-26. This block first counted one gate drafted, where the
+gates table lists C1 and H1, and gave the pre-sealing count as 1 of 3, which
+predates C1's probe and pilot and H1's self-test recorded above. The gates
+table also listed H1's self-test as awaited after it had passed.)
 
 No claim in `claims/LEDGER.md` has been raised or lowered by a gate in this
 repository. The ledger's debt ratio is 1.0 and C1 is the first thing that can
