@@ -208,3 +208,7 @@ Items the report marked [AUTHOR] were settled by the rules of `author-decisions.
    - The README has no series table or series map, so X2 does not apply.
 
 **Checks.** `series_check.py` reports 0 hard defects before (run on a copy of commit 031fb5d) and 0 after. No figure or caption is made stale.
+
+## Acknowledgment corrected (2026-11-27)
+
+The preface's acknowledgment (front_matter.md) and its index entry (backmatter/index_framework.md) named "Dietrich Thiele" at UCLA. The author confirmed the name is Lucas Thiele; both now read so. Neither file is part of the online edition.

@@ -97,7 +97,7 @@
 **Kahneman, Daniel**, 2, 7, 12 --- dual-process theory; System 1 / System 2; prospect theory; Thinking, Fast and Slow
 **Piaget, Jean**, 13 --- developmental stage theory; genetic epistemology; conservation experiments
 **Spearman, Charles**, 1 --- general intelligence factor (g); factor analysis (1904); the original scalar contraction
-**Thiele, Dietrich**, Preface --- UCLA; conversations about the cognitive manifold's mathematical foundations
+**Thiele, Lucas**, Preface --- UCLA; conversations about the cognitive manifold's mathematical foundations
 **Tversky, Amos**, 2, 7, 12 --- heuristics and biases; framing effects; prospect theory
 
 ---
