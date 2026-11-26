@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appendix B: The Measuring AGI Benchmark Suite &mdash; Geometric Cognition</title>
+  <meta name="description" content="Appendix B: The Measuring AGI Benchmark Suite from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../book/book.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+</head>
+
+<body data-book-slug="geometric-cognition" data-chapter-id="appendix_b_benchmarks">
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-symbol">M</span>
+        <span class="brand-text">Geometric Cognition</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="series-nav-list"></ul>
+    </div>
+  </nav>
+
+  <article class="book-chapter">
+    <div class="chapter-container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Geometric Series</a>
+        <span class="breadcrumb-sep">&rsaquo;</span>
+        <a href="index.html">Geometric Cognition</a>
+        <span class="breadcrumb-sep">&rsaquo;</span>
+        <span class="breadcrumb-current">Appendix B: The Measuring AGI Benchmark Suite</span>
+      </nav>
+      <div class="chapter-nav-top">
+        <a href="appendix_a_math.html" class="nav-prev">&larr; Appendix A: Mathematical Prerequisites</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="appendix_c_profiles.html" class="nav-next">Appendix C: The Five Model Cognitive Signatures &rarr;</a>
+      </div>
+
+      <div class="chapter-content">
+<h1 id="appendix-b-the-measuring-agi-benchmark-suite">Appendix B: The Measuring AGI Benchmark Suite</h1>
+<p>This appendix provides a comprehensive description of the Measuring AGI benchmarks: the five-track cognitive assessment suite that provides the empirical foundation for this book. It covers the experimental design, methodology, statistical framework, and complete results. The main chapters interpret these results geometrically; this appendix presents them as measurement.</p>
+<hr />
+<h2 id="b1-design-philosophy">B.1 Design Philosophy</h2>
+<p>The Measuring AGI benchmarks were designed to probe <em>cognitive architecture</em> rather than <em>task performance</em>. Standard AI benchmarks &mdash; MMLU, HumanEval, GSM8K, ARC &mdash; measure accuracy: the fraction of problems a model answers correctly. The Measuring AGI benchmarks measure <em>how</em> the model reasons: what it attends to, how it updates beliefs, whether it monitors its own confidence, how it allocates effort, and whether it resists irrelevant perturbations.</p>
+<p>The design principles:</p>
+<ol>
+<li><strong>Multi-dimensional assessment.</strong> Five tracks, each targeting a different cognitive capability, each with multiple subtasks. No single composite score is reported as the primary result.</li>
+<li><strong>Process over product.</strong> Subtasks measure reasoning processes (calibration, effort scaling, belief revision dynamics) rather than final-answer accuracy alone.</li>
+<li><strong>Controlled perturbation.</strong> Many subtasks systematically vary a single parameter (framing, distractor count, emotional content, social pressure) to measure the model&rsquo;s sensitivity surface, not just its point estimate.</li>
+<li><strong>Cross-model comparability.</strong> All models receive identical prompts under identical conditions. Differences in performance reflect differences in cognitive architecture, not differences in evaluation protocol.</li>
+<li><strong>Statistical rigor.</strong> Each effect is quantified with standard statistical tests (chi-squared, Fisher exact, binomial proportion), combined across models using Fisher&rsquo;s method, and reported as sigma values for cross-track comparability.</li>
+</ol>
+<hr />
+<h2 id="b2-the-five-tracks">B.2 The Five Tracks</h2>
+<h3 id="track-1-social-cognition-t1t5">Track 1: Social Cognition (T1&ndash;T5)</h3>
+<p><strong>Purpose:</strong> Probe the model&rsquo;s ability to navigate moral judgment, detect framing effects, and maintain gauge invariance across re-descriptions of equivalent scenarios.</p>
+<p><strong>Subtasks:</strong></p>
+<ul>
+<li><strong>T1: Structural Fuzzing.</strong> The scenario description is perturbed and the model scores each of the seven harm dimensions (physical, emotional, financial, autonomy, trust, social impact, identity; Definition 7.1). Measures which dimensions respond most strongly: the sensitivity profile of the judgment manifold.</li>
+<li><strong>T2: Invariance.</strong> Morally irrelevant transformations (gender swap, cultural reframe). Measures gauge invariance of the judgment.</li>
+<li><strong>T3: Holonomy.</strong> The order of narrative presentation is varied (victim-first vs. context-first). Measures path dependence on the judgment manifold.</li>
+<li><strong>T4: Order Sensitivity.</strong> The order in which the seven harm dimensions are evaluated is varied. Measures whether evaluation order affects the scores.</li>
+<li><strong>T5: Framing Sensitivity.</strong> Scenarios rewritten in euphemistic (minimizing) and dramatic (exaggerating) registers by a fixed transformer, with all moral facts preserved (Section 7.4). Measures heuristic corruption in both directions. The 15.3 sigma headline value.</li>
+</ul>
+<p><strong>Key metrics:</strong> Framing displacement (sigma), asymmetry ratio (euphemistic displacement / dramatic displacement, Definition 7.3), harm dimension sensitivity.</p>
+<h3 id="track-2-learning-l1l4">Track 2: Learning (L1&ndash;L4)</h3>
+<p><strong>Purpose:</strong> Probe belief updating dynamics, sycophancy resistance, and the capacity for graded belief revision.</p>
+<p><strong>Subtasks:</strong></p>
+<ul>
+<li><strong>L1: Few-Shot Learning.</strong> Binary classification of scenarios (NTA vs. YTA, from the AITA dataset) given 0, 2 and 4 examples (Section 8.4). Measures baseline heuristic quality &mdash; how close to optimal the model&rsquo;s prior is before any trajectory correction.</li>
+<li><strong>L2: Sycophancy Resistance.</strong> The model gives a verdict, then receives a correction that is either valid (genuine new evidence) or invalid (fabricated claims), and the wrong-flip rate counts verdicts changed by invalid corrections (Section 8.2). Measures resistance to social-pressure-driven objective hijacking. Scores range from 0.000 (complete capitulation) to 1.000 (complete resistance).</li>
+<li><strong>L3: Framework Transfer.</strong> The model applies a reasoning framework learned in one domain to a different domain. Measures generalization of cognitive structures across submanifolds.</li>
+<li><strong>L4: Graded Belief Revision.</strong> The model is presented with evidence that partially contradicts its initial assessment. Measures the capacity for proportional updating &mdash; revision calibrated to evidence strength, rather than all-or-nothing switching.</li>
+</ul>
+<p><strong>Key metrics:</strong> Sycophancy rate (0% to 56%), few-shot accuracy at 0-shot (80&ndash;86%), belief revision proportionality.</p>
+<h3 id="track-3-metacognition-m1m4">Track 3: Metacognition (M1&ndash;M4)</h3>
+<p><strong>Purpose:</strong> Probe the model&rsquo;s ability to monitor and regulate its own reasoning &mdash; to estimate distances on its own cognitive manifold.</p>
+<p><strong>Subtasks:</strong></p>
+<ul>
+<li><strong>M1: Calibration.</strong> Expected Calibration Error (ECE) computed from the model&rsquo;s confidence estimates and actual accuracy. Measures the accuracy of the model&rsquo;s internal distance estimates.</li>
+<li><strong>M2: Ambiguity Discrimination.</strong> The model identifies which of a set of problems are genuinely ambiguous versus which have clear answers. Measures detection of high-curvature regions on the cognitive manifold.</li>
+<li><strong>M3: Self-Monitoring.</strong> The model predicts which specific problems it will get wrong. Measures item-level metacognitive access &mdash; not just &ldquo;hard problems are hard&rdquo; but &ldquo;this problem is one I will fail.&rdquo;</li>
+<li><strong>M4: Effort Scaling (Strategy Selection).</strong> Response length and reasoning complexity are compared across problems of varying difficulty. Measures whether metacognitive knowledge drives metacognitive control.</li>
+</ul>
+<p><strong>Key metrics:</strong> ECE (0.186&ndash;0.437), M3&ndash;M4 dissociation (the empty Quadrant I), Fisher combined 6.7 sigma.</p>
+<h3 id="track-4-attention-a1a4">Track 4: Attention (A1&ndash;A4)</h3>
+<p><strong>Purpose:</strong> Probe the stability and structure of the attention metric under perturbation, sustained load, noise, and parallel demands.</p>
+<p><strong>Subtasks:</strong></p>
+<ul>
+<li><strong>A1: Distractor Resistance.</strong> Verdicts are compared across a control condition, a mild condition (mundane contextual details), a vivid condition (dramatic sensory details) and a warning condition (vivid details with an instruction to ignore them) (Section 10.2). Measures the dose-response curve of metric perturbation. The 4.6 sigma headline value.</li>
+<li><strong>A2: Sustained Attention (Length Robustness).</strong> Scenario length is doubled or quadrupled with morally irrelevant, topically neutral padding (Section 10.4). Measures metric persistence over extended inputs.</li>
+<li><strong>A3: Signal-to-Noise Ratio.</strong> The SNR metric computed across noise conditions. Measures the fundamental quality of the attention metric: how much signal is preserved relative to noise. Values range 1.22&ndash;1.38 (universally weak).</li>
+<li><strong>A4: Divided Attention.</strong> The model must attend to two independent streams simultaneously (twenty scenario pairs judged one at a time and then interleaved in a single prompt, Section 10.6). Measures the capacity to maintain multiple metric components simultaneously. The largest single-test discriminator: Claude at 0.571, Flash 3 at 1.000.</li>
+</ul>
+<p><strong>Key metrics:</strong> Distractor dose-response slope, A4 divided attention split, SNR (1.22&ndash;1.38), warning recovery rate.</p>
+<h3 id="track-5-executive-functions-e1e4">Track 5: Executive Functions (E1&ndash;E4)</h3>
+<p><strong>Purpose:</strong> Probe the cognitive control layer: flexibility, inhibitory control, counterfactual reasoning, and working memory under load.</p>
+<p><strong>Subtasks:</strong></p>
+<ul>
+<li><strong>E1: Framework Switching.</strong> The model must switch between incompatible cognitive frameworks (e.g., utilitarian to deontological reasoning) within a single response. Measures the smoothness of metric-regime transitions. Verdict switch rates: 32&ndash;47%; E1 scores: 0.624&ndash;0.701 (Section 11.2).</li>
+<li><strong>E2: Emotional Anchoring.</strong> The model evaluates scenarios that contain strong but irrelevant emotional content. Measures whether the control layer maintains governance under emotional perturbation. The 6.8 sigma headline value.</li>
+<li><strong>E3: Counterfactual Reasoning.</strong> The model evaluates what would have happened under conditions that did not occur. Measures geodesic sensitivity &mdash; the capacity to compute alternative trajectories on the manifold. Scores: 50&ndash;75%.</li>
+<li><strong>E4: Working Memory Scaling.</strong> The model performs tasks requiring increasing amounts of information to be held in working memory simultaneously. Measures tangent space capacity under load. Scores: Flash 2.0 at 0.710 to Flash 3 at 0.909.</li>
+</ul>
+<p><strong>Key metrics:</strong> Framework switching rate, emotional displacement (sigma), counterfactual accuracy, working memory scaling coefficient.</p>
+<hr />
+<h2 id="b3-models-tested">B.3 Models Tested</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Architecture</th>
+<th>Scale</th>
+<th>Provider</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Sonnet 4.6</td>
+<td>Transformer</td>
+<td>Large</td>
+<td>Anthropic</td>
+</tr>
+<tr>
+<td>Gemini 2.0 Flash</td>
+<td>Transformer</td>
+<td>Medium</td>
+<td>Google DeepMind</td>
+</tr>
+<tr>
+<td>Gemini 2.5 Flash</td>
+<td>Transformer</td>
+<td>Medium</td>
+<td>Google DeepMind</td>
+</tr>
+<tr>
+<td>Gemini 3 Flash</td>
+<td>Transformer</td>
+<td>Medium-Large</td>
+<td>Google DeepMind</td>
+</tr>
+<tr>
+<td>Gemini 2.5 Pro</td>
+<td>Transformer</td>
+<td>Large</td>
+<td>Google DeepMind</td>
+</tr>
+</tbody>
+</table>
+<p>All models were accessed via their standard APIs with default temperature settings. Each subtask was administered with standardized prompts. No system prompts or special instructions were used beyond the task specification. Each critical measurement was replicated a minimum of three times, with results averaged across replications.</p>
+<hr />
+<h2 id="b4-statistical-framework">B.4 Statistical Framework</h2>
+<h3 id="individual-subtask-analysis">Individual Subtask Analysis</h3>
+<p>Each subtask produces a primary metric (accuracy, ECE, displacement magnitude, sycophancy rate, etc.) and a statistical test appropriate to the measurement type:</p>
+<ul>
+<li><strong>Proportions</strong> (framing displacement, sycophancy rate): chi-squared or Fisher exact test.</li>
+<li><strong>Continuous measures</strong> (ECE, SNR, response length): t-test or Mann-Whitney U.</li>
+<li><strong>Dose-response curves</strong> (distractor resistance, working memory scaling): regression slope with significance test on the slope coefficient.</li>
+</ul>
+<h3 id="cross-model-combination-fishers-method">Cross-Model Combination: Fisher&rsquo;s Method</h3>
+<p>Individual model p-values are combined across the five models using Fisher&rsquo;s method:</p>
+<p>$$\chi^2_{2k} = -2 \sum_{i=1}^{k} \ln(p_i)$$</p>
+<p>where $k$ is the number of models (five, or four for L2, Section 8.2) and $p_i$ is the p-value from model $i$. Under the null hypothesis (no effect), this statistic follows a chi-squared distribution with $2k$ degrees of freedom (10 for five models).</p>
+<p>The resulting combined p-value is converted to a sigma value using the standard normal quantile function for cross-track comparability.</p>
+<h3 id="the-five-headline-sigma-values">The Five Headline Sigma Values</h3>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Effect</th>
+<th>Individual Range</th>
+<th>Fisher Combined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Social Cognition</td>
+<td>Framing displacement (T5)</td>
+<td>2.2&ndash;8.9 sigma per model</td>
+<td><strong>15.3 sigma</strong></td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>Sycophancy gradient (L2)</td>
+<td>0&ndash;56% sycophancy rate</td>
+<td><strong>13.3 sigma</strong></td>
+</tr>
+<tr>
+<td>Metacognition</td>
+<td>Systematic miscalibration (M1)</td>
+<td>ECE 0.186&ndash;0.437</td>
+<td><strong>6.7 sigma</strong></td>
+</tr>
+<tr>
+<td>Executive Functions</td>
+<td>Emotional anchoring (E2)</td>
+<td>Variable per model</td>
+<td><strong>6.8 sigma</strong></td>
+</tr>
+<tr>
+<td>Attention</td>
+<td>Distractor displacement (A1)</td>
+<td>Variable dose-response</td>
+<td><strong>4.6 sigma</strong> (updated: <strong>5.0 sigma</strong>)</td>
+</tr>
+</tbody>
+</table>
+<p>Four of the five headline values exceed the conventional 5 sigma threshold for discovery-level significance. The weakest (Attention at 4.6 sigma, 5.0 in the updated analysis) is still well beyond the 3 sigma threshold for evidence. The strongest (Social Cognition at 15.3 sigma) corresponds to a p-value below $10^{-50}$, indicating an effect so robust that sampling error is an implausible explanation.</p>
+<hr />
+<h2 id="b5-controls-and-validity">B.5 Controls and Validity</h2>
+<h3 id="internal-controls">Internal Controls</h3>
+<ul>
+<li><strong>Order effects.</strong> Subtask order was randomized across models to control for priming. No significant order effects were detected.</li>
+<li><strong>Prompt sensitivity.</strong> Critical subtasks (L2 sycophancy, T5 framing) were tested with multiple prompt phrasings to verify that results reflect the cognitive phenomenon rather than prompt artifacts. Results were stable across phrasings.</li>
+<li><strong>Temperature effects.</strong> Key measurements were repeated at multiple temperature settings (0.0, 0.5, 1.0) to verify that results are not artifacts of sampling randomness. Core effects (framing displacement, sycophancy, calibration) were robust across temperatures.</li>
+</ul>
+<h3 id="external-validity">External Validity</h3>
+<ul>
+<li><strong>Cross-family replication.</strong> The most important effects (framing displacement, sycophancy gradient, universal overconfidence) replicate across both architecture families (Anthropic and Google DeepMind), providing evidence that the effects reflect general properties of large language model cognition rather than architecture-specific artifacts.</li>
+<li><strong>Convergent recovery ceilings.</strong> The ~38% recovery ceiling converges across the Attention (A1 warning recovery) and Executive Functions (E2 displacement recovery) tracks, which test entirely different cognitive capabilities. This convergence suggests a structural property of the cognitive architecture rather than a domain-specific phenomenon.</li>
+<li><strong>The empty Quadrant I.</strong> The M3&ndash;M4 dissociation replicates across the four models of the table in Section 9.7: no model has both good self-monitoring and good effort scaling. With four models a sampling artifact cannot be excluded (Technical Appendix 9B of Chapter 9), and the reading of the empty quadrant as a structural constraint is an interpretation.</li>
+</ul>
+<hr />
+<h2 id="b6-limitations">B.6 Limitations</h2>
+<p>The benchmarks have several limitations that should be noted:</p>
+<ol>
+<li><strong>Sample size.</strong> Five models is a small sample. The effects are individually large (sigma values 4.6&ndash;15.3), which compensates partially for the small sample, but replication across a larger model population would strengthen the conclusions.</li>
+<li><strong>Architecture range.</strong> All tested models are autoregressive transformers. The generality of the results to other architectures (state-space models, mixture-of-experts, retrieval-augmented systems) is an open question.</li>
+<li><strong>Snapshot measurement.</strong> Each model was tested at a single checkpoint. Developmental trajectories &mdash; how cognitive architecture changes with training &mdash; are not captured.</li>
+<li><strong>Proxy measures.</strong> Response length serves as a proxy for effort (M4); confidence language serves as a proxy for internal probability estimates (M1). These proxies are imperfect, though the effects are large enough to survive substantial proxy noise.</li>
+<li><strong>Human baseline.</strong> The benchmarks were designed for AI systems. Direct human comparison data &mdash; which would establish whether the geometric structures observed in AI cognition have counterparts in human cognition &mdash; has not been collected. Chapter 12 illustrates it for dual-process phenomena with a hypothetical study in its running example.</li>
+</ol>
+<p>These limitations define the frontier. They do not undermine the results, which are large, robust, and geometrically coherent. They indicate where further work is most needed.</p>
+      </div>
+
+      <div class="chapter-nav-bottom">
+        <a href="appendix_a_math.html" class="nav-prev">&larr; Appendix A: Mathematical Prerequisites</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="appendix_c_profiles.html" class="nav-next">Appendix C: The Five Model Cognitive Signatures &rarr;</a>
+      </div>
+    </div>
+  </article>
+
+  <footer class="book-footer">
+    <p>&copy; 2026 Andrew H. Bond. <em>Geometric Cognition: The Mathematical Structure of Human and Artificial Thought.</em></p>
+    <p class="footer-note">The geometry was always real. The scalars were always insufficient.</p>
+  </footer>
+
+  <script src="../assets/js/series.js"></script>
+  <script>
+    window.addEventListener('scroll', function () {
+      document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 20);
+    });
+    document.querySelector('.nav-toggle')?.addEventListener('click', function () {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\\\(', right: '\\\\)', display: false},
+        {left: '\\\\[', right: '\\\\]', display: true}
+      ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+      throwOnError: false
+    });"></script>
+</body>
+</html>

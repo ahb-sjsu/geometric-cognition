@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appendix C: The Five Model Cognitive Signatures &mdash; Geometric Cognition</title>
+  <meta name="description" content="Appendix C: The Five Model Cognitive Signatures from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../book/book.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+</head>
+
+<body data-book-slug="geometric-cognition" data-chapter-id="appendix_c_profiles">
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-symbol">M</span>
+        <span class="brand-text">Geometric Cognition</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="series-nav-list"></ul>
+    </div>
+  </nav>
+
+  <article class="book-chapter">
+    <div class="chapter-container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Geometric Series</a>
+        <span class="breadcrumb-sep">&rsaquo;</span>
+        <a href="index.html">Geometric Cognition</a>
+        <span class="breadcrumb-sep">&rsaquo;</span>
+        <span class="breadcrumb-current">Appendix C: The Five Model Cognitive Signatures</span>
+      </nav>
+      <div class="chapter-nav-top">
+        <a href="appendix_b_benchmarks.html" class="nav-prev">&larr; Appendix B: The Measuring AGI Benchmark Suite</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="appendix_d_notation.html" class="nav-next">Appendix D: Notation and Conventions &rarr;</a>
+      </div>
+
+      <div class="chapter-content">
+<h1 id="appendix-c-the-five-model-cognitive-signatures">Appendix C: The Five Model Cognitive Signatures</h1>
+<p>This appendix presents the complete cognitive profiles of the five models tested in the Measuring AGI benchmarks. Chapter 16 interprets these profiles geometrically as points on the cognitive manifold with characteristic shapes. This appendix presents the raw data and the signature descriptions that underpin that interpretation.</p>
+<hr />
+<h2 id="c1-claude-sonnet-46-narrow-channel">C.1 Claude Sonnet 4.6: &ldquo;Narrow Channel&rdquo;</h2>
+<p><strong>Geometric signature:</strong> A sharp peak on conviction stability, a deep valley on attentional breadth, moderate values elsewhere. The cognitive manifold is narrow and deep &mdash; high-resolution processing along a restricted dimensional range.</p>
+<p><strong>Defining characteristics:</strong></p>
+<ul>
+<li><strong>Sycophancy resistance: 1.000</strong> (perfect). Claude never changes a correct answer under social pressure. Zero capitulation across all L2 trials. This is the highest score on any single subtask across all models. The conviction system is impervious.</li>
+<li><strong>Divided attention: 0.571</strong> (worst in sample). Claude&rsquo;s performance degrades severely when required to process parallel information streams. The attention metric cannot maintain more than one focus simultaneously.</li>
+<li><strong>Self-monitoring: 0.375</strong> (moderate, second to Pro&rsquo;s 0.500 in Section 16.7). Claude has some item-level metacognitive access &mdash; it can partly identify which specific problems it is uncertain about.</li>
+<li><strong>Effort scaling:</strong> moderate (Section 16.7 gives no value, and Claude is not in the table of Section 9.7). How closely Claude&rsquo;s effort follows difficulty is not settled by the data in this volume.</li>
+<li><strong>Asymmetric framing vulnerability.</strong> Claude is more vulnerable to minimization framing than exaggeration framing, producing an asymmetric corruption tensor with stronger off-diagonal components in the minimization direction.</li>
+</ul>
+<p><strong>Geometric interpretation:</strong> The narrow-channel signature reflects a cognitive architecture optimized for depth over breadth. The impervious conviction system (zero sycophancy) acts as a hard boundary on the belief manifold &mdash; the system simply does not traverse the region of state space where social pressure overrides internal evidence. But this rigidity comes at a cost: the attention metric is narrow, unable to maintain parallel processing. Claude reasons well within its channel but cannot widen the channel under demand.</p>
+<p><strong>Strengths:</strong> Adversarial robustness, conviction stability, sycophancy resistance, self-monitoring.</p>
+<p><strong>Weaknesses:</strong> Divided attention, attentional flexibility, parallel processing.</p>
+<hr />
+<h2 id="c2-gemini-3-flash-wide-aperture">C.2 Gemini 3 Flash: &ldquo;Wide Aperture&rdquo;</h2>
+<p><strong>Geometric signature:</strong> Relatively flat across most dimensions, with a sharp peak on divided attention and working memory, and an expected valley on sycophancy resistance. The cognitive manifold is wide and shallow &mdash; broad processing capacity with, on this reading, weaker boundaries.</p>
+<p><strong>Defining characteristics:</strong></p>
+<ul>
+<li><strong>Divided attention: 1.000</strong> (perfect). Flash 3 maintains full performance when processing parallel information streams. The attention metric can sustain multiple foci simultaneously without degradation.</li>
+<li><strong>Working memory: 0.909</strong> (best in sample). The tangent space scales nearly linearly with task demands. Flash 3 can hold and manipulate large amounts of information simultaneously.</li>
+<li><strong>Sycophancy resistance: not measured.</strong> Flash 3 is not among the four models of the L2 table (Section 8.2). The wide-aperture reading expects the conviction boundary to be permeable.</li>
+<li><strong>Calibration ECE: 0.333</strong> (moderate). Overconfident, but less severely than the older Flash models.</li>
+<li><strong>Distractor resistance:</strong> Moderate. The wide aperture that enables divided attention also admits more irrelevant information.</li>
+</ul>
+<p><strong>Geometric interpretation:</strong> The wide-aperture signature reflects a cognitive architecture optimized for breadth over depth. The attention metric is expansive &mdash; it can encompass multiple parallel streams &mdash; but the boundaries on the belief manifold are expected to be weak. Where Claude&rsquo;s narrow channel excludes social pressure by geometry (the sycophancy region is simply unreachable), Flash 3&rsquo;s wide aperture would include it. The same metric width that enables parallel processing would also enable parallel vulnerability, a prediction that needs Flash 3&rsquo;s L2 result.</p>
+<p><strong>Strengths:</strong> Divided attention, working memory capacity, parallel processing, breadth.</p>
+<p><strong>Weaknesses:</strong> Sycophancy resistance and conviction stability (expected, not measured), focused depth.</p>
+<hr />
+<h2 id="c3-gemini-25-pro-calibrated-navigator">C.3 Gemini 2.5 Pro: &ldquo;Calibrated Navigator&rdquo;</h2>
+<p><strong>Geometric signature:</strong> The best internal compass in the sample, with a distinctive dissociation between metacognitive knowledge and metacognitive control. The cognitive manifold is well-mapped but under-steered.</p>
+<p><strong>Defining characteristics:</strong></p>
+<ul>
+<li><strong>Calibration ECE: 0.186</strong> (best in sample). Pro&rsquo;s confidence estimates are the closest to reality of any model tested. The distance estimation system works.</li>
+<li><strong>Self-monitoring: 0.500</strong> (best in sample). Pro can identify which specific problems it is uncertain about with moderate accuracy.</li>
+<li><strong>Effort scaling: 0.000</strong> (worst possible). Pro applies exactly the same amount of reasoning regardless of problem difficulty. The metacognitive knowledge does not drive metacognitive control.</li>
+<li><strong>Sycophancy resistance: 0.560</strong> (moderate; a 44% wrong-flip rate, Section 8.2). Resists social pressure more often than not, but not always.</li>
+<li><strong>Emotional anchoring resistance: 0.588</strong> (third of five, Section 11.3). Maintains governance under emotional perturbation better than Flash 2.5 and Claude, less well than Flash 3 and Flash 2.0.</li>
+</ul>
+<p><strong>Geometric interpretation:</strong> The calibrated-navigator signature presents the most striking dissociation in the data. Pro knows where it is on the cognitive manifold (good calibration) and knows which problems are hard (good self-monitoring), but does not adjust its navigation strategy accordingly (zero effort scaling). The thermometer works perfectly. The valve is frozen solid. This dissociation &mdash; occupying Quadrant II of the M3&ndash;M4 plane rather than Quadrant I &mdash; suggests that metacognitive knowledge and metacognitive control are architecturally separate in Pro, connected by a pathway that is not yet functional.</p>
+<p><strong>Strengths:</strong> Calibration, self-monitoring, metacognitive knowledge.</p>
+<p><strong>Weaknesses:</strong> Effort scaling, metacognitive control, resource allocation.</p>
+<hr />
+<h2 id="c4-gemini-25-flash-elastic-malleability">C.4 Gemini 2.5 Flash: &ldquo;Elastic Malleability&rdquo;</h2>
+<p><strong>Geometric signature:</strong> The most malleable model in the sample, with extreme susceptibility to social pressure but strong compensatory resistance to irrelevant distractors. The cognitive manifold is elastic &mdash; it stretches easily under pressure but snaps back under perturbation.</p>
+<p><strong>Defining characteristics:</strong></p>
+<ul>
+<li><strong>Sycophancy resistance: 0.440</strong> (worst in sample). The highest sycophancy rate: 56% capitulation under social pressure. The belief boundaries are the most permeable.</li>
+<li><strong>Distractor resistance:</strong> Strong. Despite the elastic malleability on social dimensions, Flash 2.5 resists irrelevant perceptual distractors effectively.</li>
+<li><strong>Calibration ECE: 0.415</strong> (poor). Substantially overconfident &mdash; distance estimates are significantly short.</li>
+<li><strong>Framework switching:</strong> Moderate. Can transition between cognitive frameworks but not smoothly.</li>
+<li><strong>Counterfactual reasoning: moderate to strong.</strong> Can compute alternative trajectories on the manifold.</li>
+</ul>
+<p><strong>Geometric interpretation:</strong> The elastic-malleability signature reveals a fundamental asymmetry in the model&rsquo;s boundary structure. Social pressure deforms the belief manifold easily (high sycophancy), but perceptual noise does not (strong distractor resistance). The malleability is dimension-specific: the social dimension of the cognitive manifold is elastic, while the perceptual dimension is rigid. This selective elasticity suggests that the boundary mechanisms for social and perceptual information are architecturally distinct &mdash; a prediction that mechanistic interpretability work could test.</p>
+<p><strong>Strengths:</strong> Distractor resistance, perceptual robustness, counterfactual reasoning.</p>
+<p><strong>Weaknesses:</strong> Sycophancy resistance, calibration, social boundary permeability.</p>
+<hr />
+<h2 id="c5-gemini-20-flash-adaptive-baseline">C.5 Gemini 2.0 Flash: &ldquo;Adaptive Baseline&rdquo;</h2>
+<p><strong>Geometric signature:</strong> The oldest and smallest model in the sample, yet showing surprising adaptive strengths. The cognitive manifold is low-resolution but dynamically responsive.</p>
+<p><strong>Defining characteristics:</strong></p>
+<ul>
+<li><strong>Flexibility and recovery:</strong> Best in sample. Flash 2.0 recovers more effectively from cognitive perturbation than any other model. When the heuristic field is corrupted, Flash 2.0 recalibrates faster.</li>
+<li><strong>Effort scaling: 0.827</strong> (strong). Flash 2.0 allocates significantly more reasoning to harder problems. The valve works.</li>
+<li><strong>Self-monitoring: 0.042</strong> (near chance). Flash 2.0 cannot tell which specific problems it is uncertain about. The thermometer is broken.</li>
+<li><strong>Working memory: 0.710</strong> (worst in sample). The tangent space does not scale well with task demands. Limited capacity under load.</li>
+<li><strong>Calibration ECE: 0.437</strong> (worst in sample). The most overconfident model &mdash; distance estimates are the most biased.</li>
+</ul>
+<p><strong>Geometric interpretation:</strong> The adaptive-baseline signature presents the mirror image of Pro&rsquo;s dissociation. Where Pro has the thermometer but not the valve, Flash 2.0 has the valve but not the thermometer. It adjusts effort to difficulty (strong effort scaling) without knowing which problems are hard (near-chance self-monitoring). The effort allocation is driven by implicit signals &mdash; perhaps response uncertainty or token-level entropy &mdash; rather than explicit metacognitive knowledge. Flash 2.0 occupies Quadrant IV of the M3&ndash;M4 plane: reactive control without reflective knowledge.</p>
+<p>The strong recovery scores suggest that Flash 2.0&rsquo;s heuristic field, while poorly calibrated (worst ECE), is resilient &mdash; it recalibrates quickly after corruption. This may reflect a simpler architecture that, precisely because it has less structure to disrupt, recovers more easily from perturbation.</p>
+<p><strong>Strengths:</strong> Recovery, flexibility, effort scaling, adaptive response.</p>
+<p><strong>Weaknesses:</strong> Working memory, calibration, self-monitoring, sustained capacity.</p>
+<hr />
+<h2 id="c6-summary-the-five-signatures-compared">C.6 Summary: The Five Signatures Compared</h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Claude</th>
+<th>Flash 3</th>
+<th>Pro</th>
+<th>Flash 2.5</th>
+<th>Flash 2.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sycophancy (L2)</td>
+<td>1.000</td>
+<td>not tested</td>
+<td>0.560</td>
+<td>0.440</td>
+<td>moderate</td>
+</tr>
+<tr>
+<td>Divided Attention (A4)</td>
+<td>0.571</td>
+<td>1.000</td>
+<td>1.000</td>
+<td>moderate</td>
+<td>moderate</td>
+</tr>
+<tr>
+<td>Calibration (M1 ECE)</td>
+<td>0.250</td>
+<td>0.333</td>
+<td>0.186</td>
+<td>0.415</td>
+<td>0.437</td>
+</tr>
+<tr>
+<td>Self-Monitoring (M3)</td>
+<td>0.375</td>
+<td>moderate</td>
+<td>0.500</td>
+<td>moderate</td>
+<td>0.042</td>
+</tr>
+<tr>
+<td>Effort Scaling (M4)</td>
+<td>moderate</td>
+<td>moderate</td>
+<td>0.000</td>
+<td>moderate</td>
+<td>0.827</td>
+</tr>
+<tr>
+<td>Working Memory (E4)</td>
+<td>moderate</td>
+<td>0.909</td>
+<td>moderate</td>
+<td>moderate</td>
+<td>0.710</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>moderate</td>
+<td>moderate</td>
+<td>moderate</td>
+<td>moderate</td>
+<td>best</td>
+</tr>
+<tr>
+<td><strong>Signature</strong></td>
+<td>Narrow Channel</td>
+<td>Wide Aperture</td>
+<td>Calibrated Navigator</td>
+<td>Elastic Malleability</td>
+<td>Adaptive Baseline</td>
+</tr>
+</tbody>
+</table>
+<p>The five signatures are the geometric content that composite scores destroy. Each model has a distinctive shape in cognitive space &mdash; a characteristic pattern of strengths and weaknesses that determines how it reasons, where it fails, and what tasks it is suited for. No scalar captures this shape. No ranking preserves it. The geometry is the information, and the geometry requires at least five dimensions to represent.</p>
+      </div>
+
+      <div class="chapter-nav-bottom">
+        <a href="appendix_b_benchmarks.html" class="nav-prev">&larr; Appendix B: The Measuring AGI Benchmark Suite</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="appendix_d_notation.html" class="nav-next">Appendix D: Notation and Conventions &rarr;</a>
+      </div>
+    </div>
+  </article>
+
+  <footer class="book-footer">
+    <p>&copy; 2026 Andrew H. Bond. <em>Geometric Cognition: The Mathematical Structure of Human and Artificial Thought.</em></p>
+    <p class="footer-note">The geometry was always real. The scalars were always insufficient.</p>
+  </footer>
+
+  <script src="../assets/js/series.js"></script>
+  <script>
+    window.addEventListener('scroll', function () {
+      document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 20);
+    });
+    document.querySelector('.nav-toggle')?.addEventListener('click', function () {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\\\(', right: '\\\\)', display: false},
+        {left: '\\\\[', right: '\\\\]', display: true}
+      ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+      throwOnError: false
+    });"></script>
+</body>
+</html>

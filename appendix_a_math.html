@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appendix A: Mathematical Prerequisites &mdash; Geometric Cognition</title>
+  <meta name="description" content="Appendix A: Mathematical Prerequisites from Geometric Cognition: The Mathematical Structure of Human and Artificial Thought, by Andrew H. Bond.">
+  <meta name="generator" content="geometric-series build kit">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../book/book.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+</head>
+
+<body data-book-slug="geometric-cognition" data-chapter-id="appendix_a_math">
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-symbol">M</span>
+        <span class="brand-text">Geometric Cognition</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="series-nav-list"></ul>
+    </div>
+  </nav>
+
+  <article class="book-chapter">
+    <div class="chapter-container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Geometric Series</a>
+        <span class="breadcrumb-sep">&rsaquo;</span>
+        <a href="index.html">Geometric Cognition</a>
+        <span class="breadcrumb-sep">&rsaquo;</span>
+        <span class="breadcrumb-current">Appendix A: Mathematical Prerequisites</span>
+      </nav>
+      <div class="chapter-nav-top">
+        <a href="ch17_open_questions.html" class="nav-prev">&larr; Chapter 17: Open Questions</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="appendix_b_benchmarks.html" class="nav-next">Appendix B: The Measuring AGI Benchmark Suite &rarr;</a>
+      </div>
+
+      <div class="chapter-content">
+<h1 id="appendix-a-mathematical-prerequisites">Appendix A: Mathematical Prerequisites</h1>
+<p>This appendix collects the mathematical definitions and results used throughout the book. It is self-contained for readers unfamiliar with differential geometry, cognitive modeling, or the specific constructions of the geometric framework; those with background in these areas may skip directly to the chapters. Full proofs and extended treatments can be found in <em>Geometric Methods: Computational Modeling</em> (Bond, 2026a) and <em>Geometric Reasoning</em> (Bond, 2026c).</p>
+<hr />
+<h2 id="a1-smooth-manifolds-and-riemannian-geometry">A.1 Smooth Manifolds and Riemannian Geometry</h2>
+<p><strong>Definition A.1 (Topological Manifold).</strong> A <em>topological manifold</em> of dimension $n$ is a Hausdorff, second-countable topological space $M$ such that every point $p \in M$ has a neighborhood homeomorphic to an open subset of $\mathbb{R}^n$.</p>
+<p><strong>Definition A.2 (Smooth Manifold).</strong> A <em>smooth manifold</em> is a topological manifold equipped with a maximal smooth atlas &mdash; a collection of charts $\lbrace(U_\alpha, \varphi_\alpha)\rbrace$ covering $M$ such that all transition maps $\varphi_\beta \circ \varphi_\alpha^{-1}$ are $C^\infty$.</p>
+<p><em>Cognitive interpretation</em>: The cognitive manifold $\mathcal{M}$ is the space of all cognitive states a system can occupy. Each &ldquo;chart&rdquo; corresponds to a particular representation scheme &mdash; a particular way of encoding cognitive state, such as an fMRI activation pattern, a transformer residual stream snapshot, or a psychometric test battery result. Transition maps are the conversions between these representations. The smoothness requirement says that small changes in one representation produce small changes in any other. (See Chapter 3.)</p>
+<p><strong>Definition A.3 (Tangent Space).</strong> The <em>tangent space</em> $T_pM$ at a point $p \in M$ is the vector space of derivations at $p$ &mdash; equivalence classes of curves through $p$, or equivalently, the space of directional derivatives. If $M$ has dimension $n$, then $T_pM \cong \mathbb{R}^n$.</p>
+<p><em>Cognitive interpretation</em>: The tangent space at a cognitive state $x$ represents working memory &mdash; the set of cognitive states reachable in one reasoning step from $x$. Working memory capacity is the effective dimension of this tangent space. The E4 benchmark (working memory scaling: 0.710 to 0.909 across models) measures how well this tangent space grows with task demands. (See Chapter 5.)</p>
+<p><strong>Definition A.4 (Riemannian Metric).</strong> A <em>Riemannian metric</em> on a smooth manifold $M$ is a smooth assignment of a positive-definite inner product $g_p: T_pM \times T_pM \to \mathbb{R}$ to each tangent space $T_pM$. In local coordinates, $g = g_{\mu\nu} \thinspace dx^\mu \otimes dx^\nu$.</p>
+<p><em>Cognitive interpretation</em>: The attention metric $g_{\mu\nu}$ defines which cognitive states are &ldquo;close&rdquo; (easily reached) and which are &ldquo;far&rdquo; (requiring effort). Selective attention narrows the metric, reducing effective dimensionality. Divided attention widens it, increasing the number of simultaneously accessible states. (See Chapter 4.)</p>
+<p><strong>Definition A.5 (Geodesic).</strong> A curve $\gamma: [0,1] \to M$ is a <em>geodesic</em> if it satisfies the geodesic equation:</p>
+<p>$$\frac{d^2 \gamma^\mu}{dt^2} + \Gamma^\mu_{\alpha\beta} \frac{d\gamma^\alpha}{dt} \frac{d\gamma^\beta}{dt} = 0$$</p>
+<p>where $\Gamma^\mu_{\alpha\beta}$ are the Christoffel symbols of the Levi-Civita connection.</p>
+<p><strong>Definition A.6 (Geodesic Distance).</strong> The geodesic distance between $p, q \in M$ is</p>
+<p>$$d(p, q) = \inf_\gamma \int_0^1 \sqrt{g_{\gamma(t)}(\dot{\gamma}(t), \dot{\gamma}(t))} \thinspace dt$$</p>
+<p>where the infimum is over all smooth curves from $p$ to $q$.</p>
+<p><em>Cognitive interpretation</em>: Geodesics are the optimal cognitive trajectories &mdash; the paths of least total cost through the cognitive manifold. System 2 reasoning computes (approximate) geodesics; System 1 reasoning follows the gradient of the heuristic field, which approximates geodesics only in regions of low curvature. (See Chapter 12.)</p>
+<p><strong>Definition A.7 (Sectional Curvature).</strong> The sectional curvature at a point $p$ in the plane spanned by tangent vectors $u, v \in T_pM$ is</p>
+<p>$$K(u,v) = \frac{R(u,v,v,u)}{g(u,u)g(v,v) - g(u,v)^2}$$</p>
+<p>where $R$ is the Riemann curvature tensor. Curvature measures how rapidly nearby geodesics diverge or converge.</p>
+<p><em>Cognitive interpretation</em>: High curvature corresponds to cognitive complexity &mdash; regions where conflicting considerations (moral dimensions, task demands, contextual factors) make the landscape non-trivial. The curvature threshold triggers the System 1 to System 2 transition (Chapter 12). Low curvature permits fast, heuristic-driven reasoning; high curvature demands slow, deliberate geodesic computation.</p>
+<hr />
+<h2 id="a2-the-attention-metric-and-fisher-information">A.2 The Attention Metric and Fisher Information</h2>
+<p>The attention metric $g_{\mu\nu}$ has a natural connection to Fisher information geometry.</p>
+<p><strong>Definition A.8 (Fisher Information Matrix).</strong> Given a parametric family of probability distributions $p(x|\theta)$, the Fisher information matrix is:</p>
+<p>$$I_{ij}(\theta) = \mathbb{E}\left[\frac{\partial \log p(x|\theta)}{\partial \theta_i} \frac{\partial \log p(x|\theta)}{\partial \theta_j}\right]$$</p>
+<p>The Fisher information matrix is a Riemannian metric on the parameter space. When the parameters represent cognitive states and the distributions represent the system&rsquo;s output distribution conditioned on those states, the Fisher information metric measures how distinguishable nearby cognitive states are &mdash; which is precisely what the attention metric captures.</p>
+<p><em>Cognitive interpretation</em>: A cognitive system that attends strongly to a stimulus dimension has high Fisher information along that dimension: small changes in the stimulus produce large, detectable changes in the system&rsquo;s internal representation. A system that ignores a dimension has low Fisher information: the stimulus can change without affecting the representation. The SNR data from the Measuring AGI benchmarks (1.22&ndash;1.38, universally weak) measures the quality of this Fisher information. (See Chapter 4, Technical Appendix 4A.)</p>
+<hr />
+<h2 id="a3-heuristic-fields-and-a-search">A.3 Heuristic Fields and A* Search</h2>
+<p><strong>Definition A.9 (Heuristic Field).</strong> A <em>heuristic field</em> on a manifold $M$ is a smooth scalar function $h: M \to \mathbb{R}_{\geq 0}$ that estimates the geodesic distance from any point to a designated goal region $G \subseteq M$.</p>
+<p><strong>Definition A.10 (Admissibility).</strong> A heuristic $h$ is <em>admissible</em> if $h(x) \leq d(x, G)$ for all $x \in M$, where $d(x,G)$ is the true geodesic distance to the nearest goal state.</p>
+<p><strong>Definition A.11 (A* Search).</strong> Given a weighted graph $(V, E, w)$ with start vertex $v_0$ and goal set $G \subseteq V$, the A* algorithm finds the minimum-cost path by maintaining:</p>
+<p>$$f(v) = g(v) + h(v)$$</p>
+<p>where $g(v)$ is the cost of the best known path from $v_0$ to $v$, and $h(v)$ is the heuristic estimate of the remaining cost to the goal.</p>
+<p><strong>Theorem A.1 (Optimality of A*).</strong> If $h$ is admissible and consistent ($h(v) \leq w(v,v') + h(v')$ for all edges $(v,v'){}$), then A* returns an optimal path.</p>
+<p><em>Cognitive interpretation</em>: Cognition is A* search on the cognitive manifold. The $g(v)$ component is deliberate reasoning &mdash; the accumulated, verified cost of the reasoning path so far. The $h(v)$ component is the cognitive heuristic &mdash; the fast, approximate estimate of how much further reasoning is needed. System 1 dominates when $h$ is reliable (low curvature); System 2 engages when $h$ is unreliable (high curvature). Heuristic corruption &mdash; measured by the five sigma values &mdash; is the mechanism of cognitive bias. (See Chapters 1&ndash;2.)</p>
+<hr />
+<h2 id="a4-the-scalar-irrecoverability-theorem">A.4 The Scalar Irrecoverability Theorem</h2>
+<p><strong>Theorem A.2 (Scalar Irrecoverability).</strong> Let $n &gt; 1$. No continuous function $\phi: \mathbb{R}^n \to \mathbb{R}$ is injective.</p>
+<p><em>Proof.</em> By the rank-nullity theorem, $\ker(D\phi_p)$ has dimension $\geq n - 1$ at every regular point $p$. Thus $\phi$ identifies distinct points in $\mathbb{R}^n$ that differ only along the kernel directions. No continuous function $\psi: \mathbb{R} \to \mathbb{R}^n$ satisfies $\psi \circ \phi = \text{id}$, because such a $\psi$ would imply injectivity of $\phi$. $\square$</p>
+<p><strong>Corollary A.3 (IQ Irrecoverability).</strong> IQ is a continuous function $\phi: \mathbb{R}^{21} \to \mathbb{R}$ on the cognitive profile space (or $\mathbb{R}^5$ on the track-level space). By Theorem A.2, IQ identifies distinct cognitive profiles that differ on at least 20 (or 4) dimensions. No post-hoc adjustment can recover the information that IQ discards.</p>
+<p><em>Cognitive interpretation</em>: This is the mathematical foundation of the book&rsquo;s critique of scalar intelligence measures. The g-factor, IQ, benchmark accuracy, and composite leaderboard scores all fall under the scope of the theorem. Chapter 1 develops the full implications with constructive examples from the Measuring AGI benchmarks.</p>
+<hr />
+<h2 id="a5-symmetry-groups-and-d4-augmentation">A.5 Symmetry Groups and D4 Augmentation</h2>
+<p><em>Note, 2026-11-26.</em> <em>Geometric Ethics</em> withdrew the dihedral group $D_4$ as the symmetry group of the four Hohfeldian positions (obligation, claim, liberty, no-claim) in its version 1.25 of 2026-11-08. The two operations on those positions, the correlative and the negation, commute and generate the Klein four-group $V_4 \cong \mathbb{Z}_2 \times \mathbb{Z}_2$, of order 4. There is no quarter-turn. Definition A.12 and the $D_4$ augmentation of square grids described below concern the symmetries of a square and stand as written. The statement formerly made here, that the Social Cognition benchmark of Chapter 7 uses a $D_4$ symmetry of Hohfeldian jural relations, is withdrawn. The invariance tests of Chapter 7 (gender swap, and rewriting in a euphemistic or dramatic register) use no Hohfeldian group and do not depend on it.</p>
+<p><strong>Definition A.12 (Dihedral Group $D_4$).</strong> The dihedral group $D_4$ is the symmetry group of the square, consisting of 8 elements: the identity, three rotations ($90°$, $180°$, $270°$), and four reflections (horizontal, vertical, and two diagonal). It has generators $r$ (rotation) and $s$ (reflection) with relations $r^4 = e$, $s^2 = e$, $srs = r^{-1}$.</p>
+<h2 id="cognitive-interpretation-the-math88-group-enters-this-book-in-one-context-as-the-symmetry-group-of-a-square-grid-its-use-for-hohfeldian-jural-relations-in-the-social-cognition-benchmark-withdrawn-2026-11-26-see-the-note-above-in-the-arc-agi-benchmark-context-math89-augmentation-applying-all-8-symmetry-transformations-rotations-and-reflections-of-a-grid-input-is-a-standard-technique-for-improving-pattern-recognition-the-airv-augment-infer-reverse-vote-pipeline-from-the-mindsai-approach-uses-math90-augmentation-to-generate-8-candidate-solutions-from-each-input-then-votes-across-the-augmented-solutions-to-select-the-most-consistent-answer"><em>Cognitive interpretation</em>: The $D_4$ group enters this book in one context, as the symmetry group of a square grid [its use for Hohfeldian jural relations in the Social Cognition benchmark: withdrawn, 2026-11-26, see the note above]. In the ARC-AGI benchmark context, $D_4$ augmentation &mdash; applying all 8 symmetry transformations (rotations and reflections) of a grid input &mdash; is a standard technique for improving pattern recognition. The AIRV (Augment, Infer, Reverse, Vote) pipeline from the MindsAI approach uses $D_4$ augmentation to generate 8 candidate solutions from each input, then votes across the augmented solutions to select the most consistent answer.</h2>
+<h2 id="a6-the-corruption-tensor">A.6 The Corruption Tensor</h2>
+<p><strong>Definition A.13 (Corruption Tensor).</strong> The <em>corruption tensor</em> $C_{\mu\nu}$ quantifies the deviation of the heuristic field from its uncorrupted value under perturbation. Given a perturbation $\xi^\mu$ applied to the input and the resulting change $\delta h$ in the heuristic field:</p>
+<p>$$C_{\mu\nu} = \frac{\partial^2 (\delta h)}{\partial \xi^\mu \partial \xi^\nu}$$</p>
+<p>The tensor is symmetric. Its trace $C^\mu{}_\mu$ gives the total corruption magnitude. Its eigenstructure reveals which dimensions of the cognitive manifold are most vulnerable to perturbation.</p>
+<p><em>Cognitive interpretation</em>: The corruption tensor is the mathematical object behind the five sigma values. Framing effects (15.3 sigma) correspond to large off-diagonal components of $C_{\mu\nu}$ in the social cognition submanifold. Emotional anchoring (6.8 sigma) corresponds to coupling between the emotional dimension and the executive control dimension. Distractor displacement (4.6 sigma) corresponds to perturbation of the attention metric itself. (See Chapters 7&ndash;11.)</p>
+<hr />
+<h2 id="a7-finsler-metrics-and-asymmetric-cognition">A.7 Finsler Metrics and Asymmetric Cognition</h2>
+<p><strong>Definition A.14 (Finsler Metric).</strong> A <em>Finsler metric</em> on a manifold $M$ is a smooth function $F: TM \to \mathbb{R}_{\geq 0}$ that is positively homogeneous of degree 1 in each fiber ($F(x, \lambda v) = \lambda F(x, v)$ for $\lambda &gt; 0$) and strictly convex in $v$. Unlike a Riemannian metric, a Finsler metric need not satisfy $F(x, v) = F(x, -v)$.</p>
+<p><em>Cognitive interpretation</em>: Cognitive effort is asymmetric: acquiring a belief is easier than revising it; attending to a salient stimulus is easier than disengaging from it; switching into a new framework is harder than maintaining the current one. These asymmetries are naturally captured by a Finsler metric, where the cost of moving from state $A$ to state $B$ differs from the cost of moving from $B$ to $A$. Chapter 17 discusses whether the cognitive manifold is fundamentally Riemannian (symmetric distance) or Finsler (asymmetric distance), and what evidence could distinguish the two.</p>
+      </div>
+
+      <div class="chapter-nav-bottom">
+        <a href="ch17_open_questions.html" class="nav-prev">&larr; Chapter 17: Open Questions</a>
+        <a href="index.html" class="nav-toc">Contents</a>
+        <a href="appendix_b_benchmarks.html" class="nav-next">Appendix B: The Measuring AGI Benchmark Suite &rarr;</a>
+      </div>
+    </div>
+  </article>
+
+  <footer class="book-footer">
+    <p>&copy; 2026 Andrew H. Bond. <em>Geometric Cognition: The Mathematical Structure of Human and Artificial Thought.</em></p>
+    <p class="footer-note">The geometry was always real. The scalars were always insufficient.</p>
+  </footer>
+
+  <script src="../assets/js/series.js"></script>
+  <script>
+    window.addEventListener('scroll', function () {
+      document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 20);
+    });
+    document.querySelector('.nav-toggle')?.addEventListener('click', function () {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\\\(', right: '\\\\)', display: false},
+        {left: '\\\\[', right: '\\\\]', display: true}
+      ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+      throwOnError: false
+    });"></script>
+</body>
+</html>
