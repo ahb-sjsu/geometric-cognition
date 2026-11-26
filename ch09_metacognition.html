@@ -216,13 +216,13 @@
 <p>This dissociation demolishes the assumption that metacognition is a unitary capability. If metacognition were a single dimension&mdash;a &ldquo;metacognitive ability&rdquo; that could be measured with a single number&mdash;then M3 and M4 would be positively correlated. Models that are better at self-monitoring would also be better at effort scaling, because both draw on the same underlying metacognitive capacity. The data say otherwise. The correlation between M3 and M4 across models is <em>negative</em>: the model with the best self-monitoring has the worst effort scaling, and vice versa.</p>
 <h2 id="98-the-empty-quadrant">9.8 The Empty Quadrant</h2>
 <p>The M3/M4 dissociation is not a marginal effect. It defines a structural feature of the metacognitive landscape: the empty Quadrant I.</p>
-<p>Plot the models in the two-dimensional space defined by M3 (x-axis) and M4 (y-axis). Divide the space into four quadrants at the midpoints (0.5 on each axis, or more conservatively, at the median values):</p>
+<p>Plot the models in the two-dimensional space defined by M3 (x-axis) and M4 (y-axis). Divide the space into four quadrants at a threshold $\tau$ on each axis. Technical Appendix 9B uses $\tau = 0.25$; the midpoints (0.5 on each axis) or the median values leave the same quadrant empty:</p>
 <p><strong>Quadrant I (high M3, high M4):</strong> Good self-monitoring AND good effort scaling. The model knows which problems are hard and works harder on them. This is the ideal metacognitive configuration.</p>
 <p><strong>Quadrant II (high M3, low M4):</strong> Good self-monitoring but poor effort scaling. The model knows which problems are hard but does not adjust its effort. The thermometer works; the valve is frozen. This is where Pro sits.</p>
 <p><strong>Quadrant III (low M3, low M4):</strong> Poor self-monitoring and poor effort scaling. The model neither knows which problems are hard nor adjusts its effort. This is the metacognitive null state.</p>
 <p><strong>Quadrant IV (low M3, high M4):</strong> Poor self-monitoring but good effort scaling. The model adjusts its effort without knowing why&mdash;it scales response length based on some signal that is not metacognitive self-knowledge. This is where Flash 2.0 sits.</p>
 <p>Quadrant I is empty.</p>
-<p>No model in the sample occupies the upper-right quadrant where both metacognitive capabilities are strong. This is not a sampling artifact that would disappear with more models. It is a structural constraint that reflects a fundamental tension in the architecture of current language models.</p>
+<p>No model in the sample occupies the upper-right quadrant where both metacognitive capabilities are strong. With so few models a sampling artifact cannot be excluded (Technical Appendix 9B). We interpret it as a structural constraint that reflects a fundamental tension in the architecture of current language models.</p>
 <p><strong>The geometric explanation of the empty quadrant.</strong> Why can&rsquo;t a model have both good self-monitoring and good effort scaling?</p>
 <p>The answer lies in the relationship between representation and control. Self-monitoring (M3) requires an accurate <em>representation</em> of the model&rsquo;s own uncertainty&mdash;an internal model of where the distance estimates are reliable and where they are not. This is a representational capability: the model must maintain a meta-level map of its own confidence landscape.</p>
 <p>Effort scaling (M4) requires an effective <em>control</em> mechanism that translates difficulty signals into resource allocation. This is a control capability: the model must have a mechanism that adjusts generation length based on input complexity.</p>
@@ -419,7 +419,7 @@ $$0.437 &gt; 0.415 &gt; 0.333 &gt; 0.250 &gt; 0.186$$</p>
 - M4: Pro (0.000) &lt;&lt; Flash 2.0 (0.827), difference = -0.827</p>
 <p>The crossing is large on both dimensions. The difference in M3 exceeds the noise level in the self-monitoring measure (bootstrap SE approximately 0.10), and the difference in M4 exceeds the noise level in the effort scaling measure (bootstrap SE approximately 0.08). The dissociation is statistically robust.</p>
 <p><strong>Independence test.</strong> Under the hypothesis that M3 and M4 are driven by a common metacognitive factor, we would expect a positive correlation: $r(M3, M4) &gt; 0$. The observed correlation across the four full-suite models is negative: $r(M3, M4) \approx -0.85$. With only four data points, this correlation does not reach conventional significance, but the negative direction is inconsistent with the unitary metacognition hypothesis and consistent with the dissociation.</p>
-<p><strong>Quadrant analysis.</strong> With threshold $\tau = 0.25$ (the midpoint of the observed range on each dimension):</p>
+<p><strong>Quadrant analysis.</strong> With threshold $\tau = 0.25$ (near the midpoint of the observed M3 range):</p>
 <table>
 <thead>
 <tr>
