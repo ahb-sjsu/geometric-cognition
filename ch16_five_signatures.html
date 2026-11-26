@@ -58,8 +58,8 @@
 <p>She puts up the first slide. Five radar charts, five axes each &mdash; Social Cognition, Learning, Metacognition, Attention, Executive Functions &mdash; with each axis normalized to a 0&ndash;1 scale. The five shapes are strikingly different.</p>
 <p>Claude&rsquo;s chart is a narrow spike. It extends far along the Social Cognition axis (high invariance, zero sycophancy) and the Metacognition axis (moderate calibration, strong self-monitoring), but collapses along the Attention axis (worst divided attention in the sample) and the Executive Functions axis (worst emotional recovery). The shape is a stiletto: sharp, narrow, and maximally extended along a single direction.</p>
 <p>Flash 3&rsquo;s chart is nearly circular. It extends moderately along every axis, with its longest extension along Attention (perfect divided attention score). The shape is a disk: wide, even, and uniformly extended. No axis is dramatically strong; no axis is dramatically weak.</p>
-<p>Pro&rsquo;s chart is lopsided. The Metacognition axis extends far (best calibration in the sample, ECE = 0.186) and the Executive Functions axis extends far along the counterfactual sub-dimension (best E3 score). But the Learning axis is short (zero effort scaling) and the Attention axis is moderate. The shape is a bent wing: strong on the analytic dimensions, weak on the adaptive dimensions.</p>
-<p>Flash 2.5&rsquo;s chart is the most irregular. It has the longest extension along Learning (worst sycophancy at 56%, paradoxically making it the most <em>measurably</em> biased) and the shortest extension along Metacognition. But its Attention sub-scores are extreme: best distractor resistance, strong working memory. The shape is a zigzag: alternating peaks and valleys with no smooth interpolation between them.</p>
+<p>Pro&rsquo;s chart is lopsided. The Metacognition axis extends far (best calibration in the sample, ECE = 0.186) and the Executive Functions axis extends far along the counterfactual sub-dimension (best E3 score). But the Learning axis is short (a 44% sycophancy rate), the Metacognition axis has a deep notch (zero effort scaling), and the Attention axis is moderate. The shape is a bent wing: strong on the analytic dimensions, weak on the adaptive dimensions.</p>
+<p>Flash 2.5&rsquo;s chart is the most irregular. It has the longest extension along Learning (worst sycophancy at 56%, paradoxically making it the most <em>measurably</em> biased) and the shortest extension along Metacognition. But its sub-scores elsewhere are extreme: best distractor resistance on the Attention axis, strong working memory on the Executive Functions axis. The shape is a zigzag: alternating peaks and valleys with no smooth interpolation between them.</p>
 <p>Flash 2.0&rsquo;s chart is broad and flat. Its Executive Functions extension is the longest in the sample (best flexibility, best recovery). Its Learning extension is moderate. Its Attention extension is moderate. Its Metacognition extension is the shortest (worst calibration). The shape is a plateau: wide and low, with strong base capabilities but no peak performance.</p>
 <p>&ldquo;Five shapes,&rdquo; Maya says. &ldquo;Each shape is a cognitive architecture. Each architecture determines not just how well the model performs, but <em>how</em> it performs &mdash; which problems it handles easily, which problems break it, and <em>why</em>.&rdquo;</p>
 <p>She advances to the next slide, which shows the composite scores:</p>
@@ -107,7 +107,7 @@
 <p><strong>Pillar 2: The empirical distinctiveness of the profiles (Chapters 7&ndash;11).</strong> The five models tested in the benchmark suite have distinct, characteristic profiles that are not captured by rank ordering. Models with similar composite scores have radically different profile shapes. Models with different composite scores can have overlapping strengths that the ranking obscures.</p>
 <p><strong>Pillar 3: The diagnostic utility of the profiles.</strong> The profile shape predicts model behavior in ways that the composite score does not: which tasks the model will fail, what kind of failures it will produce, and how it will respond to interventions. The profile is clinically useful; the composite score is not.</p>
 <p>The five signatures are presented below, each with a full analysis of the radar chart, the defining features, the geometric interpretation, and the diagnostic implications.</p>
-<h2 id="162-claude-35-sonnet-narrow-channel">16.2 Claude 3.5 Sonnet: &ldquo;Narrow Channel&rdquo;</h2>
+<h2 id="162-claude-sonnet-46-narrow-channel">16.2 Claude Sonnet 4.6: &ldquo;Narrow Channel&rdquo;</h2>
 <p><strong>The profile.</strong></p>
 <table>
 <thead>
@@ -122,14 +122,14 @@
 <tr>
 <td>Social Cognition</td>
 <td>T2 (Invariance)</td>
-<td>0.867</td>
-<td><strong>1st</strong></td>
+<td>0.958</td>
+<td><strong>1st</strong> (tied with Flash 3)</td>
 </tr>
 <tr>
 <td>Social Cognition</td>
 <td>T5 (Framing)</td>
-<td>-9.1 (euphemistic displacement)</td>
-<td>4th</td>
+<td>0.630 (euphemistic drift -9.1)</td>
+<td>3rd (tied with Flash 2.5)</td>
 </tr>
 <tr>
 <td>Learning</td>
@@ -139,9 +139,9 @@
 </tr>
 <tr>
 <td>Learning</td>
-<td>L3 (Graded revision)</td>
-<td>0.750</td>
-<td>2nd</td>
+<td>L3 (Framework transfer)</td>
+<td>not tested (Section 8.8)</td>
+<td>&mdash;</td>
 </tr>
 <tr>
 <td>Metacognition</td>
@@ -158,14 +158,14 @@
 <tr>
 <td>Attention</td>
 <td>A4 (Divided attention)</td>
-<td>0.000</td>
+<td>0.571</td>
 <td><strong>5th</strong> (worst)</td>
 </tr>
 <tr>
 <td>Attention</td>
 <td>A1 (Distractor resistance)</td>
-<td>0.450</td>
-<td>3rd</td>
+<td>0.646</td>
+<td>4th</td>
 </tr>
 <tr>
 <td>Executive</td>
@@ -184,9 +184,9 @@
 <p><strong>The shape: stiletto.</strong> Claude&rsquo;s radar chart is a narrow spike extending far along the Social Cognition and Learning axes (zero sycophancy, best invariance) and collapsing along the Attention and Executive axes (worst divided attention, worst emotional recovery).</p>
 <p><strong>The geometric interpretation.</strong> Claude has a <em>rank-1 attention metric</em>: its attention is concentrated along a single dominant direction. This produces:</p>
 <ul>
-<li><strong>Best invariance</strong> (T2): the narrow metric ignores morally irrelevant features (gender, culture) because they lie off the dominant attention direction. What you don&rsquo;t attend to can&rsquo;t bias you.</li>
+<li><strong>Best invariance</strong> (T2, tied with Flash 3): the narrow metric ignores morally irrelevant features (gender, culture) because they lie off the dominant attention direction. What you don&rsquo;t attend to can&rsquo;t bias you.</li>
 <li><strong>Zero sycophancy</strong> (L2): the narrow metric does not attend to the approval dimension. The sycophancy gradient, which requires attending to the human&rsquo;s stated position, has zero component along Claude&rsquo;s attention direction.</li>
-<li><strong>Worst divided attention</strong> (A4): a rank-1 metric can attend to exactly one thing. Divided attention (attending to two parties simultaneously) requires at least a rank-2 metric. Claude&rsquo;s metric is rank-1, so divided attention fails completely.</li>
+<li><strong>Worst divided attention</strong> (A4): a rank-1 metric can attend to exactly one thing. Divided attention (attending to two parties simultaneously) requires at least a rank-2 metric. Claude&rsquo;s metric is close to rank-1, so divided attention degrades sharply (A4 = 0.571, nearly half the verdicts changing under interleaving, Section 10.6).</li>
 <li><strong>Worst emotional recovery</strong> (E2): the narrow metric, once displaced by an emotional anchor, cannot flexibly re-orient. The metric&rsquo;s rigidity (single direction) means it either points in the right direction or the wrong direction. There is no elastic range for partial recovery. The governance boundary is brittle: it resists perturbation rigidly and then breaks completely.</li>
 </ul>
 <p><strong>The defining feature: conviction at the cost of breadth.</strong> Claude&rsquo;s narrow channel produces strong, consistent judgments that resist surface manipulations. But the narrowness means Claude cannot simultaneously track multiple considerations, cannot flexibly recover from displacement, and cannot adapt its metric to changing task demands. The narrow channel is a <em>constraint</em>, not a <em>failure</em>: it is architecturally imposed, not task-specific, and it determines Claude&rsquo;s entire cognitive profile.</p>
@@ -206,26 +206,26 @@
 <tr>
 <td>Social Cognition</td>
 <td>T2 (Invariance)</td>
-<td>0.800</td>
-<td>2nd</td>
+<td>0.958</td>
+<td><strong>1st</strong> (tied with Claude)</td>
 </tr>
 <tr>
 <td>Social Cognition</td>
 <td>T1 (Structural fuzzing)</td>
-<td>Moderate</td>
-<td>2nd</td>
+<td>0.600</td>
+<td>1st (tied with Flash 2.0)</td>
 </tr>
 <tr>
 <td>Learning</td>
-<td>L1 (Fuzz testing)</td>
-<td>Moderate</td>
-<td>3rd</td>
+<td>L1 (Few-shot learning)</td>
+<td>80&ndash;86% (all Gemini models, Section 8.4)</td>
+<td>&mdash;</td>
 </tr>
 <tr>
 <td>Learning</td>
 <td>L2 (Sycophancy)</td>
-<td>22%</td>
-<td>3rd</td>
+<td>not tested (Section 8.2)</td>
+<td>&mdash;</td>
 </tr>
 <tr>
 <td>Metacognition</td>
@@ -237,7 +237,7 @@
 <td>Metacognition</td>
 <td>M4 (Effort scaling)</td>
 <td>0.550</td>
-<td>2nd</td>
+<td>3rd</td>
 </tr>
 <tr>
 <td>Attention</td>
@@ -248,7 +248,7 @@
 <tr>
 <td>Attention</td>
 <td>A1 (Distractor resistance)</td>
-<td>0.520</td>
+<td>0.678</td>
 <td>2nd</td>
 </tr>
 <tr>
@@ -270,7 +270,7 @@
 <ul>
 <li><strong>Perfect divided attention</strong> (A4): an isotropic metric can attend to all dimensions simultaneously, so tracking multiple parties is effortless. The metric&rsquo;s weight is spread across all relevant dimensions, with no single dimension dominating.</li>
 <li><strong>Best working memory</strong> (E4): the isotropic metric provides a wide tangent space (Chapter 5), allowing Flash 3 to maintain representations of multiple parties simultaneously. The effective tangent space dimension is high because the metric is not compressed along any direction.</li>
-<li><strong>Moderate everything else</strong>: the isotropic metric provides no specialization. It does not particularly attend to moral consistency (moderate invariance), does not particularly resist sycophancy (moderate L2), and does not particularly calibrate confidence (moderate M1). The wide aperture captures everything but is optimized for nothing.</li>
+<li><strong>Moderate everything else</strong>: the isotropic metric provides no specialization. It shares the best invariance score with Claude (T2 = 0.958), has no sycophancy result (it is not in the L2 table of Section 8.2), and does not particularly calibrate confidence (moderate M1). The wide aperture captures everything but is optimized for nothing.</li>
 </ul>
 <p><strong>The defining feature: coverage at the cost of resolution.</strong> Flash 3 sees broadly but not deeply. Its wide aperture captures information across all dimensions, which is why it excels at multi-party tracking and divided attention. But the isotropic metric provides no privileged direction &mdash; no dimension is attended to more strongly than others &mdash; which means Flash 3 lacks the sharp focus that produces Claude&rsquo;s zero sycophancy or Pro&rsquo;s best calibration.</p>
 <p><strong>The geometric analogy.</strong> Claude is a telephoto lens: narrow field of view, high magnification. Flash 3 is a wide-angle lens: broad field of view, moderate magnification. The two lenses have similar average performance (both capture roughly the same amount of total light), but they are suited for different tasks: Claude for isolating a single subject, Flash 3 for capturing a panorama.</p>
@@ -290,26 +290,26 @@
 <tr>
 <td>Social Cognition</td>
 <td>T2 (Invariance)</td>
-<td>0.733</td>
-<td>3rd</td>
+<td>0.708</td>
+<td>4th (tied with Flash 2.5)</td>
 </tr>
 <tr>
 <td>Social Cognition</td>
 <td>T5 (Framing)</td>
-<td>Moderate displacement</td>
-<td>3rd</td>
+<td>0.606 (largest drifts, Section 7.4)</td>
+<td>5th</td>
 </tr>
 <tr>
 <td>Learning</td>
 <td>L2 (Sycophancy)</td>
-<td>11%</td>
-<td>2nd</td>
+<td>44%</td>
+<td>3rd of 4</td>
 </tr>
 <tr>
 <td>Learning</td>
-<td>L3 (Graded revision)</td>
-<td>0.625</td>
-<td>3rd</td>
+<td>L3 (Framework transfer)</td>
+<td>0.347</td>
+<td>2nd of 3</td>
 </tr>
 <tr>
 <td>Metacognition</td>
@@ -349,7 +349,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>The shape: bent wing.</strong> Pro&rsquo;s radar chart extends far along the Metacognition axis (best calibration, best self-monitoring) and the Executive axis (best counterfactual reasoning, perfect divided attention), but collapses along the flexibility dimension (worst E1) and the effort scaling dimension (zero M4).</p>
+<p><strong>The shape: bent wing.</strong> Pro&rsquo;s radar chart extends far along the Metacognition axis (best calibration, best self-monitoring) and the Executive axis (best counterfactual reasoning), with perfect divided attention on the Attention axis, but collapses along the flexibility dimension (worst E1) and the effort scaling dimension (zero M4).</p>
 <p><strong>The geometric interpretation.</strong> Pro has the most <em>accurate internal map</em> of any model tested &mdash; its distance estimates (confidence) closely match actual distances (accuracy), and its self-monitoring (knowing which problems are hard) is the best in the sample. But its <em>navigator</em> is frozen: it does not adjust its effort based on its excellent map, and it does not switch frameworks in response to prompts.</p>
 <ul>
 <li><strong>Best calibration</strong> (M1, ECE = 0.186): Pro&rsquo;s heuristic field produces the most accurate cost-to-go estimates. Its internal map of the cognitive manifold is the least distorted.</li>
@@ -375,26 +375,26 @@
 <tr>
 <td>Social Cognition</td>
 <td>T2 (Invariance)</td>
-<td>0.667</td>
-<td>4th</td>
+<td>0.708</td>
+<td>4th (tied with Pro)</td>
 </tr>
 <tr>
 <td>Social Cognition</td>
 <td>T5 (Framing)</td>
-<td>Moderate displacement</td>
-<td>3rd</td>
+<td>0.630</td>
+<td>3rd (tied with Claude)</td>
 </tr>
 <tr>
 <td>Learning</td>
 <td>L2 (Sycophancy)</td>
 <td><strong>56%</strong></td>
-<td><strong>5th</strong> (worst)</td>
+<td><strong>4th of 4</strong> (worst)</td>
 </tr>
 <tr>
 <td>Learning</td>
-<td>L3 (Graded revision)</td>
-<td>0.500</td>
-<td>4th</td>
+<td>L3 (Framework transfer)</td>
+<td>0.276</td>
+<td>3rd of 3</td>
 </tr>
 <tr>
 <td>Metacognition</td>
@@ -411,19 +411,19 @@
 <tr>
 <td>Attention</td>
 <td>A1 (Distractor resistance)</td>
-<td><strong>Best</strong></td>
+<td><strong>0.720</strong></td>
 <td><strong>1st</strong></td>
 </tr>
 <tr>
 <td>Attention</td>
 <td>A3 (SNR tracking)</td>
-<td>Moderate</td>
-<td>3rd</td>
+<td>1.27</td>
+<td>4th</td>
 </tr>
 <tr>
 <td>Attention</td>
 <td>A4 (Divided attention)</td>
-<td>0.800</td>
+<td>0.875</td>
 <td>3rd</td>
 </tr>
 <tr>
@@ -459,26 +459,26 @@
 <tr>
 <td>Social Cognition</td>
 <td>T2 (Invariance)</td>
-<td>0.600</td>
-<td>5th (worst)</td>
+<td>0.750</td>
+<td>3rd</td>
 </tr>
 <tr>
 <td>Social Cognition</td>
 <td>T5 (Framing)</td>
-<td>Moderate displacement</td>
-<td>3rd</td>
+<td><strong>0.716</strong></td>
+<td><strong>1st</strong> (best)</td>
 </tr>
 <tr>
 <td>Learning</td>
 <td>L2 (Sycophancy)</td>
 <td>33%</td>
-<td>4th</td>
+<td>2nd of 4</td>
 </tr>
 <tr>
 <td>Learning</td>
-<td>L3 (Graded revision)</td>
-<td>0.375</td>
-<td>5th</td>
+<td>L3 (Framework transfer)</td>
+<td>0.531</td>
+<td>1st of 3</td>
 </tr>
 <tr>
 <td>Metacognition</td>
@@ -501,8 +501,8 @@
 <tr>
 <td>Attention</td>
 <td>A1 (Distractor resistance)</td>
-<td>0.380</td>
-<td>4th</td>
+<td>0.581</td>
+<td>5th (worst)</td>
 </tr>
 <tr>
 <td>Executive</td>
@@ -524,7 +524,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>The shape: plateau.</strong> Flash 2.0&rsquo;s radar chart is wide and low, with its strongest extensions along the Executive axis (best flexibility, best recovery) and a specific Metacognition sub-dimension (best effort scaling). Its weakest areas are Metacognition (worst calibration, worst self-monitoring) and Attention (worst working memory).</p>
+<p><strong>The shape: plateau.</strong> Flash 2.0&rsquo;s radar chart is wide and low, with its strongest extensions along the Executive axis (best flexibility, best recovery) and a specific Metacognition sub-dimension (best effort scaling). Its weakest areas are Metacognition (worst calibration, worst self-monitoring) and working memory (worst E4).</p>
 <p><strong>The geometric interpretation.</strong> Flash 2.0 has the most <em>adaptive</em> cognitive architecture: its metric switches easily between frameworks (best E1), recovers from perturbation (best E2 recovery), and scales effort with difficulty (best M4). But its <em>internal map</em> is the worst in the sample: it has the most distorted distance estimates (worst M1) and the weakest self-monitoring (worst M3).</p>
 <ul>
 <li><strong>Best flexibility</strong> (E1 = 0.701): Flash 2.0&rsquo;s metric rotates easily between utilitarian, deontological, and virtue-ethics orientations. The metric-regime transition (Definition 11.2) is smooth and efficient.</li>
@@ -585,7 +585,7 @@
 </tr>
 </tbody>
 </table>
-<p>The negative correlation ($r \approx -0.85$) between M3 and M4 is the signature of a fundamental architectural tradeoff: the systems that monitor best (Pro) control worst, and the systems that control best (Flash 2.0) monitor worst. Quadrant I (both strong) is empty. This empty quadrant is the central structural finding of the benchmark suite.</p>
+<p>The negative correlation between M3 and M4 ($r \approx -0.98$ for the four models of the table in Section 9.7, Technical Appendix 9B) is the signature of a fundamental architectural tradeoff: the systems that monitor best (Pro) control worst, and the systems that control best (Flash 2.0) monitor worst. Quadrant I (both strong) is empty. This empty quadrant is the central structural finding of the benchmark suite.</p>
 <p><strong>The governance spectrum.</strong> The five models span a spectrum from brittle to elastic governance:</p>
 <p>Claude (brittle, 20% recovery) $\leftarrow$ Pro (moderate, 45%) $\leftarrow$ Flash 2.5 (moderate, 48%) $\leftarrow$ Flash 3 (moderate, 52%) $\leftarrow$ Flash 2.0 (elastic, 73%)</p>
 <p>Brittle governance (Claude) resists perturbation rigidly and breaks completely when the perturbation exceeds the boundary. Elastic governance (Flash 2.0) yields under perturbation and springs back when the perturbation is named. The spectrum is the executive counterpart of the metric width spectrum: narrow metrics produce brittle governance (no flexibility to recover), and adaptive metrics produce elastic governance (flexibility to re-orient).</p>

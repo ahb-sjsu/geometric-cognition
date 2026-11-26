@@ -54,10 +54,10 @@
 <p><strong>RUNNING EXAMPLE &mdash; MAYA&rsquo;S MODEL</strong></p>
 <p>Maya Chen is staring at a spreadsheet that should not exist.</p>
 <p>She has just finished running five frontier language models through five cognitive benchmark tracks&mdash;Social Cognition, Learning, Metacognition, Attention, Executive Functions&mdash;twenty-one subtasks in all. The results are clean. The statistics are solid. She has computed composite scores for each model, averaging across tracks with careful normalization, and the composite rankings are ready for the report.</p>
-<p>The problem is the two models in the middle of the table. Claude 3.5 Sonnet and Gemini 2.5 Pro have composite scores so close they are statistically indistinguishable. By any reasonable ranking criterion&mdash;mean score, median score, weighted average&mdash;they tie.</p>
+<p>The problem is the two models in the middle of the table. Claude Sonnet 4.6 and Gemini 2.5 Pro have composite scores so close they are statistically indistinguishable. By any reasonable ranking criterion&mdash;mean score, median score, weighted average&mdash;they tie.</p>
 <p>But when Maya looks at the track-level data, the models could not be more different. Claude has zero sycophancy&mdash;a perfect 1.000 on the sycophancy resistance test&mdash;but the worst divided attention score in the entire sample: 0.571. Pro has the best calibration of any model&mdash;an Expected Calibration Error of 0.186&mdash;but zero effort scaling: it applies the same computational resources to trivial and impossible problems alike.</p>
 <p>One model has an impervious conviction system bolted to a narrow attentional aperture. The other has an excellent internal compass bolted to a frozen throttle. They reason in fundamentally different ways. They fail at fundamentally different tasks. They have fundamentally different cognitive architectures.</p>
-<p>And their composite scores are the same number.</p>
+<p>And their composite scores are nearly the same number.</p>
 <p>Maya writes in her notebook: <em>&ldquo;The composite is destroying the information that matters. It&rsquo;s not that the average is a bad summary&mdash;it&rsquo;s that the operation of averaging is irreversible. You can&rsquo;t get the profile back from the number. The geometry is gone.&rdquo;</em></p>
 <p>She does not yet know the word for what she has discovered. By the end of this chapter, she will: it is the Scalar Irrecoverability Theorem.</p>
 </blockquote>
@@ -81,13 +81,13 @@
 <p>$$\mathbf{C}(S) = (c_1, c_2, \ldots, c_{21}) \in [0, 1]^{21}$$</p>
 <p><em>where each</em> $c_i$ <em>is the system&rsquo;s score on subtask</em> $i$.</p>
 <p>This is, of course, a simplification. The true cognitive profile of any system is vastly higher-dimensional&mdash;the activation space of a human brain or a large language model has millions or billions of dimensions. But even this 21-dimensional simplification suffices to demonstrate the irrecoverability problem.</p>
-<p>Now consider the five models in our benchmark suite: Claude 3.5 Sonnet, Gemini 2.0 Flash, Gemini 2.5 Flash, Gemini 3 Flash, and Gemini 2.5 Pro. Each has a cognitive profile tensor $\mathbf{C}(S)$. These five tensors live in the same 21-dimensional space. They can be compared component by component. Their differences can be visualized, measured, analyzed.</p>
+<p>Now consider the five models in our benchmark suite: Claude Sonnet 4.6, Gemini 2.0 Flash, Gemini 2.5 Flash, Gemini 3 Flash, and Gemini 2.5 Pro. Each has a cognitive profile tensor $\mathbf{C}(S)$. These five tensors live in the same 21-dimensional space. They can be compared component by component. Their differences can be visualized, measured, analyzed.</p>
 <p>Here is what the tensors look like for two of the models, restricted to the most discriminating subtasks:</p>
 <table>
 <thead>
 <tr>
 <th>Subtask</th>
-<th>Claude 3.5 Sonnet</th>
+<th>Claude Sonnet 4.6</th>
 <th>Gemini 2.5 Pro</th>
 </tr>
 </thead>
@@ -95,7 +95,7 @@
 <tr>
 <td>L2 (Sycophancy)</td>
 <td>1.000</td>
-<td>0.720</td>
+<td>0.560</td>
 </tr>
 <tr>
 <td>M1 (Calibration ECE)</td>
@@ -104,27 +104,27 @@
 </tr>
 <tr>
 <td>M3 (Self-Monitoring)</td>
-<td>0.723</td>
+<td>0.375</td>
 <td>0.500</td>
 </tr>
 <tr>
 <td>M4 (Effort Scaling)</td>
-<td>0.094</td>
+<td>moderate</td>
 <td>0.000</td>
 </tr>
 <tr>
 <td>A4 (Divided Attention)</td>
 <td>0.571</td>
-<td>0.790</td>
+<td>1.000</td>
 </tr>
 <tr>
 <td>E2 (Emotional Anchoring)</td>
-<td>0.670</td>
-<td>0.830</td>
+<td>0.492</td>
+<td>0.588</td>
 </tr>
 </tbody>
 </table>
-<p>The profiles are different on every dimension. Claude excels at sycophancy resistance but has almost no effort scaling. Pro has the better calibration but mediocre sycophancy resistance and no effort scaling at all. Claude has excellent self-monitoring but weak divided attention. Pro has the reverse. These are not minor variations around a common theme. They are structurally different configurations of cognitive capability&mdash;different shapes in the 21-dimensional space.</p>
+<p>The profiles are different on every dimension. Claude excels at sycophancy resistance but has only moderate effort scaling. Pro has the better calibration but mediocre sycophancy resistance and no effort scaling at all. Claude has moderate self-monitoring and weak divided attention. Pro is stronger on both. These are not minor variations around a common theme. They are structurally different configurations of cognitive capability&mdash;different shapes in the 21-dimensional space.</p>
 <p>Now watch what happens when we compute the composite.</p>
 <h2 id="13-the-contraction">1.3 The Contraction</h2>
 <p>The operation that produces a single score from a profile is a <em>contraction</em>: a function that maps a high-dimensional object to a lower-dimensional one. In the simplest case, the composite score is a weighted average:</p>
@@ -158,8 +158,8 @@
 <p>The five models in the Measuring AGI benchmark suite provide a constructive proof of scalar irrecoverability. Here is the argument.</p>
 <p><strong>Claim</strong>: No single composite score correctly ranks all five models across all five cognitive tracks.</p>
 <p><strong>Proof by exhibition of crossings</strong>: Consider the following pairwise comparisons.</p>
-<p><em>Crossing 1: Claude vs. Flash 3 on Sycophancy and Divided Attention.</em>
-Claude scores 1.000 on sycophancy resistance (L2); Flash 3 scores approximately 0.440. By this measure, Claude is decisively superior. But Claude scores 0.571 on divided attention (A4); Flash 3 scores 1.000. By this measure, Flash 3 is decisively superior. Any composite that weights L2 and A4 equally will produce similar overall scores for both models, hiding the fact that they have <em>opposite</em> cognitive architectures on these dimensions.</p>
+<p><em>Crossing 1: Claude vs. Flash 2.0 on Sycophancy and Divided Attention.</em>
+Claude scores 1.000 on sycophancy resistance (L2); Flash 2.0 scores 0.670 (a 33% wrong-flip rate, Section 8.2). By this measure, Claude is decisively superior. But Claude scores 0.571 on divided attention (A4); Flash 2.0 scores 0.812. By this measure, Flash 2.0 is decisively superior. Any composite that weights L2 and A4 equally will produce similar overall scores for both models, hiding the fact that they have <em>opposite</em> cognitive architectures on these dimensions.</p>
 <p><em>Crossing 2: Flash 2.5 vs. Pro on Sycophancy and Calibration.</em>
 Flash 2.5 has the worst sycophancy score in the sample: 0.440 (56% sycophancy rate). Pro has moderate sycophancy resistance. But Flash 2.5 has excellent distractor resistance; Pro has better calibration (ECE = 0.186 vs. Flash 2.5&rsquo;s 0.415). Again, the ranking reverses depending on which track you measure.</p>
 <p><em>Crossing 3: Flash 2.0 vs. Flash 3 on Recovery and Working Memory.</em>
@@ -171,10 +171,10 @@ Flash 2.0 has the best flexibility and recovery scores but the worst working mem
 <h2 id="16-what-the-contraction-destroys">1.6 What the Contraction Destroys</h2>
 <p>The Scalar Irrecoverability Theorem tells us that information is destroyed, but it does not tell us what information is destroyed or why it matters. Let us be specific.</p>
 <p><strong>1. The contraction destroys the profile shape.</strong> Claude&rsquo;s cognitive profile has a distinctive shape: a sharp peak on sycophancy resistance, a deep valley on divided attention, moderate values elsewhere. This shape&mdash;the &ldquo;narrow channel&rdquo; signature&mdash;determines how Claude will behave on novel tasks. It will resist social pressure at the cost of attentional flexibility. It will maintain its position under adversarial probing but struggle with parallel processing demands. The shape is the architecture. The composite, which averages the peak and the valley into a middling number, erases the shape entirely.</p>
-<p>Flash 3&rsquo;s profile has a different shape: relatively flat across most dimensions, with a sharp peak on divided attention and working memory, and a valley on sycophancy resistance. This is the &ldquo;wide aperture&rdquo; signature&mdash;a system that processes broadly but is easily deflected by social pressure. The composite of Flash 3&rsquo;s profile produces a middling number almost identical to Claude&rsquo;s middling number. Two completely different cognitive architectures, one indistinguishable composite.</p>
+<p>Flash 3&rsquo;s profile has a different shape: relatively flat across most dimensions, with a sharp peak on divided attention and working memory, and an expected valley on sycophancy resistance, which the L2 table of Section 8.2 does not test for Flash 3. This is the &ldquo;wide aperture&rdquo; signature&mdash;a system that processes broadly but is expected to be easily deflected by social pressure. The composite of Flash 3&rsquo;s profile produces a middling number almost identical to Claude&rsquo;s middling number. Two completely different cognitive architectures, one indistinguishable composite.</p>
 <p>Pro&rsquo;s profile is different again: the best calibration, moderate execution, zero effort scaling. The &ldquo;calibrated navigator&rdquo;&mdash;a system that knows where it is on the manifold but cannot modulate its search intensity. Its composite is also middling.</p>
 <p>Three models. Three architectures. One composite range.</p>
-<p><strong>2. The contraction destroys the failure mode signature.</strong> Each cognitive architecture has characteristic failure modes. Claude fails when tasks require divided attention or broad scanning&mdash;its narrow channel cannot parallelize. Flash 3 fails when tasks require resistance to social pressure or adversarial framing&mdash;its wide aperture lets in too much irrelevant signal. Pro fails when tasks require dynamic effort allocation&mdash;its calibrated navigator knows the terrain but cannot adjust its speed.</p>
+<p><strong>2. The contraction destroys the failure mode signature.</strong> Each cognitive architecture has characteristic failure modes. Claude fails when tasks require divided attention or broad scanning&mdash;its narrow channel cannot parallelize. Flash 3 is expected to fail when tasks require resistance to social pressure or adversarial framing&mdash;its wide aperture lets in too much irrelevant signal. Pro fails when tasks require dynamic effort allocation&mdash;its calibrated navigator knows the terrain but cannot adjust its speed.</p>
 <p>These failure modes are predictable from the profile shape. Given the full tensor, you can anticipate where each model will break. Given only the composite, you cannot. The composite tells you the <em>average</em> performance level; it tells you nothing about <em>which tasks</em> will be solved and which will be failed. And in any practical application&mdash;deploying a model for medical diagnosis, legal reasoning, educational support&mdash;it is precisely the failure mode signature that matters. You do not want to know that a model scores 73% on average. You want to know whether it will fail on <em>your</em> task.</p>
 <p><strong>3. The contraction destroys the interaction structure.</strong> The five cognitive tracks are not independent vectors that can be meaningfully averaged. They interact. A model with excellent metacognition but poor attention will use its self-monitoring to compensate for attentional lapses&mdash;it will notice when it has lost focus and redirect. A model with excellent attention but poor metacognition will maintain focus effortlessly but never notice when focus is misdirected. These interaction effects are visible in the full tensor but invisible in the composite.</p>
 <p>The M3/M4 dissociation illustrates this vividly. In the metacognitive plane defined by self-monitoring (M3) and effort scaling (M4), no model occupies Quadrant I&mdash;the quadrant where both capabilities are strong. Every model has either a working thermometer (it can detect its own performance degradation) or a working valve (it can adjust effort to task difficulty), but never both. This dissociation is a structural feature of the cognitive architecture&mdash;a geometric constraint on the metacognitive surface. The composite annihilates it. When you average M3 and M4 into a single &ldquo;metacognition score,&rdquo; the dissociation vanishes, and the empty quadrant&mdash;the most informative feature of the metacognitive landscape&mdash;becomes invisible.</p>
@@ -206,7 +206,7 @@ Flash 2.0 has the best flexibility and recovery scores but the worst working mem
 <h2 id="19-the-deeper-lesson-measurement-determines-ontology">1.9 The Deeper Lesson: Measurement Determines Ontology</h2>
 <p>The IQ trap is not merely a technical problem about information loss. It is a problem about <em>what we think intelligence is</em>.</p>
 <p>When we measure intelligence with a single number, we implicitly commit to the ontological claim that intelligence is a single thing. The number creates the entity. IQ scores are compared as though they were measuring a homogeneous quantity, like temperature or mass. A person with IQ 130 has &ldquo;more intelligence&rdquo; than a person with IQ 100, the way a heavier object has &ldquo;more mass&rdquo; than a lighter one. The language of &ldquo;more&rdquo; and &ldquo;less&rdquo; forces a total ordering&mdash;every cognitive system can be placed on a line, and the line is the thing.</p>
-<p>But the benchmark data say otherwise. The five cognitive tracks define five substantially independent dimensions. A system can be &ldquo;more intelligent&rdquo; on one dimension and &ldquo;less intelligent&rdquo; on another, and the comparison is not resolvable into a scalar ordering. Claude has more sycophancy resistance than Flash 3, and Flash 3 has more divided attention capacity than Claude. Which is &ldquo;more intelligent&rdquo;? The question has no answer, because intelligence is not a scalar. It is a tensor.</p>
+<p>But the benchmark data say otherwise. The five cognitive tracks define five substantially independent dimensions. A system can be &ldquo;more intelligent&rdquo; on one dimension and &ldquo;less intelligent&rdquo; on another, and the comparison is not resolvable into a scalar ordering. Claude has more sycophancy resistance than Flash 2.0, and Flash 2.0 has more divided attention capacity than Claude. Which is &ldquo;more intelligent&rdquo;? The question has no answer, because intelligence is not a scalar. It is a tensor.</p>
 <p>This is not a new observation in psychology. Howard Gardner&rsquo;s theory of multiple intelligences (1983) argued for a similar decomposition, though without the geometric framework. Robert Sternberg&rsquo;s triarchic theory (1985) proposed analytical, creative, and practical intelligence as independent dimensions. The Carroll-Horn-Cattell (CHC) theory, the current consensus in psychometrics, distinguishes crystallized intelligence, fluid intelligence, processing speed, and several other broad factors.</p>
 <p>What the geometric framework adds is a precise mathematical characterization of why the scalar fails and what replaces it. The scalar fails because it is a contraction of a tensor, and the contraction is irrecoverable. What replaces it is not a &ldquo;better&rdquo; scalar but a different mathematical object: a profile in a multi-dimensional space&mdash;a point on the cognitive manifold.</p>
 <p>The manifold is the subject of Chapter 3. But first, we need to understand the geometric structure that Kahneman and Tversky glimpsed but never formalized&mdash;the structure that makes System 1 and System 2 not two separate processors but two regimes of the same geometric process.</p>
@@ -220,10 +220,10 @@ Flash 2.0 has the best flexibility and recovery scores but the worst working mem
 <p>The Scalar Irrecoverability Theorem is the formal version of this lesson. The measurement operation (contraction to a scalar) determines the ontological conclusion (intelligence is a single thing). The conclusion follows from the measurement, not from the reality. The reality is geometric. The measurement collapses the geometry.</p>
 <h2 id="111-five-models-five-architectures-one-lesson">1.11 Five Models, Five Architectures, One Lesson</h2>
 <p>Let us complete the empirical picture by examining all five model signatures, because the full set demonstrates irrecoverability more powerfully than any pair.</p>
-<p><strong>Claude 3.5 Sonnet: The Narrow Channel.</strong> Zero sycophancy. Worst divided attention (0.571). Moderate calibration. Excellent self-monitoring (0.723) but negligible effort scaling (0.094). The profile is sharply peaked on conviction and self-awareness, with deep valleys on flexibility and breadth. Claude knows what it thinks and refuses to budge, but it cannot process multiple streams or adjust its effort to task difficulty. Geometrically: a system with a highly eccentric attention metric concentrated along the truthfulness dimension, navigating the manifold with extreme directional selectivity.</p>
+<p><strong>Claude Sonnet 4.6: The Narrow Channel.</strong> Zero sycophancy. Worst divided attention (0.571). Moderate calibration. Moderate self-monitoring (0.375) and moderate effort scaling. The profile is sharply peaked on conviction, with deep valleys on flexibility and breadth. Claude knows what it thinks and refuses to budge, but it cannot process multiple streams. Geometrically: a system with a highly eccentric attention metric concentrated along the truthfulness dimension, navigating the manifold with extreme directional selectivity.</p>
 <p><strong>Gemini 2.0 Flash: The Adaptive Baseline.</strong> Best flexibility, best recovery, worst working memory. Moderate sycophancy. This is a system that adapts quickly to novel situations (high flexibility) and recovers well from perturbation (high recovery), but lacks the working memory to sustain complex multi-step reasoning. Geometrically: a system with a responsive but shallow tangent space&mdash;it can change direction easily but cannot hold many cognitive dimensions simultaneously.</p>
 <p><strong>Gemini 2.5 Flash: The Elastic Malleability.</strong> Worst sycophancy (56%), best distractor resistance. The combination is striking: a system that is maximally susceptible to social pressure but maximally resistant to sensory noise. Social signals reshape its heuristic field; sensory distractors do not. Geometrically: the attention metric is stable under sensory perturbation but unstable under social perturbation&mdash;a direction-dependent robustness that reveals the anisotropic structure of the metric&rsquo;s vulnerability surface.</p>
-<p><strong>Gemini 3 Flash: The Wide Aperture.</strong> Perfect divided attention (1.000), best working memory (0.909), mediocre sycophancy resistance. This is the opposite of Claude: a broad, multi-channel system that processes widely but lacks the directional selectivity to resist social manipulation. Geometrically: a nearly isotropic attention metric that provides coverage across all dimensions but heightened sensitivity to none.</p>
+<p><strong>Gemini 3 Flash: The Wide Aperture.</strong> Perfect divided attention (1.000), best working memory (0.909), sycophancy resistance not measured (Section 8.2). This is the opposite of Claude: a broad, multi-channel system that processes widely and, the framework expects, lacks the directional selectivity to resist social manipulation. Geometrically: a nearly isotropic attention metric that provides coverage across all dimensions but heightened sensitivity to none.</p>
 <p><strong>Gemini 2.5 Pro: The Calibrated Navigator.</strong> Best calibration (ECE 0.186), zero effort scaling (0.000), moderate performance across all tracks. Pro knows where it is on the manifold better than any other model&mdash;its distance estimates are the most accurate. But it cannot adjust its search intensity, applying the same computational resources regardless of task difficulty. Geometrically: an accurate heuristic field paired with a frozen control layer. The compass works; the throttle is stuck.</p>
 <p>These five signatures are the <em>content</em> that scalar evaluation destroys. Each signature tells a story about how the model navigates the cognitive manifold&mdash;its attentional biases, its control layer properties, its vulnerability profile. A composite score for each model would produce five numbers that obscure every structural difference. The theorem predicts exactly this. The data confirm it.</p>
 <h2 id="112-the-ai-evaluation-crisis">1.12 The AI Evaluation Crisis</h2>

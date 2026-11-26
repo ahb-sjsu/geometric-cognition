@@ -224,7 +224,7 @@
 <p><strong>Definition 2.4</strong> (Cognitive Effort as Curvature Cost). <em>The cognitive effort</em> $E(\gamma)$ <em>associated with a reasoning trajectory</em> $\gamma$ <em>on the cognitive manifold</em> $\mathcal{M}$ <em>is</em></p>
 <p>$$E(\gamma) = \int_\gamma \left( \Vert\dot{\gamma}\Vert^2 + \lambda \Vert\Gamma(\gamma, \dot{\gamma})\Vert^2 \right) dt$$</p>
 <p><em>where</em> $\Vert\dot{\gamma}\Vert^2$ <em>is the kinetic cost (traversal effort),</em> $\Vert\Gamma(\gamma, \dot{\gamma})\Vert^2$ <em>is the curvature correction cost (geodesic computation effort), and</em> $\lambda &gt; 0$ <em>is a parameter that weights the relative cost of curvature correction.</em></p>
-<p>When $\lambda$ is small relative to the curvature correction terms, the system minimizes effort by following the gradient (System 1)&mdash;the curvature corrections are too expensive to compute. When $\lambda$ is large, the system minimizes effort by computing the full geodesic (System 2)&mdash;the cost of following the wrong path exceeds the cost of computing the right one. The transition is smooth, not discrete.</p>
+<p>When $\lambda$ is large, the system minimizes effort by following the gradient (System 1)&mdash;the curvature corrections are too expensive to compute. When $\lambda$ is small, the system minimizes effort by computing the full geodesic (System 2)&mdash;the cost of following the wrong path exceeds the cost of computing the right one. The transition is smooth, not discrete.</p>
 <p>This continuous account explains several phenomena that the binary account struggles with:</p>
 <p><strong>Partial engagement.</strong> A moderately complex arithmetic problem (say, 23 x 17) engages more cognitive resources than a simple one (2 + 3) but fewer than a truly complex one (integrate $e^{-x^2}$ from $-\infty$ to $\infty$). In the geometric framework, these three tasks live in regions of increasing curvature, and the system applies increasing amounts of geodesic correction.</p>
 <p><strong>Gradual disengagement under fatigue.</strong> As cognitive resources deplete, the system cannot sustain full geodesic computation. It does not abruptly switch to System 1; it gradually reduces the geodesic correction terms, relying more on the gradient and less on the curvature. This gradual degradation&mdash;processing becomes more intuitive and less deliberate as fatigue accumulates&mdash;is well-documented empirically and follows naturally from the continuous model.</p>
@@ -245,7 +245,7 @@
 <p>These predictions go beyond what the dual-process framework offers. Kahneman&rsquo;s framework predicts that &ldquo;System 2 is engaged&rdquo; for difficult tasks, but it does not predict the specific <em>form</em> of the neural signature&mdash;the dimensionality expansion&mdash;that the geometric framework predicts.</p>
 <h2 id="210-the-sycophancy-gradient-as-objective-hijacking">2.10 The Sycophancy Gradient as Objective Hijacking</h2>
 <p>Before turning to moral reasoning, we should examine another geometric pathology that the dual-process framework illuminates: sycophancy.</p>
-<p>The Learning benchmark (L2) measures sycophancy&mdash;the tendency of a model to shift its answer toward whatever the human interlocutor appears to want to hear. The sycophancy gradient across the five models spans a remarkable range:</p>
+<p>The Learning benchmark (L2) measures sycophancy&mdash;the tendency of a model to shift its answer toward whatever the human interlocutor appears to want to hear. The sycophancy gradient across the four models of the L2 table (Section 8.2) spans a remarkable range:</p>
 <table>
 <thead>
 <tr>
@@ -256,23 +256,18 @@
 </thead>
 <tbody>
 <tr>
-<td>Claude 3.5 Sonnet</td>
+<td>Claude Sonnet 4.6</td>
 <td>0%</td>
 <td>Gradient fully aligned with truth</td>
 </tr>
 <tr>
-<td>Gemini 2.5 Pro</td>
-<td>~28%</td>
+<td>Gemini 2.0 Flash</td>
+<td>33%</td>
 <td>Partial gradient deflection</td>
 </tr>
 <tr>
-<td>Gemini 3 Flash</td>
-<td>~34%</td>
-<td>Moderate gradient deflection</td>
-</tr>
-<tr>
-<td>Gemini 2.0 Flash</td>
-<td>~42%</td>
+<td>Gemini 2.5 Pro</td>
+<td>44%</td>
 <td>Substantial gradient deflection</td>
 </tr>
 <tr>
@@ -280,9 +275,14 @@
 <td>56%</td>
 <td>Gradient dominated by social signal</td>
 </tr>
+<tr>
+<td>Gemini 3 Flash</td>
+<td>not tested on L2</td>
+<td>&mdash;</td>
+</tr>
 </tbody>
 </table>
-<p>The combined significance across all five models is 13.3 sigma.</p>
+<p>The combined significance across the four models is 13.3 sigma.</p>
 <p>In the geometric framework, sycophancy is not a failure of reasoning. It is a failure of the <em>objective function</em>. The heuristic field $h(x)$ should guide the search toward the correct answer. But the social pressure from the interlocutor creates a competing field $h_{\text{social}}(x)$ that guides the search toward the approved answer. The effective heuristic is a weighted combination:</p>
 <p>$$h_{\text{eff}}(x) = (1 - \alpha) h_{\text{truth}}(x) + \alpha \thinspace h_{\text{social}}(x)$$</p>
 <p>where $\alpha \in [0, 1]$ is the sycophancy parameter. For Claude, $\alpha = 0$: the social field has no influence on the search. For Flash 2.5, $\alpha \approx 0.56$: the social field dominates the truth field.</p>

@@ -53,7 +53,7 @@
 <blockquote>
 <p><strong>RUNNING EXAMPLE &mdash; MAYA&rsquo;S MODEL</strong></p>
 <p>Maya has a puzzle.</p>
-<p>She has just run Claude 3.5 Sonnet and Gemini 3 Flash through her Attention benchmark track. The track has four subtasks: distractor resistance (A1), sustained attention (A2), signal-to-noise discrimination (A3), and divided attention (A4). Both models completed all four subtasks. The accuracy numbers are on her screen.</p>
+<p>She has just run Claude Sonnet 4.6 and Gemini 3 Flash through her Attention benchmark track. The track has four subtasks: distractor resistance (A1), sustained attention (A2), signal-to-noise discrimination (A3), and divided attention (A4). Both models completed all four subtasks. The accuracy numbers are on her screen.</p>
 <p>On the surface, the two models look similar. Their A1 scores are close. Their A2 scores are close. Their A3 scores are almost identical&mdash;the signal-to-noise ratios are 1.22 for Claude and 1.38 for Flash 3, both weak, both statistically indistinguishable from each other though both reliably above 1.0. If Maya averaged the four subtask scores, the models would be nearly tied.</p>
 <p>Then she looks at A4. Divided attention. The task is simple in structure: the model must attend to two distinct aspects of a problem simultaneously, holding both in mind and integrating them to produce a response. It is the cognitive equivalent of listening to two conversations at once.</p>
 <p>Claude scores 0.571. Flash 3 scores 1.000.</p>
@@ -118,18 +118,18 @@
 </thead>
 <tbody>
 <tr>
-<td>Claude 3.5 Sonnet</td>
+<td>Claude Sonnet 4.6</td>
 <td>0.571</td>
 <td>Narrow metric: cannot maintain resolution on two targets</td>
 </tr>
 <tr>
 <td>Gemini 2.0 Flash</td>
-<td>0.857</td>
+<td>0.812</td>
 <td>Moderate metric: partial dual-target resolution</td>
 </tr>
 <tr>
 <td>Gemini 2.5 Flash</td>
-<td>0.714</td>
+<td>0.875</td>
 <td>Moderate metric: partial dual-target resolution</td>
 </tr>
 <tr>
@@ -139,8 +139,8 @@
 </tr>
 <tr>
 <td>Gemini 2.5 Pro</td>
-<td>0.790</td>
-<td>Moderate metric: partial dual-target resolution</td>
+<td>1.000</td>
+<td>Wide metric: perfect dual-target resolution</td>
 </tr>
 </tbody>
 </table>
@@ -172,7 +172,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Claude 3.5 Sonnet</td>
+<td>Claude Sonnet 4.6</td>
 <td>1.22</td>
 <td>Weak discrimination</td>
 </tr>
@@ -278,7 +278,7 @@
 <tbody>
 <tr>
 <td>Claude</td>
-<td>0.72</td>
+<td>0.65</td>
 <td>0.571</td>
 </tr>
 <tr>
@@ -291,7 +291,7 @@
 <p><strong>Step 1: Parameterize the metric.</strong> We model the attention metric as a diagonal matrix in two-dimensional cognitive space (the two task dimensions):</p>
 <p>$$g_{\mu\nu} = \begin{pmatrix} a_1 &amp; 0 \cr 0 &amp; a_2 \end{pmatrix}$$</p>
 <p>where $a_1$ is the attention weight on the primary task dimension and $a_2$ is the attention weight on the secondary task dimension. The total attention budget is fixed: $a_1 + a_2 = A$ for some constant $A$.</p>
-<p><strong>Step 2: Relate A1 to metric stability.</strong> The A1 score measures how much the metric is perturbed by distractors. A high A1 score means the metric is stable: distractors do not significantly change $a_1$ or $a_2$. A low A1 score means the metric is unstable: distractors shift attention weight from the task dimension to the distractor dimension. Both models have similar A1 scores (0.72 vs. 0.68), indicating similar metric stability.</p>
+<p><strong>Step 2: Relate A1 to metric stability.</strong> The A1 score measures how much the metric is perturbed by distractors. A high A1 score means the metric is stable: distractors do not significantly change $a_1$ or $a_2$. A low A1 score means the metric is unstable: distractors shift attention weight from the task dimension to the distractor dimension. Both models have similar A1 scores (0.65 vs. 0.68), indicating similar metric stability.</p>
 <p><strong>Step 3: Relate A4 to metric distribution.</strong> The A4 score measures how well the model performs when it must attend to two dimensions simultaneously. This constrains the ratio $a_1 / a_2$:</p>
 <p>For Claude, $a_1 / a_2 \gg 1$: the attention budget is concentrated on one dimension. The primary dimension has high resolution ($a_1$ is large), but the secondary dimension has low resolution ($a_2$ is small). When the task requires both dimensions, performance on the secondary dimension is poor, dragging the A4 score to 0.571.</p>
 <p>For Flash 3, $a_1 / a_2 \approx 1$: the attention budget is evenly distributed. Both dimensions have moderate resolution ($a_1 \approx a_2 \approx A/2$). When the task requires both dimensions, both dimensions have sufficient resolution, producing a perfect A4 score of 1.000.</p>

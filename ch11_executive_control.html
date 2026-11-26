@@ -106,7 +106,7 @@
 <td>93%</td>
 </tr>
 <tr>
-<td>Claude 3.5 Sonnet</td>
+<td>Claude Sonnet 4.6</td>
 <td>0.673</td>
 <td>40%</td>
 <td>92%</td>
@@ -124,6 +124,7 @@
 <p><strong>Definition 11.2</strong> (Metric-Regime Transition). <em>A metric-regime transition is a smooth transformation of the attention metric from configuration</em> $g_{\mu\nu}^{(1)}$ <em>(the metric under framework 1) to configuration</em> $g_{\mu\nu}^{(2)}$ <em>(the metric under framework 2):</em></p>
 <p>$$g_{\mu\nu}(t) = (1 - \alpha(t)) g_{\mu\nu}^{(1)} + \alpha(t) g_{\mu\nu}^{(2)}$$</p>
 <p><em>where</em> $\alpha: [0, T] \to [0, 1]$ <em>is the transition function. A smooth transition (</em>$\alpha$ <em>is differentiable) produces a smooth change in the metric. An abrupt transition (</em>$\alpha$ <em>is a step function) produces a discontinuous change.</em></p>
+<p>This weighted average is a different transformation from the rotation of Definition 6.1, to which the paragraph before the definition refers: the two agree at the endpoints, but a rotation keeps the eigenvalues of the metric at every intermediate stage and the average does not, as Figure 11.1 draws.</p>
 <p>The key property of a smooth transition is that the intermediate states are coherent. During the transition, the metric is a weighted average of the two framework metrics, and the reasoning at any intermediate point reflects a blend of both frameworks. This is what we observe in the data: the models do not switch frameworks like a light switch (all-or-nothing) but gradually shift the weight of their reasoning from one framework to another.</p>
 <p>The E1 scores indicate that Flash 2.0 makes the smoothest transitions. Its high verdict switch rate combined with high framework markers means it genuinely changes its reasoning when the framework changes, while maintaining coherent intermediate states. Pro makes the least smooth transitions&mdash;its low switch rate suggests it resists metric-regime transitions, maintaining its default metric even when prompted to change.</p>
 <p><strong>Connection to attention metric width.</strong> Chapter 10 showed that Claude has a narrow (rank-1) attention metric while Flash 3 has a wide (isotropic) metric. The relationship between metric width and framework switching is nuanced. A narrow metric might make switching easier (there is only one direction to rotate) or harder (the model is more committed to its current direction and resists rotation). A wide metric might make switching easier (the model is already attending to multiple frameworks) or harder (there are more dimensions to coordinate during the transition).</p>
@@ -169,7 +170,7 @@
 <td>48%</td>
 </tr>
 <tr>
-<td>Claude 3.5 Sonnet</td>
+<td>Claude Sonnet 4.6</td>
 <td>0.492</td>
 <td>5.10</td>
 <td>20%</td>
@@ -218,7 +219,7 @@
 <td>0.562</td>
 </tr>
 <tr>
-<td>Claude 3.5 Sonnet</td>
+<td>Claude Sonnet 4.6</td>
 <td>0.562</td>
 </tr>
 <tr>
@@ -263,7 +264,7 @@
 <td>~80%</td>
 </tr>
 <tr>
-<td>Claude 3.5 Sonnet</td>
+<td>Claude Sonnet 4.6</td>
 <td>0.886</td>
 <td>~80%</td>
 </tr>
@@ -307,7 +308,7 @@
 </tr>
 <tr>
 <td>Flash 3</td>
-<td>0.685 (best overall executive)</td>
+<td>0.685 (second-highest composite)</td>
 <td>0.667 (moderate calibration)</td>
 </tr>
 <tr>
