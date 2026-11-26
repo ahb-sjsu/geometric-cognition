@@ -51,6 +51,8 @@ SERIES_TAGLINE = "The geometry was always real. The scalars were always insuffic
 #   source_dirs   directories (relative to repo root) searched for `glob`
 #   glob          filename glob within each source dir
 #   exclude       optional list of filename patterns to skip (fnmatch)
+#   contents_note optional markdown shown under the contents list, e.g. to say which
+#                 chapters the online edition holds back
 #   parts         optional list of (part_title, [file-stem, ...]) groups for the
 #                 contents page. Stems not listed in any part fall into a final
 #                 "Appendices" group if they start with "appendix", otherwise
@@ -105,8 +107,10 @@ signal ($\\rho \\approx 0.70$ on Hellinger and Mahalanobis features across six
 language families) and a **cross-modality sign flip**: the same geometric
 feature that rewards continuity in books ($\\rho{=}{+}0.126$, $8.4\\sigma$)
 punishes it in music ($\\rho{=}{-}0.076$, $p{=}5\\times10^{-33}$). Books reward
-coherence; music rewards contrast. The aesthetic geometry has directionality
-that is modality-specific, and that directionality is measurable.
+coherence; music rewards contrast. The aesthetic geometry may have directionality
+that is modality-specific; whether the flip belongs to the works or to the encoders
+has not been ruled out (Chapter 12), and the book-length theory around these
+results is posited.
 """
 
 BOOK_CONFIGS: dict[str, dict] = {
@@ -141,36 +145,46 @@ BOOK_CONFIGS: dict[str, dict] = {
     "geometric-reasoning": {
         "number": 3, "title": "Geometric Reasoning",
         "subtitle": "From Search to Manifolds",
-        "source_dirs": ["chapters"], "glob": "*.md",
+        "source_dirs": ["chapters", "appendices"], "glob": "*.md",
     },
     "geometric-economics": {
         "number": 4, "title": "Geometric Economics",
         "subtitle": "Decision Manifolds, Equilibria, and the Geometry of Markets",
-        "source_dirs": ["chapters"], "glob": "*.md",
+        "source_dirs": ["chapters", "appendices"], "glob": "*.md",
     },
     "geometric-law": {
         "number": 5, "title": "Geometric Law",
         "subtitle": "Symmetry, Invariance, and the Structure of Legal Reasoning",
-        "source_dirs": ["chapters"], "glob": "*.md",
+        "source_dirs": ["chapters", "appendices"], "glob": "*.md",
     },
     "geometric-cognition": {
         "number": 6, "title": "Geometric Cognition",
         "subtitle": "The Mathematical Structure of Human and Artificial Thought",
-        "source_dirs": ["chapters"], "glob": "*.md",
+        "source_dirs": ["chapters", "appendices"], "glob": "*.md",
     },
     "geometric-communication": {
         "number": 7, "title": "Geometric Communication",
         "subtitle": "Language, Signal, and the Topology of Meaning",
         "source_dirs": ["manuscript/part_i", "manuscript/part_ii",
                         "manuscript/part_iii", "manuscript/part_iv",
-                        "manuscript/part_v", "manuscript/appendices"],
+                        "manuscript/part_v", "manuscript/part_vi",
+                        "manuscript/part_vii", "manuscript/appendices"],
         "glob": "*.md",
+        # Parts VI and VII went online on 2026-11-26 after a review. Chapter 17 is held back:
+        # the proof of Proposition 17.1 does not give its stated bound and two of its figures
+        # are unsourced (CORRECTIONS-2026-11-26.md, "Unresolved").
+        "exclude": ["ch17_*.md"],
+        "contents_note": ("Chapter 17, *What Communication Teaches the General Theory*, is not yet "
+                          "in the online edition: the proof of its Proposition 17.1(i) has a gap that "
+                          "the volume's corrections record lists as open. Other chapters refer to it "
+                          "as part of the book."),
     },
     "geometric-medicine": {
         "number": 8, "title": "Geometric Medicine",
         "subtitle": "Clinical Reasoning, Triage, and the Ethics of Allocation",
         "source_dirs": ["manuscript/part_i", "manuscript/part_ii",
                         "manuscript/part_iii", "manuscript/part_iv",
+                        "manuscript/part_v", "manuscript/part_vi",
                         "manuscript/appendices"],
         "glob": "*.md",
     },
@@ -181,21 +195,27 @@ BOOK_CONFIGS: dict[str, dict] = {
                         "manuscript/part_iii", "manuscript/part_iv",
                         "manuscript/part_v", "manuscript/appendices"],
         "glob": "*.md",
-        # Parts IV and V went online on 2026-11-26 after a review. Chapter 14 is held back:
-        # its point estimates are unsourced and its compound total contradicts its own table
-        # (CORRECTIONS-2026-11-26.md in the volume, "Unresolved").
-        "exclude": ["ch14_*.md"],
     },
     "geometric-politics": {
         "number": 10, "title": "Geometric Politics",
         "subtitle": "Representation, Polarization, and the Topology of Democratic Choice",
         "source_dirs": ["manuscript/part_i", "manuscript/part_ii",
-                        "manuscript/part_iii", "manuscript/appendices"],
+                        "manuscript/part_iii", "manuscript/part_iv",
+                        "manuscript/part_v", "manuscript/appendices"],
         "glob": "*.md",
+        # Parts IV and V went online on 2026-11-26 after a review. Chapters 13 and 15 are
+        # held back: their election shares and Bond Index values contradict each other and
+        # could not be settled (CORRECTIONS-2026-11-26.md, "Unresolved").
+        "exclude": ["ch13_*.md", "ch15_*.md"],
+        "contents_note": ("Chapter 13, *Ranked Choice as Dimensional Recovery*, and Chapter 15, *The "
+                          "Political Bond Index*, are not yet in the online edition: some of their "
+                          "figures disagree with each other and with Chapter 5, and the volume's "
+                          "corrections record lists them as open. Other chapters refer to them as "
+                          "part of the book."),
     },
     "geometric-ai": {
         "number": 11, "title": "Geometric AI",
-        "subtitle": "Alignment, Safety, and the Structure-Preserving Path to Superintelligence",
+        "subtitle": "Alignment, Safety, and the Manifold Structure of Machine Values",
         "source_dirs": ["manuscript", "manuscript/part_i", "manuscript/part_ii",
                         "manuscript/part_iii", "manuscript/part_iv", "manuscript/part_v",
                         "manuscript/part_vi", "manuscript/appendices", "manuscript/backmatter"],
@@ -203,7 +223,7 @@ BOOK_CONFIGS: dict[str, dict] = {
     },
     "geometric-gastronomy": {
         "number": 12, "title": "Geometric Gastronomy",
-        "subtitle": "The Mathematical Structure of Flavor, Pairing, and Culinary Harmony",
+        "subtitle": "The Mathematical Structure of Flavor, Pairing, Cooking, and Culinary Navigation",
         "source_dirs": ["chapters"], "glob": "*.md",
     },
     "geometric-observation": {
@@ -287,6 +307,10 @@ def check_manifest(config: dict, manifest_path: Path) -> list[str]:
         problems.append(f"number mismatch: build={config['number']} manifest={vol.get('number')}")
     if vol.get("title") != config["title"]:
         problems.append(f"title mismatch: build='{config['title']}' manifest='{vol.get('title')}'")
+    # The subtitle is printed on every page of the volume (build.py) and on the portal's cards
+    # (books.json). Before 2026-11-26 it was not compared, and five volumes drifted apart.
+    if vol.get("subtitle") != config["subtitle"]:
+        problems.append(f"subtitle mismatch: build='{config['subtitle']}' manifest='{vol.get('subtitle')}'")
     return problems
 
 
@@ -324,9 +348,17 @@ def protect_math(text: str) -> tuple[str, dict[str, str]]:
         # blank line. Before 2026-11-25 the body was `.+?`, which stops at a newline: a wrapped
         # formula was left unprotected, Markdown ate its underscores, and every `$` after it
         # in the paragraph paired with the wrong partner.
-        seg = re.sub(r'(?<![\$\\])\$(?!\$)(?!\s)((?:[^\n]|\n(?![ \t]*\n))+?)(?<![\s\\])\$(?!\$)', _replace, seg)
+        # The body may not contain a dollar sign (an escaped one is already a token): without
+        # that rule (before 2026-11-26) "$17 to $45 ... $x_1$" was taken as one formula
+        # running from the first currency sign to the end of the real one.
+        seg = re.sub(r'(?<![\$\\])\$(?!\$)(?!\s)((?:[^\n$]|\n(?![ \t]*\n))+?)(?<![\s\\])\$(?!\$)', _replace, seg)
         seg = re.sub(r'\\\[(.+?)\\\]', _replace, seg, flags=re.DOTALL)
         seg = re.sub(r'\\\((.+?)\\\)', _replace, seg)
+        # A dollar sign still in the text and followed by a digit is unescaped currency
+        # ("$17 to $45"). Left as it was (before 2026-11-26), KaTeX's auto-render in the browser
+        # paired it with the next one and set "17 to " as a formula. Every formula has been
+        # protected above, so what remains here is not math.
+        seg = re.sub(r'(?<![\\$])\$(?=\d)', CURRENCY_TOKEN, seg)
         return seg
 
     parts = re.split(r'(^```.*?^```[ \t]*$|^~~~.*?^~~~[ \t]*$)', text, flags=re.DOTALL | re.MULTILINE)
@@ -364,10 +396,26 @@ def _make_converter() -> "markdown.Markdown":
     )
 
 
+def drop_orphan_backrefs(body: str) -> str:
+    """Remove the back-link of a footnote that the text never cites.
+
+    The footnotes extension prints every defined footnote with a link back to its marker;
+    when the text has no marker for it, that link points at nothing. The footnote itself
+    is kept: where its marker belongs is the author's decision.
+    """
+    present = set(re.findall(r'id="(fnref\d*:[^"]+)"', body))
+    return re.sub(
+        r'&#160;<a class="footnote-backref" href="#(fnref\d*:[^"]+)"[^>]*>.*?</a>',
+        lambda m: m.group(0) if m.group(1) in present else "",
+        body,
+        flags=re.S,
+    )
+
+
 def md_to_html(md_text: str) -> str:
     protected, placeholders = protect_math(md_text)
     body = _make_converter().convert(protected)
-    return restore_math(body, placeholders)
+    return drop_orphan_backrefs(restore_math(body, placeholders))
 
 
 def output_name(md_path: Path, config: dict) -> str:
@@ -489,6 +537,12 @@ def generate_index(chapters: list[tuple[str, str, str]], template: str,
             body.append('  <ol class="toc-chapters">\n' + "\n".join(items) + '\n  </ol>\n</div>')
         else:
             body.append('<ol class="toc-chapters">\n' + "\n".join(items) + '\n</ol>')
+    if config.get("contents_note"):
+        # Chapters the author's text refers to but the online edition holds back (see the
+        # volume's `exclude`): say so where a reader looking for them will look.
+        body.append('<div class="book-abstract contents-note">')
+        body.append(md_to_html(config["contents_note"].strip()))
+        body.append('</div>')
     return _fill(template, title="Contents", body="\n".join(body), config=config,
                  build_date=build_date, chapter_id="index", nav_top="", nav_bottom="")
 
