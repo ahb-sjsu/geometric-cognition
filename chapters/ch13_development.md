@@ -224,6 +224,10 @@ The four stages are clearly visible:
 The two transitions --- metric stabilization at age 7 and operation closure at age 11 --- are the sharpest features of the illustrative data, as the topological-transition model predicts. They are not gradual improvements; they are rapid, qualitative shifts that change the character of Lena's reasoning within a span of months.
 
 
+![Figure 13.2](figures/ch13_fig2.svg)
+
+*Figure 13.2. The illustrative longitudinal data of Section 13.8, constructed for the hypothetical case of Maya Chen's running example to show the pattern the model predicts; they are not measurements. The upper panel is the estimated dimensionality of the cognitive manifold against age in years, with the range 18 to 20 at age 12 drawn as a bar. The lower panel is the fraction of tasks passed on metric consistency, path connectivity and operation closure, each drawn only at the ages where the table gives a count. The dashed lines mark the two transitions the section names, metric stabilization between ages 6 and 7 and operation closure between ages 10 and 11.*
+
 ## 13.9 The Development of the Curvature Threshold
 
 Chapter 12 introduced the curvature threshold $\kappa^{\ast}$ as the parameter that governs the dual-process transition: when the local curvature exceeds $\kappa^{\ast}$, the cognitive system transitions from gradient following (System 1) to geodesic computation (System 2). The development of $\kappa^{\ast}$ across childhood is itself a developmental story.

@@ -174,6 +174,10 @@ The L4 data are consistent with this linear proportional model. The revision mag
 This makes the L2 failure *more* informative, not less. If the models lacked any revision mechanism, the L2 sycophancy would be explained by a missing capability: the models cannot revise beliefs at all, so they respond to any correction (valid or invalid) with random behavior. But L4 shows that the mechanism works. The models *can* revise beliefs in proportion to evidence strength. The L2 failure is specifically that they cannot *discriminate* valid from invalid evidence --- they apply the revision mechanism indiscriminately, following both legitimate and illegitimate force vectors on the belief manifold.
 
 
+![Figure 8.1](figures/ch08_fig1.svg)
+
+*Figure 8.1. Graded belief revision on L4, as Section 8.5 reports it for the three Gemini models. The horizontal axis is the intensity of the corrective evidence and the vertical axis the size of the mean revision, the downward shift in severity in points. Irrelevant evidence moves the judgment by 0.3 points, moderate evidence by 4.1 and extreme evidence by 8.2, with the z values against the control arm printed above the bars. The ordering is the one Definition 8.2 requires of a graded revision function.*
+
 ## 8.6 The Discrimination Failure: A Geometric Analysis
 
 The combination of L2 and L4 reveals a precise geometric picture of the sycophancy failure.
@@ -194,6 +198,10 @@ Claude has an effective correction filter: $E_{\text{filtered}} \approx 0$ for a
 
 The geometrically precise statement is: **sycophancy is a failure of the projection operator, not a failure of the revision dynamics.** The revision dynamics (L4) are intact --- the system responds proportionally to the projected force. The projection operator (L2) is defective --- it fails to suppress the invalid component of the force vector, allowing invalid corrections to drive belief revision.
 
+
+![Figure 8.2](figures/ch08_fig2.svg)
+
+*Figure 8.2. The correction filter of Definition 8.3 as a projection, a schematic. The horizontal line is the subspace V of valid correction directions, the thin arrow is the evidence vector E that a correction produces, and the thick arrow is the filtered evidence, the projection of E onto V. A valid correction lies in V and passes in full, and with a perfect filter an invalid correction is orthogonal to V and nothing passes. With a leaky filter a fraction λ of the invalid evidence passes, the leakage of Proposition 8.2, drawn here for the illustrative value λ = 0.5.*
 
 ## 8.7 The Sycophancy-Stability Correlation
 
@@ -261,7 +269,7 @@ flowchart LR
     TR --> L3["L3: transport between domain patches, curvature distorts frameworks"]
 ```
 
-*Figure 8.1 (diagram): the four Learning subtests as four parts of one belief-revision pipeline; the sycophancy failure sits in the filter, not the mechanism.*
+*Figure 8.3 (diagram): the four Learning subtests as four parts of one belief-revision pipeline; the sycophancy failure sits in the filter, not the mechanism.*
 
 
 ## 8.10 Worked Example: Tracing a Belief Revision on the Manifold

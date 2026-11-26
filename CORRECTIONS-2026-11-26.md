@@ -63,3 +63,26 @@ No record in the repository settles these. Both values are given with where they
 11. **Models in Maya's hypothetical experiment, Chapter 12.** The running example lists Claude, Flash 3, Pro and Flash 2.5, and then reports a transition point for Flash 2.0, as does Section 12.6.
 12. **Records outside the chapters, not edited.** `claims/LEDGER.md` row GC-19 reads "a divided-attention ceiling near 38 percent", while the 38 percent figure in the chapters is the recovery ceiling. The ledger's note under GC-34 says no self-test, probe or pilot has run, and `CAMPAIGN.md` records all three. `CAMPAIGN.md` lists H1 as awaiting its self-test in the gates table and as passed below it, and its accounting block counts one gate drafted where two are listed.
 13. **Chapter statements above the ledger's grade.** The ledger grades the benchmark statistics exploratory and their interpretations posited, and the README says the manuscript states several rows more strongly and that this disagreement is left standing. Apart from the items above, those chapter statements were not rewritten.
+
+## Found while drawing the figures (2026-11-26), not changed
+
+These were noticed while the figures were drawn and are left for the author. No figure draws them.
+
+1. Chapter 16 against the rest: Claude's A4 is 0.000 in Section 16.2 and 0.571 elsewhere; its T2 is 0.867 in 16.2 and 0.958 in Sections 6.9 and 7.5; L2 is 22% for Flash 3 and 11% for Pro in 16.3 and 16.4, against 44% for Pro in Chapter 8 and about 28%, 34% and 42% in Chapter 2. Chapter 16 calls L3 "graded revision" and L1 "fuzz testing", where Chapter 8 has L3 as framework transfer, L4 as graded revision and L1 as few-shot learning. Its A1 scores (0.450, 0.520, 0.380) differ from Section 4.13 (0.72, 0.68). Three models are each ranked third on T5.
+2. Section 4.13 gives Claude an eccentricity of 4.2, which gives an effective rank of 1.45; Chapter 10 says Claude's effective rank is about 1.
+3. Section 10.2 gives Flash 2.5 the second-highest vivid flip rate (0.280), while Chapters 1 and 16 and Appendix C call it the best at distractor resistance.
+4. Section 7.4 says framing effects exceed the controls by factors of 2 to 10; Claude's dramatic drift (-1.5) is inside its control band (2.1).
+5. Proposition 7.2 gives sec, an amplifying factor, for positive curvature labelled convergent, and sech, a damping factor, for negative curvature labelled divergent: the reverse of Sections 3.10 and 7.5.
+6. Section 2.8 says small lambda means gradient following and large lambda the full geodesic; Appendix 2B says the opposite.
+7. Section 9.2: combining the printed z values (6.2, 7.0, 4.5, 2.2) by the method of Appendix 9A gives about 10 sigma, not 6.7, and 6.7 is below the largest single value.
+8. M1 in Sections 9.11 and 11.7 equals 1 minus ECE for three models but not for Pro (0.807 against 0.814) or Flash 2.0 (0.558 against 0.563).
+9. Chapter 5 uses three formulas for the demand of k parties (Sections 5.5, 5.10, and 5.12 with Appendix 5B); Flash 2.0's dimension is 10 to 11 in 5.12 and 10.2 in 5B, and the ratio 1.45 in one and 1.57 in the other; Appendix 5B defines the transition at accuracy 0.8 but places it at the 0.5 point of its own sigmoid; Section 11.6 gives Flash 2.0 about 60% at eight parties, which the 5B model cannot produce.
+10. A framework switch is a rotation in Definition 6.1 and a linear blend in Definition 11.2, while Section 11.2 says it follows Chapter 6. Figure 11.1 draws both as the chapters define them.
+11. Section 10.11, step 5, says tangent space capacity is independent of metric width; Chapter 5 defines the effective dimension from the metric eigenvalues.
+12. Chapter 15 defines discrete curvature two ways (Section 15.11 and Appendix 15A), and places the spike at layers 14 to 18 in 15.4 and 11 to 15 in 15.11.
+13. Proposition 8.1 says z = 4.4 to 6.7 "for extreme vs. control"; the table gives 6.7 for extreme and 4.4 for moderate.
+14. Section 13.8 lists formal operations at ages 10 to 12 with closure between 10 and 11, while the Section 13.5 heading says about 11 onward.
+
+## Figure numbers
+
+In Chapters 3, 6 and 8 a hand-made diagram stood after the new figures, so the diagram captions were renumbered to keep the figures in reading order: Figure 3.1 is now 3.3, 6.1 is now 6.2, and 8.1 is now 8.3. No text referred to them by number.

@@ -240,6 +240,10 @@ flowchart TD
 If this interpretation is correct, the constraint is not merely that no current model has both capabilities but that there is an architectural tradeoff that *prevents* current models from having both. Filling Quadrant I would require an architectural innovation that integrates self-monitoring with effort scaling---a mechanism that routes introspective signals to generation control. This is a specific, testable prediction of the geometric framework.
 
 
+![Figure 9.2](figures/ch09_fig2.svg)
+
+*Figure 9.2. The metacognitive configuration space of Definition 9.5 at its true scale: self-monitoring accuracy M3 on the horizontal axis and the effort scaling index M4 on the vertical axis. The solid lines are the threshold 0.25 of Technical Appendix 9B, the dashed lines the threshold 0.5, and the shaded region is Quadrant I at the threshold 0.25. Only Gemini 2.5 Pro at (0.500, 0.000) and Gemini 2.0 Flash at (0.042, 0.827) are drawn, the two models whose values the chapters agree on; neither lies in Quadrant I at either threshold. Section 9.7 also places Gemini 3 Flash and Gemini 2.5 Flash in Quadrant IV, and with four models a sampling artifact cannot be excluded.*
+
 ## 9.9 Metacognition as a Two-Dimensional Manifold
 
 The M3/M4 dissociation forces us to revise our model of metacognition. The naive assumption---that metacognition is a single axis, a one-dimensional line from "poor metacognition" to "good metacognition"---is empirically false. The data require at least two dimensions.

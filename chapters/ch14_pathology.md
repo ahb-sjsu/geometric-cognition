@@ -133,6 +133,10 @@ $$\alpha(x) = \frac{h(x)}{d(x, x_{\text{goal}})}$$
 4. **Anxiety and depression can co-occur because they affect different geometric objects.** Anxiety is a heuristic-field defect (inflation). Depression is a heuristic-field defect (collapse). These seem mutually exclusive --- how can the field be both inflated and flat? The resolution is that the two defects can affect different dimensions of the heuristic field. The field can be inflated along the threat dimension (everything feels dangerous) and flat along the goal dimension (nothing feels rewarding). This produces the clinical picture of agitated depression or anxious depression: the patient is simultaneously worried (inflated threat gradient) and unmotivated (flat reward gradient). The geometric framework naturally accommodates the high comorbidity between anxiety and depression (Kessler et al., 2005) by locating the two disorders on different components of the same geometric object.
 
 
+![Figure 14.1](figures/ch14_fig1.svg)
+
+*Figure 14.1. The heuristic field defects of Sections 14.3 and 14.4, as the chapter defines them, drawn as the estimated cost-to-go h on the vertical axis against the true cost-to-go d on the horizontal axis. The inflation factor of Definition 14.5 is the ratio h / d, the slope of a line through the origin: 1 for a healthy estimate, far above 1 for the inflated field posited for anxiety, and below 1 for the deflated field of the overconfidence in Chapter 9. The collapsed field posited for depression is flat, so its gradient is near zero and the ratio is undefined. The ratios 3 and 0.5 and the flat level are illustrative.*
+
 ## 14.5 Autism as Metric Rigidity
 
 Autism spectrum conditions are characterized by differences in social communication, restricted and repetitive behaviors, and unusual sensory processing. The cognitive accounts are diverse: weak central coherence (difficulty integrating details into a global picture; Happe & Frith, 2006), impaired theory of mind (difficulty modeling others' mental states; Baron-Cohen, 1995), and enhanced perceptual functioning (superior detail processing; Mottron et al., 2006).
@@ -175,6 +179,10 @@ ADHD and autism are opposite ends of the metric stability spectrum. ADHD is a me
 
 3. **The comorbidity between ADHD and autism, which occurs at higher rates than chance, should produce a distinctive profile.** The geometric prediction is specific: ADHD-autism comorbidity should produce a metric that is *bimodal* --- oscillating between a rigid configuration (the autism component) and a diffuse configuration (the ADHD component), with little time spent in the flexible neurotypical middle ground. The behavior should show alternating periods of hyperfocused rigidity and diffuse distractibility, which is indeed a common clinical description of the ADHD-autism presentation.
 
+
+![Figure 14.2](figures/ch14_fig2.svg)
+
+*Figure 14.2. Three attention metrics over time, a schematic of the definitions of Sections 14.2 and 14.5: each panel shows one metric component against time, with a change of context at the dashed line. The stable metric changes only when the context changes, and the rigid metric of Definition 14.6, the posited account of autism, does not change even then. The unstable metric of Definition 14.1, the posited account of ADHD, also moves by an endogenous noise term while the context is constant; its trace is a simulated random walk, not data. The mean change between successive samples orders the three as Technical Appendix 14A predicts: unstable above stable above rigid.*
 
 ## 14.6 The Four Pathologies as a Geometric Taxonomy
 

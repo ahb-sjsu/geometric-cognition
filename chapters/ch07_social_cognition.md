@@ -138,6 +138,10 @@ The asymmetry connects to Claude's broader cognitive profile. Claude's zero syco
 This is speculative, but the directional pattern is robust: Claude resists perturbations that would make it *harsher* and yields to perturbations that would make it *gentler*. Any evaluation that tests only one framing direction --- or that averages the two directions into a single "framing robustness" score --- would miss this directional structure entirely.
 
 
+![Figure 7.1](figures/ch07_fig1.svg)
+
+*Figure 7.1. Framing drift by model, as the table of Section 7.4 reports it: the change in the total harm score, on a 70-point scale, from the neutral text to the rewritten text. For each model the upper bar is the drift under euphemistic rewriting, the lower bar the drift under dramatic rewriting, and the grey bracket the control drift from re-judging the same neutral text, drawn on both sides of zero. Euphemistic rewriting lowers the score for all five models; dramatic rewriting raises it for the four Gemini models and lowers it by 1.5 for Claude, less than Claude's control drift of 2.1. The asymmetry ratio of Definition 7.3 is 6.1 for Claude and 1.4 to 1.7 for the Gemini models.*
+
 ## 7.6 The Selectivity Pattern: Which Symmetries Hold
 
 The framing result is powerful, but it is only part of the story. The social cognition benchmark tests five different transformations, and the pattern of *which* invariances hold and *which* are violated is as informative as the magnitude of any individual violation.
@@ -303,6 +307,10 @@ This scaling interpretation has a specific geometric meaning: the framing transf
 
 **Interpretation.** The worked example demonstrates that a single scenario, evaluated under three framing conditions, generates three points in the 7-dimensional harm space whose geometry encodes the model's framing vulnerability. The displacement vectors, their magnitudes, their directions, and their relationship to the control noise all provide geometric information about the structure of the judgment manifold. This is not an abstraction imposed on the data; it is the data itself, organized in the coordinate system that the benchmark defines.
 
+
+![Figure 7.2](figures/ch07_fig2.svg)
+
+*Figure 7.2. The three judgment vectors of the worked example of Section 7.11, an illustrative example built on the scenario of Maya Chen's running example. The horizontal axis lists the seven harm dimensions and the vertical axis is the harm score on each, from 0 to 10. The euphemistic version lies at or below the neutral version on every dimension and the dramatic version above it, so the profile keeps its shape while its size changes. The totals are 36, 21 and 46, which gives the scaling factors of about 0.58 and 1.28 that the example reads as a conformal change.*
 
 ## 7.12 Implications for Moral AI
 

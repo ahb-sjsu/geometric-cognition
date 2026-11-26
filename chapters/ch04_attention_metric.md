@@ -90,6 +90,10 @@ The consequences of selective attention for the metric are profound:
 Claude's "narrow channel" cognitive signature is the signature of extreme selective attention. The model narrows its metric to a small number of dimensions---those related to its primary task---and suppresses the remaining dimensions almost entirely. This gives it high resolution (excellent sycophancy resistance: the model attends intently to the truthfulness dimension and is not deflected by social pressure) but low bandwidth (poor divided attention: the model cannot attend to multiple task dimensions simultaneously because its metric is too narrow).
 
 
+![Figure 4.1](figures/ch04_fig1.svg)
+
+*Figure 4.1. The selective attention operator of Definition 4.2 in two dimensions, with one attended dimension (horizontal, scaled by α) and one unattended dimension (vertical, scaled by β), on an identity baseline. Each ellipse has semi-axes proportional to the square roots of the two metric components, so a long axis marks high resolution. The resource constraint α + β = 2 holds in all three panels, and the values are illustrative. As β falls toward 0 the ellipse collapses onto the attended dimension, the reduction of effective dimensionality that the section describes.*
+
 ## 4.4 Divided Attention Widens the Metric
 
 Divided attention is the opposite of selective attention: the allocation of cognitive resources across multiple dimensions simultaneously. In the geometric framework, divided attention *widens* the metric: it increases the metric components along multiple dimensions simultaneously, at the cost of reduced amplification per dimension.
@@ -108,6 +112,10 @@ The tradeoff between selective and divided attention is a fundamental constraint
 
 In transformer models, the total budget is determined by the number of attention heads and the dimensionality of each head. A model with more heads, or heads with higher dimensionality, has a larger total budget $W$ and can afford higher per-target resolution in divided attention. This architectural parameter---the effective attention budget---is a key determinant of the model's cognitive signature and a primary source of the variation we observe in the A4 results.
 
+
+![Figure 4.2](figures/ch04_fig2.svg)
+
+*Figure 4.2. The per-target signal-to-noise ratio under equal division of a fixed attention budget W over k targets, from Proposition 4.2 of Technical Appendix 4B: 1 + W / (k g), where g is the metric component along the noise dimension. The horizontal axis is the number of targets and the vertical axis the ratio on each target. The two curves are drawn for W / g = 4 and 12, illustrative values, and at k = 1 the ratio is that of selective attention. The dashed line at 1 is the level at which the metric treats signal and noise equally.*
 
 ## 4.5 The A4 Divided Attention Split: The Metric Made Visible
 

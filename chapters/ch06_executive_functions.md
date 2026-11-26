@@ -80,6 +80,10 @@ The marker specificity of 89--93% means that when models switch, they produce re
 In geometric terms, the models are executing the metric rotation $R$ accurately (high specificity) but the rotation angle $\theta$ is moderate (not all scenarios have framework-dependent content). The cognitive distance between the frameworks, as measured by the fraction of scenarios that change verdict, is 0.32 to 0.47. The frameworks are distinct coordinate systems on the same manifold, not identical relabelings.
 
 
+![Figure 6.1](figures/ch06_fig1.svg)
+
+*Figure 6.1. Framework switching as the metric rotation of Definition 6.1, in two cognitive dimensions. Each ellipse is the attention metric at one rotation angle, with semi-axes proportional to the square roots of its eigenvalues, so the long axis points along the most heavily weighted direction. The rotation keeps the eigenvalues and turns the axes: at 90 degrees the weights of the two dimensions have exchanged. The eigenvalues 4 and 1, the angles and the naming of the two dimensions are illustrative choices.*
+
 ## 6.3 Inhibitory Control as Gradient Suppression
 
 Inhibitory control is the ability to suppress a prepotent response --- to resist the pull of a strong signal when that signal is misleading. In the geometric framework, inhibitory control is the ability to suppress gradient-following when the gradient points in a direction that is locally optimal but globally suboptimal.
@@ -202,7 +206,7 @@ flowchart TD
     W --> S
 ```
 
-*Figure 6.1 (diagram): the four executive functions as components of one control tensor, and the composite score as its scalar projection.*
+*Figure 6.2 (diagram): the four executive functions as components of one control tensor, and the composite score as its scalar projection.*
 
 The E1--E4 benchmark suite recovers four of these components --- one per subtask --- which is better than one but far fewer than the full tensor. A complete characterization of the control tensor would require testing each executive function along each tangent direction, which would require a combinatorial number of test conditions. The E1--E4 design is a practical compromise: it samples four important projections of the control tensor, providing a partial but informative picture of the control architecture.
 

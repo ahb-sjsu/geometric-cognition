@@ -83,6 +83,10 @@ The E1 scores indicate that Flash 2.0 makes the smoothest transitions. Its high 
 The data suggest a moderate relationship: models with wider metrics (higher A4) do not necessarily have better flexibility (higher E1). The correlation between A4 and E1 is positive but weak across the five models. This suggests that metric width and metric flexibility are partially independent properties---a model can have a narrow metric that rotates easily (relatively narrow but flexible) or a wide metric that is rigid (broad but inflexible).
 
 
+![Figure 11.1](figures/ch11_fig1.svg)
+
+*Figure 11.1. A framework switch between two attention metrics, drawn under the two definitions the volume gives. The lower row is the metric-regime transition of Definition 11.2, the weighted average (1 - α) g1 + α g2, whose intermediate metrics are blends that weight both dimensions equally at the halfway point. The upper row is the rotation of Definition 6.1 between the same two metrics, which keeps the shape and turns the axes, so the two definitions agree at the ends and differ in between. Each ellipse has semi- axes proportional to the square roots of the eigenvalues, and the metrics diag(4, 1) and diag(1, 4) are illustrative.*
+
 ## 11.3 Inhibitory Control as Maintaining Governance Margin Near the Safety Boundary
 
 The E2 subtask is the headline test. It measures inhibitory control: the model's ability to resist emotional anchoring---the displacement of moral judgment by emotionally charged reframing of morally equivalent scenarios.

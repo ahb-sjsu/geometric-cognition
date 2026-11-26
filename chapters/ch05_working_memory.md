@@ -253,6 +253,10 @@ where $d_k$ is the number of effective dimensions required for $k$ parties. We e
 **Interpretation.** The E4 data constrain the effective tangent space dimension for each model. The dimensions are not fixed architectural constants; they depend on the task and the model's attentional configuration. But the relative ordering is consistent across tasks: models with more effective tangent space dimensions on E4 also tend to have higher A4 scores, confirming that the tangent space model captures a real, measurable property of the cognitive architecture.
 
 
+![Figure 5.2](figures/ch05_fig2.svg)
+
+*Figure 5.2. The sigmoid model of Section 5.12 and Technical Appendix 5B, as the chapter defines it: accuracy = 1 / (1 + exp(-β (n - 2k))), where n is the effective tangent space dimension and k the number of parties, on the horizontal axis. The three curves use the dimensions that Appendix 5B estimates for three model generations, 10.2, 14.4 and the lower bound 16, with a sharpness β = 1, an illustrative value. Each curve passes through one half at k = n / 2, marked by a dot. The curves are the posited model, not measured accuracies; the benchmark tested k = 2, 4, 6 and 8.*
+
 ## 5.13 Working Memory in Human Cognition
 
 The tangent space model of working memory applies equally to human cognition, though with different dimensionality estimates and different mechanisms for metric modulation.

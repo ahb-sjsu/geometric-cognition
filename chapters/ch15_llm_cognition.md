@@ -142,6 +142,10 @@ This mapping is illustrative and specific to the model and task of Maya's runnin
 The spike is the transformer's analogue of the dlPFC activation spike that Maya observes in the running example's hypothetical human fMRI data when subjects encounter moral conflicts. The analogy is not just functional (both indicate increased processing effort for difficult problems) but *geometric* (both correspond to high curvature of the trajectory on the cognitive manifold).
 
 
+![Figure 15.2](figures/ch15_fig2.svg)
+
+*Figure 15.2. The layer-by-layer mapping of Section 15.4, which the chapter calls illustrative and specific to the model and task of Maya Chen's running example. The horizontal axis is the layer index, 0 to 32, and each bar spans one block of layers, labelled with the processing function and the geometric reading the table gives. The marked block, layers 14 to 18, is where the running example places its illustrative curvature spike. Different models and tasks may have different layer assignments.*
+
 ## 15.5 In-Context Learning as Local Metric Adaptation
 
 In-context learning (ICL) is the transformer's ability to learn from examples provided in the context window, without any parameter updates. A model that has never seen a particular task can often perform it correctly after seeing a few examples in the prompt. This capability is one of the most striking emergent properties of large language models.

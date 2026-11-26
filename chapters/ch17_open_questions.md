@@ -69,6 +69,10 @@ A Finsler cognitive manifold would naturally accommodate the observed asymmetrie
 Preliminary evidence from the sycophancy experiments suggests $d(M, H) < d(H, M)$ for most models, but the experiments were not designed to measure directional distance with precision. A targeted experiment, systematically varying the strength of persuasion in both directions and measuring the dose-response curve, would provide the quantitative data needed to distinguish Riemannian from Finsler geometry.
 
 
+![Figure 17.1](figures/ch17_fig1.svg)
+
+*Figure 17.1. The open question of Section 17.2 as a schematic: each curve is the set of displacements that cost one unit of effort from the state at the centre. Under a Riemannian metric a displacement costs the same as its reverse, so the curve is symmetric about the centre, drawn here as a circle. Under a Finsler norm the cost depends on the direction, so one unit of effort carries the state farther one way than the other; the right panel uses one illustrative norm, F(v) = |v| - 0.4 v1, since the chapter does not specify a form. The direction labels follow the sycophancy asymmetry the section posits, and no directional distance has been measured.*
+
 ## 17.3 Can We Measure the Heuristic Field from Neural Activations?
 
 The heuristic field $h(x)$ has been the central theoretical construct of this book. It estimates the cost-to-go from each cognitive state, its gradient guides the System 1 trajectory, and its distortion produces the cognitive biases documented in Chapters 7--11. But throughout the book, the heuristic field has been inferred indirectly --- from behavioral data (response times, verdict patterns, confidence estimates) rather than measured directly from neural or computational activations.

@@ -323,6 +323,10 @@ This is a moderate negative curvature---not extremely curved (which would produc
 **Prediction.** If we could induce the model to engage System 2 (e.g., through chain-of-thought prompting), the framing displacement should decrease by approximately 38% (the recovery ceiling). The remaining 62% of the displacement is irrecoverable because it arises from corruption of the metric itself, not the heuristic field.
 
 
+![Figure 2.2](figures/ch02_fig2.svg)
+
+*Figure 2.2. The amplification factor exp(sqrt(|κ|) L) that the worked example of Section 2.12 posits, drawn for a trajectory of length L = 5. The horizontal axis is the magnitude of the sectional curvature and the vertical axis the ratio of the displacement in the judgment to the perturbation of the input. The marked point is the worked example, where an amplification of 3.0 gives |κ| of about 0.048. The perturbation of 0.1 and the displacement of 0.3 behind that factor are the example's modelling assumptions, not measurements.*
+
 ## 2.13 The Failure of Scalar Measurement, Revisited
 
 The connection between this chapter and Chapter 1 is now clear. Scalar measures of cognitive performance fail because they cannot distinguish between:

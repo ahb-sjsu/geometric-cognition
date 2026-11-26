@@ -128,6 +128,10 @@ The theorem holds for *any* scalar contraction---not just the linear ones. You c
 But the theorem is abstract. Let us make it concrete.
 
 
+![Figure 1.2](figures/ch01_fig2.svg)
+
+*Figure 1.2. The fibers of a scalar contraction for a profile of two scores, drawn for the uniform-weight contraction of Definition 1.2, the mean of the two scores. The axes are the scores on the two tasks, and each line is the set of all profiles with one value of the mean. The profiles A = (0.95, 0.35) and B = (0.40, 0.90) are illustrative values on the line of mean 0.65. The score 0.65 is the same for both and for every other point of that line, which is the content of Theorem 1.1.*
+
 ## 1.5 The Empirical Demonstration
 
 The five models in the Measuring AGI benchmark suite provide a constructive proof of scalar irrecoverability. Here is the argument.
@@ -323,6 +327,10 @@ The cognitive tensor distinguishes them immediately. The five-component profile 
 
 This is not a hypothetical. It is the actual structure of the problem in AI-assisted healthcare, AI-assisted legal analysis, AI-assisted education, and every other domain where the *pattern* of capabilities matters more than the *average*. The Scalar Irrecoverability Theorem says that this problem is not fixable by better averaging. It is fixable only by preserving the profile---by replacing the scalar with the tensor, the leaderboard with the manifold, the ranking with the map.
 
+
+![Figure 1.3](figures/ch01_fig3.svg)
+
+*Figure 1.3. The hypothetical hospital evaluation of Section 1.14: three models scored on five task types, with the score on each task on the vertical axis. The dashed line is the composite, the mean of the five scores, which is 0.78 for all three. The composite ranks the models as tied while the profiles differ: Model A peaks on diagnosis, Model B on drug interactions, and Model C is flat.*
 
 ## 1.15 Looking Forward: From Trap to Manifold
 

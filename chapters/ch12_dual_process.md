@@ -374,6 +374,10 @@ $$E_{\text{System 2}} = \int_0^T \left( \frac{1}{2} g_{\mu\nu} \dot{\gamma}^\mu 
 The first term is the kinetic energy of the trajectory (the cost of moving through cognitive space). The second term, weighted by $\lambda$, is the curvature processing cost --- the additional computation required to account for the Christoffel symbols. In the gradient-following regime ($\phi = 0$), only the first term contributes. In the geodesic-computing regime ($\phi = 1$), both terms contribute. The ratio of the two terms gives the cognitive effort overhead of System 2 relative to System 1.
 
 
+![Figure 12.2](figures/ch12_fig2.svg)
+
+*Figure 12.2. The order parameter of Technical Appendix 12A, φ = 1 / (1 + exp(-β x)), where x is the scalar curvature measured from the threshold, on the horizontal axis in curvature units. The vertical axis is φ, the weight on geodesic computation against gradient following, and the dashed step is the sharp threshold of Definition 12.3, the limit of large β. The two curves are drawn for β = 3 and β = 5, the range the appendix attaches to the sigmoid of Maya Chen's hypothetical experiment, so they are illustrative. The bracket marks the transition width of about 4 / β for β = 3.*
+
 ## Technical Appendix 12B: Override Fraction --- Analytical Bounds
 
 **Theorem** (Override Bound). *Let* $\gamma_1$ *and* $\gamma_2$ *be the System 1 and System 2 trajectories from the same initial state* $x_0$*, and let* $d_{\text{committed}}$ *be the distance between* $x_0$ *and the earliest state at which the System 1 trajectory deviates from the geodesic. The override fraction satisfies:*

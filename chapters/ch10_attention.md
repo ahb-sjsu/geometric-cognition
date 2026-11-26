@@ -310,6 +310,10 @@ The effective metric rank is 1.6, between Claude's approximately 1.0 (extreme na
 These predictions are testable and provide a concrete validation pathway for the metric framework.
 
 
+![Figure 10.1](figures/ch10_fig1.svg)
+
+*Figure 10.1. The effective rank of Definition 10.3 for a metric with two eigenvalues, as a function of their ratio. The horizontal axis is the ratio of the attention weight on the primary stream to the weight on the secondary stream, on a logarithmic scale, and the vertical axis is the participation ratio of the two eigenvalues. An isotropic metric, ratio 1, has effective rank 2, and the rank falls toward 1 as the weight concentrates on one stream. The marked point is the worked example of Section 10.11, a hypothetical model: a ratio of 3.0, with 75 percent of the budget on the primary stream, gives an effective rank of 1.6.*
+
 ## 10.12 The Attention Filter as Geometric Object
 
 This chapter's findings consolidate the theoretical framework of Chapter 4 with empirical data. The attention metric is not an abstract mathematical convenience. It is a measurable property of cognitive systems with specific empirical signatures:

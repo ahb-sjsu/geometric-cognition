@@ -205,6 +205,10 @@ This means that two reasoning processes that start from nearly identical states-
 The 15.3 sigma framing effect is evidence for high negative curvature in the moral judgment region of the cognitive manifold. The effect size tells us the magnitude of the geodesic divergence. The sigma value tells us the statistical reliability of the divergence. Together, they constrain the curvature: the manifold must be sufficiently negatively curved in the moral judgment region to produce divergences of the observed magnitude under perturbations of the observed size.
 
 
+![Figure 3.1](figures/ch03_fig1.svg)
+
+*Figure 3.1. The three curvature regimes of Section 3.10, as a schematic: in each panel five neighbouring reasoning trajectories start parallel and run from left to right. With zero curvature their separation stays constant, with positive curvature they converge, and with negative curvature they diverge. The separations are drawn in proportion to 1, cos(sqrt(κ) t) and cosh(sqrt(|κ|) t), the last of which grows like the exponential the section gives. All panels use sqrt(|κ|) T = 1.2 at the right edge, an illustrative value.*
+
 ## 3.11 Worked Example: Mapping a Cognitive Trajectory
 
 Let us work through Maya's illustrative fMRI observation in detail, using the formalism developed in this chapter. The session and its numbers are hypothetical.
@@ -240,6 +244,10 @@ In Phase 2 (geodesic computation), the relationship between velocity and heurist
 
 **Interpretation.** In this illustrative example, Maya has mapped a single cognitive trajectory onto a three-dimensional manifold, measured its curvature profile, and identified the System 1 / System 2 transition from the curvature data. On this account the manifold is not an abstraction imposed from outside. It is the empirical structure of the activation data, revealed by dimensionality reduction and trajectory analysis.
 
+
+![Figure 3.2](figures/ch03_fig2.svg)
+
+*Figure 3.2. The curvature of the trajectory in the worked example of Section 3.11, which is hypothetical: the fMRI session of Maya Chen's running example and its numbers are illustrative, not data. The horizontal axis is time in the three-minute session and the vertical axis the trajectory curvature. Each block spans one of the three phases the example names and stands at the value the example gives for it: about 0.02 in Phase 1, a peak of about 0.35 in Phase 2, and about 0.08 in Phase 3.*
 
 ## 3.12 The Manifold for Different Cognitive Tasks
 
@@ -297,7 +305,7 @@ flowchart TD
     C711 --> EC["Executive control: geodesic governance"]
 ```
 
-*Figure 3.1 (diagram): how the following chapters each take one geometric property of the manifold.*
+*Figure 3.3 (diagram): how the following chapters each take one geometric property of the manifold.*
 
 The cognitive manifold is not a metaphor. It is a specific mathematical object---a Riemannian manifold embedded in activation space---with specific measurable properties. The next chapter begins the measurement.
 
