@@ -5,7 +5,7 @@
 
 ---
 
-> **RUNNING EXAMPLE --- MAYA'S MODEL**
+> **RUNNING EXAMPLE (ILLUSTRATIVE, HYPOTHETICAL CASE) --- MAYA'S MODEL**
 >
 > Maya is looking at a metric that will not hold still.
 >

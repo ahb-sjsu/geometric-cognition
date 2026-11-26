@@ -65,6 +65,8 @@ The following empirical results, drawn from the Measuring AGI benchmarks, anchor
 
 This book supports four reading paths, each designed for a different audience.
 
+Each chapter opens with a running example that follows Maya Chen, a fictional cognitive scientist. Her human studies (the fMRI sessions, the dual-process experiment, the longitudinal study of Lena, the clinical study design) and her analyses of model activations are illustrative scenarios, not data.
+
 **Path 1: The Cognitive Scientist** (Chapters 1--4, 12--14). Start with the problem (scalar measures fail), learn the framework (manifold, metric, tangent space, heuristic field), then see how the framework applies to human cognition (dual process theory, cognitive development, cognitive pathology). Skip the five benchmark chapters (7--11) on first reading and return to them for empirical grounding.
 
 **Path 2: The AI Researcher** (Chapters 1, 3--4, 7--11, 15--16). Start with the scalar irrecoverability theorem, learn enough framework to read the benchmarks, then work through all five cognitive dimension chapters for the empirical results. Finish with the LLM cognition chapters to see how the framework applies to transformer architectures.

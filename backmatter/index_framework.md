@@ -26,7 +26,7 @@
 **curvature, sectional** ($K$), 3, 12, A --- determines cognitive complexity; triggers System 1 to System 2 transition; high curvature = conflicting considerations
 **curvature threshold**, 12, 13 --- the curvature value at which gradient following (System 1) gives way to geodesic computation (System 2); a phase transition
 
-**D4 augmentation**, A, 15 --- the 8-element dihedral symmetry group of the square; used in ARC-AGI and AIRV pipeline for grid transformation
+**D4 augmentation**, A --- the 8-element dihedral symmetry group of the square; used in ARC-AGI and AIRV pipeline for grid transformation
 **depression as collapsed heuristic**, 14 --- the guidance field is flat; no direction seems promising; $\nabla h \approx 0$
 **development, cognitive**, 13 --- Piaget's stages as topological transitions; sensorimotor (low-dimensional), pre-operational (dimension addition), concrete operational (metric stabilization), formal operational (manifold completion)
 **distractor displacement**, 10, B --- A1 subtask; 4.6 sigma (updated: 5.0 sigma); dose-response curve of metric perturbation under irrelevant distractors

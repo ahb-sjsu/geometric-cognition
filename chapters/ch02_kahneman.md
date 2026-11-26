@@ -5,7 +5,7 @@
 
 ---
 
-> **RUNNING EXAMPLE --- MAYA'S MODEL**
+> **RUNNING EXAMPLE (ILLUSTRATIVE) --- MAYA'S MODEL**
 >
 > Maya has secured time on the department's fMRI scanner. Her subject today is Dr. James Okafor, a moral philosopher who has agreed to reason through a series of ethical dilemmas while his brain is imaged at two-second intervals.
 >
@@ -242,7 +242,7 @@ Gradient following uses only local information: the gradient at the current stat
 
 Geodesic computation uses global information: the curvature of the manifold, which depends on the metric tensor and its derivatives across a neighborhood. The computational process has high dimensionality---it requires representing the current state, the velocity, and the curvature correction terms. The neural activation pattern during geodesic computation should be high-dimensional: distributed across many brain regions, with weaker correlations (because different regions are computing different components of the geodesic equation).
 
-This prediction aligns with what Maya observes in the fMRI. The simple moral dilemma (low curvature, gradient following) produces a concentrated, low-dimensional activation pattern. The complex moral dilemma (high curvature, geodesic computation) produces a distributed, high-dimensional activation pattern. The transition from low to high dimensionality corresponds to the transition from System 1 to System 2---and it is the dimensionality, not merely the intensity, that tracks the computational mode.
+This prediction is what Maya's illustrative fMRI session in the running example depicts. There, the simple moral dilemma (low curvature, gradient following) produces a concentrated, low-dimensional activation pattern. The complex moral dilemma (high curvature, geodesic computation) produces a distributed, high-dimensional activation pattern. The transition from low to high dimensionality corresponds to the transition from System 1 to System 2---and it is the dimensionality, not merely the intensity, that tracks the computational mode.
 
 This prediction can be tested quantitatively. The effective dimensionality of the fMRI activation pattern can be measured using principal component analysis or participation ratio analysis. The geometric framework predicts:
 

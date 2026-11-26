@@ -5,7 +5,7 @@
 
 ---
 
-> **RUNNING EXAMPLE --- MAYA'S MODEL**
+> **RUNNING EXAMPLE (ILLUSTRATIVE) --- MAYA'S MODEL**
 >
 > Maya is inside the machine.
 >
@@ -86,7 +86,7 @@ A head that attends to emotional content, for example, computes the emotional co
 
 **Head agreement and disagreement.** When all heads agree on the direction of the heuristic field (all components point in similar directions), the curvature is low and the model stays in the gradient-following regime. When heads disagree (components point in different or opposing directions), the curvature is high and the model must resolve the conflict --- either by weighting some heads more heavily (a form of attention to attention) or by engaging more complex processing in the feedforward layers (a form of geodesic computation).
 
-The degree of inter-head agreement at each layer provides a direct, measurable proxy for the curvature of the cognitive manifold at that processing stage. Maya's finding that curvature spikes at layers 14--18 corresponds to a spike in inter-head disagreement at those layers: the moral conflict in the scenario causes different heads to pull the representation in different directions, creating the curvature that triggers deliberate processing.
+The degree of inter-head agreement at each layer provides a direct, measurable proxy for the curvature of the cognitive manifold at that processing stage. Maya's illustrative finding that curvature spikes at layers 14--18 corresponds to a spike in inter-head disagreement at those layers: the moral conflict in the scenario causes different heads to pull the representation in different directions, creating the curvature that triggers deliberate processing.
 
 
 ## 15.3 Chain-of-Thought as Externalized Geodesic Approximation
@@ -118,7 +118,7 @@ The identification of the residual stream with the cognitive manifold trajectory
 
 **Evidence from activation geometry.** The manifold hypothesis from Chapter 3 states that cognitive states concentrate near a low-dimensional manifold in the high-dimensional activation space. For transformers, this hypothesis has been directly tested. Aghajanyan et al. (2021) showed that the intrinsic dimensionality of the fine-tuning parameter space is much lower than the ambient dimensionality --- models can be fine-tuned effectively in a low-dimensional subspace. Li et al. (2018) showed that the learned representations of language models concentrate near low-dimensional submanifolds. Cai et al. (2021) demonstrated that the residual stream trajectories during inference trace low-dimensional curves in activation space.
 
-Maya's finding --- that 12 principal components capture 87% of the variance in a 131,072-dimensional activation space --- is consistent with this literature. The cognitive manifold for moral reasoning is approximately 12-dimensional, three to four times higher than the human manifold for the same task (approximately 3 dimensions in fMRI data). The difference likely reflects the different levels of analysis: fMRI measures coarse-grained regional activation (parcellated into a few brain regions), while the residual stream provides fine-grained unit-level activation. A higher-resolution measurement reveals more independent dimensions.
+Maya's illustrative finding in the running example --- that 12 principal components capture 87% of the variance in a 131,072-dimensional activation space --- is of the kind this literature reports. In the example, the cognitive manifold for moral reasoning is approximately 12-dimensional, three to four times higher than the human manifold for the same task (approximately 3 dimensions in the hypothetical fMRI data of Chapter 3). The difference likely reflects the different levels of analysis: fMRI measures coarse-grained regional activation (parcellated into a few brain regions), while the residual stream provides fine-grained unit-level activation. A higher-resolution measurement reveals more independent dimensions.
 
 **Layer-by-layer processing as manifold traversal.** The layer-by-layer processing of the transformer maps directly onto the temporal evolution of the cognitive trajectory:
 
@@ -131,15 +131,15 @@ Maya's finding --- that 12 principal components capture 87% of the variance in a
 | Layers 19--25 | Integration | Trajectory convergence |
 | Layers 26--32 | Output formation | Projection from manifold to output space |
 
-This mapping is specific to the model and task that Maya analyzed. Different models and different tasks may have different layer assignments. But the qualitative structure --- encoding, gradient following, curvature detection, geodesic computation, convergence, output --- is consistent with the dual-process theory of Chapter 12.
+This mapping is illustrative and specific to the model and task of Maya's running example. Different models and different tasks may have different layer assignments. But the qualitative structure --- encoding, gradient following, curvature detection, geodesic computation, convergence, output --- is consistent with the dual-process theory of Chapter 12.
 
-**The curvature spike at layers 14--18.** Maya's curvature measurement at the moral conflict point deserves further analysis. The curvature spike corresponds to the layers where the model is processing the conflicting harm dimensions of the moral dilemma. At these layers:
+**The curvature spike at layers 14--18.** Maya's illustrative curvature measurement at the moral conflict point deserves further analysis. The curvature spike corresponds to the layers where the model is processing the conflicting harm dimensions of the moral dilemma. At these layers:
 
 - Different attention heads pull the representation in different directions (head disagreement is maximal).
 - The residual stream trajectory changes direction sharply (high curvature of the trajectory itself).
 - The layer-to-layer change in the residual stream is largest (the trajectory is moving fastest, indicating the most intensive processing).
 
-The spike is the transformer's analogue of the dlPFC activation spike that Maya observes in human fMRI data when subjects encounter moral conflicts. The analogy is not just functional (both indicate increased processing effort for difficult problems) but *geometric* (both correspond to high curvature of the trajectory on the cognitive manifold).
+The spike is the transformer's analogue of the dlPFC activation spike that Maya observes in the running example's hypothetical human fMRI data when subjects encounter moral conflicts. The analogy is not just functional (both indicate increased processing effort for difficult problems) but *geometric* (both correspond to high curvature of the trajectory on the cognitive manifold).
 
 
 ## 15.5 In-Context Learning as Local Metric Adaptation

@@ -5,7 +5,7 @@
 
 ---
 
-> **RUNNING EXAMPLE --- MAYA'S MODEL**
+> **RUNNING EXAMPLE (ILLUSTRATIVE, FICTIONAL FUTURE) --- MAYA'S MODEL**
 >
 > It is 2040. Maya Chen is fifty-three years old.
 >
@@ -128,7 +128,7 @@ None of these steps would solve the hard problem. All of them would advance the 
 
 The geometric framework treats the dimensionality of the cognitive manifold as a key parameter: it determines the complexity of cognition, the capacity of working memory (Chapter 5), and the difficulty of the geodesic computation (Chapter 12). But the framework does not specify what the dimensionality *is*.
 
-**The current estimates.** Maya's estimates, mentioned throughout the book, are task-dependent:
+**The current estimates.** The illustrative estimates of Maya's running example, mentioned throughout the book, are task-dependent:
 - Moral reasoning (simple): approximately 3 dimensions (from fMRI PCA, Chapter 3).
 - Moral reasoning (complex): approximately 7 dimensions (from the 7D harm space, Chapter 7).
 - Transformer moral reasoning: approximately 8--12 dimensions (from residual stream PCA, Chapter 15).

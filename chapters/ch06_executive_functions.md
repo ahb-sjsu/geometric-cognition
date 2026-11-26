@@ -280,8 +280,8 @@ where $C_{\text{flex}} = \text{E1 score}$, $C_{\text{inhib}} = \text{E2 score}$,
 |---|---|---|---|---|---|
 | Pro 2.5 | 0.624 | 0.588 | 0.750 | 0.887 | 0.244 |
 | Flash 3 | 0.668 | 0.655 | 0.562 | 0.909 | 0.224 |
-| Flash 2.5 | 0.684 | 0.553 | 0.688 | 0.900 | 0.231 |
-| Claude | 0.673 | 0.492 | 0.562 | 0.886 | 0.166 |
+| Flash 2.5 | 0.684 | 0.553 | 0.688 | 0.900 | 0.234 |
+| Claude | 0.673 | 0.492 | 0.562 | 0.886 | 0.165 |
 | Flash 2.0 | 0.701 | 0.614 | 0.500 | 0.710 | 0.153 |
 
 **Step 2: Compute anisotropy.** The anisotropy of the control tensor is the ratio of its largest to smallest diagonal component:

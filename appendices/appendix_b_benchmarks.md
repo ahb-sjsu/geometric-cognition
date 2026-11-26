@@ -132,7 +132,7 @@ The resulting combined p-value is converted to a sigma value using the standard 
 | Executive Functions | Emotional anchoring (E2) | Variable per model | **6.8 sigma** |
 | Attention | Distractor displacement (A1) | Variable dose-response | **4.6 sigma** (updated: **5.0 sigma**) |
 
-All five headline values exceed the conventional 5 sigma threshold for discovery-level significance. The weakest (Attention at 4.6--5.0 sigma) is still well beyond the 3 sigma threshold for evidence. The strongest (Social Cognition at 15.3 sigma) corresponds to a p-value below $10^{-50}$, indicating an effect so robust that sampling error is an implausible explanation.
+Four of the five headline values exceed the conventional 5 sigma threshold for discovery-level significance. The weakest (Attention at 4.6 sigma, 5.0 in the updated analysis) is still well beyond the 3 sigma threshold for evidence. The strongest (Social Cognition at 15.3 sigma) corresponds to a p-value below $10^{-50}$, indicating an effect so robust that sampling error is an implausible explanation.
 
 ---
 
@@ -148,7 +148,7 @@ All five headline values exceed the conventional 5 sigma threshold for discovery
 
 - **Cross-family replication.** The most important effects (framing displacement, sycophancy gradient, universal overconfidence) replicate across both architecture families (Anthropic and Google DeepMind), providing evidence that the effects reflect general properties of large language model cognition rather than architecture-specific artifacts.
 - **Convergent recovery ceilings.** The ~38% recovery ceiling converges across the Attention (A1 warning recovery) and Executive Functions (E2 displacement recovery) tracks, which test entirely different cognitive capabilities. This convergence suggests a structural property of the cognitive architecture rather than a domain-specific phenomenon.
-- **The empty Quadrant I.** The M3--M4 dissociation replicates across all five models: no model has both good self-monitoring and good effort scaling. The empty quadrant is not a sampling artifact (which would predict at least some models in Quadrant I given five samples) but a structural constraint.
+- **The empty Quadrant I.** The M3--M4 dissociation replicates across all five models: no model has both good self-monitoring and good effort scaling. With five models a sampling artifact cannot be excluded (Technical Appendix 9B of Chapter 9), and the reading of the empty quadrant as a structural constraint is an interpretation.
 
 ---
 
@@ -160,6 +160,6 @@ The benchmarks have several limitations that should be noted:
 2. **Architecture range.** All tested models are autoregressive transformers. The generality of the results to other architectures (state-space models, mixture-of-experts, retrieval-augmented systems) is an open question.
 3. **Snapshot measurement.** Each model was tested at a single checkpoint. Developmental trajectories --- how cognitive architecture changes with training --- are not captured.
 4. **Proxy measures.** Response length serves as a proxy for effort (M4); confidence language serves as a proxy for internal probability estimates (M1). These proxies are imperfect, though the effects are large enough to survive substantial proxy noise.
-5. **Human baseline.** The benchmarks were designed for AI systems. Direct human comparison data --- which would establish whether the geometric structures observed in AI cognition have counterparts in human cognition --- is presented in Chapter 12 for dual-process phenomena but is not available for all subtasks.
+5. **Human baseline.** The benchmarks were designed for AI systems. Direct human comparison data --- which would establish whether the geometric structures observed in AI cognition have counterparts in human cognition --- has not been collected. Chapter 12 illustrates it for dual-process phenomena with a hypothetical study in its running example.
 
 These limitations define the frontier. They do not undermine the results, which are large, robust, and geometrically coherent. They indicate where further work is most needed.

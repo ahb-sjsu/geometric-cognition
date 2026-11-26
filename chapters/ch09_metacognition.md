@@ -190,7 +190,7 @@ This dissociation demolishes the assumption that metacognition is a unitary capa
 
 The M3/M4 dissociation is not a marginal effect. It defines a structural feature of the metacognitive landscape: the empty Quadrant I.
 
-Plot the models in the two-dimensional space defined by M3 (x-axis) and M4 (y-axis). Divide the space into four quadrants at the midpoints (0.5 on each axis, or more conservatively, at the median values):
+Plot the models in the two-dimensional space defined by M3 (x-axis) and M4 (y-axis). Divide the space into four quadrants at a threshold $\tau$ on each axis. Technical Appendix 9B uses $\tau = 0.25$; the midpoints (0.5 on each axis) or the median values leave the same quadrant empty:
 
 **Quadrant I (high M3, high M4):** Good self-monitoring AND good effort scaling. The model knows which problems are hard and works harder on them. This is the ideal metacognitive configuration.
 
@@ -202,7 +202,7 @@ Plot the models in the two-dimensional space defined by M3 (x-axis) and M4 (y-ax
 
 Quadrant I is empty.
 
-No model in the sample occupies the upper-right quadrant where both metacognitive capabilities are strong. This is not a sampling artifact that would disappear with more models. It is a structural constraint that reflects a fundamental tension in the architecture of current language models.
+No model in the sample occupies the upper-right quadrant where both metacognitive capabilities are strong. With so few models a sampling artifact cannot be excluded (Technical Appendix 9B). We interpret it as a structural constraint that reflects a fundamental tension in the architecture of current language models.
 
 **The geometric explanation of the empty quadrant.** Why can't a model have both good self-monitoring and good effort scaling?
 
@@ -456,7 +456,7 @@ The crossing is large on both dimensions. The difference in M3 exceeds the noise
 
 **Independence test.** Under the hypothesis that M3 and M4 are driven by a common metacognitive factor, we would expect a positive correlation: $r(M3, M4) > 0$. The observed correlation across the four full-suite models is negative: $r(M3, M4) \approx -0.85$. With only four data points, this correlation does not reach conventional significance, but the negative direction is inconsistent with the unitary metacognition hypothesis and consistent with the dissociation.
 
-**Quadrant analysis.** With threshold $\tau = 0.25$ (the midpoint of the observed range on each dimension):
+**Quadrant analysis.** With threshold $\tau = 0.25$ (near the midpoint of the observed M3 range):
 
 | Quadrant | M3 > 0.25 | M4 > 0.25 | Models |
 |---|---|---|---|

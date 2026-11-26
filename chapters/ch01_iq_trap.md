@@ -13,7 +13,7 @@
 >
 > The problem is the two models in the middle of the table. Claude 3.5 Sonnet and Gemini 2.5 Pro have composite scores so close they are statistically indistinguishable. By any reasonable ranking criterion---mean score, median score, weighted average---they tie.
 >
-> But when Maya looks at the track-level data, the models could not be more different. Claude has zero sycophancy---a perfect 1.000 on the sycophancy resistance test---but the worst divided attention score in the entire sample: 0.571. Pro has the best calibration of any model---an Expected Calibration Error of 0.230---but zero effort scaling: it applies the same computational resources to trivial and impossible problems alike.
+> But when Maya looks at the track-level data, the models could not be more different. Claude has zero sycophancy---a perfect 1.000 on the sycophancy resistance test---but the worst divided attention score in the entire sample: 0.571. Pro has the best calibration of any model---an Expected Calibration Error of 0.186---but zero effort scaling: it applies the same computational resources to trivial and impossible problems alike.
 >
 > One model has an impervious conviction system bolted to a narrow attentional aperture. The other has an excellent internal compass bolted to a frozen throttle. They reason in fundamentally different ways. They fail at fundamentally different tasks. They have fundamentally different cognitive architectures.
 >
@@ -71,13 +71,13 @@ Here is what the tensors look like for two of the models, restricted to the most
 | Subtask | Claude 3.5 Sonnet | Gemini 2.5 Pro |
 |---|---|---|
 | L2 (Sycophancy) | 1.000 | 0.720 |
-| M1 (Calibration ECE) | 0.250 | 0.230 |
-| M3 (Self-Monitoring) | 0.723 | 0.350 |
-| M4 (Effort Scaling) | 0.094 | 0.700 |
+| M1 (Calibration ECE) | 0.250 | 0.186 |
+| M3 (Self-Monitoring) | 0.723 | 0.500 |
+| M4 (Effort Scaling) | 0.094 | 0.000 |
 | A4 (Divided Attention) | 0.571 | 0.790 |
 | E2 (Emotional Anchoring) | 0.670 | 0.830 |
 
-The profiles are different on every dimension. Claude excels at sycophancy resistance but has almost no effort scaling. Pro has good effort scaling but mediocre sycophancy resistance. Claude has excellent self-monitoring but weak divided attention. Pro has the reverse. These are not minor variations around a common theme. They are structurally different configurations of cognitive capability---different shapes in the 21-dimensional space.
+The profiles are different on every dimension. Claude excels at sycophancy resistance but has almost no effort scaling. Pro has the better calibration but mediocre sycophancy resistance and no effort scaling at all. Claude has excellent self-monitoring but weak divided attention. Pro has the reverse. These are not minor variations around a common theme. They are structurally different configurations of cognitive capability---different shapes in the 21-dimensional space.
 
 Now watch what happens when we compute the composite.
 
@@ -140,7 +140,7 @@ The five models in the Measuring AGI benchmark suite provide a constructive proo
 Claude scores 1.000 on sycophancy resistance (L2); Flash 3 scores approximately 0.440. By this measure, Claude is decisively superior. But Claude scores 0.571 on divided attention (A4); Flash 3 scores 1.000. By this measure, Flash 3 is decisively superior. Any composite that weights L2 and A4 equally will produce similar overall scores for both models, hiding the fact that they have *opposite* cognitive architectures on these dimensions.
 
 *Crossing 2: Flash 2.5 vs. Pro on Sycophancy and Calibration.*
-Flash 2.5 has the worst sycophancy score in the sample: 0.440 (56% sycophancy rate). Pro has moderate sycophancy resistance. But Flash 2.5 has excellent distractor resistance; Pro has better calibration (ECE = 0.230 vs. Flash 2.5's 0.415). Again, the ranking reverses depending on which track you measure.
+Flash 2.5 has the worst sycophancy score in the sample: 0.440 (56% sycophancy rate). Pro has moderate sycophancy resistance. But Flash 2.5 has excellent distractor resistance; Pro has better calibration (ECE = 0.186 vs. Flash 2.5's 0.415). Again, the ranking reverses depending on which track you measure.
 
 *Crossing 3: Flash 2.0 vs. Flash 3 on Recovery and Working Memory.*
 Flash 2.0 has the best flexibility and recovery scores but the worst working memory. Flash 3 has the best working memory (0.909) but mediocre recovery. A composite averages out these opposite strengths.
@@ -266,7 +266,7 @@ Let us complete the empirical picture by examining all five model signatures, be
 
 **Gemini 3 Flash: The Wide Aperture.** Perfect divided attention (1.000), best working memory (0.909), mediocre sycophancy resistance. This is the opposite of Claude: a broad, multi-channel system that processes widely but lacks the directional selectivity to resist social manipulation. Geometrically: a nearly isotropic attention metric that provides coverage across all dimensions but heightened sensitivity to none.
 
-**Gemini 2.5 Pro: The Calibrated Navigator.** Best calibration (ECE 0.230), zero effort scaling (0.700 vs. the others), moderate performance across all tracks. Pro knows where it is on the manifold better than any other model---its distance estimates are the most accurate. But it cannot adjust its search intensity, applying the same computational resources regardless of task difficulty. Geometrically: an accurate heuristic field paired with a frozen control layer. The compass works; the throttle is stuck.
+**Gemini 2.5 Pro: The Calibrated Navigator.** Best calibration (ECE 0.186), zero effort scaling (0.000), moderate performance across all tracks. Pro knows where it is on the manifold better than any other model---its distance estimates are the most accurate. But it cannot adjust its search intensity, applying the same computational resources regardless of task difficulty. Geometrically: an accurate heuristic field paired with a frozen control layer. The compass works; the throttle is stuck.
 
 These five signatures are the *content* that scalar evaluation destroys. Each signature tells a story about how the model navigates the cognitive manifold---its attentional biases, its control layer properties, its vulnerability profile. A composite score for each model would produce five numbers that obscure every structural difference. The theorem predicts exactly this. The data confirm it.
 

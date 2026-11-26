@@ -5,7 +5,7 @@
 
 ---
 
-> **RUNNING EXAMPLE --- MAYA'S MODEL**
+> **RUNNING EXAMPLE (ILLUSTRATIVE) --- MAYA'S MODEL**
 >
 > Maya is watching a trajectory.
 >
@@ -141,7 +141,7 @@ Different reasoning strategies produce different trajectories. Gradient followin
 
 The *shape* of the trajectory encodes the reasoning process. A straight trajectory (in manifold coordinates) indicates effortless reasoning through flat terrain. A curved trajectory indicates navigation through a region of high curvature---a region where the cognitive state changes direction, where competing considerations pull the trajectory in different directions. An oscillating trajectory indicates hesitation---the system moving back and forth between competing attractors before settling on a path.
 
-Maya's fMRI observation from the opening of this chapter is a direct measurement of a cognitive trajectory. The sequence of activation patterns, projected onto the manifold's principal components, traces a curve through low-dimensional space. The shape of this curve---its curvature, its speed, its pauses---reveals the geometric structure of the reasoning process.
+Maya's illustrative fMRI observation from the opening of this chapter depicts a direct measurement of a cognitive trajectory. The sequence of activation patterns, projected onto the manifold's principal components, traces a curve through low-dimensional space. The shape of this curve---its curvature, its speed, its pauses---reveals the geometric structure of the reasoning process.
 
 
 ## 3.8 The Tangent Space at a Cognitive State
@@ -207,7 +207,7 @@ The 15.3 sigma framing effect is evidence for high negative curvature in the mor
 
 ## 3.11 Worked Example: Mapping a Cognitive Trajectory
 
-Let us work through Maya's fMRI observation in detail, using the formalism developed in this chapter.
+Let us work through Maya's illustrative fMRI observation in detail, using the formalism developed in this chapter. The session and its numbers are hypothetical.
 
 **Setup.** Maya records the fMRI activation pattern of James Okafor at 90 time points (one every two seconds for three minutes) while James reasons about a moral dilemma. Each activation pattern is a vector in $\mathbb{R}^{100,000}$ (approximately 100,000 voxels in the fMRI volume).
 
@@ -238,7 +238,7 @@ where $\alpha > 0$ is a step-size parameter. From the observed velocities in Pha
 
 In Phase 2 (geodesic computation), the relationship between velocity and heuristic gradient is more complex---the trajectory includes geodesic correction terms that deviate from the gradient. But the deviation itself is informative: it reveals the Christoffel symbols, which encode the curvature of the manifold.
 
-**Interpretation.** Maya has mapped a single cognitive trajectory onto a three-dimensional manifold, measured its curvature profile, and identified the System 1 / System 2 transition from the curvature data. The manifold is not an abstraction imposed from outside. It is the empirical structure of the activation data, revealed by dimensionality reduction and trajectory analysis.
+**Interpretation.** In this illustrative example, Maya has mapped a single cognitive trajectory onto a three-dimensional manifold, measured its curvature profile, and identified the System 1 / System 2 transition from the curvature data. On this account the manifold is not an abstraction imposed from outside. It is the empirical structure of the activation data, revealed by dimensionality reduction and trajectory analysis.
 
 
 ## 3.12 The Manifold for Different Cognitive Tasks

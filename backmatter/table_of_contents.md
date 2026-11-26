@@ -242,7 +242,7 @@
 - 13.5 Stage 4: Formal Operational (Ages ~11 Onward) --- Manifold Completion
 - 13.6 The Topological Sequence
 - 13.7 Transition Mechanisms: How the Topology Changes
-- 13.8 Maya's Longitudinal Data
+- 13.8 Maya's Longitudinal Data (Illustrative)
 - 13.9 The Development of the Curvature Threshold
 - 13.10 Parallel with Artificial Development
 - 13.11 Implications for Education

@@ -5,7 +5,7 @@
 
 ---
 
-> **RUNNING EXAMPLE --- MAYA'S MODEL**
+> **RUNNING EXAMPLE (ILLUSTRATIVE, HYPOTHETICAL STUDY) --- MAYA'S MODEL**
 >
 > Maya is watching a manifold grow.
 >
@@ -186,9 +186,9 @@ A topological transition occurs when the accumulated accommodation pressure exce
 **Disequilibrium as high accommodation pressure.** Piaget's concept of disequilibrium --- the state of cognitive discomfort that drives development --- is high accommodation pressure. The child encounters an experience (water poured from a wide glass to a narrow glass appears to increase in volume) that the current manifold cannot represent consistently (the metric on the volume dimension is unstable). The discrepancy between the experience and the manifold's representation creates a pressure that, when accumulated over many such experiences, drives the topological transition to a manifold with a stable metric on the volume dimension.
 
 
-## 13.8 Maya's Longitudinal Data
+## 13.8 Maya's Longitudinal Data (Illustrative)
 
-Maya's decade-long study of Lena provides empirical evidence for the topological transition model. Her key measures are:
+Maya's decade-long study of Lena, the hypothetical case of the running example, illustrates the pattern the topological transition model predicts. Her key measures are:
 
 **Manifold dimensionality.** At each assessment, Maya estimates the dimensionality of Lena's cognitive manifold using a battery of tasks that probe independent cognitive dimensions. The number of dimensions on which Lena shows systematic, above-chance performance provides a lower bound on the manifold dimensionality.
 
@@ -198,7 +198,7 @@ Maya's decade-long study of Lena provides empirical evidence for the topological
 
 **Operation closure.** From age 8 onward, Maya tests whether Lena's manifold is closed under specific operations: negation ("if not X, what?"), conjunction ("if X and Y, what?"), hypothetical ("if X were true, what?").
 
-The longitudinal data show the predicted pattern:
+The illustrative longitudinal data are constructed to show the predicted pattern:
 
 | Age | Est. Dimensionality | Metric Consistency | Path Connectivity | Operation Closure |
 |---|---|---|---|---|
@@ -221,7 +221,7 @@ The four stages are clearly visible:
 - **Concrete operational (ages 7--9)**: metric becomes consistent (sharp transition between ages 6 and 7), connectivity complete, operations begin to emerge.
 - **Formal operational (ages 10--12)**: operations achieve closure (sharp transition between ages 10 and 11), dimensionality reaches its maximum.
 
-The two transitions --- metric stabilization at age 7 and operation closure at age 11 --- are the sharpest features of the data, confirming the topological-transition model. They are not gradual improvements; they are rapid, qualitative shifts that change the character of Lena's reasoning within a span of months.
+The two transitions --- metric stabilization at age 7 and operation closure at age 11 --- are the sharpest features of the illustrative data, as the topological-transition model predicts. They are not gradual improvements; they are rapid, qualitative shifts that change the character of Lena's reasoning within a span of months.
 
 
 ## 13.9 The Development of the Curvature Threshold
@@ -275,7 +275,7 @@ Teaching formal logic to a pre-operational child is like asking someone to navig
 
 **Step 4: Predict the transition.** Repeated exposure to counting tasks that reveal the discrepancy (counting both rows and finding the same number, then observing the spatial rearrangement, then counting again) increases accommodation pressure. The pressure accumulates until it exceeds the transition threshold, at which point the metric on the numerosity dimension stabilizes: the child's manifold undergoes the topological transition to $\mathcal{M}_2$, and conservation is achieved.
 
-**Step 5: Predict the timeline.** Based on Maya's longitudinal data, the metric stabilization transition for conservation of number occurs at approximately age 6.5--7.5. The transition is sharp --- over a period of weeks to months, the child goes from failing conservation tasks consistently to passing them consistently. The sharpness of the transition is the signature of a topological phase change, distinguishing it from the gradual improvement that would characterize quantitative development on a fixed manifold.
+**Step 5: Predict the timeline.** In Maya's illustrative longitudinal data, the metric stabilization transition for conservation of number occurs at approximately age 6.5--7.5. The transition is sharp --- over a period of weeks to months, the child goes from failing conservation tasks consistently to passing them consistently. The sharpness of the transition is the signature of a topological phase change, distinguishing it from the gradual improvement that would characterize quantitative development on a fixed manifold.
 
 **Step 6: Predict cross-task transfer.** The metric stabilization is not dimension-specific. When the metric on the numerosity dimension stabilizes, the same stabilization mechanism (gauge invariance acquisition) should generalize to other dimensions (mass, volume, length) with a predictable lag: number first (because counting provides a direct verification mechanism), then length, then mass, then volume (the "horizontal decalage" that Piaget observed). In the geometric framework, the decalage reflects the order in which different dimensions acquire verification mechanisms that drive accommodation pressure: counting is available earlier than weighing, which is available earlier than volumetric measurement.
 
@@ -318,7 +318,7 @@ $$\Pi(T) = \int_0^T P(\gamma(t), \mathcal{M}(t)) \thinspace dt$$
 
 where $\gamma(t)$ is the sequence of experienced cognitive states. The topological transition occurs when $\Pi(T)$ exceeds a critical threshold $\Pi^{\ast}$. The threshold $\Pi^{\ast}$ may vary across individuals and across transitions, but the transition mechanism is the same: accumulated pressure from experiences that the current manifold cannot represent.
 
-**Dimensionality estimation.** Maya's dimensionality estimates use a battery of tasks that probe independent cognitive dimensions. For each pair of tasks, she computes the correlation between performance patterns across items. High correlation between two tasks suggests they tap the same manifold dimension; low correlation suggests different dimensions. The effective dimensionality is estimated as the number of eigenvalues of the task correlation matrix that exceed a threshold (analogous to PCA dimensionality estimation):
+**Dimensionality estimation.** Maya's illustrative dimensionality estimates use a battery of tasks that probe independent cognitive dimensions. For each pair of tasks, she computes the correlation between performance patterns across items. High correlation between two tasks suggests they tap the same manifold dimension; low correlation suggests different dimensions. The effective dimensionality is estimated as the number of eigenvalues of the task correlation matrix that exceed a threshold (analogous to PCA dimensionality estimation):
 
 $$d_{\text{eff}} = |\lbrace i : \lambda_i > \lambda_{\text{threshold}}\rbrace|$$
 

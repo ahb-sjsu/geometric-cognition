@@ -90,10 +90,11 @@ where $g(v)$ is the cost of the best known path from $v_0$ to $v$, and $h(v)$ is
 
 ## A.5 Symmetry Groups and D4 Augmentation
 
+*Note, 2026-11-26.* *Geometric Ethics* withdrew the dihedral group $D_4$ as the symmetry group of the four Hohfeldian positions (obligation, claim, liberty, no-claim) in its version 1.25 of 2026-11-08. The two operations on those positions, the correlative and the negation, commute and generate the Klein four-group $V_4 \cong \mathbb{Z}_2 \times \mathbb{Z}_2$, of order 4. There is no quarter-turn. Definition A.12 and the $D_4$ augmentation of square grids described below concern the symmetries of a square and stand as written. The statement formerly made here, that the Social Cognition benchmark of Chapter 7 uses a $D_4$ symmetry of Hohfeldian jural relations, is withdrawn. The invariance tests of Chapter 7 (gender swap, and rewriting in a euphemistic or dramatic register) use no Hohfeldian group and do not depend on it.
+
 **Definition A.12 (Dihedral Group $D_4$).** The dihedral group $D_4$ is the symmetry group of the square, consisting of 8 elements: the identity, three rotations ($90°$, $180°$, $270°$), and four reflections (horizontal, vertical, and two diagonal). It has generators $r$ (rotation) and $s$ (reflection) with relations $r^4 = e$, $s^2 = e$, $srs = r^{-1}$.
 
-*Cognitive interpretation*: The $D_4$ group appears in two contexts in this book. First, in the Social Cognition benchmark (Chapter 7), the $D_4$ symmetry of Hohfeldian jural relations inherited from *Geometric Ethics* is used to test gauge invariance of moral judgment. Second, in the ARC-AGI benchmark context, $D_4$ augmentation --- applying all 8 symmetry transformations (rotations and reflections) of a grid input --- is a standard technique for improving pattern recognition. The AIRV (Augment, Infer, Reverse, Vote) pipeline from the MindsAI approach uses $D_4$ augmentation to generate 8 candidate solutions from each input, then votes across the augmented solutions to select the most consistent answer. (See Chapter 15.)
-
+*Cognitive interpretation*: The $D_4$ group enters this book in one context, as the symmetry group of a square grid [its use for Hohfeldian jural relations in the Social Cognition benchmark: withdrawn, 2026-11-26, see the note above]. In the ARC-AGI benchmark context, $D_4$ augmentation --- applying all 8 symmetry transformations (rotations and reflections) of a grid input --- is a standard technique for improving pattern recognition. The AIRV (Augment, Infer, Reverse, Vote) pipeline from the MindsAI approach uses $D_4$ augmentation to generate 8 candidate solutions from each input, then votes across the augmented solutions to select the most consistent answer.
 ---
 
 ## A.6 The Corruption Tensor

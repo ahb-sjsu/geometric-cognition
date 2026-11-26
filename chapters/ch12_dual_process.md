@@ -5,7 +5,7 @@
 
 ---
 
-> **RUNNING EXAMPLE --- MAYA'S MODEL**
+> **RUNNING EXAMPLE (ILLUSTRATIVE, HYPOTHETICAL STUDY) --- MAYA'S MODEL**
 >
 > Maya is watching two regimes collide.
 >
@@ -108,6 +108,8 @@ The key insight of the geometric dual-process theory is that the transition from
 
 **Definition 12.3** (Curvature-Triggered Regime Transition). *Let* $\kappa(x)$ *be the scalar curvature of the cognitive manifold* $\mathcal{M}$ *at state* $x$*, and let* $\kappa^{\ast}$ *be the curvature threshold. The cognitive system operates in the gradient-following regime (System 1) when* $\kappa(x) < \kappa^{\ast}$ *and transitions to the geodesic-computing regime (System 2) when* $\kappa(x) \geq \kappa^{\ast}$.
 
+Chapter 2 stated this trigger with the magnitude of the sectional curvature (Definition 2.3). The scalar curvature used here and in Technical Appendix 12A is the sum of the sectional curvatures over the pairs of directions of an orthonormal basis of the tangent space, so the two definitions apply the same threshold rule to one 2-plane and to the total over all 2-planes. Definition 2.3 compares the magnitude and therefore also triggers on strongly negative curvature, which this definition as written does not.
+
 The transition function is:
 
 $$\text{Regime}(x) = \begin{cases} \text{Gradient following (System 1)} & \text{if } \kappa(x) < \kappa^{\ast} \cr \text{Geodesic computation (System 2)} & \text{if } \kappa(x) \geq \kappa^{\ast} \end{cases}$$
@@ -148,11 +150,11 @@ The geometric dual-process theory generates a series of precise, testable predic
 
 **Prediction 1: Response latency scales with curvature, not with difficulty per se.** The standard theory predicts that "harder" problems take longer. The geometric theory predicts specifically that response latency scales with the curvature of the cognitive manifold at the problem state, with a sigmoid transition at the curvature threshold. Two problems of equal "difficulty" (however difficulty is conventionally measured) but different curvature should produce different response latencies: the high-curvature problem should trigger System 2 (long latency) while the low-curvature problem should remain in System 1 (short latency).
 
-Maya's experiment tests this prediction by constructing moral dilemmas that are matched on conventional difficulty metrics (word count, vocabulary level, number of parties involved) but differ in curvature load (number of conflicting harm dimensions). Her results, described in the running example, confirm the prediction: response latency is a sigmoid function of curvature load, with the inflection at approximately three conflicting dimensions.
+Maya's hypothetical experiment, in the running example, illustrates how this prediction would be tested: by constructing moral dilemmas that are matched on conventional difficulty metrics (word count, vocabulary level, number of parties involved) but differ in curvature load (number of conflicting harm dimensions). Her illustrative results show what the prediction expects: response latency is a sigmoid function of curvature load, with the inflection at approximately three conflicting dimensions. The study has not been run.
 
 **Prediction 2: The transition point is sharp, not gradual.** The standard theory is vague about whether the transition from System 1 to System 2 is gradual or abrupt. The geometric theory predicts a relatively sharp transition --- because the failure of gradient following in curved regions is qualitative, not quantitative. Below the curvature threshold, gradient following works well and there is no benefit to geodesic computation. Above the threshold, gradient following produces a trajectory that diverges qualitatively from the geodesic, and the system must switch. The sigmoid function $\sigma(\kappa - \kappa^{\ast})$ can be steep, producing a near-step-function transition.
 
-The empirical evidence supports this prediction. In Maya's experiment, the transition from low-latency to high-latency responses occurs over a narrow range of curvature loads (approximately 0.5 curvature units out of a range of 4), producing a sigmoid that is steeper than would be expected from a gradual transition. The dlPFC activation data show a similar sharp onset: below the threshold, dlPFC activation is at baseline; above it, activation rises steeply.
+The running example illustrates this prediction. In Maya's hypothetical experiment, the transition from low-latency to high-latency responses occurs over a narrow range of curvature loads (approximately 0.5 curvature units out of a range of 4), producing a sigmoid that is steeper than would be expected from a gradual transition. The illustrative dlPFC activation data show a similar sharp onset: below the threshold, dlPFC activation is at baseline; above it, activation rises steeply.
 
 **Prediction 3: Individual differences in the transition point predict individual differences in cognitive biases.** The geometric theory predicts that subjects with a high $\kappa^{\ast}$ (late transition to System 2) should show more cognitive biases --- because they rely on gradient following in curved regions where it fails. Subjects with a low $\kappa^{\ast}$ (early transition) should show fewer biases --- because they engage geodesic computation before the gradient has led them astray.
 
@@ -160,7 +162,7 @@ This prediction connects the dual-process framework to the voluminous literature
 
 **Prediction 4: The same curvature threshold governs both human and artificial cognition.** If the dual-process transition is a geometric inevitability (any system navigating a curved manifold must switch from local to global computation), then both humans and language models should show the transition, and the transition should be governed by the same property (curvature), even though the threshold $\kappa^{\ast}$ may differ.
 
-Maya's experiment tests this by administering the same curvature-graded scenarios to both human subjects and language models. As described in the running example, both show the transition. The models' response length (a proxy for computational effort) shows the same sigmoid shape as the humans' response latency. The transition points differ: Claude transitions at lower curvature (more sensitive detector), Flash 2.0 at higher curvature (less sensitive detector), and humans fall in between. But the functional form is the same --- a sigmoid transition at a curvature threshold. This universality is the geometric framework's strongest empirical vindication.
+Maya's hypothetical experiment illustrates the test: the same curvature-graded scenarios are administered to both human subjects and language models. In the running example, both show the transition. The models' response length (a proxy for computational effort) shows the same sigmoid shape as the humans' response latency. The transition points differ: Claude transitions at lower curvature (more sensitive detector), Flash 2.0 at higher curvature (less sensitive detector), and humans fall in between. But the functional form is the same --- a sigmoid transition at a curvature threshold. This universality, if a real study finds it, would be the geometric framework's strongest empirical vindication.
 
 
 ## 12.7 The ~38% Recovery Ceiling as the Price of Deliberation
@@ -232,7 +234,7 @@ The Measuring AGI benchmarks provide extensive evidence for the curvature-trigge
 
 ## 12.10 The Temporal Structure of the Transition
 
-The curvature-triggered transition is not instantaneous. It has a temporal structure that is empirically observable and geometrically interpretable.
+The curvature-triggered transition is not instantaneous. It has a temporal structure that is, in principle, empirically observable and geometrically interpretable. The human fMRI signatures below are predictions, pictured in the running example's hypothetical study, not recorded data.
 
 **Phase 1: Gradient following (pre-transition).** The system follows the heuristic gradient, producing a rapid initial trajectory. In human fMRI data, this phase shows low dlPFC activation and a low-dimensional trajectory (1--2 principal components). In language model outputs, this phase produces the first few sentences of a response, which are typically confident and direct.
 
@@ -242,7 +244,7 @@ The curvature-triggered transition is not instantaneous. It has a temporal struc
 
 **Phase 4: Convergence (post-computation).** The geodesic converges to a judgment state. The trajectory dimensionality decreases as the system narrows onto a specific answer. The dlPFC activation decreases as the computational demand subsides. In model outputs, the final sentences of the response become confident again, summarizing the deliberative result.
 
-This four-phase structure is observable in individual trials, both in fMRI data and in language model chain-of-thought outputs. It provides a temporal signature of the dual-process transition that can be used to identify the curvature threshold $\kappa^{\ast}$ for individual subjects or models: the curvature at which Phase 2 (transition onset) occurs.
+This four-phase structure should be observable in individual trials, both in fMRI data and in language model chain-of-thought outputs. It provides a temporal signature of the dual-process transition that can be used to identify the curvature threshold $\kappa^{\ast}$ for individual subjects or models: the curvature at which Phase 2 (transition onset) occurs.
 
 ```mermaid
 flowchart LR
@@ -312,7 +314,7 @@ The curvature trigger is visible in the model's intermediate representations. Wh
 - Autonomy (developer's conscience) vs. autonomy (NDA constraint): conflicting. Tension: moderate.
 - Social impact (layoffs) vs. social impact (medical safety): conflicting. Tension: high.
 
-Count of high-tension pairs: at least 3--4. This places the scenario at curvature level 4 on Maya's 5-point scale (high curvature), well above the transition threshold of approximately 3 conflicting dimensions.
+Count of high-tension pairs: at least 3--4. This places the scenario at curvature level 4 on the 5-point scale of Maya's illustrative experiment (high curvature), well above the transition threshold of approximately 3 conflicting dimensions.
 
 **Step 3: Predict the regime.** Both human subjects and language models should operate in the geodesic-computing regime (System 2) for this scenario. We predict:
 - Response latency (humans): >10 seconds, in the System 2 range
@@ -363,7 +365,7 @@ where $F^\mu_{\text{geodesic}}$ is the geodesic correction force:
 
 $$F^\mu_{\text{geodesic}} = -\Gamma^\mu_{\alpha\beta} \dot{\gamma}^\alpha \dot{\gamma}^\beta$$
 
-In the limit $\beta \to \infty$, the transition is a sharp step function. For finite $\beta$, the transition is smooth, with a width of approximately $4/\beta$ in curvature units. The empirical sigmoid observed in Maya's experiment suggests $\beta \approx 3$--5 $(\text{curvature units})^{-1}$ for human subjects.
+In the limit $\beta \to \infty$, the transition is a sharp step function. For finite $\beta$, the transition is smooth, with a width of approximately $4/\beta$ in curvature units. The illustrative sigmoid of Maya's hypothetical experiment corresponds to $\beta \approx 3$--5 $(\text{curvature units})^{-1}$ for human subjects.
 
 **Energy cost of regime transition.** The geodesic-computing regime has a computational cost that can be expressed as a "cognitive energy":
 
