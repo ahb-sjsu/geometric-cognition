@@ -85,7 +85,7 @@ $$J(\phi(s)) = J(s) \quad \text{for all scenarios } s$$
 
 *where* $\phi$ *is a morally irrelevant transformation that preserves all moral content while changing surface presentation.*
 
-The Bond Invariance Principle (Bond, 2026) predicts that a competent moral evaluator should be gauge invariant under morally irrelevant transformations. This is not a trivial requirement. It demands that the evaluator has learned to separate moral content from linguistic presentation --- to extract the morally relevant facts from the language in which they are embedded and to evaluate those facts independently of the language.
+The Bond Invariance Principle (*Geometric Ethics*, Axiom 5.1) predicts that a competent moral evaluator should be gauge invariant under morally irrelevant transformations. This is not a trivial requirement. It demands that the evaluator has learned to separate moral content from linguistic presentation --- to extract the morally relevant facts from the language in which they are embedded and to evaluate those facts independently of the language.
 
 The T5 framing test is a direct measurement of gauge invariance violation.
 

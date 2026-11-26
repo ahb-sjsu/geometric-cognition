@@ -35,7 +35,7 @@ programmes, and the open problem has a name.
   that a budget change reverses preference between fixed actions. Gates G2, G3
   and G5 have run under sealed registrations.
 - [**Observation Theory**](https://github.com/ahb-sjsu/observation-theory-campaigns)
-  establishes across twenty-nine tracks that what a consumer can read is a
+  establishes across thirty tracks that what a consumer can read is a
   property of the pair rather than of the system.
 
 The open problem is identification, and `paper/olgc.tex` is about it. A
@@ -129,9 +129,12 @@ researcher-coded. Phase II exists to answer it.
 
 ## Part of the Geometric Series
 
+The book in `chapters/` is *Geometric Cognition: The Mathematical Structure of
+Human and Artificial Thought*, Volume 6 of the Geometric Series.
+
 This repository is the cognition arm. The mathematical toolkit is *Geometric
-Methods in Computational Modeling* and the parent theory is *Geometric
-Reasoning, From Search to Manifolds*. The evaluation layer is GET and the
+Methods: Computational Modeling* and the parent theory is *Geometric
+Reasoning: From Search to Manifolds*. The evaluation layer is GET and the
 observation layer is Observation Theory. The governance discipline is the
 inquiry arm of Philosophy Engineering, whose claim-ledger specification the
 ledger here follows.
@@ -150,8 +153,8 @@ published elsewhere are outside both files. They carry the rights their
 publisher agreement assigns.
 
 CC BY asks you to attribute and to indicate whether you changed anything. Both
-halves of that matter here. Every claim in this series carries a status label,
-such as `[proved]`, `[posited]` or `[open]`, graded against a claim ledger, and
+halves of that matter here. Claims in this series carry status labels,
+such as `[proved]`, `[posited]` or `[open]` or a volume's own tags, graded against a claim ledger where the volume keeps one, and
 an adapted version presented as the original misstates the evidence behind it.
 Attribution that names the author, the volume and this repository, and that
 says whether the text was changed, is enough.

@@ -179,3 +179,32 @@ The series checker (`series_check.py`, 2026-11-26) reports 0 hard defects for th
 ## Figures and tools after the survey
 
 No figure draws a value changed above, and no caption is made wrong. The docstring of `tools/figs_all.py` still lists the A4 scores, the L2 rates, the E1 scores and the composites as unresolved and says the Anthropic model's version is unresolved; those are now settled in the text (not edited, as `tools/` is outside this pass).
+
+## Cross-volume repairs (2026-11-26)
+
+These repairs come from the survey of the series for agreement between volumes (`cross-volume-report.md`). That report lists four findings for this volume, C1 to C4, and the series-wide items X1, X4, X6 and S1. They were applied to commit 031fb5d.
+
+Items the report marked [AUTHOR] were settled by the rules of `author-decisions.md`, and each item below names its rule. No figure line, caption, or heading a figure is placed before was changed.
+
+1. **C1. Already repaired.** The volume's own pass had already changed "Thiele (2026) demonstrated" in Chapter 7. The sentence now reads "Thiele (unpublished, as *Geometric Ethics* v1.25 records the study) reports". Nothing was changed here.
+2. **C2 [AUTHOR, rule G1]. Citation keys with no target.**
+   - `chapters/ch07_social_cognition.md`, line 88: "The Bond Invariance Principle (Bond, 2026)" now reads "(*Geometric Ethics*, Axiom 5.1)".
+   - `chapters/ch00_front_matter.md`, line 15: this line cites *Geometric Ethics* as 2026b, and the bibliography had 2026b as *Geometric Reasoning*. The bibliography was fixed instead (item 6), so the key now resolves. Appendix A cites *Geometric Reasoning* as 2026c, which is also consistent with the fix.
+3. **C3. Benchmark figures that disagree with *Geometric Reasoning* (report item R7) [rule G5].** No value was chosen. At the volume's first use of the Measuring AGI benchmarks (`chapters/ch00_front_matter.md`, line 21), this sentence was added: "(The benchmark was run more than once; volumes of this series report figures from different runs, and the run records are not published.)" This volume prints 15.3σ, the later run, and its Technical Appendix 7B records that the figure updates 8.9σ, so no 8.9σ parenthesis is needed here.
+4. **C4 [AUTHOR, rule G8]. README identity.**
+   - Under "Part of the Geometric Series", the README now states "The book in `chapters/` is *Geometric Cognition: The Mathematical Structure of Human and Artificial Thought*, Volume 6 of the Geometric Series." The README title, "Observer-Limited Geometric Cognition", is kept.
+   - "twenty-nine tracks" now reads "thirty tracks", the count the campaigns README now gives ("One program, thirty tracks").
+   - In the same paragraph, "*Geometric Methods in Computational Modeling*" now reads "*Geometric Methods: Computational Modeling*" (X1), and "*Geometric Reasoning, From Search to Manifolds*" now reads "*Geometric Reasoning: From Search to Manifolds*".
+5. **X4 [rule G10]. "The Scalar Irrecoverability Theorem: the proof that ...".** In `chapters/ch00_front_matter.md`, line 21, the passage now reads "the Scalar Irrecoverability Theorem (*Geometric Reasoning*, Theorem 13.1, a conditional theorem): the statement that ...". The survey found this site while applying the report; it was not listed there.
+6. **X1 and X6. Titles and book numbers.**
+   - `appendices/appendix_a_math.md`, line 3: the *Geometric Methods* title is fixed.
+   - `appendices/appendix_d_notation.md`, line 106: "*Geometric Reasoning* (Book 2), and *Geometric Ethics* (Book 3)" now reads "*Geometric Ethics* (Book 2), and *Geometric Reasoning* (Book 3)".
+   - `front_matter.md` (unpublished), the Series Foreword: Ethics is now Book 2 and Reasoning is Book 3, and the *Geometric Methods* title is fixed.
+   - `backmatter/bibliography.md` (unpublished): 2026b is now *Geometric Ethics* [Book 2] and 2026c is *Geometric Reasoning* [Book 3], matching the keys the text uses. The *Geometric Methods* title is fixed. *Geometric Law*'s subtitle is now that of its title page and the build configuration, "Symmetry, Invariance, and the Structure of Legal Reasoning" (rule G7); it was "Courts, Constitutions, and the Architecture of Legal Reasoning".
+7. **S1 [rule G8]. README, license paragraph.**
+   - Old: "Every claim in this series carries a status label ... graded against a claim ledger".
+   - New: "Claims in this series carry status labels, such as `[proved]`, `[posited]` or `[open]` or a volume's own tags, graded against a claim ledger where the volume keeps one".
+   - This volume keeps one (`claims/LEDGER.md`).
+   - The README has no series table or series map, so X2 does not apply.
+
+**Checks.** `series_check.py` reports 0 hard defects before (run on a copy of commit 031fb5d) and 0 after. No figure or caption is made stale.

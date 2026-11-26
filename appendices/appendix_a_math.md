@@ -1,6 +1,6 @@
 # Appendix A: Mathematical Prerequisites
 
-This appendix collects the mathematical definitions and results used throughout the book. It is self-contained for readers unfamiliar with differential geometry, cognitive modeling, or the specific constructions of the geometric framework; those with background in these areas may skip directly to the chapters. Full proofs and extended treatments can be found in *Geometric Methods in Computational Modeling* (Bond, 2026a) and *Geometric Reasoning* (Bond, 2026c).
+This appendix collects the mathematical definitions and results used throughout the book. It is self-contained for readers unfamiliar with differential geometry, cognitive modeling, or the specific constructions of the geometric framework; those with background in these areas may skip directly to the chapters. Full proofs and extended treatments can be found in *Geometric Methods: Computational Modeling* (Bond, 2026a) and *Geometric Reasoning* (Bond, 2026c).
 
 ---
 
